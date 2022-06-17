@@ -1,8 +1,8 @@
 
 # transit-movements-converter
 
-This is an internal backend microservice for the Common Transit Convention project which provides an internal API to 
-convert XML to Json and Json to XML.
+This is an internal backend microservice for the Common Transit Convention project which provides an 
+internal API to convert XML to Json and Json to XML.
 
 This applications lives in the "protected" zone. It integrates with:
 
@@ -21,7 +21,7 @@ This microservice is in [Beta](https://www.gov.uk/help/beta). The signature may 
 ## Development Setup
 
 Run from the console using: `sbt run`. 
-It runs on the default port of 9475.
+The service runs on the default port 9475.
 
 The application should be run as part of the CTC_TRADERS_API profile due to it being an integral part of service.
 
