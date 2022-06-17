@@ -22,7 +22,7 @@ import akka.util.ByteString
 import com.google.inject.ImplementedBy
 import com.google.inject.Inject
 import akka.stream.alpakka.xml.scaladsl.XmlParsing
-import com.lucidchart.open.xtract.{DefaultXmlReaders, ParseFailure, ParseResult, ParseSuccess, XmlReader}
+import com.lucidchart.open.xtract.{DefaultXmlReaders, ParseFailure, ParseResult, ParseSuccess, PartialParseSuccess, XmlReader}
 import org.xml.sax.InputSource
 import play.api.libs.json.{JsString, JsValue, Json}
 import uk.gov.hmrc.transitmovementsconverter.controllers.models.{CC015C, Consignment, ConsignmentItem, HouseConsignment, Packaging}
@@ -34,12 +34,12 @@ import scala.xml.XML
 
 @ImplementedBy(classOf[XmlToJsonServiceImpl])
 trait XmlToJsonService {
-  def convert(source: Source[ByteString, _]): Future[Seq[JsValue]]
+  def convert(source: Source[ByteString, _]): Future[JsValue]
 }
 
 class XmlToJsonServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends XmlToJsonService {
 
-  override def convert(source: Source[ByteString, _]): Future[Seq[JsValue]] = {
+  override def convert(source: Source[ByteString, _]): Future[JsValue] = {
 
     val xmlInput = source.runWith(StreamConverters.asInputStream(20.seconds))
 
@@ -47,14 +47,14 @@ class XmlToJsonServiceImpl @Inject() (implicit materializer: Materializer, ec: E
 
     Source(XML.load(inputSource))
       .map(elem => XmlReader.of[CC015C].read(elem))
-      .statefulMapConcat(() =>
-        parseEvent =>
-          parseEvent match {
-          case a: ParseSuccess[CC015C] => Seq(Json.toJson(a.get))
-          case error: ParseFailure => Seq(Json.toJson(error.errors.map(e => e.toString)))
-      }
-      )
-      .runWith(Sink.seq)
+      .map(parseResult =>
+        parseResult match {
+          case result: ParseSuccess[CC015C] => Json.toJson(result.get)
+          case partialSuccess: PartialParseSuccess[CC015C] => Json.toJson(partialSuccess.errors.map(e => e.toString))
+          case failure: ParseFailure => Json.toJson(failure.errors.map(e => e.toString))
+        }
+    )
+      .runWith(Sink.head)
   }
 
 }

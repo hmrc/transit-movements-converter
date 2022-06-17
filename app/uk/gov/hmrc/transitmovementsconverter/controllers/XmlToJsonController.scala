@@ -37,7 +37,7 @@ class XmlToJsonController @Inject() (cc: ControllerComponents, xmlToJsonService:
     implicit request =>
       for {
         jsonVal <- xmlToJsonService.convert(request.body)
-      } yield Ok(jsonVal.headOption.get)
+      } yield Ok(jsonVal)
   }
 
 }
