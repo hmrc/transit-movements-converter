@@ -1,7 +1,13 @@
 
 # transit-movements-converter
 
-This is a microservice for an internal API to convert XML to Json and Json to XML.
+This is an internal backend microservice for the Common Transit Convention project which provides an 
+internal API to convert XML to Json and Json to XML.
+
+This applications lives in the "protected" zone. It integrates with:
+
+* [Common Transit Convention Traders API](https://github.com/hmrc/common-transit-convention-traders)
+* [Transit Movements Auditing](https://github.com/hmrc/transit-movements-auditing)
 
 This microservice is in [Beta](https://www.gov.uk/help/beta). The signature may change.
 
@@ -14,7 +20,10 @@ This microservice is in [Beta](https://www.gov.uk/help/beta). The signature may 
 
 ## Development Setup
 
-Run from the console using: `sbt run`
+Run from the console using: `sbt run`. 
+The service runs on the default port 9475.
+
+The application should be run as part of the CTC_TRADERS_API profile due to it being an integral part of service.
 
 ### Highlighted SBT Tasks
 Task | Description | Command

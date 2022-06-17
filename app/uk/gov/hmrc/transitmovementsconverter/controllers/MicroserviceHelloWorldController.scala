@@ -25,8 +25,7 @@ import javax.inject.Singleton
 import scala.concurrent.Future
 
 @Singleton()
-class MicroserviceHelloWorldController @Inject() (cc: ControllerComponents)
-  extends BackendController(cc) {
+class MicroserviceHelloWorldController @Inject() (cc: ControllerComponents) extends BackendController(cc) {
 
   def hello(): Action[AnyContent] = Action.async {
     Future.successful(Ok("Hello world"))
