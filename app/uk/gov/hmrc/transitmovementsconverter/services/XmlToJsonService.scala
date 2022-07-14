@@ -27,6 +27,7 @@ import com.google.inject.Inject
 import org.xml.sax.InputSource
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
+import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError
 
@@ -38,19 +39,19 @@ import scala.xml.XML
 
 @ImplementedBy(classOf[XmlToJsonServiceImpl])
 trait XmlToJsonService {
-  def convert[T](messageType: MessageType[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue]
+  def convert[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue]
 }
 
 class XmlToJsonServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends XmlToJsonService {
 
-  override def convert[T](messageType: MessageType[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue] =
+  override def convert[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue] =
     EitherT {
       Future {
         scalaxb
-          .fromXMLEither(XML.load(new InputSource(source.runWith(StreamConverters.asInputStream(20.seconds)))))(messageType.xmlFormat)
+          .fromXMLEither(XML.load(new InputSource(source.runWith(StreamConverters.asInputStream(20.seconds)))))(conversionFormat.xmlFormat)
           .leftMap(XmlToJsonError.XMLParsingError)
           .map(
-            x => Json.toJsObject(x)(messageType.writes)
+            x => Json.toJsObject(x)(conversionFormat.jsonWrites)
           )
       }.recoverWith {
         case NonFatal(e) => Future.successful(Left(XmlToJsonError.UnexpectedError(thr = Some(e))))
