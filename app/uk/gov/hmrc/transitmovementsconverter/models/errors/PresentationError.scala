@@ -19,7 +19,6 @@ package uk.gov.hmrc.transitmovementsconverter.models.errors
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.functional.syntax.unlift
 import play.api.libs.json.OWrites
-import play.api.libs.json.Reads
 import play.api.libs.json.__
 import uk.gov.hmrc.http.UpstreamErrorResponse
 
@@ -56,12 +55,6 @@ object PresentationError {
         (__ \ CodeFieldName).write[ErrorCode]
     )(unlift(PresentationError.unapply))
 
-  implicit val standardErrorReads: Reads[StandardError] =
-    (
-      (__ \ MessageFieldName).read[String] and
-        (__ \ CodeFieldName).read[ErrorCode]
-    )(StandardError.apply _)
-
 }
 
 sealed abstract class PresentationError extends Product with Serializable {
@@ -88,9 +81,3 @@ case class InternalServiceError(
   code: ErrorCode = ErrorCode.InternalServerError,
   cause: Option[Throwable] = None
 ) extends PresentationError
-
-object InternalServiceError {
-
-  def causedBy(cause: Throwable): PresentationError =
-    PresentationError.internalServiceError(cause = Some(cause))
-}
