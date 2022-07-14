@@ -19,7 +19,7 @@ package uk.gov.hmrc.transitmovementsconverter.controllers
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import uk.gov.hmrc.transitmovementsconverter.controllers.service.XmlToJsonServiceImpl
+import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonServiceImpl
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.xml.NodeSeq

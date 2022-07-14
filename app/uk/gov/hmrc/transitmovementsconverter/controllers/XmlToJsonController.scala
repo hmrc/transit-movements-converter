@@ -19,25 +19,33 @@ package uk.gov.hmrc.transitmovementsconverter.controllers
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
+import cats.implicits.catsStdInstancesForFuture
+import play.api.libs.json.Json
 import play.api.mvc.Action
 import play.api.mvc.ControllerComponents
-import uk.gov.hmrc.transitmovementsconverter.controllers.service.XmlToJsonService
+import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import uk.gov.hmrc.transitmovementsconverter.controllers.stream.StreamingParsers
+import uk.gov.hmrc.transitmovementsconverter.models.MessageType
+import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonService
 
 import javax.inject.Inject
 import javax.inject.Singleton
+import scala.concurrent.ExecutionContext
 
 @Singleton()
-class XmlToJsonController @Inject() (cc: ControllerComponents, xmlToJsonService: XmlToJsonService)(implicit val materializer: Materializer)
-    extends BackendController(cc)
-    with StreamingParsers {
+class XmlToJsonController @Inject() (cc: ControllerComponents, xmlToJsonService: XmlToJsonService)(implicit
+  val materializer: Materializer,
+  ec: ExecutionContext
+) extends BackendController(cc)
+    with StreamingParsers
+    with ErrorTranslator {
 
-  def convert(): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
+  def convert(messageType: MessageType[_]): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
     implicit request =>
-      for {
-        jsonVal <- xmlToJsonService.convert(request.body)
-      } yield Ok(jsonVal)
+      xmlToJsonService
+        .convert(messageType, request.body)
+        .asPresentation
+        .fold(presentationError => Status(presentationError.code.statusCode)(Json.toJson(presentationError)), Ok(_))
   }
 
 }

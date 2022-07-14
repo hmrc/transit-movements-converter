@@ -14,20 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.controllers
+package uk.gov.hmrc.transitmovementsconverter.models
 
-import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
-import play.api.mvc.Action
-import play.api.mvc.AnyContent
-import play.api.mvc.ControllerComponents
-import javax.inject.Inject
-import javax.inject.Singleton
-import scala.concurrent.Future
+import generated._
+import play.api.libs.json.Reads
+import play.api.libs.json.OWrites
+import scalaxb.XMLFormat
+import uk.gov.hmrc.transitmovementsconverter.models.ModelHelpers._
 
-@Singleton()
-class MicroserviceHelloWorldController @Inject() (cc: ControllerComponents) extends BackendController(cc) {
+sealed abstract class MessageType[T](val name: String)(implicit val xmlFormat: XMLFormat[T], val reads: Reads[T], val writes: OWrites[T])
 
-  def hello(): Action[AnyContent] = Action.async {
-    Future.successful(Ok("Hello world"))
-  }
+object MessageType extends XMLProtocol {
+  case object IE015 extends MessageType[CC015CType]("IE015")
+
+  val values = Seq(
+    IE015
+  )
+
+  def fromName(value: String): Option[MessageType[_]] = values.find(_.name == value)
 }

@@ -8,3 +8,5 @@ addSbtPlugin("com.typesafe.play" % "sbt-plugin"         % "2.8.13")
 addSbtPlugin("org.scoverage"     % "sbt-scoverage"      % "1.9.3")
 addSbtPlugin("org.scalameta"     % "sbt-scalafmt"       % "2.4.6")
 addSbtPlugin(dependency = "com.timushev.sbt" % "sbt-updates" % "0.6.3")
+
+addSbtPlugin("org.scalaxb" % "sbt-scalaxb" % "1.8.3")
