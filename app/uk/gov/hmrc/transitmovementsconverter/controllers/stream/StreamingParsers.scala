@@ -43,11 +43,6 @@ trait StreamingParsers {
   implicit val materializerExecutionContext: ExecutionContext =
     ExecutionContext.fromExecutorService(Executors.newFixedThreadPool(4))
 
-  def streamFromTemporaryFile[A](block: Source[ByteString, Future[IOResult]] => RunnableGraph[Future[A]])(implicit
-    request: Request[Files.TemporaryFile]
-  ): Future[A] =
-    block(FileIO.fromPath(request.body.path)).run()
-
   lazy val streamFromMemory: BodyParser[Source[ByteString, _]] = BodyParser {
     _ =>
       Accumulator.source[ByteString].map(Right.apply)

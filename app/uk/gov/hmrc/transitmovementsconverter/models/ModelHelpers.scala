@@ -114,7 +114,7 @@ object ModelHelpers {
 
   // Order sensitive - formats without dependencies should go first.
   implicit lazy val addressType12Format                  = Json.format[AddressType12]
-  implicit lazy val commodityCoeType02Fprmat             = Json.format[CommodityCodeType02]
+  implicit lazy val commodityCoeType02Format             = Json.format[CommodityCodeType02]
   implicit lazy val dangerousGoodsType01Format           = Json.format[DangerousGoodsType01]
   implicit lazy val goodsMeasureType02Format             = Json.format[GoodsMeasureType02]
   implicit lazy val consigneeType02Format                = Json.format[ConsigneeType02]

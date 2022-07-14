@@ -28,7 +28,6 @@ import org.xml.sax.InputSource
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
-import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError
 
 import scala.concurrent.ExecutionContext

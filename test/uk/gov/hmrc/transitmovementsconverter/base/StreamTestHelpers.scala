@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.controllers
+package uk.gov.hmrc.transitmovementsconverter.base
 
 import akka.stream.alpakka.xml.ParseEvent
 import akka.stream.alpakka.xml.scaladsl.XmlParsing

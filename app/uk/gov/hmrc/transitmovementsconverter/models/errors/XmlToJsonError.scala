@@ -16,8 +16,6 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models.errors
 
-import play.api.libs.json.JsError
-
 sealed trait XmlToJsonError
 
 object XmlToJsonError {
