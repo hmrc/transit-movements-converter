@@ -11,7 +11,9 @@ object CodeCoverageSettings {
     "prod.*",
     ".*Routes.*",
     "testOnly.*",
-    "testOnlyDoNotUseInAppConf.*"
+    "testOnlyDoNotUseInAppConf.*",
+    "generated.*",
+    "scalaxb.*"
   )
 
   val settings: Seq[Setting[_]] = Seq(
