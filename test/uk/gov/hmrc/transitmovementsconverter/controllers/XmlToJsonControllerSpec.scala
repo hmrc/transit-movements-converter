@@ -32,17 +32,19 @@ import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonService
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class XmlToJsonControllerSpec extends AnyFreeSpec
-  with Matchers
-  with ScalaFutures
-  with ScalaCheckDrivenPropertyChecks
-  with MockitoSugar
-  with BeforeAndAfterEach
-  with TestActorSystem {
+class XmlToJsonControllerSpec
+    extends AnyFreeSpec
+    with Matchers
+    with ScalaFutures
+    with ScalaCheckDrivenPropertyChecks
+    with MockitoSugar
+    with BeforeAndAfterEach
+    with TestActorSystem {
 
   val messageTypeGen: Gen[MessageType[_]] = Gen.oneOf(MessageType.values)
 
   val mockXmlToJsonService = mock[XmlToJsonService]
+
   val sut = new XmlToJsonController(
     stubControllerComponents(),
     mockXmlToJsonService
@@ -55,11 +57,12 @@ class XmlToJsonControllerSpec extends AnyFreeSpec
 
     "when provided with valid XML to convert, should return an OK with valid Json" in {
 
-      when(mockXmlToJsonService.convert(any(), any())).thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
+      when(mockXmlToJsonService.convert(any(), any()))
+        .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
 
-      val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
       val request = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = Source.single(ByteString("<valid></valid>")))
-      val result = sut.convert(sample)(request)
+      val result  = sut.convert(sample)(request)
 
       status(result) mustBe OK
       contentAsJson(result) mustBe Json.obj("success" -> true)
@@ -67,10 +70,12 @@ class XmlToJsonControllerSpec extends AnyFreeSpec
 
     "when provided with invalid XML to convert, should return an BAD_REQUEST" in {
 
-      when(mockXmlToJsonService.convert(any(), any())).thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Left(XmlToJsonError.XMLParsingError("error")))))
+      when(mockXmlToJsonService.convert(any(), any()))
+        .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Left(XmlToJsonError.XMLParsingError("error")))))
 
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
-      val request = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = Source.single(ByteString("<invalid></invalid>")))
+      val request =
+        FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = Source.single(ByteString("<invalid></invalid>")))
       val result = sut.convert(sample)(request)
 
       status(result) mustBe BAD_REQUEST
@@ -79,10 +84,12 @@ class XmlToJsonControllerSpec extends AnyFreeSpec
 
     "when an error occurs, should return an INTERNAL_SERVER_ERROR" in {
 
-      when(mockXmlToJsonService.convert(any(), any())).thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Left(XmlToJsonError.UnexpectedError(thr = None)))))
+      when(mockXmlToJsonService.convert(any(), any()))
+        .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Left(XmlToJsonError.UnexpectedError(thr = None)))))
 
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
-      val request = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = Source.single(ByteString("<invalid></invalid>")))
+      val request =
+        FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = Source.single(ByteString("<invalid></invalid>")))
       val result = sut.convert(sample)(request)
 
       status(result) mustBe INTERNAL_SERVER_ERROR

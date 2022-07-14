@@ -16,21 +16,15 @@
 
 package uk.gov.hmrc.transitmovementsconverter.controllers.stream
 
-import akka.stream.scaladsl.FileIO
-import akka.stream.scaladsl.RunnableGraph
-import akka.stream.scaladsl.Source
-import akka.stream.IOResult
 import akka.stream.Materializer
+import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.libs.Files
 import play.api.libs.streams.Accumulator
 import play.api.mvc.BaseControllerHelpers
 import play.api.mvc.BodyParser
-import play.api.mvc.Request
 
 import java.util.concurrent.Executors
 import scala.concurrent.ExecutionContext
-import scala.concurrent.Future
 
 trait StreamingParsers {
   self: BaseControllerHelpers =>

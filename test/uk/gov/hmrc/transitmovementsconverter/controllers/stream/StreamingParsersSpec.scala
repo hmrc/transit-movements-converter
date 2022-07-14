@@ -70,4 +70,3 @@ class StreamingParsersSpec extends AnyFreeSpec with Matchers with TestActorSyste
   }
 
 }
-

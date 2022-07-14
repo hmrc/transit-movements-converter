@@ -60,6 +60,7 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
   case class TestClass(test1: String)
 
   val testConverter = new ConversionFormat[TestClass] {
+
     override def xmlFormat: XMLFormat[TestClass] = new XMLFormat[TestClass] with XMLProtocol {
 
       override def writes(obj: TestClass, namespace: Option[String], elementLabel: Option[String], scope: NamespaceBinding, typeAttribute: Boolean): NodeSeq =
@@ -67,14 +68,12 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
           <test1>obj.test1</test1>
         </test>
 
-
-      override def reads(seq: NodeSeq, stack: List[ElemName]): Either[String, TestClass] = {
+      override def reads(seq: NodeSeq, stack: List[ElemName]): Either[String, TestClass] =
         (seq \ "test1") match {
           case NodeSeq.Empty      => Left("Failed")
           case x if x.length != 1 => Left("Failed (has children)")
           case x                  => Right(TestClass(x.text))
         }
-      }
     }
 
     override def jsonReads: Reads[TestClass] = Json.reads[TestClass]
@@ -104,7 +103,16 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
 
     "if an exception is thrown, should return the appropriate error" in {
       val exception = new IllegalArgumentException
-      val result = service.convert(testConverter, Source.single(ByteString(invalidXml.mkString, StandardCharsets.UTF_8)).via(Flow.fromFunction(_ => throw exception)))
+      val result = service.convert(
+        testConverter,
+        Source
+          .single(ByteString(invalidXml.mkString, StandardCharsets.UTF_8))
+          .via(
+            Flow.fromFunction(
+              _ => throw exception
+            )
+          )
+      )
       whenReady(result.value, timeout) {
         case Left(XmlToJsonError.UnexpectedError(Some(x: IOException))) => x.getCause mustBe exception
         case y                                                          => fail(s"$y is not the expected output")
@@ -112,6 +120,5 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
     }
 
   }
-
 
 }

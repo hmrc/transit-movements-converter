@@ -39,7 +39,7 @@ class ErrorTranslatorSpec extends AnyFreeSpec with Matchers with OptionValues wi
   "XmlToJson Error" - {
 
     "an Unexpected Error with no exception returns an internal service error with no exception" in {
-      val input = XmlToJsonError.UnexpectedError(None)
+      val input  = XmlToJsonError.UnexpectedError(None)
       val output = PresentationError.internalServiceError()
 
       xmlToJsonErrorConverter.convert(input) mustBe output
@@ -47,15 +47,15 @@ class ErrorTranslatorSpec extends AnyFreeSpec with Matchers with OptionValues wi
 
     "an Unexpected Error with an exception returns an internal service error with an exception" in {
       val exception = new IllegalStateException()
-      val input = XmlToJsonError.UnexpectedError(Some(exception))
-      val output = PresentationError.internalServiceError(cause = Some(exception))
+      val input     = XmlToJsonError.UnexpectedError(Some(exception))
+      val output    = PresentationError.internalServiceError(cause = Some(exception))
 
       xmlToJsonErrorConverter.convert(input) mustBe output
     }
 
     "an XMLParsingError returns a bad request error" in forAll(Gen.identifier) {
       message =>
-        val input = XmlToJsonError.XMLParsingError(message)
+        val input  = XmlToJsonError.XMLParsingError(message)
         val output = PresentationError.badRequestError(message)
 
         xmlToJsonErrorConverter.convert(input) mustBe output

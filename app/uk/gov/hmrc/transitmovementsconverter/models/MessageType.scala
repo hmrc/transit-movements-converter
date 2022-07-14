@@ -22,12 +22,11 @@ import play.api.libs.json.OWrites
 import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.models.ModelHelpers._
 
-sealed abstract class MessageType[T](val name: String)
-                                    (implicit
-                                     override val xmlFormat: XMLFormat[T],
-                                     override val jsonReads: Reads[T],
-                                     override val jsonWrites: OWrites[T])
-  extends ConversionFormat[T]
+sealed abstract class MessageType[T](val name: String)(implicit
+  override val xmlFormat: XMLFormat[T],
+  override val jsonReads: Reads[T],
+  override val jsonWrites: OWrites[T]
+) extends ConversionFormat[T]
 
 object MessageType extends XMLProtocol {
   case object CC015C extends MessageType[CC015CType]("CC015C")
