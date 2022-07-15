@@ -9,10 +9,10 @@ val silencerVersion = "1.7.7"
 lazy val microservice = Project(appName, file("."))
   .enablePlugins(play.sbt.PlayScala, SbtDistributablesPlugin, ScalaxbPlugin)
   .settings(
-    majorVersion                     := 0,
-    scalaVersion                     := "2.12.15",
-    PlayKeys.playDefaultPort         := 9475,
-    libraryDependencies              ++= AppDependencies.compile ++ AppDependencies.test,
+    majorVersion := 0,
+    scalaVersion := "2.12.15",
+    PlayKeys.playDefaultPort := 9475,
+    libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     // ***************
     // Use the silencer plugin to suppress warnings
     scalacOptions += "-P:silencer:pathFilters=routes;src_managed",
@@ -35,3 +35,9 @@ lazy val microservice = Project(appName, file("."))
   .settings(integrationTestSettings(): _*)
   .settings(resolvers += Resolver.jcenterRepo)
   .settings(CodeCoverageSettings.settings: _*)
+  .settings(inThisBuild(buildSettings))
+
+// Settings for the whole build
+lazy val buildSettings = Def.settings(
+  scalafmtOnCompile := true
+)
