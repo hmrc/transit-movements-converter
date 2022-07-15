@@ -16,9 +16,11 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
+import generated.CC015CType
 import generated.MessageTypes
 import generated.Number0
 import generated.Number1
+import generated.XMLProtocol
 import org.scalacheck.Gen
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
@@ -267,6 +269,19 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
         s"${messageType.toString} should be returned as a JsString" in {
           ModelHelpers.messageTypesWrites.writes(messageType) mustBe JsString(messageType.toString)
         }
+    }
+
+  }
+
+  "cc015cFormats" - new XMLProtocol {
+    val model: CC015CType = scalaxb.fromXML[CC015CType](TestObjects.CC015C.xml1)
+
+    "converting model to Json" in {
+      ModelHelpers.cc015cFormats.writes(model) mustBe TestObjects.CC015C.json1
+    }
+
+    "converting Json to model" in {
+      ModelHelpers.cc015cFormats.reads(TestObjects.CC015C.json1) mustBe JsSuccess(model)
     }
 
   }

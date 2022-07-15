@@ -35,6 +35,7 @@ import play.api.libs.json.OFormat
 import play.api.libs.json.Reads
 import play.api.libs.json.Writes
 import play.api.libs.json.__
+import scalaxb.DataRecord
 import scalaxb.DataTypeFactory
 import uk.gov.hmrc.transitmovementsconverter.models.errors.MalformedJsonException
 
@@ -269,7 +270,7 @@ object ModelHelpers {
 
   // Message Types
 
-  implicit val formats: OFormat[CC015CType] = (
+  implicit val cc015cFormats: OFormat[CC015CType] = (
     (__ \ "messageRecipient").format[String] and
       (__ \ "preparationDateAndTime").format[XMLGregorianCalendar] and
       (__ \ "messageIdentification").format[String] and
@@ -317,7 +318,9 @@ object ModelHelpers {
         HolderOfTheTransitProcedure,
         Representative,
         Guarantee.getOrElse(Nil),
-        Consignment
+        Consignment,
+        // TODO: Do we need to encode this in a different way in the Json (what does the schema say?)
+        Map("@PhaseID" -> DataRecord(NCTS5u460.toString))
       ),
     {
       obj: CC015CType =>

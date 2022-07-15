@@ -16,11 +16,8 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
-import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
-import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
 class MessageTypeSpec extends AnyFreeSpec with Matchers {
 
