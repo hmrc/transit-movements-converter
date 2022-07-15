@@ -42,8 +42,7 @@ import javax.xml.datatype.XMLGregorianCalendar
 import scala.util.Try
 import scala.xml.TopScope
 
- /**
-  * Here be dragons - be very careful when updating this class and make sure you test everything.
+/** Here be dragons - be very careful when updating this class and make sure you test everything.
   *
   * While we are able to use scalaxb to ingest our XML files and create models, we still need to consider how
   * we're going to convert them into Json. The natural choice is Play Json, but unfortunately, due to the
@@ -103,7 +102,10 @@ object ModelHelpers {
   }
 
   implicit lazy val flagReads: Reads[Flag] = Reads {
-    case JsString(s)                      => JsSuccess(Flag.fromString(s, TopScope))
+    case JsString(s) =>
+      Try(JsSuccess(Flag.fromString(s, TopScope))).recover {
+        case _: RuntimeException => JsError()
+      }.get
     case JsNumber(n) if n.intValue() == 1 => JsSuccess(Number1)
     case JsNumber(n) if n.intValue() == 0 => JsSuccess(Number0)
     case _                                => JsError()
@@ -240,13 +242,13 @@ object ModelHelpers {
       Json.obj(seq: _*)
   }
 
-  implicit lazy val xmlDateTimeWrites: Writes[javax.xml.datatype.XMLGregorianCalendar] = Writes {
+  implicit lazy val xmlDateTimeWrites: Writes[XMLGregorianCalendar] = Writes {
     dateTime =>
       JsString(dateTime.toXMLFormat)
   }
 
   implicit lazy val xmlDateTimeReads: Reads[XMLGregorianCalendar] = Reads {
-    case JsString(dateTime) => JsSuccess(DataTypeFactory.initialValue().newXMLGregorianCalendar(dateTime))
+    case JsString(dateTime) => Try(JsSuccess(DataTypeFactory.initialValue().newXMLGregorianCalendar(dateTime))).getOrElse(JsError())
     case _                  => JsError()
   }
 

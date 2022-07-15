@@ -24,10 +24,7 @@ import play.api.http.Status.NOT_FOUND
 import play.api.http.Status.REQUEST_ENTITY_TOO_LARGE
 import play.api.http.Status.UNAUTHORIZED
 import play.api.http.Status.UNSUPPORTED_MEDIA_TYPE
-import play.api.libs.json.JsError
 import play.api.libs.json.JsString
-import play.api.libs.json.JsSuccess
-import play.api.libs.json.Reads
 import play.api.libs.json.Writes
 
 sealed abstract class ErrorCode(val code: String, val statusCode: Int) extends Product with Serializable

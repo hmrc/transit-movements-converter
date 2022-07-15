@@ -22,7 +22,7 @@ import org.scalatest.matchers.must.Matchers
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
-class MessageTypeSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
+class MessageTypeSpec extends AnyFreeSpec with Matchers {
 
   "froName" - {
 
