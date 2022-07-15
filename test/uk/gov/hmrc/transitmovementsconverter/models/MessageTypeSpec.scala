@@ -21,7 +21,7 @@ import org.scalatest.matchers.must.Matchers
 
 class MessageTypeSpec extends AnyFreeSpec with Matchers {
 
-  "froName" - {
+  "fromName" - {
 
     MessageType.values.foreach {
       messageType =>
