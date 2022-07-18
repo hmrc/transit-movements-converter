@@ -286,7 +286,7 @@ object ModelHelpers {
 
   // ** CC015C **
 
-  private val cc015cRoot = "CC015C"
+  private val cc015cRoot = "n1:CC015C"
 
   implicit val cc015cFormats: OFormat[CC015CType] = (
     (__ \ cc015cRoot \ "messageRecipient").format[String] and
