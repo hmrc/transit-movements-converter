@@ -280,9 +280,9 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
       ModelHelpers.cc015cFormats.writes(model) mustBe TestObjects.CC015C.json1
     }
 
-//    "converting Json to model" in {
-//      ModelHelpers.cc015cFormats.reads(TestObjects.CC015C.json1) mustBe JsSuccess(model)
-//    }
+    "converting Json to model" in {
+      ModelHelpers.cc015cFormats.reads(TestObjects.CC015C.json1).get mustBe model
+    }
 
   }
 

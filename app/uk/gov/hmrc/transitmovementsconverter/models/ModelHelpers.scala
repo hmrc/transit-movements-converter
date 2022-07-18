@@ -68,8 +68,8 @@ object ModelHelpers {
     def toOption: Option[Seq[A]] = Option(value).filter(_.nonEmpty)
 
     def entry(name: String)(implicit w: Writes[A]): Seq[(String, JsValueWrapper)] =
-      if (value.nonEmpty) Seq(name -> value)
-      else Seq.empty
+      if (value.nonEmpty) List(name -> value)
+      else List.empty
   }
 
   implicit class OptionHelpers[A](val value: Option[A]) extends AnyVal {
@@ -91,7 +91,7 @@ object ModelHelpers {
       lookup.toOption.map(_.as[A])
 
     def asSeq[A](implicit reads: Reads[A]): Seq[A] =
-      lookup.toOption.map(_.as[Seq[A]]).getOrElse(Nil)
+      lookup.toOption.map(_.as[List[A]]).getOrElse(Nil)
   }
 
   implicit class JsValueHelpers(val value: JsValue) extends AnyVal {
@@ -341,7 +341,7 @@ object ModelHelpers {
         Consignment,
         phaseId
           .map(
-            x => Map("@PhaseID" -> DataRecord(x.toString))
+            x => Map("@PhaseID" -> DataRecord(x))
           )
           .getOrElse(Map.empty)
       ),
