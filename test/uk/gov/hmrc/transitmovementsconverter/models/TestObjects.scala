@@ -69,75 +69,80 @@ object TestObjects {
       </Consignment>
     </ncts:CC015C>
 
-    lazy val json1 = Json.obj(
-      "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
-      "preparationDateAndTime" -> "2022-01-22T07:43:36",
-      "messageIdentification"  -> "6Onxa3En",
-      "messageType"            -> "CC015C",
-      "TransitOperation" -> Json.obj(
-        "LRN"                       -> "qvRcL",
-        "declarationType"           -> "Pbg",
-        "additionalDeclarationType" -> "O",
-        "security"                  -> "8",
-        "reducedDatasetIndicator"   -> "1",
-        "bindingItinerary"          -> "0"
-      ),
-      "CustomsOfficeOfDeparture" -> Json.obj(
-        "referenceNumber" -> "ZQZ20442"
-      ),
-      "CustomsOfficeOfDestinationDeclared" -> Json.obj(
-        "referenceNumber" -> "ZQZ20442"
-      ),
-      "HolderOfTheTransitProcedure" -> Json.obj(
-        "identificationNumber" -> "SFzsisksA"
-      ),
-      "Guarantee" -> Json.arr(
-        Json.obj(
-          "sequenceNumber"          -> "48711",
-          "guaranteeType"           -> "1",
-          "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX",
-          "GuaranteeReference"      -> Json.arr()
-        )
-      ),
-      "Consignment" -> Json.obj(
-        "grossMass" -> 6430669292.48125,
-        "HouseConsignment" -> Json.arr(
+    lazy val json1 =
+      Json.obj(
+        "CC015C" ->
           Json.obj(
-            "sequenceNumber"             -> "48711",
-            "grossMass"                  -> 6430669292.48125,
-            "AdditionalSupplyChainActor" -> Json.arr(),
-            "DepartureTransportMeans"    -> Json.arr(),
-            "PreviousDocument"           -> Json.arr(),
-            "SupportingDocument"         -> Json.arr(),
-            "TransportDocument"          -> Json.arr(),
-            "AdditionalReference"        -> Json.arr(),
-            "AdditionalInformation"      -> Json.arr(),
-            "ConsignmentItem" -> Json.arr(
+            "@PhaseID"               -> "NCTS5.0",
+            "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
+            "preparationDateAndTime" -> "2022-01-22T07:43:36",
+            "messageIdentification"  -> "6Onxa3En",
+            "messageType"            -> "CC015C",
+            "TransitOperation" -> Json.obj(
+              "LRN"                       -> "qvRcL",
+              "declarationType"           -> "Pbg",
+              "additionalDeclarationType" -> "O",
+              "security"                  -> "8",
+              "reducedDatasetIndicator"   -> "1",
+              "bindingItinerary"          -> "0"
+            ),
+            "CustomsOfficeOfDeparture" -> Json.obj(
+              "referenceNumber" -> "ZQZ20442"
+            ),
+            "CustomsOfficeOfDestinationDeclared" -> Json.obj(
+              "referenceNumber" -> "ZQZ20442"
+            ),
+            "HolderOfTheTransitProcedure" -> Json.obj(
+              "identificationNumber" -> "SFzsisksA"
+            ),
+            "Guarantee" -> Json.arr(
               Json.obj(
-                "goodsItemNumber"            -> "18914",
-                "declarationGoodsItemNumber" -> 1458,
-                "AdditionalSupplyChainActor" -> Json.arr(),
-                "Commodity" -> Json.obj(
-                  "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
-                  "DangerousGoods"     -> Json.arr()
-                ),
-                "Packaging" -> Json.arr(
-                  Json.obj(
-                    "sequenceNumber" -> "48711",
-                    "typeOfPackages" -> "Oi"
+                "sequenceNumber"          -> "48711",
+                "guaranteeType"           -> "1",
+                "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX",
+                "GuaranteeReference"      -> Json.arr()
+              )
+            ),
+            "Consignment" -> Json.obj(
+              "grossMass" -> 6430669292.48125,
+              "HouseConsignment" -> Json.arr(
+                Json.obj(
+                  "sequenceNumber"             -> "48711",
+                  "grossMass"                  -> 6430669292.48125,
+                  "AdditionalSupplyChainActor" -> Json.arr(),
+                  "DepartureTransportMeans"    -> Json.arr(),
+                  "PreviousDocument"           -> Json.arr(),
+                  "SupportingDocument"         -> Json.arr(),
+                  "TransportDocument"          -> Json.arr(),
+                  "AdditionalReference"        -> Json.arr(),
+                  "AdditionalInformation"      -> Json.arr(),
+                  "ConsignmentItem" -> Json.arr(
+                    Json.obj(
+                      "goodsItemNumber"            -> "18914",
+                      "declarationGoodsItemNumber" -> 1458,
+                      "AdditionalSupplyChainActor" -> Json.arr(),
+                      "Commodity" -> Json.obj(
+                        "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
+                        "DangerousGoods"     -> Json.arr()
+                      ),
+                      "Packaging" -> Json.arr(
+                        Json.obj(
+                          "sequenceNumber" -> "48711",
+                          "typeOfPackages" -> "Oi"
+                        )
+                      ),
+                      "PreviousDocument"      -> Json.arr(),
+                      "SupportingDocument"    -> Json.arr(),
+                      "TransportDocument"     -> Json.arr(),
+                      "AdditionalReference"   -> Json.arr(),
+                      "AdditionalInformation" -> Json.arr()
+                    )
                   )
-                ),
-                "PreviousDocument"      -> Json.arr(),
-                "SupportingDocument"    -> Json.arr(),
-                "TransportDocument"     -> Json.arr(),
-                "AdditionalReference"   -> Json.arr(),
-                "AdditionalInformation" -> Json.arr()
+                )
               )
             )
           )
-        )
       )
-    )
 
   }
 

@@ -117,7 +117,21 @@ object ModelHelpers {
       JsString(flag.toString)
   }
 
+  implicit lazy val phaseIDtypeReads: Reads[PhaseIDtype] = Reads {
+    case JsString(x) =>
+      Try(JsSuccess(PhaseIDtype.fromString(x, TopScope))).recover {
+        case _: RuntimeException => JsError()
+      }.get
+    case _ => JsError()
+  }
+
+  implicit lazy val phaseIDtypeWrites: Writes[PhaseIDtype] = Writes {
+    phaseId =>
+      JsString(phaseId.toString)
+  }
+
   // Order sensitive - formats without dependencies should go first.
+
   implicit lazy val addressType12Format                  = Json.format[AddressType12]
   implicit lazy val commodityCoeType02Format             = Json.format[CommodityCodeType02]
   implicit lazy val dangerousGoodsType01Format           = Json.format[DangerousGoodsType01]
@@ -270,22 +284,27 @@ object ModelHelpers {
 
   // Message Types
 
+  // ** CC015C **
+
+  private val cc015cRoot = "CC015C"
+
   implicit val cc015cFormats: OFormat[CC015CType] = (
-    (__ \ "messageRecipient").format[String] and
-      (__ \ "preparationDateAndTime").format[XMLGregorianCalendar] and
-      (__ \ "messageIdentification").format[String] and
-      (__ \ "messageType").format[MessageTypes] and
-      (__ \ "correlationIdentifier").formatNullable[String] and
-      (__ \ "TransitOperation").format[TransitOperationType06] and
-      (__ \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
-      (__ \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
-      (__ \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-      (__ \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
-      (__ \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
-      (__ \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
-      (__ \ "Representative").formatNullable[RepresentativeType05] and
-      (__ \ "Guarantee").formatNullable[Seq[GuaranteeType02]] and
-      (__ \ "Consignment").format[ConsignmentType20]
+    (__ \ cc015cRoot \ "messageRecipient").format[String] and
+      (__ \ cc015cRoot \ "preparationDateAndTime").format[XMLGregorianCalendar] and
+      (__ \ cc015cRoot \ "messageIdentification").format[String] and
+      (__ \ cc015cRoot \ "messageType").format[MessageTypes] and
+      (__ \ cc015cRoot \ "correlationIdentifier").formatNullable[String] and
+      (__ \ cc015cRoot \ "TransitOperation").format[TransitOperationType06] and
+      (__ \ cc015cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
+      (__ \ cc015cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
+      (__ \ cc015cRoot \ "Representative").formatNullable[RepresentativeType05] and
+      (__ \ cc015cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType02]] and
+      (__ \ cc015cRoot \ "Consignment").format[ConsignmentType20] and
+      (__ \ cc015cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
   )(
     (
       messageRecipient,
@@ -302,7 +321,8 @@ object ModelHelpers {
       HolderOfTheTransitProcedure,
       Representative,
       Guarantee,
-      Consignment
+      Consignment,
+      phaseId
     ) =>
       CC015CType(
         MESSAGE_FROM_TRADERSequence(
@@ -319,8 +339,11 @@ object ModelHelpers {
         Representative,
         Guarantee.getOrElse(Nil),
         Consignment,
-        // TODO: Do we need to encode this in a different way in the Json (what does the schema say?)
-        Map("@PhaseID" -> DataRecord(NCTS5u460.toString))
+        phaseId
+          .map(
+            x => Map("@PhaseID" -> DataRecord(x.toString))
+          )
+          .getOrElse(Map.empty)
       ),
     {
       obj: CC015CType =>
@@ -340,7 +363,8 @@ object ModelHelpers {
           obj.HolderOfTheTransitProcedure,
           obj.Representative,
           obj.Guarantee.toOption,
-          obj.Consignment
+          obj.Consignment,
+          obj.PhaseID
         )
     }
   )
