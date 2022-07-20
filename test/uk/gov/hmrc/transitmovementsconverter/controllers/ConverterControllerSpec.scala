@@ -36,6 +36,7 @@ import play.api.http.MimeTypes
 import play.api.http.Status.BAD_REQUEST
 import play.api.http.Status.INTERNAL_SERVER_ERROR
 import play.api.http.Status.OK
+import play.api.http.Status.UNSUPPORTED_MEDIA_TYPE
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import play.api.test.FakeHeaders
@@ -52,7 +53,7 @@ import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonService
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class XmlToJsonControllerSpec
+class ConverterControllerSpec
     extends AnyFreeSpec
     with Matchers
     with ScalaFutures
@@ -65,7 +66,7 @@ class XmlToJsonControllerSpec
 
   val mockXmlToJsonService = mock[XmlToJsonService]
 
-  val sut = new XmlToJsonController(
+  val sut = new ConverterController(
     stubControllerComponents(),
     mockXmlToJsonService
   )
@@ -87,8 +88,8 @@ class XmlToJsonControllerSpec
       val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = sourceUnderTest)
       val result                    = sut.convert(sample)(request)
 
-      status(result) mustBe BAD_REQUEST
-      contentAsJson(result) mustBe Json.obj("code" -> "BAD_REQUEST", "message" -> "No Content-Type was provided")
+      status(result) mustBe UNSUPPORTED_MEDIA_TYPE
+      contentAsJson(result) mustBe Json.obj("code" -> "UNSUPPORTED_MEDIA_TYPE", "message" -> "A content-type header is required!")
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
       }
@@ -101,8 +102,8 @@ class XmlToJsonControllerSpec
       val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = textHeader, body = sourceUnderTest)
       val result                    = sut.convert(sample)(request)
 
-      status(result) mustBe BAD_REQUEST
-      contentAsJson(result) mustBe Json.obj("code" -> "BAD_REQUEST", "message" -> "Content-Type text/plain was provided, but is not valid for this service")
+      status(result) mustBe UNSUPPORTED_MEDIA_TYPE
+      contentAsJson(result) mustBe Json.obj("code" -> "UNSUPPORTED_MEDIA_TYPE", "message" -> "Content-type header text/plain is not supported!")
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
       }
