@@ -52,16 +52,13 @@ class ConverterController @Inject() (cc: ControllerComponents, xmlToJsonService:
 
   def xmlToJson(messageType: MessageType[_]): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
     implicit request =>
-      if (request.accepts(MimeTypes.JSON)) {
-        xmlToJsonService
-          .convert(messageType, request.body)
-          .asPresentation
-          .map(Ok(_))
-          .valueOr(
-            error => Status(error.code.statusCode)(Json.toJson(error))
-          )
-      } else if (request.accepts(MimeTypes.XML)) Future.successful(Ok.chunked(request.body))
-      else Future.successful(BadRequest(Json.toJson(PresentationError.badRequestError("An invalid Accept header was supplied."))))
+      xmlToJsonService
+        .convert(messageType, request.body)
+        .asPresentation
+        .map(Ok(_))
+        .valueOr(
+          error => Status(error.code.statusCode)(Json.toJson(error))
+        )
   }
 
   private def route(routes: PartialFunction[(Option[String], Option[String]), Action[_]])(implicit materializer: Materializer): Action[Source[ByteString, _]] =
