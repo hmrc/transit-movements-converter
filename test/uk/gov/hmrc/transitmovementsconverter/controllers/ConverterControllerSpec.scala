@@ -71,9 +71,10 @@ class ConverterControllerSpec
     mockXmlToJsonService
   )
 
-  val xmlHeader  = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.XML))
-  val jsonHeader = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.JSON))
-  val textHeader = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.TEXT))
+  val xmlToJsonHeader  = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.XML, HeaderNames.ACCEPT -> MimeTypes.JSON))
+  val jsonToXmlHeader  = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.JSON, HeaderNames.ACCEPT -> MimeTypes.XML))
+  val textToJsonHeader = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.TEXT, HeaderNames.ACCEPT -> MimeTypes.JSON))
+  val xmlToTextHeader  = FakeHeaders(Seq(HeaderNames.CONTENT_TYPE -> MimeTypes.XML, HeaderNames.ACCEPT -> MimeTypes.TEXT))
 
   override def beforeEach(): Unit =
     reset(mockXmlToJsonService)
@@ -89,7 +90,10 @@ class ConverterControllerSpec
       val result                    = sut.convert(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
-      contentAsJson(result) mustBe Json.obj("code" -> "UNSUPPORTED_MEDIA_TYPE", "message" -> "A content-type header is required!")
+      contentAsJson(result) mustBe Json.obj(
+        "code"    -> "UNSUPPORTED_MEDIA_TYPE",
+        "message" -> "Combination of content-type header [not supplied] and accept header [not supplied] is not supported!"
+      )
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
       }
@@ -99,11 +103,31 @@ class ConverterControllerSpec
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
-      val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = textHeader, body = sourceUnderTest)
+      val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = textToJsonHeader, body = sourceUnderTest)
       val result                    = sut.convert(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
-      contentAsJson(result) mustBe Json.obj("code" -> "UNSUPPORTED_MEDIA_TYPE", "message" -> "Content-type header text/plain is not supported!")
+      contentAsJson(result) mustBe Json.obj(
+        "code"    -> "UNSUPPORTED_MEDIA_TYPE",
+        "message" -> "Combination of content-type header text/plain and accept header application/json is not supported!"
+      )
+      whenReady(resultMatVal) {
+        _ mustBe "<valid></valid>" // testing we drain the stream
+      }
+    }
+
+    "with a text accept returns a bad request" in {
+      val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
+      val resultMatVal              = matVal.map(_.utf8String)
+      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToTextHeader, body = sourceUnderTest)
+      val result                    = sut.convert(sample)(request)
+
+      status(result) mustBe UNSUPPORTED_MEDIA_TYPE
+      contentAsJson(result) mustBe Json.obj(
+        "code"    -> "UNSUPPORTED_MEDIA_TYPE",
+        "message" -> "Combination of content-type header application/xml and accept header text/plain is not supported!"
+      )
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
       }
@@ -116,9 +140,10 @@ class ConverterControllerSpec
         when(mockXmlToJsonService.convert(any(), any()))
           .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
-        val request = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlHeader, body = Source.single(ByteString("<valid></valid>")))
-        val result  = sut.convert(sample)(request)
+        val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val request =
+          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<valid></valid>")))
+        val result = sut.convert(sample)(request)
 
         status(result) mustBe OK
         contentAsJson(result) mustBe Json.obj("success" -> true)
@@ -131,7 +156,7 @@ class ConverterControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlHeader, body = Source.single(ByteString("<invalid></invalid>")))
+          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
         val result = sut.convert(sample)(request)
 
         status(result) mustBe BAD_REQUEST
@@ -145,7 +170,7 @@ class ConverterControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlHeader, body = Source.single(ByteString("<invalid></invalid>")))
+          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
         val result = sut.convert(sample)(request)
 
         status(result) mustBe INTERNAL_SERVER_ERROR
@@ -154,5 +179,4 @@ class ConverterControllerSpec
     }
 
   }
-
 }

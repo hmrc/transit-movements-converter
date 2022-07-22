@@ -29,10 +29,10 @@ sealed abstract class MessageType[T](val name: String)(implicit
 ) extends ConversionFormat[T]
 
 object MessageType extends XMLProtocol {
-  case object CC015C extends MessageType[CC015CType]("CC015C")
+  case object IE015 extends MessageType[CC015CType]("IE015")
 
   val values = Seq(
-    CC015C
+    IE015
   )
 
   def fromName(value: String): Option[MessageType[_]] = values.find(_.name == value)
