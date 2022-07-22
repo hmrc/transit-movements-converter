@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.controllers
+package uk.gov.hmrc.transitmovementsconverter.models
 
-import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
-import play.api.mvc.Action
-import play.api.mvc.AnyContent
-import play.api.mvc.ControllerComponents
-import javax.inject.Inject
-import javax.inject.Singleton
-import scala.concurrent.Future
+import play.api.libs.json.Reads
+import play.api.libs.json.OWrites
+import scalaxb.XMLFormat
 
-@Singleton()
-class MicroserviceHelloWorldController @Inject() (cc: ControllerComponents) extends BackendController(cc) {
+trait ConversionFormat[T] {
 
-  def hello(): Action[AnyContent] = Action.async {
-    Future.successful(Ok("Hello world"))
-  }
+  def xmlFormat: XMLFormat[T]
+  def jsonReads: Reads[T]
+  def jsonWrites: OWrites[T]
+
 }
