@@ -39,14 +39,14 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
 @Singleton()
-class ConverterController @Inject() (cc: ControllerComponents, xmlToJsonService: XmlToJsonService)(implicit
+class MessageConversionController @Inject() (cc: ControllerComponents, xmlToJsonService: XmlToJsonService)(implicit
   val materializer: Materializer,
   ec: ExecutionContext
 ) extends BackendController(cc)
     with StreamingParsers
     with ErrorTranslator {
 
-  def convert(messageType: MessageType[_]): Action[Source[ByteString, _]] = route {
+  def message(messageType: MessageType[_]): Action[Source[ByteString, _]] = route {
     case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) => xmlToJson(messageType)
   }
 

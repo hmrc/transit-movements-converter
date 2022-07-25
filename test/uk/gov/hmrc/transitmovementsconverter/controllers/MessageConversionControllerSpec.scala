@@ -53,7 +53,7 @@ import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonService
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
-class ConverterControllerSpec
+class MessageConversionControllerSpec
     extends AnyFreeSpec
     with Matchers
     with ScalaFutures
@@ -66,7 +66,7 @@ class ConverterControllerSpec
 
   val mockXmlToJsonService = mock[XmlToJsonService]
 
-  val sut = new ConverterController(
+  val sut = new MessageConversionController(
     stubControllerComponents(),
     mockXmlToJsonService
   )
@@ -87,7 +87,7 @@ class ConverterControllerSpec
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = sourceUnderTest)
-      val result                    = sut.convert(sample)(request)
+      val result                    = sut.message(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustBe Json.obj(
@@ -104,7 +104,7 @@ class ConverterControllerSpec
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = textToJsonHeader, body = sourceUnderTest)
-      val result                    = sut.convert(sample)(request)
+      val result                    = sut.message(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustBe Json.obj(
@@ -121,7 +121,7 @@ class ConverterControllerSpec
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToTextHeader, body = sourceUnderTest)
-      val result                    = sut.convert(sample)(request)
+      val result                    = sut.message(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustBe Json.obj(
@@ -143,7 +143,7 @@ class ConverterControllerSpec
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<valid></valid>")))
-        val result = sut.convert(sample)(request)
+        val result = sut.message(sample)(request)
 
         status(result) mustBe OK
         contentAsJson(result) mustBe Json.obj("success" -> true)
@@ -157,7 +157,7 @@ class ConverterControllerSpec
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
-        val result = sut.convert(sample)(request)
+        val result = sut.message(sample)(request)
 
         status(result) mustBe BAD_REQUEST
         contentAsJson(result) mustBe Json.obj("code" -> "BAD_REQUEST", "message" -> "error")
@@ -171,7 +171,7 @@ class ConverterControllerSpec
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
-        val result = sut.convert(sample)(request)
+        val result = sut.message(sample)(request)
 
         status(result) mustBe INTERNAL_SERVER_ERROR
         contentAsJson(result) mustBe Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
