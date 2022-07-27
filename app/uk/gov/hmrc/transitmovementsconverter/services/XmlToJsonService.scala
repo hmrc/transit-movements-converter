@@ -46,6 +46,10 @@ class XmlToJsonServiceImpl @Inject() (implicit materializer: Materializer, ec: E
   override def convert[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue] =
     EitherT {
       Future {
+        // Note that we use 20 seconds here as this is the standard timeout on the service, if we're taking
+        // longer than 20 seconds the request will have failed anyway.
+        //
+        // It's important to note that 20 seconds is the upper limit, and not a target
         scalaxb
           .fromXMLEither(XML.load(new InputSource(source.runWith(StreamConverters.asInputStream(20.seconds)))))(conversionFormat.xmlFormat)
           .leftMap(XmlToJsonError.XMLParsingError)
