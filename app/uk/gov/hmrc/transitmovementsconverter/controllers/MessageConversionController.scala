@@ -31,7 +31,7 @@ import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import uk.gov.hmrc.transitmovementsconverter.controllers.stream.StreamingParsers
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
-import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonService
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -39,7 +39,7 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
 @Singleton()
-class MessageConversionController @Inject() (cc: ControllerComponents, xmlToJsonService: XmlToJsonService)(implicit
+class MessageConversionController @Inject() (cc: ControllerComponents, converterService: ConverterService)(implicit
   val materializer: Materializer,
   ec: ExecutionContext
 ) extends BackendController(cc)
@@ -52,8 +52,8 @@ class MessageConversionController @Inject() (cc: ControllerComponents, xmlToJson
 
   def xmlToJson(messageType: MessageType[_]): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
     implicit request =>
-      xmlToJsonService
-        .convert(messageType, request.body)
+      converterService
+        .xmlToJson(messageType, request.body)
         .asPresentation
         .map(Ok(_))
         .valueOr(

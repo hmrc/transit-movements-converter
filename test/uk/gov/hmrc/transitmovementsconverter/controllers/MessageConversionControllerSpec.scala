@@ -47,8 +47,8 @@ import play.api.test.Helpers.status
 import play.api.test.Helpers.stubControllerComponents
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError
-import uk.gov.hmrc.transitmovementsconverter.services.XmlToJsonService
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
@@ -64,7 +64,7 @@ class MessageConversionControllerSpec
 
   val messageTypeGen: Gen[MessageType[_]] = Gen.oneOf(MessageType.values)
 
-  val mockXmlToJsonService = mock[XmlToJsonService]
+  val mockXmlToJsonService = mock[ConverterService]
 
   val sut = new MessageConversionController(
     stubControllerComponents(),
@@ -137,8 +137,8 @@ class MessageConversionControllerSpec
 
       "when provided with valid XML to convert, should return an OK with valid Json" in {
 
-        when(mockXmlToJsonService.convert(any(), any()))
-          .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
+        when(mockXmlToJsonService.xmlToJson(any(), any()))
+          .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
@@ -151,8 +151,8 @@ class MessageConversionControllerSpec
 
       "when provided with invalid XML to convert, should return an BAD_REQUEST" in {
 
-        when(mockXmlToJsonService.convert(any(), any()))
-          .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Left(XmlToJsonError.XMLParsingError("error")))))
+        when(mockXmlToJsonService.xmlToJson(any(), any()))
+          .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Left(ConversionError.XMLParsingError("error")))))
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
@@ -165,8 +165,8 @@ class MessageConversionControllerSpec
 
       "when an error occurs, should return an INTERNAL_SERVER_ERROR" in {
 
-        when(mockXmlToJsonService.convert(any(), any()))
-          .thenReturn(EitherT[Future, XmlToJsonError, JsValue](Future.successful(Left(XmlToJsonError.UnexpectedError(thr = None)))))
+        when(mockXmlToJsonService.xmlToJson(any(), any()))
+          .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Left(ConversionError.UnexpectedError(thr = None)))))
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =

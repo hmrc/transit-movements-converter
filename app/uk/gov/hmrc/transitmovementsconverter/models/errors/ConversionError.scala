@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models.errors
 
-sealed trait XmlToJsonError
+sealed trait ConversionError
 
-object XmlToJsonError {
-  case class XMLParsingError(message: String)        extends XmlToJsonError
-  case class UnexpectedError(thr: Option[Throwable]) extends XmlToJsonError
+object ConversionError {
+  case class XMLParsingError(message: String)        extends ConversionError
+  case class UnexpectedError(thr: Option[Throwable]) extends ConversionError
 }

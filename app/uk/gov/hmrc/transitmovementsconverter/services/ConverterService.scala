@@ -28,7 +28,8 @@ import org.xml.sax.InputSource
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
-import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterServiceImpl.conversionTimeout
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
@@ -36,14 +37,18 @@ import scala.concurrent.duration.DurationInt
 import scala.util.control.NonFatal
 import scala.xml.XML
 
-@ImplementedBy(classOf[XmlToJsonServiceImpl])
-trait XmlToJsonService {
-  def convert[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue]
+@ImplementedBy(classOf[ConverterServiceImpl])
+trait ConverterService {
+  def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, JsValue]
 }
 
-class XmlToJsonServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends XmlToJsonService {
+object ConverterServiceImpl {
+  val conversionTimeout = 20.seconds
+}
 
-  override def convert[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, XmlToJsonError, JsValue] =
+class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends ConverterService {
+
+  override def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, JsValue] =
     EitherT {
       Future {
         // Note that we use 20 seconds here as this is the standard timeout on the service, if we're taking
@@ -51,13 +56,13 @@ class XmlToJsonServiceImpl @Inject() (implicit materializer: Materializer, ec: E
         //
         // It's important to note that 20 seconds is the upper limit, and not a target
         scalaxb
-          .fromXMLEither(XML.load(new InputSource(source.runWith(StreamConverters.asInputStream(20.seconds)))))(conversionFormat.xmlFormat)
-          .leftMap(XmlToJsonError.XMLParsingError)
+          .fromXMLEither(XML.load(new InputSource(source.runWith(StreamConverters.asInputStream(conversionTimeout)))))(conversionFormat.xmlFormat)
+          .leftMap(ConversionError.XMLParsingError)
           .map(
             x => Json.toJsObject(x)(conversionFormat.jsonWrites)
           )
       }.recoverWith {
-        case NonFatal(e) => Future.successful(Left(XmlToJsonError.UnexpectedError(thr = Some(e))))
+        case NonFatal(e) => Future.successful(Left(ConversionError.UnexpectedError(thr = Some(e))))
       }
     }
 

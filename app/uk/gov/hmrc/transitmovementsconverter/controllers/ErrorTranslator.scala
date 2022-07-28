@@ -19,7 +19,7 @@ package uk.gov.hmrc.transitmovementsconverter.controllers
 import cats.data.EitherT
 import cats.implicits.catsStdInstancesForFuture
 import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
-import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
@@ -36,11 +36,11 @@ trait ErrorTranslator {
     def convert(input: E): PresentationError
   }
 
-  implicit val xmlToJsonErrorConverter = new Converter[XmlToJsonError] {
+  implicit val conversionErrorConverter = new Converter[ConversionError] {
 
-    def convert(xmlToJsonError: XmlToJsonError): PresentationError = xmlToJsonError match {
-      case err: XmlToJsonError.UnexpectedError => PresentationError.internalServiceError(cause = err.thr)
-      case XmlToJsonError.XMLParsingError(x)   => PresentationError.badRequestError(x)
+    def convert(conversionError: ConversionError): PresentationError = conversionError match {
+      case err: ConversionError.UnexpectedError => PresentationError.internalServiceError(cause = err.thr)
+      case ConversionError.XMLParsingError(x)   => PresentationError.badRequestError(x)
     }
   }
 

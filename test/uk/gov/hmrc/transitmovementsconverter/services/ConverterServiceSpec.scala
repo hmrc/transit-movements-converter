@@ -33,8 +33,8 @@ import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
-import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError
-import uk.gov.hmrc.transitmovementsconverter.models.errors.XmlToJsonError.XMLParsingError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError.XMLParsingError
 
 import java.io.IOException
 import java.nio.charset.StandardCharsets
@@ -43,7 +43,7 @@ import scala.concurrent.duration.DurationInt
 import scala.xml.NamespaceBinding
 import scala.xml.NodeSeq
 
-class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
+class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
 
   val timeout = Timeout(2.seconds)
 
@@ -81,12 +81,12 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
     override def jsonWrites: OWrites[TestClass] = Json.writes[TestClass]
   }
 
-  val service = new XmlToJsonServiceImpl
+  val service = new ConverterServiceImpl
 
   "When handed an XML stream" - {
 
     "if valid, should return appropriate JSON" in {
-      val result = service.convert(testConverter, Source.single(ByteString(validXml.mkString, StandardCharsets.UTF_8)))
+      val result = service.xmlToJson(testConverter, Source.single(ByteString(validXml.mkString, StandardCharsets.UTF_8)))
       whenReady(result.value, timeout) {
         case Right(x: JsObject) => x mustBe Json.obj("test1" -> "test2")
         case y                  => fail(s"$y is not the expected output")
@@ -94,7 +94,7 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
     }
 
     "if invalid, should return the appropriate error" in {
-      val result = service.convert(testConverter, Source.single(ByteString(invalidXml.mkString, StandardCharsets.UTF_8)))
+      val result = service.xmlToJson(testConverter, Source.single(ByteString(invalidXml.mkString, StandardCharsets.UTF_8)))
       whenReady(result.value, timeout) {
         case Left(XMLParsingError("Failed")) =>
         case y                               => fail(s"$y is not the expected output")
@@ -103,7 +103,7 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
 
     "if an exception is thrown, should return the appropriate error" in {
       val exception = new IllegalArgumentException
-      val result = service.convert(
+      val result = service.xmlToJson(
         testConverter,
         Source
           .single(ByteString(invalidXml.mkString, StandardCharsets.UTF_8))
@@ -114,8 +114,8 @@ class XmlToJsonServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
           )
       )
       whenReady(result.value, timeout) {
-        case Left(XmlToJsonError.UnexpectedError(Some(x: IOException))) => x.getCause mustBe exception
-        case y                                                          => fail(s"$y is not the expected output")
+        case Left(ConversionError.UnexpectedError(Some(x: IOException))) => x.getCause mustBe exception
+        case y                                                           => fail(s"$y is not the expected output")
       }
     }
 
