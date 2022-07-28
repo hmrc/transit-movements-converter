@@ -22,6 +22,7 @@ import scalaxb.XMLFormat
 
 trait ConversionFormat[T] {
 
+  def xmlRoot: String
   def xmlFormat: XMLFormat[T]
   def jsonReads: Reads[T]
   def jsonWrites: OWrites[T]

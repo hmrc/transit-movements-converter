@@ -41,6 +41,7 @@ trait ErrorTranslator {
     def convert(conversionError: ConversionError): PresentationError = conversionError match {
       case err: ConversionError.UnexpectedError => PresentationError.internalServiceError(cause = err.thr)
       case ConversionError.XMLParsingError(x)   => PresentationError.badRequestError(x)
+      case ConversionError.JsonParsingError(x)  => PresentationError.badRequestError(x.getMessage)
     }
   }
 
