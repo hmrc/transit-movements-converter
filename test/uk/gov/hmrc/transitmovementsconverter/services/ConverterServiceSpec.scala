@@ -46,7 +46,7 @@ import scala.xml.NamespaceBinding
 import scala.xml.NodeSeq
 import scala.xml.Utility.trim
 
-class ConversionServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
+class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
 
   val timeout = Timeout(2.seconds)
 

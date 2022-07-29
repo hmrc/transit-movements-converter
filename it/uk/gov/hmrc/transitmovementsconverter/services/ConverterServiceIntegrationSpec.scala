@@ -30,7 +30,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.xml.Elem
 import scala.xml.Utility.trim
 
-class ConversionServiceIntegrationSpec
+class ConverterServiceIntegrationSpec
     extends AnyFreeSpec
     with Matchers
     with ScalaFutures
