@@ -76,7 +76,7 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
 
   val testConverter = new ConversionFormat[TestClass] {
 
-    override def xmlFormat: XMLFormat[TestClass] = new XMLFormat[TestClass] with XMLProtocol {
+    override val xmlFormat: XMLFormat[TestClass] = new XMLFormat[TestClass] with XMLProtocol {
 
       override def writes(obj: TestClass, namespace: Option[String], elementLabel: Option[String], scope: NamespaceBinding, typeAttribute: Boolean): NodeSeq =
         <test>
@@ -92,13 +92,26 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
     }
 
     // To emulate how the objects work, we have wrapped the Json in the "test" object
-    override def jsonReads: Reads[TestClass] =
+    override val jsonReads: Reads[TestClass] =
       (__ \ "test").read[TestClass](Json.reads[TestClass])
 
-    override def jsonWrites: OWrites[TestClass] =
+    override val jsonWrites: OWrites[TestClass] =
       (__ \ "test").write(Json.writes[TestClass])
 
-    override def xmlRoot: String = "test"
+    override val xmlRoot: String = "test"
+  }
+
+  val errorConverter = new ConversionFormat[TestClass] {
+
+    override def xmlFormat: XMLFormat[TestClass] = throw new UnsupportedOperationException()
+
+    override val jsonReads: Reads[TestClass] =
+      (__ \ "test").read[TestClass](Json.reads[TestClass])
+
+    override val jsonWrites: OWrites[TestClass] =
+      (__ \ "test").write(Json.writes[TestClass])
+
+    override def xmlRoot: String = throw new UnsupportedOperationException()
   }
 
   val service = new ConverterServiceImpl
@@ -159,7 +172,7 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
       }
     }
 
-    "if an exception is thrown, should return the appropriate error" in {
+    "if an exception is thrown inside the try block, should return the appropriate error" in {
       val exception = new IllegalArgumentException
       val result = service.jsonToXml(
         testConverter,
@@ -174,6 +187,17 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
       whenReady(result.value, timeout) {
         case Left(ConversionError.UnexpectedError(Some(x: IOException))) => x.getCause mustBe exception
         case y                                                           => fail(s"$y is not the expected output")
+      }
+    }
+
+    "if an exception is thrown outside the try block, should return the appropriate error" in {
+      val result = service.jsonToXml(
+        errorConverter,
+        Source.single(ByteString(Json.stringify(validJson), StandardCharsets.UTF_8))
+      )
+      whenReady(result.value, timeout) {
+        case Left(ConversionError.UnexpectedError(Some(_: UnsupportedOperationException))) =>
+        case y                                                                             => fail(s"$y is not the expected output")
       }
     }
 
