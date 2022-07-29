@@ -30,13 +30,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.xml.Elem
 import scala.xml.Utility.trim
 
-class ConverterServiceIntegrationSpec
-    extends AnyFreeSpec
-    with Matchers
-    with ScalaFutures
-    with IntegrationPatience
-    with TestActorSystem
-    with StreamTestHelpers {
+class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with ScalaFutures with IntegrationPatience with TestActorSystem with StreamTestHelpers {
 
   val service = new ConverterServiceImpl
 
