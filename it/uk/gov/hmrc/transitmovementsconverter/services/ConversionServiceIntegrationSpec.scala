@@ -24,6 +24,7 @@ import uk.gov.hmrc.transitmovementsconverter.itbase.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestObjects
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.xml.Elem
@@ -49,6 +50,14 @@ class ConversionServiceIntegrationSpec
       }
     }
 
+    "converting invalid CC015C XML to Json returns an error" in {
+      val result = service.xmlToJson(MessageType.IE015, createStream(TestObjects.CC015C.invalidXml1))
+      whenReady(result.value) {
+        either =>
+          either.left.get mustBe a[ConversionError.XMLParsingError]
+      }
+    }
+
   }
 
   "converting Json to XML" - {
@@ -58,6 +67,14 @@ class ConversionServiceIntegrationSpec
       whenReady(result.value) {
         case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC015C.xml1)
         case x              => fail(s"$x is not what was expected")
+      }
+    }
+
+    "converting invalid CC015C Json to XML returns an error" in {
+      val result = service.jsonToXml(MessageType.IE015, createStream(TestObjects.CC015C.invalidJson1))
+      whenReady(result.value) {
+        either =>
+          either.left.get mustBe a[ConversionError.JsonParsingError]
       }
     }
 

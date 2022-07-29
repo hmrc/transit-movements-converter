@@ -182,7 +182,7 @@ class MessageConversionControllerSpec
       }
     }
 
-    "with XML and the application/json content type" - {
+    "with Json and the application/json content type" - {
 
       "when provided with valid Json to convert, should return an OK with valid XML" in {
 

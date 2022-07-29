@@ -22,6 +22,10 @@ object TestObjects {
 
   object CC015C {
 
+    lazy val invalidXml1 = <ncts:CC015C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>FdOcminxBxSLGm1rRUn0q96S1</messageSender>
+    </ncts:CC015C>
+
     lazy val xml1 = <ncts:CC015C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
       <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
       <preparationDateAndTime>2022-01-22T07:43:36</preparationDateAndTime>
@@ -68,6 +72,15 @@ object TestObjects {
         </HouseConsignment>
       </Consignment>
     </ncts:CC015C>
+
+    lazy val invalidJson1 =
+      Json.obj(
+        "n1:CC015C" ->
+          Json.obj(
+            "@PhaseID"      -> "NCTS5.0",
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
 
     lazy val json1 =
       Json.obj(
