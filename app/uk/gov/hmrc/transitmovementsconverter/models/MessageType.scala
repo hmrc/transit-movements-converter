@@ -22,14 +22,14 @@ import play.api.libs.json.OWrites
 import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.models.ModelHelpers._
 
-sealed abstract class MessageType[T](val name: String)(implicit
+sealed abstract class MessageType[T](val name: String, val xmlRoot: String)(implicit
   override val xmlFormat: XMLFormat[T],
   override val jsonReads: Reads[T],
   override val jsonWrites: OWrites[T]
 ) extends ConversionFormat[T]
 
 object MessageType extends XMLProtocol {
-  case object IE015 extends MessageType[CC015CType]("IE015")
+  case object IE015 extends MessageType[CC015CType]("IE015", "CC015C")
 
   val values = Seq(
     IE015

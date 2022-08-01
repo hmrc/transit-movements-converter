@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.models
+package uk.gov.hmrc.transitmovementsconverter.itbase
 
-import play.api.libs.json.Reads
-import play.api.libs.json.OWrites
-import scalaxb.XMLFormat
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import org.scalatest.Suite
 
-trait ConversionFormat[T] {
+object TestActorSystem {
+  val system: ActorSystem = ActorSystem("test")
+}
 
-  def xmlRoot: String
-  def xmlFormat: XMLFormat[T]
-  def jsonReads: Reads[T]
-  def jsonWrites: OWrites[T]
-
+trait TestActorSystem { self: Suite =>
+  implicit val system: ActorSystem        = TestActorSystem.system
+  implicit val materializer: Materializer = Materializer(TestActorSystem.system)
 }

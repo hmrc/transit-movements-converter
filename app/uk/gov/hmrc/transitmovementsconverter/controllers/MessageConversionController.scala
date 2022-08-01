@@ -20,9 +20,12 @@ import akka.stream.Materializer
 import akka.stream.scaladsl.Sink
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
+import cats.data.EitherT
 import cats.implicits.catsStdInstancesForFuture
 import play.api.http.HeaderNames
 import play.api.http.MimeTypes
+import play.api.http.Writeable
+import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import play.api.mvc.Action
 import play.api.mvc.ControllerComponents
@@ -30,6 +33,7 @@ import play.api.mvc.Request
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import uk.gov.hmrc.transitmovementsconverter.controllers.stream.StreamingParsers
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
 import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
 
@@ -37,6 +41,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.xml.NodeSeq
 
 @Singleton()
 class MessageConversionController @Inject() (cc: ControllerComponents, converterService: ConverterService)(implicit
@@ -47,14 +52,15 @@ class MessageConversionController @Inject() (cc: ControllerComponents, converter
     with ErrorTranslator {
 
   def message(messageType: MessageType[_]): Action[Source[ByteString, _]] = route {
-    case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) => xmlToJson(messageType)
+    case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) => convertMessage[JsValue](messageType, converterService.xmlToJson(_, _))
+    case (Some(MimeTypes.JSON), Some(MimeTypes.XML)) => convertMessage[NodeSeq](messageType, converterService.jsonToXml(_, _))
   }
 
-  def xmlToJson(messageType: MessageType[_]): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
+  def convertMessage[A](messageType: MessageType[_], convert: (MessageType[_], Source[ByteString, _]) => EitherT[Future, ConversionError, A])(implicit
+    writable: Writeable[A]
+  ): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
     implicit request =>
-      converterService
-        .xmlToJson(messageType, request.body)
-        .asPresentation
+      convert(messageType, request.body).asPresentation
         .map(Ok(_))
         .valueOr(
           error => Status(error.code.statusCode)(Json.toJson(error))
