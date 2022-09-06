@@ -16,27 +16,18 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
-import generated.AdditionalSupplyChainActorType
-import generated.DepartureTransportMeansType03
-import generated.LocationOfGoodsType05
-import generated.TransportEquipmentType06
 import generated._
-import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.JsError
-import play.api.libs.json.JsLookupResult
 import play.api.libs.json.JsNumber
 import play.api.libs.json.JsObject
 import play.api.libs.json.JsString
 import play.api.libs.json.JsSuccess
-import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import play.api.libs.json.Json.JsValueWrapper
-import play.api.libs.json.OFormat
 import play.api.libs.json.Reads
 import play.api.libs.json.Writes
-import play.api.libs.json.__
-import scalaxb.DataRecord
 import scalaxb.DataTypeFactory
+import uk.gov.hmrc.transitmovementsconverter.models.ModelExtensionMethods._
 import uk.gov.hmrc.transitmovementsconverter.models.errors.MalformedJsonException
 
 import javax.xml.datatype.XMLGregorianCalendar
@@ -64,42 +55,17 @@ import scala.xml.TopScope
   */
 object ModelHelpers {
 
-  implicit class SeqHelpers[A](val value: Seq[A]) extends AnyVal {
-    def toOption: Option[Seq[A]] = Option(value).filter(_.nonEmpty)
-
-    def entry(name: String)(implicit w: Writes[A]): Seq[(String, JsValueWrapper)] =
-      if (value.nonEmpty) List(name -> value)
-      else List.empty
+  implicit lazy val countryCodeReads: Reads[CountryCodesCustomsOfficeLists] = Reads {
+    case JsString(s) =>
+      Try(JsSuccess(CountryCodesCustomsOfficeLists.fromString(s, TopScope))).recover {
+        case _: RuntimeException => JsError()
+      }.get
+    case _ => JsError()
   }
 
-  implicit class OptionHelpers[A](val value: Option[A]) extends AnyVal {
-
-    def entry(name: String)(implicit w: Writes[A]): Seq[(String, JsValueWrapper)] =
-      if (value.isDefined) Seq(name -> value)
-      else Seq.empty
-  }
-
-  implicit class JsLookupResultHelpers(val lookup: JsLookupResult) extends AnyVal {
-
-    def asOptionString: Option[String] = lookup.toOption.flatMap {
-      case JsString(x) if x.isEmpty => None
-      case JsString(x)              => Some(x)
-      case x                        => throw MalformedJsonException(s"JsValue was a ${x.getClass.getSimpleName} when expecting a string")
-    }
-
-    def asOption[A](implicit reads: Reads[A]): Option[A] =
-      lookup.toOption.map(_.as[A])
-
-    def asSeq[A](implicit reads: Reads[A]): Seq[A] =
-      lookup.toOption.map(_.as[List[A]]).getOrElse(Nil)
-  }
-
-  implicit class JsValueHelpers(val value: JsValue) extends AnyVal {
-
-    def asString: String = value match {
-      case JsString(x) => x
-      case x           => throw MalformedJsonException(s"JsValue was a ${x.getClass.getSimpleName} when expecting a string")
-    }
+  implicit lazy val countryCodeWrites: Writes[CountryCodesCustomsOfficeLists] = Writes {
+    code =>
+      JsString(code.toString)
   }
 
   implicit lazy val flagReads: Reads[Flag] = Reads {
@@ -133,11 +99,16 @@ object ModelHelpers {
   // Order sensitive - formats without dependencies should go first.
 
   implicit lazy val addressType12Format                  = Json.format[AddressType12]
-  implicit lazy val commodityCoeType02Format             = Json.format[CommodityCodeType02]
+  implicit lazy val commodityCodeType01Format            = Json.format[CommodityCodeType01]
+  implicit lazy val commodityCodeType02Format            = Json.format[CommodityCodeType02]
   implicit lazy val dangerousGoodsType01Format           = Json.format[DangerousGoodsType01]
+  implicit lazy val dangerousGoodsType02Format           = Json.format[DangerousGoodsType02]
   implicit lazy val goodsMeasureType02Format             = Json.format[GoodsMeasureType02]
+  implicit lazy val goodsMeasureType04Format             = Json.format[GoodsMeasureType04]
   implicit lazy val consigneeType02Format                = Json.format[ConsigneeType02]
+  implicit lazy val commodityType05Format                = Json.format[CommodityType05]
   implicit lazy val commodityType06Format                = Json.format[CommodityType06]
+  implicit lazy val additionalReferenceType01Format      = Json.format[AdditionalReferenceType01]
   implicit lazy val additionalReferenceType05Format      = Json.format[AdditionalReferenceType05]
   implicit lazy val addressType17Format                  = Json.format[AddressType17]
   implicit lazy val contactPersonType05Format            = Json.format[ContactPersonType05]
@@ -145,23 +116,32 @@ object ModelHelpers {
   implicit lazy val consignorType07Format                = Json.format[ConsignorType07]
   implicit lazy val consigneeType05Format                = Json.format[ConsigneeType05]
   implicit lazy val sealType05Format                     = Json.format[SealType05]
+  implicit lazy val packagingType01Format                = Json.format[PackagingType01]
   implicit lazy val packagingType03Format                = Json.format[PackagingType03]
   implicit lazy val additionalSupplyChainActorTypeFormat = Json.format[AdditionalSupplyChainActorType]
   implicit lazy val previousDocumentType08Format         = Json.format[PreviousDocumentType08]
+  implicit lazy val supportingDocumentType04Format       = Json.format[SupportingDocumentType04]
   implicit lazy val supportingDocumentType05Format       = Json.format[SupportingDocumentType05]
+  implicit lazy val transportDocumentType01Format        = Json.format[TransportDocumentType01]
   implicit lazy val transportDocumentType04Format        = Json.format[TransportDocumentType04]
   implicit lazy val additionalInformationType03Format    = Json.format[AdditionalInformationType03]
   implicit lazy val transportChargesTypeFormat           = Json.format[TransportChargesType]
+  implicit lazy val consignmentItemType08Format          = Json.format[ConsignmentItemType08]
   implicit lazy val consignmentItemType09Format          = Json.format[ConsignmentItemType09]
   implicit lazy val previousDocumentType10               = Json.format[PreviousDocumentType10]
   implicit lazy val additionalReferenceType06Format      = Json.format[AdditionalReferenceType06]
+  implicit lazy val houseConsignmentType06Format         = Json.format[HouseConsignmentType06]
   implicit lazy val houseConsignmentType10Format         = Json.format[HouseConsignmentType10]
 
   implicit lazy val customsOfficeType02Format    = Json.format[CustomsOfficeType02]
   implicit lazy val gnssTypeFormat               = Json.format[GNSSType]
   implicit lazy val economicOperatorType03Format = Json.format[EconomicOperatorType03]
+  implicit lazy val addressType07Format          = Json.format[AddressType07]
   implicit lazy val addressType14Format          = Json.format[AddressType14]
+  implicit lazy val addressType15Format          = Json.format[AddressType15]
+  implicit lazy val addressType16Format          = Json.format[AddressType16]
   implicit lazy val postcodeAddressType02Format  = Json.format[PostcodeAddressType02]
+  implicit lazy val contactPersonType04Format    = Json.format[ContactPersonType04]
   implicit lazy val contactPersonType06Format    = Json.format[ContactPersonType06]
   implicit lazy val consignmentItemType09        = Json.format[ConsignmentItemType09]
   implicit lazy val guaranteeReferenceType03     = Json.format[GuaranteeReferenceType03]
@@ -169,23 +149,40 @@ object ModelHelpers {
 
   implicit lazy val goodsReferenceType02                      = Json.format[GoodsReferenceType02]
   implicit lazy val transportEquipmentType06Format            = Json.format[TransportEquipmentType06]
+  implicit lazy val locationOfGoodsType03Format               = Json.format[LocationOfGoodsType03]
   implicit lazy val locationOfGoodsType05Format               = Json.format[LocationOfGoodsType05]
   implicit lazy val departureTransportMeansType03Format       = Json.format[DepartureTransportMeansType03]
   implicit lazy val countryOfRoutingOfConsignmentType01Format = Json.format[CountryOfRoutingOfConsignmentType01]
   implicit lazy val activeBorderTransportMeansType02Format    = Json.format[ActiveBorderTransportMeansType02]
+  implicit lazy val activeBorderTransportMeansType03Format    = Json.format[ActiveBorderTransportMeansType03]
   implicit lazy val placeOfLoadingType03Format                = Json.format[PlaceOfLoadingType03]
   implicit lazy val placeOfUnloadingType01Format              = Json.format[PlaceOfUnloadingType01]
   implicit lazy val previousDocumentType09Format              = Json.format[PreviousDocumentType09]
 
+  implicit lazy val invalidationType01Format                          = Json.format[InvalidationType01]
+  implicit lazy val invalidationType02Format                          = Json.format[InvalidationType02]
+  implicit lazy val transitOperationType01Format                      = Json.format[TransitOperationType01]
+  implicit lazy val transitOperationType03Format                      = Json.format[TransitOperationType03]
+  implicit lazy val transitOperationType04Format                      = Json.format[TransitOperationType04]
+  implicit lazy val transitOperationType05Format                      = Json.format[TransitOperationType05]
   implicit lazy val transitOperationType06Format                      = Json.format[TransitOperationType06]
+  implicit lazy val transitOperationType08Format                      = Json.format[TransitOperationType08]
+  implicit lazy val transitOperationType24Format                      = Json.format[TransitOperationType24]
   implicit lazy val authorisationType03Format                         = Json.format[AuthorisationType03]
   implicit lazy val customsOfficeOfDepartureType03Format              = Json.format[CustomsOfficeOfDepartureType03]
   implicit lazy val customsOfficeOfDestinationDeclaredType01Format    = Json.format[CustomsOfficeOfDestinationDeclaredType01]
   implicit lazy val customsOfficeOfTransitDeclaredType03Format        = Json.format[CustomsOfficeOfTransitDeclaredType03]
   implicit lazy val customsOfficeOfExitForTransitDeclaredType02Format = Json.format[CustomsOfficeOfExitForTransitDeclaredType02]
+  implicit lazy val holderOfTheTransitProcedureType02Format           = Json.format[HolderOfTheTransitProcedureType02]
+  implicit lazy val holderOfTheTransitProcedureType13Format           = Json.format[HolderOfTheTransitProcedureType13]
   implicit lazy val holderOfTheTransitProcedureType14Format           = Json.format[HolderOfTheTransitProcedureType14]
+  implicit lazy val holderOfTheTransitProcedureType19Format           = Json.format[HolderOfTheTransitProcedureType19]
+  implicit lazy val holderOfTheTransitProcedureType20Format           = Json.format[HolderOfTheTransitProcedureType20]
   implicit lazy val representativeType05Format                        = Json.format[RepresentativeType05]
+  implicit lazy val guaranteeType01Format                             = Json.format[GuaranteeType01]
   implicit lazy val guaranteeType02Format                             = Json.format[GuaranteeType02]
+  implicit lazy val guarantorType06Format                             = Json.format[GuarantorType06]
+  implicit lazy val consignmentType08                                 = Json.format[ConsignmentType08]
 
   // Due to ConsignmentType20 having 24 fields, and that Scala 2.12 (and 2.13) only supports Tuples of up to 22 fields,
   // we can't use the standard unapply (as it is not generated).
@@ -281,92 +278,5 @@ object ModelHelpers {
     x =>
       JsString(x.toString)
   }
-
-  // Message Types
-
-  // ** CC015C **
-
-  private val cc015cRoot = "n1:CC015C"
-
-  implicit val cc015cFormats: OFormat[CC015CType] = (
-    (__ \ cc015cRoot \ "messageRecipient").format[String] and
-      (__ \ cc015cRoot \ "preparationDateAndTime").format[XMLGregorianCalendar] and
-      (__ \ cc015cRoot \ "messageIdentification").format[String] and
-      (__ \ cc015cRoot \ "messageType").format[MessageTypes] and
-      (__ \ cc015cRoot \ "correlationIdentifier").formatNullable[String] and
-      (__ \ cc015cRoot \ "TransitOperation").format[TransitOperationType06] and
-      (__ \ cc015cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
-      (__ \ cc015cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
-      (__ \ cc015cRoot \ "Representative").formatNullable[RepresentativeType05] and
-      (__ \ cc015cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType02]] and
-      (__ \ cc015cRoot \ "Consignment").format[ConsignmentType20] and
-      (__ \ cc015cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
-  )(
-    (
-      messageRecipient,
-      preparationDateAndTime,
-      messageIdentification,
-      messageType,
-      correlationIdentifier,
-      TransitOperation,
-      Authorisation,
-      CustomsOfficeOfDeparture,
-      CustomsOfficeOfDestinationDeclared,
-      CustomsOfficeOfTransitDeclared,
-      CustomsOfficeOfExitForTransitDeclared,
-      HolderOfTheTransitProcedure,
-      Representative,
-      Guarantee,
-      Consignment,
-      phaseId
-    ) =>
-      CC015CType(
-        MESSAGE_FROM_TRADERSequence(
-          None,
-          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
-        ),
-        TransitOperation,
-        Authorisation.getOrElse(Nil),
-        CustomsOfficeOfDeparture,
-        CustomsOfficeOfDestinationDeclared,
-        CustomsOfficeOfTransitDeclared.getOrElse(Nil),
-        CustomsOfficeOfExitForTransitDeclared.getOrElse(Nil),
-        HolderOfTheTransitProcedure,
-        Representative,
-        Guarantee.getOrElse(Nil),
-        Consignment,
-        phaseId
-          .map(
-            x => Map("@PhaseID" -> DataRecord(x))
-          )
-          .getOrElse(Map.empty)
-      ),
-    {
-      obj: CC015CType =>
-        val seqType = obj.messagE_FROM_TRADERSequence1.messagE_1Sequence2
-        (
-          seqType.messageRecipient,
-          seqType.preparationDateAndTime,
-          seqType.messageIdentification,
-          seqType.messageType,
-          seqType.correlationIdentifier,
-          obj.TransitOperation,
-          obj.Authorisation.toOption,
-          obj.CustomsOfficeOfDeparture,
-          obj.CustomsOfficeOfDestinationDeclared,
-          obj.CustomsOfficeOfTransitDeclared.toOption,
-          obj.CustomsOfficeOfExitForTransitDeclared.toOption,
-          obj.HolderOfTheTransitProcedure,
-          obj.Representative,
-          obj.Guarantee.toOption,
-          obj.Consignment,
-          obj.PhaseID
-        )
-    }
-  )
 
 }

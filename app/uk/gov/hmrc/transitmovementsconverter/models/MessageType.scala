@@ -20,7 +20,7 @@ import generated._
 import play.api.libs.json.Reads
 import play.api.libs.json.OWrites
 import scalaxb.XMLFormat
-import uk.gov.hmrc.transitmovementsconverter.models.ModelHelpers._
+import uk.gov.hmrc.transitmovementsconverter.models.Models._
 
 sealed abstract class MessageType[T](val name: String, val xmlRoot: String)(implicit
   override val xmlFormat: XMLFormat[T],
@@ -29,10 +29,24 @@ sealed abstract class MessageType[T](val name: String, val xmlRoot: String)(impl
 ) extends ConversionFormat[T]
 
 object MessageType extends XMLProtocol {
+
+  case object IE004 extends MessageType[CC004CType]("IE004", "CC004C")
+
+  case object IE009 extends MessageType[CC009CType]("IE009", "CC009C")
+  case object IE013 extends MessageType[CC013CType]("IE013", "CC013C")
+  case object IE014 extends MessageType[CC014CType]("IE014", "CC014C")
   case object IE015 extends MessageType[CC015CType]("IE015", "CC015C")
+  case object IE019 extends MessageType[CC019CType]("IE019", "CC019C")
+  case object IE170 extends MessageType[CC170CType]("IE170", "CC170C")
 
   val values = Seq(
-    IE015
+    IE004,
+    IE009,
+    IE013,
+    IE014,
+    IE015,
+    IE019,
+    IE170
   )
 
   def fromName(value: String): Option[MessageType[_]] = values.find(_.name == value)
