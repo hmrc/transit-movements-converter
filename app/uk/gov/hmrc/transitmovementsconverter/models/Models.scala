@@ -27,7 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar
 
 object Models {
 
-  import uk.gov.hmrc.transitmovementsconverter.models.ModelHelpers._
+  import uk.gov.hmrc.transitmovementsconverter.models.ModelImplicits._
 
   // Message Types
 
@@ -432,6 +432,219 @@ object Models {
             seqType.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
+            obj.HolderOfTheTransitProcedure,
+            obj.Guarantor,
+            obj.PhaseID
+          )
+      }
+    )
+
+  // ** CC028C **
+
+  private lazy val cc028cRoot = "n1:CC028C"
+
+  implicit lazy val cc028cFormats: OFormat[CC028CType] =
+    (
+      commonTypesWithSender(cc028cRoot) and
+        (__ \ cc028cRoot \ "TransitOperation").format[TransitOperationType11] and
+        (__ \ cc028cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc028cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
+        (__ \ cc028cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDeparture,
+        HolderOfTheTransitProcedure,
+        phaseId
+      ) =>
+        CC028CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDeparture,
+          HolderOfTheTransitProcedure,
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC028CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDeparture,
+            obj.HolderOfTheTransitProcedure,
+            obj.PhaseID
+          )
+      }
+    )
+
+  // ** CC029C **
+
+  private lazy val cc029cRoot = "n1:CC029C"
+
+  implicit lazy val cc029cFormats: OFormat[CC029CType] =
+    (
+      commonTypesWithSender(cc029cRoot) and
+        (__ \ cc029cRoot \ "TransitOperation").format[TransitOperationType12] and
+        (__ \ cc029cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType02]] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
+        (__ \ cc029cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType05] and
+        (__ \ cc029cRoot \ "Representative").formatNullable[RepresentativeType02] and
+        (__ \ cc029cRoot \ "ControlResult").formatNullable[ControlResultType02] and
+        (__ \ cc029cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType03]] and
+        (__ \ cc029cRoot \ "Consignment").format[ConsignmentType04] and
+        (__ \ cc029cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        Authorisation,
+        CustomsOfficeOfDeparture,
+        CustomsOfficeOfDestinationDeclared,
+        CustomsOfficeOfTransitDeclared,
+        CustomsOfficeOfExitForTransitDeclared,
+        HolderOfTheTransitProcedure,
+        Representative,
+        ControlResult,
+        Guarantee,
+        Consignment,
+        phaseId
+      ) =>
+        CC029CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          Authorisation.getOrElse(Nil),
+          CustomsOfficeOfDeparture,
+          CustomsOfficeOfDestinationDeclared,
+          CustomsOfficeOfTransitDeclared.getOrElse(Nil),
+          CustomsOfficeOfExitForTransitDeclared.getOrElse(Nil),
+          HolderOfTheTransitProcedure,
+          Representative,
+          ControlResult,
+          Guarantee.getOrElse(Nil),
+          Consignment,
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC029CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.Authorisation.toOption,
+            obj.CustomsOfficeOfDeparture,
+            obj.CustomsOfficeOfDestinationDeclared,
+            obj.CustomsOfficeOfTransitDeclared.toOption,
+            obj.CustomsOfficeOfExitForTransitDeclared.toOption,
+            obj.HolderOfTheTransitProcedure,
+            obj.Representative,
+            obj.ControlResult,
+            obj.Guarantee.toOption,
+            obj.Consignment,
+            obj.PhaseID
+          )
+
+      }
+    )
+
+  // ** CC035C **
+
+  private lazy val cc035cRoot = "n1:CC035C"
+
+  implicit lazy val cc035cFormats: OFormat[CC035CType] =
+    (
+      commonTypesWithSender(cc035cRoot) and
+        (__ \ cc035cRoot \ "TransitOperation").format[TransitOperationType48] and
+        (__ \ cc035cRoot \ "RecoveryNotification").format[RecoveryNotificationType] and
+        (__ \ cc035cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc035cRoot \ "CustomsOfficeOfRecoveryAtDeparture").format[CustomsOfficeOfRecoveryAtDepartureType01] and
+        (__ \ cc035cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
+        (__ \ cc035cRoot \ "Guarantor").formatNullable[GuarantorType06] and
+        (__ \ cc035cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        RecoveryNotification,
+        CustomsOfficeOfDeparture,
+        CustomsOfficeOfRecoveryAtDeparture,
+        HolderOfTheTransitProcedure,
+        Guarantor,
+        phaseId
+      ) =>
+        CC035CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          RecoveryNotification,
+          CustomsOfficeOfDeparture,
+          CustomsOfficeOfRecoveryAtDeparture,
+          HolderOfTheTransitProcedure,
+          Guarantor,
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC035CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.RecoveryNotification,
+            obj.CustomsOfficeOfDeparture,
+            obj.CustomsOfficeOfRecoveryAtDeparture,
             obj.HolderOfTheTransitProcedure,
             obj.Guarantor,
             obj.PhaseID

@@ -24,18 +24,22 @@ import play.api.libs.json.OFormat
 import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
+import uk.gov.hmrc.transitmovementsconverter.models.testobjects._
 
 class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
 
-  "cc004cFormats" - new TestType[CC004CType](TestObjects.CC004C, Models.cc004cFormats)
-  "cc009cFormats" - new TestType[CC009CType](TestObjects.CC009C, Models.cc009cFormats)
-  "cc013cFormats" - new TestType[CC013CType](TestObjects.CC013C, Models.cc013cFormats)
-  "cc014cFormats" - new TestType[CC014CType](TestObjects.CC014C, Models.cc014cFormats)
-  "cc015cFormats" - new TestType[CC015CType](TestObjects.CC015C, Models.cc015cFormats)
-  "cc019cFormats" - new TestType[CC019CType](TestObjects.CC019C, Models.cc019cFormats)
-  "cc170cFormats" - new TestType[CC170CType](TestObjects.CC170C, Models.cc170cFormats)
+  "cc004cFormats" - new TestType[CC004CType](CC004CTestMessageType, Models.cc004cFormats)
+  "cc009cFormats" - new TestType[CC009CType](CC009CTestMessageType, Models.cc009cFormats)
+  "cc013cFormats" - new TestType[CC013CType](CC013CTestMessageType, Models.cc013cFormats)
+  "cc014cFormats" - new TestType[CC014CType](CC014CTestMessageType, Models.cc014cFormats)
+  "cc015cFormats" - new TestType[CC015CType](CC015CTestMessageType, Models.cc015cFormats)
+  "cc019cFormats" - new TestType[CC019CType](CC019CTestMessageType, Models.cc019cFormats)
+  "cc028cFormats" - new TestType[CC028CType](CC028CTestMessageType, Models.cc028cFormats)
+  "cc029cFormats" - new TestType[CC029CType](CC029CTestMessageType, Models.cc029cFormats)
+  "cc035cFormats" - new TestType[CC035CType](CC035CTestMessageType, Models.cc035cFormats)
+  "cc170cFormats" - new TestType[CC170CType](CC170CTestMessageType, Models.cc170cFormats)
 
-  case class TestType[T](testObject: TestObjects.TestType, formats: OFormat[T])(implicit xmlFormat: XMLFormat[T]) extends XMLProtocol {
+  case class TestType[T](testObject: TestMessageType, formats: OFormat[T])(implicit xmlFormat: XMLFormat[T]) extends XMLProtocol {
     lazy val model: T = scalaxb.fromXML[T](testObject.xml1)
 
     "converting model to Json" in {

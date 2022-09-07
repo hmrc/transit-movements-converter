@@ -38,7 +38,7 @@ import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import java.util.GregorianCalendar
 import javax.xml.datatype.DatatypeFactory
 
-class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with OptionValues with TestActorSystem with StreamTestHelpers {
+class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers with OptionValues with TestActorSystem with StreamTestHelpers {
 
   val xmlGregorianCalendarGen = Gen.calendar
     .map {
@@ -56,12 +56,12 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
     "all valid country codes should return their country codes" - CountryCodesCustomsOfficeLists.values.foreach {
       code =>
         s"for ${code.toString}" in {
-          ModelHelpers.countryCodeReads.reads(JsString(code.toString)) mustBe JsSuccess(code)
+          ModelImplicits.countryCodeReads.reads(JsString(code.toString)) mustBe JsSuccess(code)
         }
     }
 
     "an invalid code should return an error" in {
-      ModelHelpers.countryCodeReads.reads(JsString(Gen.listOfN(3, Gen.alphaNumChar).map(_.mkString).sample.value)) mustBe a[JsError]
+      ModelImplicits.countryCodeReads.reads(JsString(Gen.listOfN(3, Gen.alphaNumChar).map(_.mkString).sample.value)) mustBe a[JsError]
     }
 
   }
@@ -70,7 +70,7 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
     "all valid country codes should return their country codes as a JsString" - CountryCodesCustomsOfficeLists.values.foreach {
       code =>
         s"for ${code.toString}" in {
-          ModelHelpers.countryCodeWrites.writes(code) mustBe JsString(code.toString)
+          ModelImplicits.countryCodeWrites.writes(code) mustBe JsString(code.toString)
         }
     }
   }
@@ -78,41 +78,41 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
   "flagReads implicit val" - {
 
     "the string 0 should return Number0" in {
-      ModelHelpers.flagReads.reads(JsString("0")) mustBe JsSuccess(Number0)
+      ModelImplicits.flagReads.reads(JsString("0")) mustBe JsSuccess(Number0)
     }
 
     "the string 1 should return Number1" in {
-      ModelHelpers.flagReads.reads(JsString("1")) mustBe JsSuccess(Number1)
+      ModelImplicits.flagReads.reads(JsString("1")) mustBe JsSuccess(Number1)
     }
 
     "the string 2 should return JsError" in {
-      ModelHelpers.flagReads.reads(JsString("2")) mustBe a[JsError]
+      ModelImplicits.flagReads.reads(JsString("2")) mustBe a[JsError]
     }
 
     "the number 0 should return Number0" in {
-      ModelHelpers.flagReads.reads(JsNumber(0)) mustBe JsSuccess(Number0)
+      ModelImplicits.flagReads.reads(JsNumber(0)) mustBe JsSuccess(Number0)
     }
 
     "the number 1 should return Number1" in {
-      ModelHelpers.flagReads.reads(JsNumber(1)) mustBe JsSuccess(Number1)
+      ModelImplicits.flagReads.reads(JsNumber(1)) mustBe JsSuccess(Number1)
     }
 
     "JsNull should return JsError" in {
-      ModelHelpers.flagReads.reads(JsNull) mustBe a[JsError]
+      ModelImplicits.flagReads.reads(JsNull) mustBe a[JsError]
     }
 
     "JsFalse should return JsError" in {
-      ModelHelpers.flagReads.reads(JsFalse) mustBe a[JsError]
+      ModelImplicits.flagReads.reads(JsFalse) mustBe a[JsError]
     }
   }
 
   "flagWrites implicit val" - {
     "Number0 should return JsString(0)" in {
-      ModelHelpers.flagWrites.writes(Number0) mustBe JsString("0")
+      ModelImplicits.flagWrites.writes(Number0) mustBe JsString("0")
     }
 
     "Number1 should return JsString(1)" in {
-      ModelHelpers.flagWrites.writes(Number1) mustBe JsString("1")
+      ModelImplicits.flagWrites.writes(Number1) mustBe JsString("1")
     }
   }
 
@@ -120,7 +120,7 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
 
     "XMLGregorianCalendar should be converted to a string correctly" in {
       val cal = DatatypeFactory.newInstance().newXMLGregorianCalendar("2022-07-15T12:57:12")
-      ModelHelpers.xmlDateTimeWrites.writes(cal) mustBe JsString("2022-07-15T12:57:12")
+      ModelImplicits.xmlDateTimeWrites.writes(cal) mustBe JsString("2022-07-15T12:57:12")
     }
 
   }
@@ -130,15 +130,15 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
     "A valid XMLGregorianCalendar string should be converted return a JsSuccess" in {
       val time = "2022-07-15T12:58:32"
       val cal  = DatatypeFactory.newInstance().newXMLGregorianCalendar(time)
-      ModelHelpers.xmlDateTimeReads.reads(JsString(time)) mustBe JsSuccess(cal)
+      ModelImplicits.xmlDateTimeReads.reads(JsString(time)) mustBe JsSuccess(cal)
     }
 
     "An invalid XMLGregorianCalendar string should be a JsError()" in {
-      ModelHelpers.xmlDateTimeReads.reads(JsString("nope")) mustBe JsError()
+      ModelImplicits.xmlDateTimeReads.reads(JsString("nope")) mustBe JsError()
     }
 
     "A non-String JSvalue should be a JsError()" in {
-      ModelHelpers.xmlDateTimeReads.reads(JsTrue) mustBe JsError()
+      ModelImplicits.xmlDateTimeReads.reads(JsTrue) mustBe JsError()
     }
 
   }
@@ -148,16 +148,16 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
     MessageTypes.values.foreach {
       messageType =>
         s"${messageType.toString} should be returned as a JsSuccess" in {
-          ModelHelpers.messageTypesReads.reads(JsString(messageType.toString)) mustBe JsSuccess(messageType)
+          ModelImplicits.messageTypesReads.reads(JsString(messageType.toString)) mustBe JsSuccess(messageType)
         }
     }
 
     "An invalid string should be returned as a JsError" in {
-      ModelHelpers.messageTypesReads.reads(JsString("nope")) mustBe JsError()
+      ModelImplicits.messageTypesReads.reads(JsString("nope")) mustBe JsError()
     }
 
     "A non string should be returned as a JsError" in {
-      ModelHelpers.messageTypesReads.reads(JsTrue) mustBe JsError()
+      ModelImplicits.messageTypesReads.reads(JsTrue) mustBe JsError()
     }
 
   }
@@ -167,7 +167,7 @@ class ModelHelpersSpec extends AnyFreeSpec with ScalaFutures with Matchers with 
     MessageTypes.values.foreach {
       messageType =>
         s"${messageType.toString} should be returned as a JsString" in {
-          ModelHelpers.messageTypesWrites.writes(messageType) mustBe JsString(messageType.toString)
+          ModelImplicits.messageTypesWrites.writes(messageType) mustBe JsString(messageType.toString)
         }
     }
 
