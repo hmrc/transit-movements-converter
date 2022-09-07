@@ -20,22 +20,31 @@ import generated._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
+import play.api.libs.json.OFormat
+import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
 class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
 
-  "cc015cFormats" - new XMLProtocol {
-    val model: CC015CType = scalaxb.fromXML[CC015CType](TestObjects.CC015C.xml1)
+  "cc004cFormats" - new TestType[CC004CType](TestObjects.CC004C, Models.cc004cFormats)
+  "cc009cFormats" - new TestType[CC009CType](TestObjects.CC009C, Models.cc009cFormats)
+  "cc013cFormats" - new TestType[CC013CType](TestObjects.CC013C, Models.cc013cFormats)
+  "cc014cFormats" - new TestType[CC014CType](TestObjects.CC014C, Models.cc014cFormats)
+  "cc015cFormats" - new TestType[CC015CType](TestObjects.CC015C, Models.cc015cFormats)
+  "cc019cFormats" - new TestType[CC019CType](TestObjects.CC019C, Models.cc019cFormats)
+  "cc170cFormats" - new TestType[CC170CType](TestObjects.CC170C, Models.cc170cFormats)
+
+  case class TestType[T](testObject: TestObjects.TestType, formats: OFormat[T])(implicit xmlFormat: XMLFormat[T]) extends XMLProtocol {
+    lazy val model: T = scalaxb.fromXML[T](testObject.xml1)
 
     "converting model to Json" in {
-      Models.cc015cFormats.writes(model) mustBe TestObjects.CC015C.json1
+      formats.writes(model) mustBe testObject.json1
     }
 
     "converting Json to model" in {
-      Models.cc015cFormats.reads(TestObjects.CC015C.json1).get mustBe model
+      formats.reads(testObject.json1).get mustBe model
     }
-
   }
 
 }
