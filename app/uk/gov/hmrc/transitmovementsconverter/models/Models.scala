@@ -950,6 +950,74 @@ object Models {
       }
     )
 
+  // ** CC056C **
+
+  private lazy val cc060cRoot = "n1:CC060C"
+
+  implicit lazy val cc060cFormats: OFormat[CC060CType] =
+    (
+      commonTypesWithSender(cc060cRoot) and
+        (__ \ cc060cRoot \ "TransitOperation").format[TransitOperationType22] and
+        (__ \ cc060cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc060cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc060cRoot \ "Representative").formatNullable[RepresentativeType04] and
+        (__ \ cc060cRoot \ "TypeOfControls").formatNullable[Seq[TypeOfControlsType]] and
+        (__ \ cc060cRoot \ "RequestedDocument").formatNullable[Seq[RequestedDocumentType]] and
+        (__ \ cc060cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDeparture,
+        HolderOfTheTransitProcedure,
+        Representative,
+        TypeOfControls,
+        RequestedDocument,
+        phaseId
+      ) =>
+        CC060CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDeparture,
+          HolderOfTheTransitProcedure,
+          Representative,
+          TypeOfControls.getOrElse(Nil),
+          RequestedDocument.getOrElse(Nil),
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC060CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDeparture,
+            obj.HolderOfTheTransitProcedure,
+            obj.Representative,
+            obj.TypeOfControls.toOption,
+            obj.RequestedDocument.toOption,
+            obj.PhaseID
+          )
+      }
+    )
+
   // ** CC170C **
 
   private lazy val cc170cRoot = "n1:CC170C"

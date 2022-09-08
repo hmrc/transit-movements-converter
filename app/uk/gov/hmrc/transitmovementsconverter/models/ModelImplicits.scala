@@ -116,6 +116,8 @@ object ModelImplicits {
 
   // Order sensitive - formats without dependencies should go first.
 
+  implicit lazy val typeOfControlsTypeFormat                       = Json.format[TypeOfControlsType]
+  implicit lazy val requestedDocumentTypeFormat                    = Json.format[RequestedDocumentType]
   implicit lazy val commodityCodeType01Format                      = Json.format[CommodityCodeType01]
   implicit lazy val commodityCodeType02Format                      = Json.format[CommodityCodeType02]
   implicit lazy val commodityCodeType06Format                      = Json.format[CommodityCodeType06]
@@ -230,6 +232,7 @@ object ModelImplicits {
   implicit lazy val transitOperationType18Format                      = Json.format[TransitOperationType18]
   implicit lazy val transitOperationType19Format                      = Json.format[TransitOperationType19]
   implicit lazy val transitOperationType20Format                      = Json.format[TransitOperationType20]
+  implicit lazy val transitOperationType22Format                      = Json.format[TransitOperationType22]
   implicit lazy val transitOperationType24Format                      = Json.format[TransitOperationType24]
   implicit lazy val transitOperationType26Format                      = Json.format[TransitOperationType26]
   implicit lazy val transitOperationType48Format                      = Json.format[TransitOperationType48]
@@ -251,6 +254,7 @@ object ModelImplicits {
   implicit lazy val representativeType01Format                        = Json.format[RepresentativeType01]
   implicit lazy val representativeType02Format                        = Json.format[RepresentativeType02]
   implicit lazy val representativeType03Format                        = Json.format[RepresentativeType03]
+  implicit lazy val representativeType04Format                        = Json.format[RepresentativeType04]
   implicit lazy val representativeType05Format                        = Json.format[RepresentativeType05]
   implicit lazy val guaranteeType01Format                             = Json.format[GuaranteeType01]
   implicit lazy val guaranteeType02Format                             = Json.format[GuaranteeType02]
