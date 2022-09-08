@@ -826,7 +826,7 @@ object Models {
       }
     )
 
-  // ** CC051C **
+  // ** CC055C **
 
   private lazy val cc055cRoot = "n1:CC055C"
 
@@ -881,6 +881,70 @@ object Models {
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
             obj.GuaranteeReference.toOption,
+            obj.PhaseID
+          )
+      }
+    )
+
+  // ** CC056C **
+
+  private lazy val cc056cRoot = "n1:CC056C"
+
+  implicit lazy val cc056cFormats: OFormat[CC056CType] =
+    (
+      commonTypesWithSender(cc056cRoot) and
+        (__ \ cc056cRoot \ "TransitOperation").format[TransitOperationType20] and
+        (__ \ cc056cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc056cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType08] and
+        (__ \ cc056cRoot \ "Representative").formatNullable[RepresentativeType01] and
+        (__ \ cc056cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType04]] and
+        (__ \ cc056cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDeparture,
+        HolderOfTheTransitProcedure,
+        Representative,
+        FunctionalError,
+        phaseId
+      ) =>
+        CC056CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDeparture,
+          HolderOfTheTransitProcedure,
+          Representative,
+          FunctionalError.getOrElse(Nil),
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC056CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDeparture,
+            obj.HolderOfTheTransitProcedure,
+            obj.Representative,
+            obj.FunctionalError.toOption,
             obj.PhaseID
           )
       }

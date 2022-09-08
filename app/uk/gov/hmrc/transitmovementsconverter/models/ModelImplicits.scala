@@ -56,6 +56,23 @@ import scala.xml.TopScope
   */
 object ModelImplicits {
 
+  implicit lazy val aesNctsP5FunctionalErrorCodesReads: Reads[AesNctsP5FunctionalErrorCodes] = Reads {
+    case JsNumber(n) =>
+      Try(JsSuccess(AesNctsP5FunctionalErrorCodes.fromString(n.toString, TopScope))).recover {
+        case _: RuntimeException => JsError()
+      }.get
+    case JsString(s) =>
+      Try(JsSuccess(AesNctsP5FunctionalErrorCodes.fromString(s, TopScope))).recover {
+        case _: RuntimeException => JsError()
+      }.get
+    case _ => JsError()
+  }
+
+  implicit lazy val aesNctsP5FunctionalErrorCodesWrites: Writes[AesNctsP5FunctionalErrorCodes] = Writes {
+    code =>
+      JsString(code.toString)
+  }
+
   implicit lazy val countryCodeReads: Reads[CountryCodesCustomsOfficeLists] = Reads {
     case JsString(s) =>
       Try(JsSuccess(CountryCodesCustomsOfficeLists.fromString(s, TopScope))).recover {
@@ -198,6 +215,7 @@ object ModelImplicits {
   implicit lazy val previousDocumentType06Format              = Json.format[PreviousDocumentType06]
   implicit lazy val previousDocumentType09Format              = Json.format[PreviousDocumentType09]
 
+  implicit lazy val functionalErrorType04Format                       = Json.format[FunctionalErrorType04]
   implicit lazy val invalidationType01Format                          = Json.format[InvalidationType01]
   implicit lazy val invalidationType02Format                          = Json.format[InvalidationType02]
   implicit lazy val transitOperationType01Format                      = Json.format[TransitOperationType01]
@@ -211,6 +229,7 @@ object ModelImplicits {
   implicit lazy val transitOperationType16Format                      = Json.format[TransitOperationType16]
   implicit lazy val transitOperationType18Format                      = Json.format[TransitOperationType18]
   implicit lazy val transitOperationType19Format                      = Json.format[TransitOperationType19]
+  implicit lazy val transitOperationType20Format                      = Json.format[TransitOperationType20]
   implicit lazy val transitOperationType24Format                      = Json.format[TransitOperationType24]
   implicit lazy val transitOperationType26Format                      = Json.format[TransitOperationType26]
   implicit lazy val transitOperationType48Format                      = Json.format[TransitOperationType48]
@@ -223,11 +242,13 @@ object ModelImplicits {
   implicit lazy val holderOfTheTransitProcedureType02Format           = Json.format[HolderOfTheTransitProcedureType02]
   implicit lazy val holderOfTheTransitProcedureType05Format           = Json.format[HolderOfTheTransitProcedureType05]
   implicit lazy val holderOfTheTransitProcedureType07Format           = Json.format[HolderOfTheTransitProcedureType07]
+  implicit lazy val holderOfTheTransitProcedureType08Format           = Json.format[HolderOfTheTransitProcedureType08]
   implicit lazy val holderOfTheTransitProcedureType13Format           = Json.format[HolderOfTheTransitProcedureType13]
   implicit lazy val holderOfTheTransitProcedureType14Format           = Json.format[HolderOfTheTransitProcedureType14]
   implicit lazy val holderOfTheTransitProcedureType15Format           = Json.format[HolderOfTheTransitProcedureType15]
   implicit lazy val holderOfTheTransitProcedureType19Format           = Json.format[HolderOfTheTransitProcedureType19]
   implicit lazy val holderOfTheTransitProcedureType20Format           = Json.format[HolderOfTheTransitProcedureType20]
+  implicit lazy val representativeType01Format                        = Json.format[RepresentativeType01]
   implicit lazy val representativeType02Format                        = Json.format[RepresentativeType02]
   implicit lazy val representativeType03Format                        = Json.format[RepresentativeType03]
   implicit lazy val representativeType05Format                        = Json.format[RepresentativeType05]

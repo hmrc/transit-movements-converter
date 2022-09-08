@@ -41,6 +41,7 @@ class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestAc
   "cc051cFormats" - new TestType[CC051CType](CC051CTestMessageType, Models.cc051cFormats)
   "cc054cFormats" - new TestType[CC054CType](CC054CTestMessageType, Models.cc054cFormats)
   "cc055cFormats" - new TestType[CC055CType](CC055CTestMessageType, Models.cc055cFormats)
+  "cc056cFormats" - new TestType[CC056CType](CC056CTestMessageType, Models.cc056cFormats)
   "cc170cFormats" - new TestType[CC170CType](CC170CTestMessageType, Models.cc170cFormats)
   "cc928cFormats" - new TestType[CC928CType](CC928CTestMessageType, Models.cc928cFormats)
 

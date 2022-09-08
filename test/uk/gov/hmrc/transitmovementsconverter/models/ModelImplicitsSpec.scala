@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
+import generated.AesNctsP5FunctionalErrorCodes
 import generated.CountryCodesCustomsOfficeLists
 import generated.MessageTypes
 import generated.Number0
@@ -168,6 +169,44 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
       messageType =>
         s"${messageType.toString} should be returned as a JsString" in {
           ModelImplicits.messageTypesWrites.writes(messageType) mustBe JsString(messageType.toString)
+        }
+    }
+
+  }
+
+  "aesNctsP5FunctionalErrorCodesReads implicit val" - {
+
+    AesNctsP5FunctionalErrorCodes.values.foreach {
+      errorCode =>
+        s"${errorCode.toString} as a string should be returned as a JsSuccess" in {
+          ModelImplicits.aesNctsP5FunctionalErrorCodesReads.reads(JsString(errorCode.toString)) mustBe JsSuccess(errorCode)
+        }
+
+        s"${errorCode.toString.toInt} as a number should be returned as a JsSuccess" in {
+          ModelImplicits.aesNctsP5FunctionalErrorCodesReads.reads(JsNumber(errorCode.toString.toInt)) mustBe JsSuccess(errorCode)
+        }
+    }
+
+    "An invalid string should be returned as a JsError" in {
+      ModelImplicits.aesNctsP5FunctionalErrorCodesReads.reads(JsString("nope")) mustBe JsError()
+    }
+
+    "An invalid number should be returned as a JsError" in {
+      ModelImplicits.aesNctsP5FunctionalErrorCodesReads.reads(JsNumber(23674234)) mustBe JsError()
+    }
+
+    "A non string should be returned as a JsError" in {
+      ModelImplicits.aesNctsP5FunctionalErrorCodesReads.reads(JsTrue) mustBe JsError()
+    }
+
+  }
+
+  "aesNctsP5FunctionalErrorCodesWrites implicit val" - {
+
+    AesNctsP5FunctionalErrorCodes.values.foreach {
+      errorCode =>
+        s"${errorCode.toString} should be returned as a JsString" in {
+          ModelImplicits.aesNctsP5FunctionalErrorCodesWrites.writes(errorCode) mustBe JsString(errorCode.toString)
         }
     }
 
