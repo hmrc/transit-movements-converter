@@ -63,7 +63,7 @@ object CC928CTestMessageType extends TestMessageType {
         |        "CustomsOfficeOfDeparture": {
         |            "referenceNumber": "stringst"
         |        },
-        |        "messageType": "CC928",
+        |        "messageType": "CC928C",
         |        "@PhaseID": "NCTS5.0",
         |        "correlationIdentifier": "token",
         |        "messageSender": "token",
