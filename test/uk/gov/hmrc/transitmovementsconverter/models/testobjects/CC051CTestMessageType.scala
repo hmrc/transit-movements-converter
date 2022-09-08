@@ -5,18 +5,20 @@ import play.api.libs.json.Json
 
 import scala.xml.NodeSeq
 
-object CC045CTestMessageType extends TestMessageType {
-  lazy val xml1: NodeSeq = <ncts:CC045C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+object CC051CTestMessageType extends TestMessageType {
+  lazy val xml1: NodeSeq = <ncts:CC051C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
     <messageSender>token</messageSender>
     <messageRecipient>token</messageRecipient>
     <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
     <messageIdentification>token</messageIdentification>
-    <messageType>CC045C</messageType>
+    <messageType>CC051C</messageType>
     <!--Optional:-->
     <correlationIdentifier>token</correlationIdentifier>
     <TransitOperation>
       <MRN>string</MRN>
-      <writeOffDate>2014-06-09+01:00</writeOffDate>
+      <declarationSubmissionDateAndTime>2014-06-09T16:15:04+01:00</declarationSubmissionDateAndTime>
+      <noReleaseMotivationCode>token</noReleaseMotivationCode>
+      <noReleaseMotivationText>string</noReleaseMotivationText>
     </TransitOperation>
     <CustomsOfficeOfDeparture>
       <referenceNumber>stringst</referenceNumber>
@@ -38,48 +40,37 @@ object CC045CTestMessageType extends TestMessageType {
       </Address>
     </HolderOfTheTransitProcedure>
     <!--Optional:-->
-    <Guarantor>
+    <Representative>
       <identificationNumber>string</identificationNumber>
       <!--Optional:-->
-      <name>string</name>
-      <!--Optional:-->
-      <Address>
-        <streetAndNumber>string</streetAndNumber>
+      <ContactPerson>
+        <name>string</name>
+        <phoneNumber>string</phoneNumber>
         <!--Optional:-->
-        <postcode>string</postcode>
-        <city>string</city>
-        <country>BE</country>
-      </Address>
-    </Guarantor>
-  </ncts:CC045C>
+        <eMailAddress>string</eMailAddress>
+      </ContactPerson>
+    </Representative>
+  </ncts:CC051C>
 
   lazy val json1: JsValue = Json.parse(
     """
       |{
-      |    "n1:CC045C": {
+      |    "n1:CC051C": {
       |        "preparationDateAndTime": "2007-10-26T07:36:28",
       |        "TransitOperation": {
       |            "MRN": "string",
-      |            "writeOffDate": "2014-06-09+01:00"
+      |            "declarationSubmissionDateAndTime": "2014-06-09T16:15:04+01:00",
+      |            "noReleaseMotivationCode": "token",
+      |            "noReleaseMotivationText": "string"
       |        },
       |        "CustomsOfficeOfDeparture": {
       |            "referenceNumber": "stringst"
       |        },
-      |        "messageType": "CC045C",
+      |        "messageType": "CC051C",
       |        "@PhaseID": "NCTS5.0",
       |        "correlationIdentifier": "token",
       |        "messageSender": "token",
       |        "messageRecipient": "token",
-      |        "Guarantor": {
-      |            "identificationNumber": "string",
-      |            "name": "string",
-      |            "Address": {
-      |                "streetAndNumber": "string",
-      |                "postcode": "string",
-      |                "city": "string",
-      |                "country": "BE"
-      |            }
-      |        },
       |        "HolderOfTheTransitProcedure": {
       |            "identificationNumber": "string",
       |            "TIRHolderIdentificationNumber": "string",
@@ -89,6 +80,14 @@ object CC045CTestMessageType extends TestMessageType {
       |                "postcode": "string",
       |                "city": "string",
       |                "country": "st"
+      |            }
+      |        },
+      |        "Representative": {
+      |            "identificationNumber": "string",
+      |            "ContactPerson": {
+      |                "name": "string",
+      |                "phoneNumber": "string",
+      |                "eMailAddress": "string"
       |            }
       |        },
       |        "messageIdentification": "token"
