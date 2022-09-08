@@ -42,6 +42,7 @@ class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestAc
   "cc054cFormats" - new TestType[CC054CType](CC054CTestMessageType, Models.cc054cFormats)
   "cc055cFormats" - new TestType[CC055CType](CC055CTestMessageType, Models.cc055cFormats)
   "cc170cFormats" - new TestType[CC170CType](CC170CTestMessageType, Models.cc170cFormats)
+  "cc928cFormats" - new TestType[CC928CType](CC928CTestMessageType, Models.cc928cFormats)
 
   case class TestType[T](testObject: TestMessageType, formats: OFormat[T])(implicit xmlFormat: XMLFormat[T]) extends XMLProtocol {
     lazy val model: T = scalaxb.fromXML[T](testObject.xml1)

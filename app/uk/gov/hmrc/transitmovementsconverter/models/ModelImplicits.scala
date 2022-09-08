@@ -212,6 +212,7 @@ object ModelImplicits {
   implicit lazy val transitOperationType18Format                      = Json.format[TransitOperationType18]
   implicit lazy val transitOperationType19Format                      = Json.format[TransitOperationType19]
   implicit lazy val transitOperationType24Format                      = Json.format[TransitOperationType24]
+  implicit lazy val transitOperationType26Format                      = Json.format[TransitOperationType26]
   implicit lazy val transitOperationType48Format                      = Json.format[TransitOperationType48]
   implicit lazy val authorisationType02Format                         = Json.format[AuthorisationType02]
   implicit lazy val authorisationType03Format                         = Json.format[AuthorisationType03]

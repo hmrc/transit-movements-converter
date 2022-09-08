@@ -45,6 +45,7 @@ object MessageType extends XMLProtocol {
   case object IE054 extends MessageType[CC054CType]("IE054", "CC054C")
   case object IE055 extends MessageType[CC055CType]("IE055", "CC055C")
   case object IE170 extends MessageType[CC170CType]("IE170", "CC170C")
+  case object IE928 extends MessageType[CC928CType]("IE928", "CC928C")
 
   val values = Seq(
     IE004,
@@ -60,7 +61,8 @@ object MessageType extends XMLProtocol {
     IE051,
     IE054,
     IE055,
-    IE170
+    IE170,
+    IE928
   )
 
   def fromName(value: String): Option[MessageType[_]] = values.find(_.name == value)

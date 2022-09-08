@@ -948,4 +948,60 @@ object Models {
       }
     )
 
+  // ** CC170C **
+
+  private lazy val cc928cRoot = "n1:CC928C"
+
+  implicit lazy val cc928cFormats: OFormat[CC928CType] =
+    (
+      commonTypesWithSender(cc928cRoot) and
+        (__ \ cc928cRoot \ "TransitOperation").format[TransitOperationType26] and
+        (__ \ cc928cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc928cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
+        (__ \ cc928cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDeparture,
+        HolderOfTheTransitProcedure,
+        phaseId
+      ) =>
+        CC928CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDeparture,
+          HolderOfTheTransitProcedure,
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC928CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDeparture,
+            obj.HolderOfTheTransitProcedure,
+            obj.PhaseID
+          )
+      }
+    )
+
 }
