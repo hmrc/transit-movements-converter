@@ -1,16 +1,14 @@
-<ncts:CC051C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+<ncts:CC055C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
   <messageSender>token</messageSender>
   <messageRecipient>token</messageRecipient>
   <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
   <messageIdentification>token</messageIdentification>
-  <messageType>CC051C</messageType>
+  <messageType>CD975C</messageType>
   <!--Optional:-->
   <correlationIdentifier>token</correlationIdentifier>
   <TransitOperation>
     <MRN>string</MRN>
-    <declarationSubmissionDateAndTime>2014-06-09T16:15:04+01:00</declarationSubmissionDateAndTime>
-    <noReleaseMotivationCode>token</noReleaseMotivationCode>
-    <noReleaseMotivationText>string</noReleaseMotivationText>
+    <declarationAcceptanceDate>2014-06-09+01:00</declarationAcceptanceDate>
   </TransitOperation>
   <CustomsOfficeOfDeparture>
     <referenceNumber>stringst</referenceNumber>
@@ -18,8 +16,6 @@
   <HolderOfTheTransitProcedure>
     <!--Optional:-->
     <identificationNumber>string</identificationNumber>
-    <!--Optional:-->
-    <TIRHolderIdentificationNumber>string</TIRHolderIdentificationNumber>
     <!--Optional:-->
     <name>string</name>
     <!--Optional:-->
@@ -31,15 +27,14 @@
       <country>st</country>
     </Address>
   </HolderOfTheTransitProcedure>
-  <!--Optional:-->
-  <Representative>
-    <identificationNumber>string</identificationNumber>
-    <!--Optional:-->
-    <ContactPerson>
-      <name>string</name>
-      <phoneNumber>string</phoneNumber>
+  <!--1 to 99 repetitions:-->
+  <GuaranteeReference>
+    <sequenceNumber>token</sequenceNumber>
+    <GRN>string</GRN>
+    <InvalidGuaranteeReason>
+      <code>token</code>
       <!--Optional:-->
-      <eMailAddress>string</eMailAddress>
-    </ContactPerson>
-  </Representative>
-</ncts:CC051C>
+      <text>string</text>
+    </InvalidGuaranteeReason>
+  </GuaranteeReference>
+</ncts:CC055C>

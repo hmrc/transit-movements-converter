@@ -42,6 +42,8 @@ object MessageType extends XMLProtocol {
   case object IE035 extends MessageType[CC035CType]("IE035", "CC035C")
   case object IE045 extends MessageType[CC045CType]("IE045", "CC045C")
   case object IE051 extends MessageType[CC051CType]("IE051", "CC051C")
+  case object IE054 extends MessageType[CC054CType]("IE054", "CC054C")
+  case object IE055 extends MessageType[CC055CType]("IE055", "CC055C")
   case object IE170 extends MessageType[CC170CType]("IE170", "CC170C")
 
   val values = Seq(
@@ -56,6 +58,8 @@ object MessageType extends XMLProtocol {
     IE035,
     IE045,
     IE051,
+    IE054,
+    IE055,
     IE170
   )
 
