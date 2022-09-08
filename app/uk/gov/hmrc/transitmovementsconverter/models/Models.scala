@@ -1080,7 +1080,59 @@ object Models {
       }
     )
 
-  // ** CC170C **
+  // ** CC906C **
+
+  private lazy val cc906cRoot = "n1:CC906C"
+
+  implicit lazy val cc906cFormats: OFormat[CC906CType] =
+    (
+      commonTypesWithSender(cc906cRoot) and
+        (__ \ cc906cRoot \ "Header").format[HeaderType01] and
+        (__ \ cc906cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType02]] and
+        (__ \ cc906cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        Header,
+        FunctionalError,
+        phaseId
+      ) =>
+        CC906CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          Header,
+          FunctionalError.getOrElse(Nil),
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC906CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.Header,
+            obj.FunctionalError.toOption,
+            obj.PhaseID
+          )
+      }
+    )
+
+  // ** CC928C **
 
   private lazy val cc928cRoot = "n1:CC928C"
 

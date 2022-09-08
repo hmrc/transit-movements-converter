@@ -116,6 +116,7 @@ object ModelImplicits {
 
   // Order sensitive - formats without dependencies should go first.
 
+  implicit lazy val headerType01Format                             = Json.format[HeaderType01]
   implicit lazy val typeOfControlsTypeFormat                       = Json.format[TypeOfControlsType]
   implicit lazy val requestedDocumentTypeFormat                    = Json.format[RequestedDocumentType]
   implicit lazy val commodityCodeType01Format                      = Json.format[CommodityCodeType01]
@@ -217,6 +218,7 @@ object ModelImplicits {
   implicit lazy val previousDocumentType06Format              = Json.format[PreviousDocumentType06]
   implicit lazy val previousDocumentType09Format              = Json.format[PreviousDocumentType09]
 
+  implicit lazy val functionalErrorType02Format                       = Json.format[FunctionalErrorType02]
   implicit lazy val functionalErrorType04Format                       = Json.format[FunctionalErrorType04]
   implicit lazy val invalidationType01Format                          = Json.format[InvalidationType01]
   implicit lazy val invalidationType02Format                          = Json.format[InvalidationType02]
