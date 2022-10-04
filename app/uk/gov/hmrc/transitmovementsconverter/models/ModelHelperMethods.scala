@@ -17,14 +17,43 @@
 package uk.gov.hmrc.transitmovementsconverter.models
 
 import play.api.libs.json.JsLookupResult
+import play.api.libs.json.JsObject
+import play.api.libs.json.JsResult
 import play.api.libs.json.JsString
 import play.api.libs.json.JsValue
+import play.api.libs.json.Json
 import play.api.libs.json.Json.JsValueWrapper
+import play.api.libs.json.OFormat
+import play.api.libs.json.OWrites
 import play.api.libs.json.Reads
 import play.api.libs.json.Writes
 import uk.gov.hmrc.transitmovementsconverter.models.errors.MalformedJsonException
 
-object ModelExtensionMethods {
+object ModelHelperMethods {
+
+  private def readWithTypeAdjusted[A](reads: Reads[A])(in: JsValue): JsResult[A] =
+    in match {
+      case obj: JsObject =>
+        (obj.value.get("type") match {
+          case Some(typeVal) => (obj - "type") + ("typeValue" -> typeVal)
+          case None          => obj
+        }).validate(reads)
+      case in: JsValue => reads.reads(in)
+    }
+
+  private def writeWithTypeAdjusted[A](writes: OWrites[A])(in: A): JsObject =
+    writes
+      .transform {
+        in: JsObject =>
+          in.value.get("typeValue") match {
+            case Some(typeVal) => (in - "typeValue") + ("type" -> typeVal)
+            case None          => in
+          }
+      }
+      .writes(in)
+
+  def formatWithTypeAdjusted[A](format: OFormat[A]): OFormat[A] =
+    OFormat(readWithTypeAdjusted(format)(_), writeWithTypeAdjusted(format)(_))
 
   implicit class SeqHelpers[A](val value: Seq[A]) {
     def toOption: Option[Seq[A]] = Option(value).filter(_.nonEmpty)

@@ -732,7 +732,7 @@ object CC013CTestMessageType extends TestMessageType {
       |            "PreviousDocument": [
       |                {
       |                    "sequenceNumber": "token",
-      |                    "typeValue": "token",
+      |                    "type": "token",
       |                    "referenceNumber": "string",
       |                    "complementOfInformation": "string"
       |                }
@@ -740,7 +740,7 @@ object CC013CTestMessageType extends TestMessageType {
       |            "SupportingDocument": [
       |                {
       |                    "sequenceNumber": "token",
-      |                    "typeValue": "token",
+      |                    "type": "token",
       |                    "referenceNumber": "string",
       |                    "documentLineItemNumber": 100,
       |                    "complementOfInformation": "string"
@@ -749,14 +749,14 @@ object CC013CTestMessageType extends TestMessageType {
       |            "TransportDocument": [
       |                {
       |                    "sequenceNumber": "token",
-      |                    "typeValue": "token",
+      |                    "type": "token",
       |                    "referenceNumber": "string"
       |                }
       |            ],
       |            "AdditionalReference": [
       |                {
       |                    "sequenceNumber": "token",
-      |                    "typeValue": "token",
+      |                    "type": "token",
       |                    "referenceNumber": "string"
       |                }
       |            ],
@@ -819,7 +819,7 @@ object CC013CTestMessageType extends TestMessageType {
       |                    "PreviousDocument": [
       |                        {
       |                            "sequenceNumber": "token",
-      |                            "typeValue": "token",
+      |                            "type": "token",
       |                            "referenceNumber": "string",
       |                            "complementOfInformation": "string"
       |                        }
@@ -827,7 +827,7 @@ object CC013CTestMessageType extends TestMessageType {
       |                    "SupportingDocument": [
       |                        {
       |                            "sequenceNumber": "token",
-      |                            "typeValue": "token",
+      |                            "type": "token",
       |                            "referenceNumber": "string",
       |                            "documentLineItemNumber": 100,
       |                            "complementOfInformation": "string"
@@ -836,14 +836,14 @@ object CC013CTestMessageType extends TestMessageType {
       |                    "TransportDocument": [
       |                        {
       |                            "sequenceNumber": "token",
-      |                            "typeValue": "token",
+      |                            "type": "token",
       |                            "referenceNumber": "string"
       |                        }
       |                    ],
       |                    "AdditionalReference": [
       |                        {
       |                            "sequenceNumber": "token",
-      |                            "typeValue": "token",
+      |                            "type": "token",
       |                            "referenceNumber": "string"
       |                        }
       |                    ],
@@ -912,7 +912,7 @@ object CC013CTestMessageType extends TestMessageType {
       |                            "PreviousDocument": [
       |                                {
       |                                    "sequenceNumber": "token",
-      |                                    "typeValue": "token",
+      |                                    "type": "token",
       |                                    "referenceNumber": "string",
       |                                    "goodsItemNumber": 100,
       |                                    "typeOfPackages": "token",
@@ -925,7 +925,7 @@ object CC013CTestMessageType extends TestMessageType {
       |                            "SupportingDocument": [
       |                                {
       |                                    "sequenceNumber": "token",
-      |                                    "typeValue": "token",
+      |                                    "type": "token",
       |                                    "referenceNumber": "string",
       |                                    "documentLineItemNumber": 100,
       |                                    "complementOfInformation": "string"
@@ -934,14 +934,14 @@ object CC013CTestMessageType extends TestMessageType {
       |                            "TransportDocument": [
       |                                {
       |                                    "sequenceNumber": "token",
-      |                                    "typeValue": "token",
+      |                                    "type": "token",
       |                                    "referenceNumber": "string"
       |                                }
       |                            ],
       |                            "AdditionalReference": [
       |                                {
       |                                    "sequenceNumber": "token",
-      |                                    "typeValue": "token",
+      |                                    "type": "token",
       |                                    "referenceNumber": "string"
       |                                }
       |                            ],
@@ -982,7 +982,7 @@ object CC013CTestMessageType extends TestMessageType {
       |        "Authorisation": [
       |            {
       |                "sequenceNumber": "token",
-      |                "typeValue": "token",
+      |                "type": "token",
       |                "referenceNumber": "string"
       |            }
       |        ],

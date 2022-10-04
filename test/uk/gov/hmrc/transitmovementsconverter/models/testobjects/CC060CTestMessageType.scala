@@ -109,7 +109,7 @@ object CC060CTestMessageType extends TestMessageType {
       |        "TypeOfControls": [
       |            {
       |                "sequenceNumber": "token",
-      |                "typeValue": "str",
+      |                "type": "str",
       |                "text": "string"
       |            }
       |        ],
