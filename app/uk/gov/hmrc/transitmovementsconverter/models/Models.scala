@@ -21,7 +21,7 @@ import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.OFormat
 import play.api.libs.json.__
 import scalaxb.DataRecord
-import uk.gov.hmrc.transitmovementsconverter.models.ModelExtensionMethods._
+import uk.gov.hmrc.transitmovementsconverter.models.ModelHelperMethods._
 
 import javax.xml.datatype.XMLGregorianCalendar
 

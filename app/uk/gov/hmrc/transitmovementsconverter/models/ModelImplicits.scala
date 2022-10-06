@@ -28,7 +28,7 @@ import play.api.libs.json.Json.JsValueWrapper
 import play.api.libs.json.Reads
 import play.api.libs.json.Writes
 import scalaxb.DataTypeFactory
-import uk.gov.hmrc.transitmovementsconverter.models.ModelExtensionMethods._
+import uk.gov.hmrc.transitmovementsconverter.models.ModelHelperMethods._
 import uk.gov.hmrc.transitmovementsconverter.models.errors.MalformedJsonException
 
 import javax.xml.datatype.XMLGregorianCalendar
@@ -117,7 +117,7 @@ object ModelImplicits {
   // Order sensitive - formats without dependencies should go first.
 
   implicit lazy val headerType01Format                             = Json.format[HeaderType01]
-  implicit lazy val typeOfControlsTypeFormat                       = Json.format[TypeOfControlsType]
+  implicit lazy val typeOfControlsTypeFormat                       = formatWithTypeAdjusted(Json.format[TypeOfControlsType])
   implicit lazy val requestedDocumentTypeFormat                    = Json.format[RequestedDocumentType]
   implicit lazy val commodityCodeType01Format                      = Json.format[CommodityCodeType01]
   implicit lazy val commodityCodeType02Format                      = Json.format[CommodityCodeType02]
@@ -130,10 +130,14 @@ object ModelImplicits {
   implicit lazy val commodityType05Format                          = Json.format[CommodityType05]
   implicit lazy val commodityType06Format                          = Json.format[CommodityType06]
   implicit lazy val commodityType08Format                          = Json.format[CommodityType08]
-  implicit lazy val additionalReferenceType01Format                = Json.format[AdditionalReferenceType01]
-  implicit lazy val additionalReferenceType03Format                = Json.format[AdditionalReferenceType03]
-  implicit lazy val additionalReferenceType04Format                = Json.format[AdditionalReferenceType04]
-  implicit lazy val additionalReferenceType05Format                = Json.format[AdditionalReferenceType05]
+  implicit lazy val additionalReferenceType01Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType01])
+  implicit lazy val additionalReferenceType02Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType02])
+  implicit lazy val additionalReferenceType03Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType03])
+  implicit lazy val additionalReferenceType04Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType04])
+  implicit lazy val additionalReferenceType05Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType05])
+  implicit lazy val additionalReferenceType06Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType06])
+  implicit lazy val additionalReferenceType07Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType07])
+  implicit lazy val additionalReferenceType08Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType08])
   implicit lazy val addressType02Format                            = Json.format[AddressType02]
   implicit lazy val addressType03Format                            = Json.format[AddressType03]
   implicit lazy val addressType07Format                            = Json.format[AddressType07]
@@ -151,20 +155,21 @@ object ModelImplicits {
   implicit lazy val packagingType02Format                          = Json.format[PackagingType02]
   implicit lazy val packagingType03Format                          = Json.format[PackagingType03]
   implicit lazy val additionalSupplyChainActorTypeFormat           = Json.format[AdditionalSupplyChainActorType]
-  implicit lazy val previousDocumentType03Format                   = Json.format[PreviousDocumentType03]
-  implicit lazy val previousDocumentType07Format                   = Json.format[PreviousDocumentType07]
-  implicit lazy val previousDocumentType08Format                   = Json.format[PreviousDocumentType08]
-  implicit lazy val supportingDocumentType04Format                 = Json.format[SupportingDocumentType04]
-  implicit lazy val supportingDocumentType05Format                 = Json.format[SupportingDocumentType05]
-  implicit lazy val supportingDocumentType06Format                 = Json.format[SupportingDocumentType06]
-  implicit lazy val transportDocumentType01Format                  = Json.format[TransportDocumentType01]
-  implicit lazy val transportDocumentType02Format                  = Json.format[TransportDocumentType02]
-  implicit lazy val transportDocumentType04Format                  = Json.format[TransportDocumentType04]
+  implicit lazy val previousDocumentType03Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType03])
+  implicit lazy val previousDocumentType06Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType06])
+  implicit lazy val previousDocumentType07Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType07])
+  implicit lazy val previousDocumentType08Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType08])
+  implicit lazy val previousDocumentType09Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType09])
+  implicit lazy val previousDocumentType10Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType10])
+  implicit lazy val supportingDocumentType04Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType04])
+  implicit lazy val supportingDocumentType05Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType05])
+  implicit lazy val supportingDocumentType06Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType06])
+  implicit lazy val transportDocumentType01Format                  = formatWithTypeAdjusted(Json.format[TransportDocumentType01])
+  implicit lazy val transportDocumentType02Format                  = formatWithTypeAdjusted(Json.format[TransportDocumentType02])
+  implicit lazy val transportDocumentType04Format                  = formatWithTypeAdjusted(Json.format[TransportDocumentType04])
   implicit lazy val additionalInformationType02Format              = Json.format[AdditionalInformationType02]
   implicit lazy val additionalInformationType03Format              = Json.format[AdditionalInformationType03]
   implicit lazy val transportChargesTypeFormat                     = Json.format[TransportChargesType]
-  implicit lazy val previousDocumentType10                         = Json.format[PreviousDocumentType10]
-  implicit lazy val additionalReferenceType06Format                = Json.format[AdditionalReferenceType06]
   implicit lazy val controlResultType02Format                      = Json.format[ControlResultType02]
   implicit lazy val recoveryNotificationTypeFormat                 = Json.format[RecoveryNotificationType]
   implicit lazy val customsOfficeOfRecoveryAtDepartureType01Format = Json.format[CustomsOfficeOfRecoveryAtDepartureType01]
@@ -215,8 +220,6 @@ object ModelImplicits {
   implicit lazy val placeOfLoadingType03Format                = Json.format[PlaceOfLoadingType03]
   implicit lazy val placeOfUnloadingType01Format              = Json.format[PlaceOfUnloadingType01]
   implicit lazy val placeOfUnloadingType02Format              = Json.format[PlaceOfUnloadingType02]
-  implicit lazy val previousDocumentType06Format              = Json.format[PreviousDocumentType06]
-  implicit lazy val previousDocumentType09Format              = Json.format[PreviousDocumentType09]
 
   implicit lazy val functionalErrorType02Format                       = Json.format[FunctionalErrorType02]
   implicit lazy val functionalErrorType04Format                       = Json.format[FunctionalErrorType04]
@@ -238,8 +241,9 @@ object ModelImplicits {
   implicit lazy val transitOperationType24Format                      = Json.format[TransitOperationType24]
   implicit lazy val transitOperationType26Format                      = Json.format[TransitOperationType26]
   implicit lazy val transitOperationType48Format                      = Json.format[TransitOperationType48]
-  implicit lazy val authorisationType02Format                         = Json.format[AuthorisationType02]
-  implicit lazy val authorisationType03Format                         = Json.format[AuthorisationType03]
+  implicit lazy val authorisationType01Format                         = formatWithTypeAdjusted(Json.format[AuthorisationType01])
+  implicit lazy val authorisationType02Format                         = formatWithTypeAdjusted(Json.format[AuthorisationType02])
+  implicit lazy val authorisationType03Format                         = formatWithTypeAdjusted(Json.format[AuthorisationType03])
   implicit lazy val customsOfficeOfDepartureType03Format              = Json.format[CustomsOfficeOfDepartureType03]
   implicit lazy val customsOfficeOfDestinationDeclaredType01Format    = Json.format[CustomsOfficeOfDestinationDeclaredType01]
   implicit lazy val customsOfficeOfTransitDeclaredType03Format        = Json.format[CustomsOfficeOfTransitDeclaredType03]
