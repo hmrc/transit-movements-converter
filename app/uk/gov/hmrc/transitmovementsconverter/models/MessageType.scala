@@ -31,6 +31,7 @@ sealed abstract class MessageType[T](val name: String, val xmlRoot: String)(impl
 object MessageType extends XMLProtocol {
 
   case object IE004 extends MessageType[CC004CType]("IE004", "CC004C")
+  case object IE007 extends MessageType[CC007CType]("IE007", "CC007C")
   case object IE009 extends MessageType[CC009CType]("IE009", "CC009C")
   case object IE013 extends MessageType[CC013CType]("IE013", "CC013C")
   case object IE014 extends MessageType[CC014CType]("IE014", "CC014C")
@@ -51,6 +52,7 @@ object MessageType extends XMLProtocol {
 
   val values = Seq(
     IE004,
+    IE007,
     IE009,
     IE013,
     IE014,
