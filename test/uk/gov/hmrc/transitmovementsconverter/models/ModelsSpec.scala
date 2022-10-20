@@ -29,6 +29,7 @@ import uk.gov.hmrc.transitmovementsconverter.models.testobjects._
 class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
 
   "cc004cFormats" - new TestType[CC004CType](CC004CTestMessageType, Models.cc004cFormats)
+  "cc007cFormats" - new TestType[CC007CType](CC007CTestMessageType, Models.cc007cFormats)
   "cc009cFormats" - new TestType[CC009CType](CC009CTestMessageType, Models.cc009cFormats)
   "cc013cFormats" - new TestType[CC013CType](CC013CTestMessageType, Models.cc013cFormats)
   "cc014cFormats" - new TestType[CC014CType](CC014CTestMessageType, Models.cc014cFormats)

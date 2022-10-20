@@ -100,6 +100,67 @@ object Models {
     }
   )
 
+  // ** CC007C **
+
+  private lazy val cc007cRoot = "n1:CC007C"
+
+  implicit lazy val cc007cFormats: OFormat[CC007CType] = (
+    commonTypes(cc007cRoot) and
+      (__ \ cc007cRoot \ "TransitOperation").format[TransitOperationType02] and
+      (__ \ cc007cRoot \ "Authorisation").format[Seq[AuthorisationType01]] and
+      (__ \ cc007cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
+      (__ \ cc007cRoot \ "TraderAtDestination").format[TraderAtDestinationType01] and
+      (__ \ cc007cRoot \ "Consignment").format[ConsignmentType01] and
+      (__ \ cc007cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+  )(
+    (
+      messageRecipient,
+      preparationDateAndTime,
+      messageIdentification,
+      messageType,
+      correlationIdentifier,
+      TransitOperation,
+      Authorisation,
+      CustomsOfficeOfDestinationActual,
+      TraderAtDestination,
+      Consignment,
+      phaseId
+    ) =>
+      CC007CType(
+        MESSAGE_FROM_TRADERSequence(
+          None,
+          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+        ),
+        TransitOperation,
+        Authorisation,
+        CustomsOfficeOfDestinationActual,
+        TraderAtDestination,
+        Consignment,
+        phaseId
+          .map(
+            x => Map("@PhaseID" -> DataRecord(x))
+          )
+          .getOrElse(Map.empty)
+      ),
+    {
+      obj: CC007CType =>
+        val seqType = obj.messagE_FROM_TRADERSequence1.messagE_1Sequence2
+        (
+          seqType.messageRecipient,
+          seqType.preparationDateAndTime,
+          seqType.messageIdentification,
+          seqType.messageType,
+          seqType.correlationIdentifier,
+          obj.TransitOperation,
+          obj.Authorisation,
+          obj.CustomsOfficeOfDestinationActual,
+          obj.TraderAtDestination,
+          obj.Consignment,
+          obj.PhaseID
+        )
+    }
+  )
+
   // ** CC009C **
 
   private lazy val cc009cRoot = "n1:CC009C"
