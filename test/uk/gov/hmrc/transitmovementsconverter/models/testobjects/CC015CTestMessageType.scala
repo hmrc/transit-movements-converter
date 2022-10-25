@@ -16,9 +16,14 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models.testobjects
 
+import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 
+import scala.xml.NodeSeq
+
 object CC015CTestMessageType extends TestMessageType {
+
+  override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1)
 
   lazy val xml1 = <ncts:CC015C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
     <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>

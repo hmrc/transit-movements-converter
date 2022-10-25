@@ -49,14 +49,22 @@ class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestAc
   "cc928cFormats" - new TestType[CC928CType](CC928CTestMessageType, Models.cc928cFormats)
 
   case class TestType[T](testObject: TestMessageType, formats: OFormat[T])(implicit xmlFormat: XMLFormat[T]) extends XMLProtocol {
-    lazy val model: T = scalaxb.fromXML[T](testObject.xml1)
 
-    "converting model to Json" in {
-      formats.writes(model) mustBe testObject.json1
-    }
+    Range(0, testObject.testAssociations.size).foreach {
+      index =>
+        // use apply due to paramterless def for testAssociations causing ambiguity
+        s"for test case ${index + 1}" - {
+          val entry         = testObject.testAssociations.apply(index)
+          lazy val model: T = scalaxb.fromXML[T](entry._1)
 
-    "converting Json to model" in {
-      formats.reads(testObject.json1).get mustBe model
+          "converting model to Json" in {
+            formats.writes(model) mustBe entry._2
+          }
+
+          "converting Json to model" in {
+            formats.reads(entry._2).get mustBe model
+          }
+        }
     }
   }
 
