@@ -22,6 +22,9 @@ import play.api.libs.json.Json
 import scala.xml.NodeSeq
 
 object CC051CTestMessageType extends TestMessageType {
+
+  override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1)
+
   lazy val xml1: NodeSeq = <ncts:CC051C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
     <messageSender>token</messageSender>
     <messageRecipient>token</messageRecipient>

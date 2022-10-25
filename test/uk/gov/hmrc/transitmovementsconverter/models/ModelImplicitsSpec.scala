@@ -19,8 +19,10 @@ package uk.gov.hmrc.transitmovementsconverter.models
 import generated.AesNctsP5FunctionalErrorCodes
 import generated.CountryCodesCustomsOfficeLists
 import generated.MessageTypes
+import generated.NCTS5u461
 import generated.Number0
 import generated.Number1
+import generated.PhaseIDtype
 import org.scalacheck.Gen
 import org.scalatest.OptionValues
 import org.scalatest.concurrent.ScalaFutures
@@ -51,6 +53,39 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
     .map(
       x => DatatypeFactory.newInstance().newXMLGregorianCalendar(x)
     )
+
+  "phaseIdtypeReads implicit val" - {
+
+    "all valid phase IDs should return their respective phase ID" - PhaseIDtype.values.foreach {
+      code =>
+        s"for ${code.toString}" in {
+          ModelImplicits.phaseIDtypeReads.reads(JsString(code.toString)) mustBe JsSuccess(code)
+        }
+    }
+
+    // In the stock XSDs, this incorrectly tried to read " NCTS5.1", not "NCTS5.1", hence this test.
+    "A phase ID of 'NCTS5.1' should be accepted" in {
+      ModelImplicits.phaseIDtypeReads.reads(JsString("NCTS5.1")) mustBe JsSuccess(NCTS5u461)
+    }
+
+    "an invalid code should return an error" in {
+      ModelImplicits.phaseIDtypeReads.reads(JsString(Gen.listOfN(3, Gen.alphaNumChar).map(_.mkString).sample.value)) mustBe a[JsError]
+    }
+
+  }
+
+  "phaseIdtypeWrites implicit val" - {
+    "all valid Phase IDs should return their country codes as a JsString" - PhaseIDtype.values.foreach {
+      code =>
+        s"for ${code.toString}" in {
+          ModelImplicits.phaseIDtypeWrites.writes(code) mustBe JsString(code.toString)
+        }
+    }
+
+    "A phase ID of 'NCTS5.1' should be written for NCTS5u461" in {
+      ModelImplicits.phaseIDtypeWrites.writes(NCTS5u461) mustBe JsString("NCTS5.1")
+    }
+  }
 
   "countryCodeReads implicit val" - {
 
