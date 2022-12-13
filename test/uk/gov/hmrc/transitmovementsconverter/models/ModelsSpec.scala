@@ -38,6 +38,7 @@ class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestAc
   "cc028cFormats" - new TestType[CC028CType](CC028CTestMessageType, Models.cc028cFormats)
   "cc029cFormats" - new TestType[CC029CType](CC029CTestMessageType, Models.cc029cFormats)
   "cc035cFormats" - new TestType[CC035CType](CC035CTestMessageType, Models.cc035cFormats)
+  "cc044cFormats" - new TestType[CC044CType](CC044CTestMessageType, Models.cc044cFormats)
   "cc045cFormats" - new TestType[CC045CType](CC045CTestMessageType, Models.cc045cFormats)
   "cc051cFormats" - new TestType[CC051CType](CC051CTestMessageType, Models.cc051cFormats)
   "cc054cFormats" - new TestType[CC054CType](CC054CTestMessageType, Models.cc054cFormats)
@@ -54,7 +55,8 @@ class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestAc
       index =>
         // use apply due to paramterless def for testAssociations causing ambiguity
         s"for test case ${index + 1}" - {
-          val entry         = testObject.testAssociations.apply(index)
+          val entry = testObject.testAssociations.apply(index)
+
           lazy val model: T = scalaxb.fromXML[T](entry._1)
 
           "converting model to Json" in {

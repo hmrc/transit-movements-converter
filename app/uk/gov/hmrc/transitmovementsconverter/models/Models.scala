@@ -713,6 +713,67 @@ object Models {
       }
     )
 
+  // ** CC044C **
+  private lazy val cc044cRoot = "n1:CC044C"
+
+  implicit lazy val cc044cFormats: OFormat[CC044CType] =
+    (
+      commonTypes(cc044cRoot) and
+        (__ \ cc044cRoot \ "TransitOperation").format[TransitOperationType15] and
+        (__ \ cc044cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
+        (__ \ cc044cRoot \ "TraderAtDestination").format[TraderAtDestinationType02] and
+        (__ \ cc044cRoot \ "UnloadingRemark").format[UnloadingRemarkType] and
+        (__ \ cc044cRoot \ "Consignment").formatNullable[ConsignmentType06] and
+        (__ \ cc044cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDestinationActual,
+        TraderAtDestination,
+        UnloadingRemark,
+        Consignment,
+        phaseId
+      ) =>
+        CC044CType(
+          MESSAGE_FROM_TRADERSequence(
+            None,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDestinationActual,
+          TraderAtDestination,
+          UnloadingRemark,
+          Consignment,
+          phaseId
+            .map(
+              phase => Map("@PhaseID" -> DataRecord(phase))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC044CType =>
+          val seqType = obj.messagE_FROM_TRADERSequence1.messagE_1Sequence2
+          (
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDestinationActual,
+            obj.TraderAtDestination,
+            obj.UnloadingRemark,
+            obj.Consignment,
+            obj.PhaseID
+          )
+      }
+    )
+
   // ** CC045C **
 
   private lazy val cc045cRoot = "n1:CC045C"
