@@ -222,6 +222,117 @@ object TestObjects {
       )
   }
 
+  object CC035C {
+
+    lazy val xmlValid = <ncts:CC035C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+        <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
+        <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+        <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+        <messageIdentification>6Onxa3En</messageIdentification>
+        <messageType>CC035C</messageType>
+        <correlationIdentifier>cn-id-1</correlationIdentifier>
+        <TransitOperation>
+          <MRN>mrn-1</MRN>
+          <declarationAcceptanceDate>2014-06-09+01:00</declarationAcceptanceDate>
+        </TransitOperation>
+        <RecoveryNotification>
+          <recoveryNotificationDate>2008-11-15</recoveryNotificationDate>
+          <recoveryNotificationText>some notification</recoveryNotificationText>
+          <amountClaimed>1000.01</amountClaimed>
+          <currency>EURO</currency>
+        </RecoveryNotification>
+        <CustomsOfficeOfDeparture>
+          <referenceNumber>DOVER-1</referenceNumber>
+        </CustomsOfficeOfDeparture>
+        <CustomsOfficeOfRecoveryAtDeparture>
+          <referenceNumber>DOVER-2</referenceNumber>
+        </CustomsOfficeOfRecoveryAtDeparture>
+        <HolderOfTheTransitProcedure>
+          <identificationNumber>30001</identificationNumber>
+          <TIRHolderIdentificationNumber>30002</TIRHolderIdentificationNumber>
+          <name>Smith</name>
+          <Address>
+            <streetAndNumber>10 The High Street</streetAndNumber>
+            <postcode>N1 3PZ</postcode>
+            <city>Paris</city>
+            <country>FR</country>
+          </Address>
+        </HolderOfTheTransitProcedure>
+        <Guarantor>
+          <identificationNumber>23456</identificationNumber>
+          <name>Jane Doe</name>
+          <Address>
+            <streetAndNumber>Main Street 2</streetAndNumber>
+            <postcode>N98 1ZZ</postcode>
+            <city>Newcastle</city>
+            <country>LV</country>
+          </Address>
+        </Guarantor>
+      </ncts:CC035C>
+
+    lazy val invalidXml = <ncts:CC035C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
+    </ncts:CC035C>
+
+    lazy val jsonValid = Json.obj(
+      "n1:CC035C" ->
+        Json.obj(
+          "CustomsOfficeOfRecoveryAtDeparture" -> Json.obj(
+            "referenceNumber" -> "DOVER-2"
+          ),
+          "preparationDateAndTime" -> "2007-10-26T07:36:28",
+          "TransitOperation" -> Json.obj(
+            "MRN"                       -> "mrn-1",
+            "declarationAcceptanceDate" -> "2014-06-09+01:00"
+          ),
+          "CustomsOfficeOfDeparture" -> Json.obj(
+            "referenceNumber" -> "DOVER-1"
+          ),
+          "RecoveryNotification" -> Json.obj(
+            "recoveryNotificationDate" -> "2008-11-15",
+            "recoveryNotificationText" -> "some notification",
+            "amountClaimed"            -> 1000.01,
+            "currency"                 -> "EURO"
+          ),
+          "messageSender"         -> "GdOcminxBxSLGm1rRUn0q96S2",
+          "messageType"           -> "CC035C",
+          "@PhaseID"              -> "NCTS5.0",
+          "correlationIdentifier" -> "cn-id-1",
+          "messageRecipient"      -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "Guarantor" -> Json.obj(
+            "identificationNumber" -> "23456",
+            "name"                 -> "Jane Doe",
+            "Address" -> Json.obj(
+              "streetAndNumber" -> "Main Street 2",
+              "postcode"        -> "N98 1ZZ",
+              "city"            -> "Newcastle",
+              "country"         -> "LV"
+            )
+          ),
+          "HolderOfTheTransitProcedure" -> Json.obj(
+            "identificationNumber"          -> "30001",
+            "TIRHolderIdentificationNumber" -> "30002",
+            "name"                          -> "Smith",
+            "Address" -> Json.obj(
+              "streetAndNumber" -> "10 The High Street",
+              "postcode"        -> "N1 3PZ",
+              "city"            -> "Paris",
+              "country"         -> "FR"
+            )
+          ),
+          "messageIdentification" -> "6Onxa3En"
+        )
+    )
+
+    lazy val invalidJson =
+      Json.obj(
+        "n1:CC035C" ->
+          Json.obj(
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
+  }
+
   object CC044C {
 
     lazy val xmlValid = <ncts:CC044C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
