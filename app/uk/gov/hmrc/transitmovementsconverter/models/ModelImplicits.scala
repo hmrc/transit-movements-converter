@@ -116,6 +116,7 @@ object ModelImplicits {
 
   // Order sensitive - formats without dependencies should go first.
 
+  implicit lazy val ctlControlTypeFormat                           = Json.format[CTLControlType]
   implicit lazy val headerType01Format                             = Json.format[HeaderType01]
   implicit lazy val typeOfControlsTypeFormat                       = formatWithTypeAdjusted(Json.format[TypeOfControlsType])
   implicit lazy val requestedDocumentTypeFormat                    = Json.format[RequestedDocumentType]
@@ -145,11 +146,13 @@ object ModelImplicits {
   implicit lazy val addressType03Format                            = Json.format[AddressType03]
   implicit lazy val addressType07Format                            = Json.format[AddressType07]
   implicit lazy val addressType09Format                            = Json.format[AddressType09]
+  implicit lazy val addressType10Format                            = Json.format[AddressType10]
   implicit lazy val addressType12Format                            = Json.format[AddressType12]
   implicit lazy val addressType14Format                            = Json.format[AddressType14]
   implicit lazy val addressType15Format                            = Json.format[AddressType15]
   implicit lazy val addressType16Format                            = Json.format[AddressType16]
   implicit lazy val addressType17Format                            = Json.format[AddressType17]
+  implicit lazy val addressType18Format                            = Json.format[AddressType18]
   implicit lazy val departureTransportMeansType02                  = Json.format[DepartureTransportMeansType02]
   implicit lazy val departureTransportMeansType05                  = Json.format[DepartureTransportMeansType05]
   implicit lazy val sealType02Format                               = Json.format[SealType02]
@@ -161,11 +164,13 @@ object ModelImplicits {
   implicit lazy val packagingType04Format                          = Json.format[PackagingType04]
   implicit lazy val additionalSupplyChainActorTypeFormat           = Json.format[AdditionalSupplyChainActorType]
   implicit lazy val previousDocumentType03Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType03])
+  implicit lazy val previousDocumentType04Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType04])
   implicit lazy val previousDocumentType06Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType06])
   implicit lazy val previousDocumentType07Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType07])
   implicit lazy val previousDocumentType08Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType08])
   implicit lazy val previousDocumentType09Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType09])
   implicit lazy val previousDocumentType10Format                   = formatWithTypeAdjusted(Json.format[PreviousDocumentType10])
+  implicit lazy val supportingDocumentType02Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType02])
   implicit lazy val supportingDocumentType03Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType03])
   implicit lazy val supportingDocumentType04Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType04])
   implicit lazy val supportingDocumentType05Format                 = formatWithTypeAdjusted(Json.format[SupportingDocumentType05])
@@ -201,29 +206,36 @@ object ModelImplicits {
   implicit lazy val carrierType04Format                       = Json.format[CarrierType04]
   implicit lazy val consignorType03Format                     = Json.format[ConsignorType03]
   implicit lazy val consignorType04Format                     = Json.format[ConsignorType04]
+  implicit lazy val consignorType05Format                     = Json.format[ConsignorType05]
+  implicit lazy val consignorType06Format                     = Json.format[ConsignorType06]
   implicit lazy val consignorType07Format                     = Json.format[ConsignorType07]
   implicit lazy val consigneeType03Format                     = Json.format[ConsigneeType03]
   implicit lazy val consigneeType02Format                     = Json.format[ConsigneeType02]
   implicit lazy val consigneeType04Format                     = Json.format[ConsigneeType04]
   implicit lazy val consigneeType05Format                     = Json.format[ConsigneeType05]
   implicit lazy val consignmentItemType03Format               = Json.format[ConsignmentItemType03]
+  implicit lazy val consignmentItemType04Format               = Json.format[ConsignmentItemType04]
   implicit lazy val consignmentItemType05Format               = Json.format[ConsignmentItemType05]
   implicit lazy val consignmentItemType08Format               = Json.format[ConsignmentItemType08]
   implicit lazy val consignmentItemType09Format               = Json.format[ConsignmentItemType09]
   implicit lazy val departureTransportMeansType03Format       = Json.format[DepartureTransportMeansType03]
   implicit lazy val departureTransportMeansType04Format       = Json.format[DepartureTransportMeansType04]
   implicit lazy val houseConsignmentType03Format              = Json.format[HouseConsignmentType03]
+  implicit lazy val houseConsignmentType04Format              = Json.format[HouseConsignmentType04]
   implicit lazy val houseConsignmentType05Format              = Json.format[HouseConsignmentType05]
   implicit lazy val houseConsignmentType06Format              = Json.format[HouseConsignmentType06]
   implicit lazy val houseConsignmentType10Format              = Json.format[HouseConsignmentType10]
   implicit lazy val transportMeansType01Format                = Json.format[TransportMeansType01]
+  implicit lazy val transportMeansType02Format                = Json.format[TransportMeansType02]
   implicit lazy val goodsReferenceType01Format                = Json.format[GoodsReferenceType01]
   implicit lazy val goodsReferenceType02Format                = Json.format[GoodsReferenceType02]
   implicit lazy val transhipmentType01Format                  = Json.format[TranshipmentType01]
+  implicit lazy val transhipmentType02Format                  = Json.format[TranshipmentType02]
   implicit lazy val transportEquipmentType01Format            = Json.format[TransportEquipmentType01]
   implicit lazy val transportEquipmentType03Format            = Json.format[TransportEquipmentType03]
   implicit lazy val transportEquipmentType05Format            = Json.format[TransportEquipmentType05]
   implicit lazy val transportEquipmentType06Format            = Json.format[TransportEquipmentType06]
+  implicit lazy val transportEquipmentType07Format            = Json.format[TransportEquipmentType07]
   implicit lazy val locationOfGoodsType01Format               = Json.format[LocationOfGoodsType01]
   implicit lazy val locationOfGoodsType02Format               = Json.format[LocationOfGoodsType02]
   implicit lazy val locationOfGoodsType03Format               = Json.format[LocationOfGoodsType03]
@@ -238,8 +250,11 @@ object ModelImplicits {
   implicit lazy val placeOfUnloadingType02Format              = Json.format[PlaceOfUnloadingType02]
 
   implicit lazy val endorsementType01Format = Json.format[EndorsementType01]
+  implicit lazy val endorsementType03Format = Json.format[EndorsementType03]
   implicit lazy val locationType01Format    = Json.format[LocationType01]
+  implicit lazy val locationType02Format    = Json.format[LocationType02]
   implicit lazy val incidentType01Format    = Json.format[IncidentType01]
+  implicit lazy val incidentType04Format    = Json.format[IncidentType04]
 
   implicit lazy val functionalErrorType02Format                       = Json.format[FunctionalErrorType02]
   implicit lazy val functionalErrorType04Format                       = Json.format[FunctionalErrorType04]
@@ -254,6 +269,7 @@ object ModelImplicits {
   implicit lazy val transitOperationType08Format                      = Json.format[TransitOperationType08]
   implicit lazy val transitOperationType11Format                      = Json.format[TransitOperationType11]
   implicit lazy val transitOperationType12Format                      = Json.format[TransitOperationType12]
+  implicit lazy val transitOperationType14Format                      = Json.format[TransitOperationType14]
   implicit lazy val transitOperationType15Format                      = Json.format[TransitOperationType15]
   implicit lazy val transitOperationType16Format                      = Json.format[TransitOperationType16]
   implicit lazy val transitOperationType18Format                      = Json.format[TransitOperationType18]
@@ -273,6 +289,7 @@ object ModelImplicits {
   implicit lazy val customsOfficeOfDestinationActualType03Format      = Json.format[CustomsOfficeOfDestinationActualType03]
   implicit lazy val holderOfTheTransitProcedureType02Format           = Json.format[HolderOfTheTransitProcedureType02]
   implicit lazy val holderOfTheTransitProcedureType05Format           = Json.format[HolderOfTheTransitProcedureType05]
+  implicit lazy val holderOfTheTransitProcedureType06Format           = Json.format[HolderOfTheTransitProcedureType06]
   implicit lazy val holderOfTheTransitProcedureType07Format           = Json.format[HolderOfTheTransitProcedureType07]
   implicit lazy val holderOfTheTransitProcedureType08Format           = Json.format[HolderOfTheTransitProcedureType08]
   implicit lazy val holderOfTheTransitProcedureType13Format           = Json.format[HolderOfTheTransitProcedureType13]
@@ -282,6 +299,7 @@ object ModelImplicits {
   implicit lazy val holderOfTheTransitProcedureType20Format           = Json.format[HolderOfTheTransitProcedureType20]
   implicit lazy val traderAtDestinationType01Format                   = Json.format[TraderAtDestinationType01]
   implicit lazy val traderAtDestinationType02Format                   = Json.format[TraderAtDestinationType02]
+  implicit lazy val traderAtDestinationType03Format                   = Json.format[TraderAtDestinationType03]
   implicit lazy val representativeType01Format                        = Json.format[RepresentativeType01]
   implicit lazy val representativeType02Format                        = Json.format[RepresentativeType02]
   implicit lazy val representativeType03Format                        = Json.format[RepresentativeType03]
@@ -292,6 +310,7 @@ object ModelImplicits {
   implicit lazy val guaranteeType03Format                             = Json.format[GuaranteeType03]
   implicit lazy val guarantorType06Format                             = Json.format[GuarantorType06]
   implicit lazy val consignmentType01Format                           = Json.format[ConsignmentType01]
+  implicit lazy val consignmentType05Format                           = Json.format[ConsignmentType05]
   implicit lazy val consignmentType06Format                           = Json.format[ConsignmentType06]
   implicit lazy val consignmentType08Format                           = Json.format[ConsignmentType08]
 
