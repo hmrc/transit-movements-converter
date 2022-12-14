@@ -222,6 +222,140 @@ object TestObjects {
       )
   }
 
+  object CC025C {
+
+    lazy val xmlValid = <ncts:CC025C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+      <preparationDateAndTime>2022-10-26T07:36:28</preparationDateAndTime>
+      <messageIdentification>6Onxa3En</messageIdentification>
+      <messageType>CC025C</messageType>
+      <correlationIdentifier>co-id-1</correlationIdentifier>
+      <TransitOperation>
+        <MRN>qvRcL</MRN>
+        <releaseDate>2022-06-09+01:00</releaseDate>
+        <releaseIndicator>1</releaseIndicator>
+      </TransitOperation>
+      <CustomsOfficeOfDestinationActual>
+        <referenceNumber>2</referenceNumber>
+      </CustomsOfficeOfDestinationActual>
+      <TraderAtDestination>
+        <identificationNumber>3</identificationNumber>
+      </TraderAtDestination>
+      <Consignment>
+        <HouseConsignment>
+          <sequenceNumber>3</sequenceNumber>
+          <releaseType>1</releaseType>
+          <ConsignmentItem>
+            <goodsItemNumber>10</goodsItemNumber>
+            <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+            <releaseType>2</releaseType>
+            <Commodity>
+              <descriptionOfGoods>jeans</descriptionOfGoods>
+              <cusCode>5</cusCode>
+              <CommodityCode>
+                <harmonizedSystemSubHeadingCode>12</harmonizedSystemSubHeadingCode>
+                <combinedNomenclatureCode>13</combinedNomenclatureCode>
+              </CommodityCode>
+              <DangerousGoods>
+                <sequenceNumber>4</sequenceNumber>
+                <UNNumber>6</UNNumber>
+              </DangerousGoods>
+              <GoodsMeasure>
+                <grossMass>9876.5432</grossMass>
+                <netMass>9876.12</netMass>
+              </GoodsMeasure>
+            </Commodity>
+            <Packaging>
+              <sequenceNumber>4</sequenceNumber>
+              <typeOfPackages>2</typeOfPackages>
+              <numberOfPackages>100</numberOfPackages>
+              <shippingMarks>blue</shippingMarks>
+            </Packaging>
+          </ConsignmentItem>
+        </HouseConsignment>
+      </Consignment>
+    </ncts:CC025C>
+
+    lazy val xmlInvalid = <ncts:CC025C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
+    </ncts:CC025C>
+
+    lazy val jsonValid =
+      Json.obj(
+        "n1:CC025C" ->
+          Json.obj(
+            "preparationDateAndTime" -> "2022-10-26T07:36:28",
+            "TransitOperation" -> Json.obj(
+              "MRN"              -> "qvRcL",
+              "releaseDate"      -> "2022-06-09+01:00",
+              "releaseIndicator" -> "1"
+            ),
+            "TraderAtDestination" -> Json.obj(
+              "identificationNumber" -> "3"
+            ),
+            "messageType"           -> "CC025C",
+            "@PhaseID"              -> "NCTS5.0",
+            "correlationIdentifier" -> "co-id-1",
+            "messageSender"         -> "GdOcminxBxSLGm1rRUn0q96S2",
+            "messageRecipient"      -> "FdOcminxBxSLGm1rRUn0q96S1",
+            "Consignment" -> Json.obj(
+              "HouseConsignment" -> Json.arr(
+                Json.obj(
+                  "sequenceNumber" -> "3",
+                  "releaseType"    -> "1",
+                  "ConsignmentItem" -> Json.arr(
+                    Json.obj(
+                      "goodsItemNumber"            -> "10",
+                      "declarationGoodsItemNumber" -> 100,
+                      "releaseType"                -> "2",
+                      "Commodity" -> Json.obj(
+                        "descriptionOfGoods" -> "jeans",
+                        "cusCode"            -> "5",
+                        "CommodityCode" -> Json.obj(
+                          "harmonizedSystemSubHeadingCode" -> "12",
+                          "combinedNomenclatureCode"       -> "13"
+                        ),
+                        "DangerousGoods" -> Json.arr(
+                          Json.obj(
+                            "sequenceNumber" -> "4",
+                            "UNNumber"       -> "6"
+                          )
+                        ),
+                        "GoodsMeasure" -> Json.obj(
+                          "grossMass" -> 9876.5432,
+                          "netMass"   -> 9876.12
+                        )
+                      ),
+                      "Packaging" -> Json.arr(
+                        Json.obj(
+                          "sequenceNumber"   -> "4",
+                          "typeOfPackages"   -> "2",
+                          "numberOfPackages" -> 100,
+                          "shippingMarks"    -> "blue"
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            ),
+            "messageIdentification" -> "6Onxa3En",
+            "CustomsOfficeOfDestinationActual" -> Json.obj(
+              "referenceNumber" -> "2"
+            )
+          )
+      )
+
+    lazy val jsonInvalid =
+      Json.obj(
+        "n1:CC025C" ->
+          Json.obj(
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
+  }
+
   object CC035C {
 
     lazy val xmlValid = <ncts:CC035C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
@@ -1173,6 +1307,100 @@ object TestObjects {
     lazy val jsonInvalid =
       Json.obj(
         "n1:CC044C" ->
+          Json.obj(
+            "@PhaseID"      -> "NCTS5.0",
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
+  }
+
+  object CC045C {
+
+    lazy val xmlValid = <ncts:CC045C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>FdOcminxBxSLGm1rRUn0q96S1</messageSender>
+      <messageRecipient>XzcminxBxSLGm1rRUn0q96S2</messageRecipient>
+      <preparationDateAndTime>2022-10-26T07:36:28</preparationDateAndTime>
+      <messageIdentification>6Onxa3En</messageIdentification>
+      <messageType>CC045C</messageType>
+      <correlationIdentifier>corr-1</correlationIdentifier>
+      <TransitOperation>
+        <MRN>mrn1</MRN>
+        <writeOffDate>2022-06-09+01:00</writeOffDate>
+      </TransitOperation>
+      <CustomsOfficeOfDeparture>
+        <referenceNumber>ZQZ20443</referenceNumber>
+      </CustomsOfficeOfDeparture>
+      <HolderOfTheTransitProcedure>
+        <identificationNumber>Fzsisks</identificationNumber>
+        <TIRHolderIdentificationNumber>tir-id-1</TIRHolderIdentificationNumber>
+        <name>Jean Doe</name>
+        <Address>
+          <streetAndNumber>1 main street</streetAndNumber>
+          <postcode>ab12 3cd</postcode>
+          <city>Newcastle</city>
+          <country>GB</country>
+        </Address>
+      </HolderOfTheTransitProcedure>
+      <Guarantor>
+        <identificationNumber>id2</identificationNumber>
+        <name>john doe</name>
+        <Address>
+          <streetAndNumber>1 high street</streetAndNumber>
+          <postcode>N1 99Z</postcode>
+          <city>Newcastle</city>
+          <country>GB</country>
+        </Address>
+      </Guarantor>
+    </ncts:CC045C>
+
+    lazy val xmlInvalid = <ncts:CC045C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+    </ncts:CC045C>
+
+    lazy val jsonValid = Json.obj(
+      "n1:CC045C" ->
+        Json.obj(
+          "preparationDateAndTime" -> "2022-10-26T07:36:28",
+          "TransitOperation" -> Json.obj(
+            "MRN"          -> "mrn1",
+            "writeOffDate" -> "2022-06-09+01:00"
+          ),
+          "CustomsOfficeOfDeparture" -> Json.obj(
+            "referenceNumber" -> "ZQZ20443"
+          ),
+          "messageType"           -> "CC045C",
+          "@PhaseID"              -> "NCTS5.0",
+          "correlationIdentifier" -> "corr-1",
+          "messageSender"         -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageRecipient"      -> "XzcminxBxSLGm1rRUn0q96S2",
+          "Guarantor" -> Json.obj(
+            "identificationNumber" -> "id2",
+            "name"                 -> "john doe",
+            "Address" -> Json.obj(
+              "streetAndNumber" -> "1 high street",
+              "postcode"        -> "N1 99Z",
+              "city"            -> "Newcastle",
+              "country"         -> "GB"
+            )
+          ),
+          "HolderOfTheTransitProcedure" -> Json.obj(
+            "identificationNumber"          -> "Fzsisks",
+            "TIRHolderIdentificationNumber" -> "tir-id-1",
+            "name"                          -> "Jean Doe",
+            "Address" -> Json.obj(
+              "streetAndNumber" -> "1 main street",
+              "postcode"        -> "ab12 3cd",
+              "city"            -> "Newcastle",
+              "country"         -> "GB"
+            )
+          ),
+          "messageIdentification" -> "6Onxa3En"
+        )
+    )
+
+    lazy val jsonInvalid =
+      Json.obj(
+        "n1:CC045C" ->
           Json.obj(
             "@PhaseID"      -> "NCTS5.0",
             "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
