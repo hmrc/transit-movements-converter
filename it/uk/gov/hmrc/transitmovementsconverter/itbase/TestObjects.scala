@@ -1408,4 +1408,82 @@ object TestObjects {
       )
   }
 
+  object CC057C {
+
+    lazy val xmlValid = <ncts:CC057C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>token</messageSender>
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+      <preparationDateAndTime>2022-12-25T07:36:28</preparationDateAndTime>
+      <messageIdentification>6Onxa3En</messageIdentification>
+      <messageType>CC057C</messageType>
+      <correlationIdentifier>co-id-1</correlationIdentifier>
+      <TransitOperation>
+        <MRN>qvRc</MRN>
+        <businessRejectionType>sdfghj</businessRejectionType>
+        <rejectionDateAndTime>2014-12-25T16:15:04+01:00</rejectionDateAndTime>
+        <rejectionCode>2</rejectionCode>
+        <rejectionReason>N5t6u7</rejectionReason>
+      </TransitOperation>
+      <CustomsOfficeOfDestinationActual>
+        <referenceNumber>2</referenceNumber>
+      </CustomsOfficeOfDestinationActual>
+      <TraderAtDestination>
+        <identificationNumber>1</identificationNumber>
+      </TraderAtDestination>
+      <FunctionalError>
+        <errorPointer>2</errorPointer>
+        <errorCode>13</errorCode>
+        <errorReason>waf 12</errorReason>
+        <originalAttributeValue>2</originalAttributeValue>
+      </FunctionalError>
+    </ncts:CC057C>
+
+    lazy val xmlInvalid = <ncts:CC057C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+    </ncts:CC057C>
+
+    lazy val jsonValid = Json.obj(
+      "n1:CC057C" ->
+        Json.obj(
+          "preparationDateAndTime" -> "2022-12-25T07:36:28",
+          "TransitOperation" -> Json.obj(
+            "MRN"                   -> "qvRc",
+            "businessRejectionType" -> "sdfghj",
+            "rejectionDateAndTime"  -> "2014-12-25T16:15:04+01:00",
+            "rejectionCode"         -> "2",
+            "rejectionReason"       -> "N5t6u7"
+          ),
+          "TraderAtDestination" -> Json.obj(
+            "identificationNumber" -> "1"
+          ),
+          "messageType"           -> "CC057C",
+          "@PhaseID"              -> "NCTS5.0",
+          "correlationIdentifier" -> "co-id-1",
+          "FunctionalError" -> Json.arr(
+            Json.obj(
+              "errorPointer"           -> "2",
+              "errorCode"              -> "13",
+              "errorReason"            -> "waf 12",
+              "originalAttributeValue" -> "2"
+            )
+          ),
+          "messageSender"         -> "token",
+          "messageRecipient"      -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageIdentification" -> "6Onxa3En",
+          "CustomsOfficeOfDestinationActual" -> Json.obj(
+            "referenceNumber" -> "2"
+          )
+        )
+    )
+
+    lazy val jsonInvalid =
+      Json.obj(
+        "n1:CC057C" ->
+          Json.obj(
+            "@PhaseID"      -> "NCTS5.0",
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
+  }
+
 }

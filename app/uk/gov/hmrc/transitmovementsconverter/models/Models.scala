@@ -1199,7 +1199,67 @@ object Models {
       }
     )
 
-  // ** CC056C **
+  // ** CC057C **
+
+  private lazy val cc057cRoot = "n1:CC057C"
+
+  implicit lazy val cc057cFormats: OFormat[CC057CType] =
+    (
+      commonTypesWithSender(cc057cRoot) and
+        (__ \ cc057cRoot \ "TransitOperation").format[TransitOperationType21] and
+        (__ \ cc057cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
+        (__ \ cc057cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
+        (__ \ cc057cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType04]] and
+        (__ \ cc057cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDestinationActual,
+        TraderAtDestination,
+        FunctionalError,
+        phaseId
+      ) =>
+        CC057CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDestinationActual,
+          TraderAtDestination,
+          FunctionalError.getOrElse(Nil),
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC057CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDestinationActual,
+            obj.TraderAtDestination,
+            obj.FunctionalError.toOption,
+            obj.PhaseID
+          )
+      }
+    )
+
+  // ** CC060C **
 
   private lazy val cc060cRoot = "n1:CC060C"
 
