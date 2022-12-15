@@ -50,6 +50,8 @@ object MessageType extends XMLProtocol {
   case object IE056 extends MessageType[CC056CType]("IE056", "CC056C")
   case object IE057 extends MessageType[CC057CType]("IE057", "CC057C")
   case object IE060 extends MessageType[CC060CType]("IE060", "CC060C")
+  case object IE140 extends MessageType[CC140CType]("IE140", "CC140C")
+  case object IE141 extends MessageType[CC141CType]("IE141", "CC141C")
   case object IE170 extends MessageType[CC170CType]("IE170", "CC170C")
   case object IE906 extends MessageType[CC906CType]("IE906", "CC906C")
   case object IE928 extends MessageType[CC928CType]("IE928", "CC928C")
@@ -75,6 +77,8 @@ object MessageType extends XMLProtocol {
     IE056,
     IE057,
     IE060,
+    IE140,
+    IE141,
     IE170,
     IE906,
     IE928
