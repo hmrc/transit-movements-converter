@@ -37,16 +37,23 @@ object MessageType extends XMLProtocol {
   case object IE014 extends MessageType[CC014CType]("IE014", "CC014C")
   case object IE015 extends MessageType[CC015CType]("IE015", "CC015C")
   case object IE019 extends MessageType[CC019CType]("IE019", "CC019C")
+  case object IE025 extends MessageType[CC025CType]("IE025", "CC025C")
   case object IE028 extends MessageType[CC028CType]("IE028", "CC028C")
   case object IE029 extends MessageType[CC029CType]("IE029", "CC029C")
   case object IE035 extends MessageType[CC035CType]("IE035", "CC035C")
+  case object IE043 extends MessageType[CC043CType]("IE043", "CC043C")
+  case object IE044 extends MessageType[CC044CType]("IE044", "CC044C")
   case object IE045 extends MessageType[CC045CType]("IE045", "CC045C")
   case object IE051 extends MessageType[CC051CType]("IE051", "CC051C")
   case object IE054 extends MessageType[CC054CType]("IE054", "CC054C")
   case object IE055 extends MessageType[CC055CType]("IE055", "CC055C")
   case object IE056 extends MessageType[CC056CType]("IE056", "CC056C")
+  case object IE057 extends MessageType[CC057CType]("IE057", "CC057C")
   case object IE060 extends MessageType[CC060CType]("IE060", "CC060C")
+  case object IE140 extends MessageType[CC140CType]("IE140", "CC140C")
+  case object IE141 extends MessageType[CC141CType]("IE141", "CC141C")
   case object IE170 extends MessageType[CC170CType]("IE170", "CC170C")
+  case object IE182 extends MessageType[CC182CType]("IE182", "CC182C")
   case object IE906 extends MessageType[CC906CType]("IE906", "CC906C")
   case object IE928 extends MessageType[CC928CType]("IE928", "CC928C")
 
@@ -58,16 +65,23 @@ object MessageType extends XMLProtocol {
     IE014,
     IE015,
     IE019,
+    IE025,
     IE028,
     IE029,
     IE035,
+    IE043,
+    IE044,
     IE045,
     IE051,
     IE054,
     IE055,
     IE056,
+    IE057,
     IE060,
+    IE140,
+    IE141,
     IE170,
+    IE182,
     IE906,
     IE928
   )
