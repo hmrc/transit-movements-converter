@@ -29,7 +29,7 @@ object CC025CTestMessageType extends TestMessageType {
     <messageRecipient>token</messageRecipient>
     <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
     <messageIdentification>token</messageIdentification>
-    <messageType>CD975C</messageType>
+    <messageType>CC025C</messageType>
     <!--Optional:-->
     <correlationIdentifier>token</correlationIdentifier>
     <TransitOperation>
@@ -105,7 +105,7 @@ object CC025CTestMessageType extends TestMessageType {
       |    {
       |      "identificationNumber": "string"
       |    },
-      |      "messageType": "CD975C",
+      |      "messageType": "CC025C",
       |      "@PhaseID": "NCTS5.0",
       |      "correlationIdentifier": "token",
       |      "messageSender": "token",
