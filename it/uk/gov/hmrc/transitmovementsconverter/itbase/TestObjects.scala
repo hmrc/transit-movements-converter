@@ -1648,4 +1648,167 @@ object TestObjects {
 
   }
 
+  object CC182C {
+
+    lazy val xmlValid = <ncts:CC182C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>FdOcminxBxSLGm1rRUn0q96S1</messageSender>
+      <messageRecipient>XzcminxBxSLGm1rRUn0q96S2</messageRecipient>
+      <preparationDateAndTime>2022-10-26T07:36:28</preparationDateAndTime>
+      <messageIdentification>6Onxa3En</messageIdentification>
+      <messageType>CC182C</messageType>
+      <correlationIdentifier>corr-1</correlationIdentifier>
+      <TransitOperation>
+        <MRN>mrn1</MRN>
+        <incidentNotificationDateAndTime>2022-06-09T16:15:04+01:00</incidentNotificationDateAndTime>
+      </TransitOperation>
+      <CustomsOfficeOfDeparture>
+        <referenceNumber>1</referenceNumber>
+      </CustomsOfficeOfDeparture>
+      <CustomsOfficeOfIncidentRegistration>
+        <referenceNumber>2</referenceNumber>
+      </CustomsOfficeOfIncidentRegistration>
+      <Consignment>
+        <Incident>
+          <sequenceNumber>3</sequenceNumber>
+          <code>1</code>
+          <text>an incident</text>
+          <Endorsement>
+            <date>2022-11-15</date>
+            <authority>ports</authority>
+            <place>Dover</place>
+            <country>GB</country>
+          </Endorsement>
+          <Location>
+            <qualifierOfIdentification>token</qualifierOfIdentification>
+            <UNLocode>34</UNLocode>
+            <country>FR</country>
+            <GNSS>
+              <latitude>90.1</latitude>
+              <longitude>90.2</longitude>
+            </GNSS>
+            <Address>
+              <streetAndNumber>2 high street</streetAndNumber>
+              <postcode>ab12 34c</postcode>
+              <city>city2</city>
+            </Address>
+          </Location>
+          <TransportEquipment>
+            <sequenceNumber>5</sequenceNumber>
+            <containerIdentificationNumber>1</containerIdentificationNumber>
+            <numberOfSeals>100</numberOfSeals>
+            <Seal>
+              <sequenceNumber>34</sequenceNumber>
+              <identifier>sl7</identifier>
+            </Seal>
+            <GoodsReference>
+              <sequenceNumber>55</sequenceNumber>
+              <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+            </GoodsReference>
+          </TransportEquipment>
+          <Transhipment>
+            <containerIndicator>0</containerIndicator>
+            <TransportMeans>
+              <typeOfIdentification>4</typeOfIdentification>
+              <identificationNumber>22</identificationNumber>
+              <nationality>FR</nationality>
+            </TransportMeans>
+          </Transhipment>
+        </Incident>
+      </Consignment>
+    </ncts:CC182C>
+
+    lazy val xmlInvalid = <ncts:CC182C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+    </ncts:CC182C>
+
+    lazy val jsonValid = Json.obj(
+      "n1:CC182C" ->
+        Json.obj(
+          "preparationDateAndTime" -> "2022-10-26T07:36:28",
+          "TransitOperation" -> Json.obj(
+            "MRN"                             -> "mrn1",
+            "incidentNotificationDateAndTime" -> "2022-06-09T16:15:04+01:00"
+          ),
+          "CustomsOfficeOfDeparture" -> Json.obj(
+            "referenceNumber" -> "1"
+          ),
+          "messageType"           -> "CC182C",
+          "@PhaseID"              -> "NCTS5.0",
+          "correlationIdentifier" -> "corr-1",
+          "messageSender"         -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageRecipient"      -> "XzcminxBxSLGm1rRUn0q96S2",
+          "Consignment" -> Json.obj(
+            "Incident" -> Json.arr(
+              Json.obj(
+                "sequenceNumber" -> "3",
+                "code"           -> "1",
+                "text"           -> "an incident",
+                "Endorsement" -> Json.obj(
+                  "date"      -> "2022-11-15",
+                  "authority" -> "ports",
+                  "place"     -> "Dover",
+                  "country"   -> "GB"
+                ),
+                "Location" -> Json.obj(
+                  "qualifierOfIdentification" -> "token",
+                  "UNLocode"                  -> "34",
+                  "country"                   -> "FR",
+                  "GNSS" -> Json.obj(
+                    "latitude"  -> "90.1",
+                    "longitude" -> "90.2"
+                  ),
+                  "Address" -> Json.obj(
+                    "streetAndNumber" -> "2 high street",
+                    "postcode"        -> "ab12 34c",
+                    "city"            -> "city2"
+                  )
+                ),
+                "TransportEquipment" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"                -> "5",
+                    "containerIdentificationNumber" -> "1",
+                    "numberOfSeals"                 -> 100,
+                    "Seal" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber" -> "34",
+                        "identifier"     -> "sl7"
+                      )
+                    ),
+                    "GoodsReference" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"             -> "55",
+                        "declarationGoodsItemNumber" -> 100
+                      )
+                    )
+                  )
+                ),
+                "Transhipment" -> Json.obj(
+                  "containerIndicator" -> "0",
+                  "TransportMeans" -> Json.obj(
+                    "typeOfIdentification" -> "4",
+                    "identificationNumber" -> "22",
+                    "nationality"          -> "FR"
+                  )
+                )
+              )
+            )
+          ),
+          "messageIdentification" -> "6Onxa3En",
+          "CustomsOfficeOfIncidentRegistration" -> Json.obj(
+            "referenceNumber" -> "2"
+          )
+        )
+    )
+
+    lazy val jsonInvalid =
+      Json.obj(
+        "n1:CC182C" ->
+          Json.obj(
+            "@PhaseID"      -> "NCTS5.0",
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
+
+  }
+
 }

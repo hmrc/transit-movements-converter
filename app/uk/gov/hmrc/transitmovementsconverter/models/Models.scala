@@ -1517,6 +1517,66 @@ object Models {
       }
     )
 
+  // ** CC182C **
+
+  private lazy val cc182cRoot = "n1:CC182C"
+
+  implicit lazy val cc182cFormats: OFormat[CC182CType] =
+    (
+      commonTypesWithSender(cc182cRoot) and
+        (__ \ cc182cRoot \ "TransitOperation").format[TransitOperationType47] and
+        (__ \ cc182cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc182cRoot \ "CustomsOfficeOfIncidentRegistration").format[CustomsOfficeOfIncidentRegistrationType02] and
+        (__ \ cc182cRoot \ "Consignment").format[ConsignmentType22] and
+        (__ \ cc182cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
+    )(
+      (
+        messageSender,
+        messageRecipient,
+        preparationDateAndTime,
+        messageIdentification,
+        messageType,
+        correlationIdentifier,
+        TransitOperation,
+        CustomsOfficeOfDeparture,
+        CustomsOfficeOfIncidentRegistration,
+        Consignment,
+        phaseId
+      ) =>
+        CC182CType(
+          MESSAGESequence(
+            messageSender,
+            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          ),
+          TransitOperation,
+          CustomsOfficeOfDeparture,
+          CustomsOfficeOfIncidentRegistration,
+          Consignment,
+          phaseId
+            .map(
+              x => Map("@PhaseID" -> DataRecord(x))
+            )
+            .getOrElse(Map.empty)
+        ),
+      {
+        obj: CC182CType =>
+          val seqType = obj.messageSequence1.messagE_1Sequence2
+          (
+            obj.messageSequence1.messageSender,
+            seqType.messageRecipient,
+            seqType.preparationDateAndTime,
+            seqType.messageIdentification,
+            seqType.messageType,
+            seqType.correlationIdentifier,
+            obj.TransitOperation,
+            obj.CustomsOfficeOfDeparture,
+            obj.CustomsOfficeOfIncidentRegistration,
+            obj.Consignment,
+            obj.PhaseID
+          )
+      }
+    )
+
   // ** CC906C **
 
   private lazy val cc906cRoot = "n1:CC906C"
