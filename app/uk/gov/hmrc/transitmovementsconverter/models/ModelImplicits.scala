@@ -91,9 +91,9 @@ object ModelImplicits {
       Try(JsSuccess(Flag.fromString(s, TopScope))).recover {
         case _: RuntimeException => JsError()
       }.get
-    case JsNumber(n) if n.intValue() == 1 => JsSuccess(Number1)
-    case JsNumber(n) if n.intValue() == 0 => JsSuccess(Number0)
-    case _                                => JsError()
+    case JsNumber(n) if n.intValue == 1 => JsSuccess(Number1)
+    case JsNumber(n) if n.intValue == 0 => JsSuccess(Number0)
+    case _                              => JsError()
   }
 
   implicit lazy val flagWrites: Writes[Flag] = Writes {
