@@ -178,7 +178,7 @@ object CC007CTestMessageType extends TestMessageType {
       |        "messageType": "CC007C",
       |        "@PhaseID": "NCTS5.0",
       |        "correlationIdentifier": "token",
-      |    "messageSender": "token",
+      |        "messageSender": "token",
       |        "Authorisation": [
       |            {
       |                "sequenceNumber": "token",

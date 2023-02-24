@@ -227,7 +227,7 @@ object Models {
   private lazy val cc013cRoot = "n1:CC013C"
 
   implicit lazy val cc013cFormats: OFormat[CC013CType] = (
-    commonTypes(cc013cRoot) and
+    commonTypesWithSender(cc013cRoot) and
       (__ \ cc013cRoot \ "TransitOperation").format[TransitOperationType04] and
       (__ \ cc013cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
       (__ \ cc013cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
@@ -241,6 +241,7 @@ object Models {
       (__ \ cc013cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
   )(
     (
+      messageSender,
       messageRecipient,
       preparationDateAndTime,
       messageIdentification,
@@ -259,8 +260,8 @@ object Models {
       phaseId
     ) =>
       CC013CType(
-        MESSAGE_FROM_TRADERSequence(
-          None,
+        MESSAGESequence(
+          messageSender,
           MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
         ),
         TransitOperation,
@@ -281,8 +282,9 @@ object Models {
       ),
     {
       obj: CC013CType =>
-        val seqType = obj.messagE_FROM_TRADERSequence1.messagE_1Sequence2
+        val seqType = obj.messageSequence1.messagE_1Sequence2
         (
+          obj.messageSequence1.messageSender,
           seqType.messageRecipient,
           seqType.preparationDateAndTime,
           seqType.messageIdentification,
@@ -309,7 +311,7 @@ object Models {
 
   implicit lazy val cc014cFormats: OFormat[CC014CType] =
     (
-      commonTypes(cc014cRoot) and
+      commonTypesWithSender(cc014cRoot) and
         (__ \ cc014cRoot \ "TransitOperation").format[TransitOperationType05] and
         (__ \ cc014cRoot \ "Invalidation").format[InvalidationType02] and
         (__ \ cc014cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
@@ -317,6 +319,7 @@ object Models {
         (__ \ cc014cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
+        messageSender,
         messageRecipient,
         preparationDateAndTime,
         messageIdentification,
@@ -329,8 +332,8 @@ object Models {
         phaseId
       ) =>
         CC014CType(
-          MESSAGE_FROM_TRADERSequence(
-            None,
+          MESSAGESequence(
+            messageSender,
             MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
           ),
           TransitOperation,
@@ -345,8 +348,9 @@ object Models {
         ),
       {
         obj: CC014CType =>
-          val seqType = obj.messagE_FROM_TRADERSequence1.messagE_1Sequence2
+          val seqType = obj.messageSequence1.messagE_1Sequence2
           (
+            obj.messageSequence1.messageSender,
             seqType.messageRecipient,
             seqType.preparationDateAndTime,
             seqType.messageIdentification,

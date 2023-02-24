@@ -26,6 +26,7 @@ object CC013CTestMessageType extends TestMessageType {
   override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1)
 
   lazy val xml1 = <ncts:CC013C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+    <messageSender>token</messageSender>
     <messageRecipient>token</messageRecipient>
     <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
     <messageIdentification>token</messageIdentification>
@@ -984,6 +985,7 @@ object CC013CTestMessageType extends TestMessageType {
       |        "messageType": "CC013C",
       |        "@PhaseID": "NCTS5.0",
       |        "correlationIdentifier": "token",
+      |        "messageSender": "token",
       |        "Authorisation": [
       |            {
       |                "sequenceNumber": "token",
