@@ -37,7 +37,6 @@ import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
 import java.nio.charset.StandardCharsets
 import scala.annotation.tailrec
-import scala.collection.immutable
 import scala.concurrent.Future
 
 class StreamingParsersSpec extends AnyFreeSpec with Matchers with TestActorSystem {
