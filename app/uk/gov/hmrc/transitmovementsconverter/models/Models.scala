@@ -1471,7 +1471,7 @@ object Models {
 
   implicit lazy val cc170cFormats: OFormat[CC170CType] =
     (
-      commonTypes(cc170cRoot) and
+      commonTypesWithSender(cc170cRoot) and
         (__ \ cc170cRoot \ "TransitOperation").format[TransitOperationType24] and
         (__ \ cc170cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc170cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType19] and
@@ -1480,6 +1480,7 @@ object Models {
         (__ \ cc170cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
+        messageSender,
         messageRecipient,
         preparationDateAndTime,
         messageIdentification,
@@ -1493,8 +1494,8 @@ object Models {
         phaseId
       ) =>
         CC170CType(
-          MESSAGE_FROM_TRADERSequence(
-            None,
+          MESSAGESequence(
+            messageSender,
             MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
           ),
           TransitOperation,
@@ -1510,8 +1511,9 @@ object Models {
         ),
       {
         obj: CC170CType =>
-          val seqType = obj.messagE_FROM_TRADERSequence1.messagE_1Sequence2
+          val seqType = obj.messageSequence1.messagE_1Sequence2
           (
+            obj.messageSequence1.messageSender,
             seqType.messageRecipient,
             seqType.preparationDateAndTime,
             seqType.messageIdentification,
