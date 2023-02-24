@@ -11,7 +11,9 @@
   <!--================================================================================-->
   <xs:include schemaLocation="ctypes.xsd" />
   <xs:include schemaLocation="htypes.xsd" />
-  <!--================================================================================-->
+  <!-- CTC -->
+  <xs:include schemaLocation="ctctypes.xsd" />
+    <!--================================================================================-->
   <!--===== Root Element                                                              -->
   <!--================================================================================-->
   <xs:element name="CC007C" type="CC007CType" />
@@ -20,9 +22,7 @@
   <!--================================================================================-->
   <xs:complexType name="CC007CType">
     <xs:sequence>
-      <!-- CTC: We don't accept a message sender -->
-      <!-- <xs:group ref="MESSAGE" /> -->
-      <xs:group ref="MESSAGE_FROM_TRADER" />
+      <xs:group ref="MESSAGE" />
       <xs:element name="TransitOperation" type="TransitOperationType02">
         <xs:annotation>
           <xs:documentation>
