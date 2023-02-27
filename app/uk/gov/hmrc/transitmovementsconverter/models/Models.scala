@@ -31,12 +31,6 @@ object Models {
 
   // Message Types
 
-  private def commonTypes(root: String) = (__ \ root \ "messageRecipient").format[String] and
-    (__ \ root \ "preparationDateAndTime").format[XMLGregorianCalendar] and
-    (__ \ root \ "messageIdentification").format[String] and
-    (__ \ root \ "messageType").format[MessageTypes] and
-    (__ \ root \ "correlationIdentifier").formatNullable[String]
-
   private def commonTypesWithSender(root: String) =
     (__ \ root \ "messageSender").format[String] and
       (__ \ root \ "messageRecipient").format[String] and
