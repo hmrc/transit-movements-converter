@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ object CC044CTestMessageType extends TestMessageType {
 
   lazy val xml1: NodeSeq =
     <ncts:CC044C xmlns:ncts="http://ncts.dgtaxud.ec" PhaseID="NCTS5.0">
+      <messageSender>token</messageSender>
       <messageRecipient>token</messageRecipient>
       <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
       <messageIdentification>token</messageIdentification>
@@ -150,6 +151,7 @@ object CC044CTestMessageType extends TestMessageType {
     |    },
     |      "messageType": "CC044C",
     |      "@PhaseID": "NCTS5.0",
+    |      "messageSender": "token",
     |      "correlationIdentifier": "token",
     |      "messageRecipient": "token",
     |      "Consignment":

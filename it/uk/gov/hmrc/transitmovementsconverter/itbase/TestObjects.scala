@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,7 @@ object TestObjects {
     </ncts:CC015C>
 
     lazy val xml1 = <ncts:CC015C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>Ge1cminxBxSLGm1rRUn0q96R2</messageSender>
       <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
       <preparationDateAndTime>2022-01-22T07:43:36</preparationDateAndTime>
       <messageIdentification>6Onxa3En</messageIdentification>
@@ -87,6 +88,7 @@ object TestObjects {
         "n1:CC015C" ->
           Json.obj(
             "@PhaseID"               -> "NCTS5.0",
+            "messageSender"          -> "Ge1cminxBxSLGm1rRUn0q96R2",
             "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
             "preparationDateAndTime" -> "2022-01-22T07:43:36",
             "messageIdentification"  -> "6Onxa3En",
@@ -1101,6 +1103,7 @@ object TestObjects {
   object CC044C {
 
     lazy val xmlValid = <ncts:CC044C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>Ge1cminxBxSLGm1rRUn0q96R3</messageSender>
       <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
       <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
       <messageIdentification>6Onxa3En</messageIdentification>
@@ -1202,6 +1205,7 @@ object TestObjects {
           ),
           "messageType"      -> "CC044C",
           "@PhaseID"         -> "NCTS5.0",
+          "messageSender"    -> "Ge1cminxBxSLGm1rRUn0q96R3",
           "messageRecipient" -> "FdOcminxBxSLGm1rRUn0q96S1",
           "Consignment" -> Json.obj(
             "grossMass" -> 1000.000000000001,

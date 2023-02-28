@@ -20,9 +20,7 @@
   <!--================================================================================-->
   <xs:complexType name="CC013CType">
     <xs:sequence>
-      <!-- CTC: We don't accept a message sender -->
-      <!-- <xs:group ref="MESSAGE" /> -->
-      <xs:group ref="MESSAGE_FROM_TRADER" />
+      <xs:group ref="MESSAGE" />
       <xs:element name="TransitOperation" type="TransitOperationType04">
         <xs:annotation>
           <xs:documentation>

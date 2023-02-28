@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
 import java.nio.charset.StandardCharsets
 import scala.annotation.tailrec
-import scala.collection.immutable
 import scala.concurrent.Future
 
 class StreamingParsersSpec extends AnyFreeSpec with Matchers with TestActorSystem {
