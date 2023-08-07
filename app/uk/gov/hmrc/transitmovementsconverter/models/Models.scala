@@ -226,7 +226,7 @@ object Models {
       (__ \ cc013cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
       (__ \ cc013cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
       (__ \ cc013cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-      (__ \ cc013cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
+      (__ \ cc013cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType04]] and
       (__ \ cc013cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
       (__ \ cc013cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
       (__ \ cc013cRoot \ "Representative").formatNullable[RepresentativeType05] and
@@ -369,7 +369,7 @@ object Models {
       (__ \ cc015cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
       (__ \ cc015cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
       (__ \ cc015cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType04]] and
       (__ \ cc015cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
       (__ \ cc015cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
       (__ \ cc015cRoot \ "Representative").formatNullable[RepresentativeType05] and
@@ -629,7 +629,7 @@ object Models {
         (__ \ cc029cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType02]] and
         (__ \ cc029cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc029cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-        (__ \ cc029cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType03]] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType04]] and
         (__ \ cc029cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
         (__ \ cc029cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType05] and
         (__ \ cc029cRoot \ "Representative").formatNullable[RepresentativeType02] and

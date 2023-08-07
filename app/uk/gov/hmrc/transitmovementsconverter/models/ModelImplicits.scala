@@ -298,7 +298,7 @@ object ModelImplicits {
   implicit lazy val customsOfficeOfDepartureType03Format              = Json.format[CustomsOfficeOfDepartureType03]
   implicit lazy val customsOfficeOfEnquiryAtDeparture01               = Json.format[CustomsOfficeOfEnquiryAtDepartureType01]
   implicit lazy val customsOfficeOfDestinationDeclaredType01Format    = Json.format[CustomsOfficeOfDestinationDeclaredType01]
-  implicit lazy val customsOfficeOfTransitDeclaredType03Format        = Json.format[CustomsOfficeOfTransitDeclaredType03]
+  implicit lazy val customsOfficeOfTransitDeclaredType04Format        = Json.format[CustomsOfficeOfTransitDeclaredType04]
   implicit lazy val customsOfficeOfExitForTransitDeclaredType02Format = Json.format[CustomsOfficeOfExitForTransitDeclaredType02]
   implicit lazy val customsOfficeOfDestinationActualType01Format      = Json.format[CustomsOfficeOfDestinationActualType01]
   implicit lazy val customsOfficeOfDestinationActualType03Format      = Json.format[CustomsOfficeOfDestinationActualType03]
