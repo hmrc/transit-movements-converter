@@ -65,7 +65,11 @@ object Models {
       CC004CType(
         MESSAGESequence(
           messageSender,
-          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          messageRecipient,
+          preparationDateAndTime,
+          messageIdentification,
+          messageType,
+          correlationIdentifier
         ),
         TransitOperation,
         CustomsOfficeOfDeparture,
@@ -78,14 +82,14 @@ object Models {
       ),
     {
       obj: CC004CType =>
-        val seqType = obj.messageSequence1.messagE_1Sequence2
+        //// val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
-          seqType.messageRecipient,
-          seqType.preparationDateAndTime,
-          seqType.messageIdentification,
-          seqType.messageType,
-          seqType.correlationIdentifier,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
           obj.TransitOperation,
           obj.CustomsOfficeOfDeparture,
           obj.HolderOfTheTransitProcedure,
@@ -124,7 +128,11 @@ object Models {
       CC007CType(
         MESSAGESequence(
           messageSender,
-          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          messageRecipient,
+          preparationDateAndTime,
+          messageIdentification,
+          messageType,
+          correlationIdentifier
         ),
         TransitOperation,
         Authorisation,
@@ -139,14 +147,14 @@ object Models {
       ),
     {
       obj: CC007CType =>
-        val seqType = obj.messageSequence1.messagE_1Sequence2
+        // val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
-          seqType.messageRecipient,
-          seqType.preparationDateAndTime,
-          seqType.messageIdentification,
-          seqType.messageType,
-          seqType.correlationIdentifier,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
           obj.TransitOperation,
           obj.Authorisation,
           obj.CustomsOfficeOfDestinationActual,
@@ -185,7 +193,11 @@ object Models {
       CC009CType(
         MESSAGESequence(
           messageSender,
-          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          messageRecipient,
+          preparationDateAndTime,
+          messageIdentification,
+          messageType,
+          correlationIdentifier
         ),
         TransitOperation,
         Invalidation,
@@ -199,14 +211,14 @@ object Models {
       ),
     {
       obj: CC009CType =>
-        val seqType = obj.messageSequence1.messagE_1Sequence2
+        //  val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
-          seqType.messageRecipient,
-          seqType.preparationDateAndTime,
-          seqType.messageIdentification,
-          seqType.messageType,
-          seqType.correlationIdentifier,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
           obj.TransitOperation,
           obj.Invalidation,
           obj.CustomsOfficeOfDeparture,
@@ -256,7 +268,11 @@ object Models {
       CC013CType(
         MESSAGESequence(
           messageSender,
-          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          messageRecipient,
+          preparationDateAndTime,
+          messageIdentification,
+          messageType,
+          correlationIdentifier
         ),
         TransitOperation,
         Authorisation.getOrElse(Nil),
@@ -276,14 +292,14 @@ object Models {
       ),
     {
       obj: CC013CType =>
-        val seqType = obj.messageSequence1.messagE_1Sequence2
+        // val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
-          seqType.messageRecipient,
-          seqType.preparationDateAndTime,
-          seqType.messageIdentification,
-          seqType.messageType,
-          seqType.correlationIdentifier,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
           obj.TransitOperation,
           obj.Authorisation.toOption,
           obj.CustomsOfficeOfDeparture,
@@ -328,7 +344,11 @@ object Models {
         CC014CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           Invalidation,
@@ -342,14 +362,14 @@ object Models {
         ),
       {
         obj: CC014CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.Invalidation,
             obj.CustomsOfficeOfDeparture,
@@ -399,7 +419,11 @@ object Models {
       CC015CType(
         MESSAGESequence(
           messageSender,
-          MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+          messageRecipient,
+          preparationDateAndTime,
+          messageIdentification,
+          messageType,
+          correlationIdentifier
         ),
         TransitOperation,
         Authorisation.getOrElse(Nil),
@@ -419,14 +443,14 @@ object Models {
       ),
     {
       obj: CC015CType =>
-        val seqType = obj.messageSequence1.messagE_1Sequence2
+        // val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
-          seqType.messageRecipient,
-          seqType.preparationDateAndTime,
-          seqType.messageIdentification,
-          seqType.messageType,
-          seqType.correlationIdentifier,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
           obj.TransitOperation,
           obj.Authorisation.toOption,
           obj.CustomsOfficeOfDeparture,
@@ -471,7 +495,11 @@ object Models {
         CC019CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -485,14 +513,14 @@ object Models {
         ),
       {
         obj: CC019CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -531,7 +559,11 @@ object Models {
         CC025CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDestinationActual,
@@ -545,14 +577,14 @@ object Models {
         ),
       {
         obj: CC025CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDestinationActual,
             obj.TraderAtDestination,
@@ -589,7 +621,11 @@ object Models {
         CC028CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -602,14 +638,14 @@ object Models {
         ),
       {
         obj: CC028CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -661,7 +697,11 @@ object Models {
         CC029CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           Authorisation.getOrElse(Nil),
@@ -682,14 +722,14 @@ object Models {
         ),
       {
         obj: CC029CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.Authorisation.toOption,
             obj.CustomsOfficeOfDeparture,
@@ -740,7 +780,11 @@ object Models {
         CC035CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           RecoveryNotification,
@@ -756,14 +800,14 @@ object Models {
         ),
       {
         obj: CC035CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.RecoveryNotification,
             obj.CustomsOfficeOfDeparture,
@@ -807,7 +851,11 @@ object Models {
         CC043CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDestinationActual,
@@ -823,14 +871,14 @@ object Models {
         ),
       {
         obj: CC043CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDestinationActual,
             obj.HolderOfTheTransitProcedure,
@@ -872,7 +920,11 @@ object Models {
         CC044CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDestinationActual,
@@ -887,14 +939,14 @@ object Models {
         ),
       {
         obj: CC044CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDestinationActual,
             obj.TraderAtDestination,
@@ -934,7 +986,11 @@ object Models {
         CC045CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -948,14 +1004,14 @@ object Models {
         ),
       {
         obj: CC045CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -994,7 +1050,11 @@ object Models {
         CC051CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1008,14 +1068,14 @@ object Models {
         ),
       {
         obj: CC051CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -1054,7 +1114,11 @@ object Models {
         CC055CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1068,14 +1132,14 @@ object Models {
         ),
       {
         obj: CC055CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -1116,7 +1180,11 @@ object Models {
         CC056CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1131,14 +1199,14 @@ object Models {
         ),
       {
         obj: CC056CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -1178,7 +1246,11 @@ object Models {
         CC057CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDestinationActual,
@@ -1192,14 +1264,14 @@ object Models {
         ),
       {
         obj: CC057CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDestinationActual,
             obj.TraderAtDestination,
@@ -1242,7 +1314,11 @@ object Models {
         CC060CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1258,14 +1334,14 @@ object Models {
         ),
       {
         obj: CC060CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -1306,7 +1382,11 @@ object Models {
         CC140CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1320,14 +1400,14 @@ object Models {
         ),
       {
         obj: CC140CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.CustomsOfficeOfEnquiryAtDeparture,
@@ -1370,7 +1450,11 @@ object Models {
         CC141CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDestinationActual,
@@ -1386,14 +1470,14 @@ object Models {
         ),
       {
         obj: CC141CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDestinationActual,
             obj.CustomsOfficeOfEnquiryAtDeparture,
@@ -1436,7 +1520,11 @@ object Models {
         CC170CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1451,14 +1539,14 @@ object Models {
         ),
       {
         obj: CC170CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
@@ -1498,7 +1586,11 @@ object Models {
         CC182CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1512,14 +1604,14 @@ object Models {
         ),
       {
         obj: CC182CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.CustomsOfficeOfIncidentRegistration,
@@ -1554,7 +1646,11 @@ object Models {
         CC906CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           Header,
           FunctionalError.getOrElse(Nil),
@@ -1566,14 +1662,14 @@ object Models {
         ),
       {
         obj: CC906CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.Header,
             obj.FunctionalError.toOption,
             obj.PhaseID
@@ -1608,7 +1704,11 @@ object Models {
         CC928CType(
           MESSAGESequence(
             messageSender,
-            MESSAGE_1Sequence(messageRecipient, preparationDateAndTime, messageIdentification, messageType, correlationIdentifier)
+            messageRecipient,
+            preparationDateAndTime,
+            messageIdentification,
+            messageType,
+            correlationIdentifier
           ),
           TransitOperation,
           CustomsOfficeOfDeparture,
@@ -1621,14 +1721,14 @@ object Models {
         ),
       {
         obj: CC928CType =>
-          val seqType = obj.messageSequence1.messagE_1Sequence2
+          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
-            seqType.messageRecipient,
-            seqType.preparationDateAndTime,
-            seqType.messageIdentification,
-            seqType.messageType,
-            seqType.correlationIdentifier,
+            obj.messageSequence1.messageRecipient,
+            obj.messageSequence1.preparationDateAndTime,
+            obj.messageSequence1.messageIdentification,
+            obj.messageSequence1.messageType,
+            obj.messageSequence1.correlationIdentifier,
             obj.TransitOperation,
             obj.CustomsOfficeOfDeparture,
             obj.HolderOfTheTransitProcedure,
