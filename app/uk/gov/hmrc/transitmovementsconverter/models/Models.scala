@@ -82,7 +82,6 @@ object Models {
       ),
     {
       obj: CC004CType =>
-        //// val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
           obj.messageSequence1.messageRecipient,
@@ -147,7 +146,6 @@ object Models {
       ),
     {
       obj: CC007CType =>
-        // val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
           obj.messageSequence1.messageRecipient,
@@ -211,7 +209,6 @@ object Models {
       ),
     {
       obj: CC009CType =>
-        //  val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
           obj.messageSequence1.messageRecipient,
@@ -292,7 +289,6 @@ object Models {
       ),
     {
       obj: CC013CType =>
-        // val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
           obj.messageSequence1.messageRecipient,
@@ -362,7 +358,6 @@ object Models {
         ),
       {
         obj: CC014CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -443,7 +438,6 @@ object Models {
       ),
     {
       obj: CC015CType =>
-        // val seqType = obj.messageSequence1.messagE_1Sequence2
         (
           obj.messageSequence1.messageSender,
           obj.messageSequence1.messageRecipient,
@@ -513,7 +507,6 @@ object Models {
         ),
       {
         obj: CC019CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -577,7 +570,6 @@ object Models {
         ),
       {
         obj: CC025CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -638,7 +630,6 @@ object Models {
         ),
       {
         obj: CC028CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -722,7 +713,6 @@ object Models {
         ),
       {
         obj: CC029CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -800,7 +790,6 @@ object Models {
         ),
       {
         obj: CC035CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -871,7 +860,6 @@ object Models {
         ),
       {
         obj: CC043CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -939,7 +927,6 @@ object Models {
         ),
       {
         obj: CC044CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1004,7 +991,6 @@ object Models {
         ),
       {
         obj: CC045CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1068,7 +1054,6 @@ object Models {
         ),
       {
         obj: CC051CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1132,7 +1117,6 @@ object Models {
         ),
       {
         obj: CC055CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1199,7 +1183,6 @@ object Models {
         ),
       {
         obj: CC056CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1264,7 +1247,6 @@ object Models {
         ),
       {
         obj: CC057CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1334,7 +1316,6 @@ object Models {
         ),
       {
         obj: CC060CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1400,7 +1381,6 @@ object Models {
         ),
       {
         obj: CC140CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1470,7 +1450,6 @@ object Models {
         ),
       {
         obj: CC141CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1539,7 +1518,6 @@ object Models {
         ),
       {
         obj: CC170CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1604,7 +1582,6 @@ object Models {
         ),
       {
         obj: CC182CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1662,7 +1639,6 @@ object Models {
         ),
       {
         obj: CC906CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,
@@ -1721,7 +1697,6 @@ object Models {
         ),
       {
         obj: CC928CType =>
-          // val seqType = obj.messageSequence1.messagE_1Sequence2
           (
             obj.messageSequence1.messageSender,
             obj.messageSequence1.messageRecipient,

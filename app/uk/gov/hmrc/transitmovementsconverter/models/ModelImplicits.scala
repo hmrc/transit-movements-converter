@@ -143,8 +143,6 @@ object ModelImplicits {
   implicit lazy val additionalReferenceType04Format = formatWithTypeAdjusted(Json.format[AdditionalReferenceType04])
   implicit lazy val additionalReferenceType05Format = formatWithTypeAdjusted(Json.format[AdditionalReferenceType05])
   implicit lazy val additionalReferenceType06Format = formatWithTypeAdjusted(Json.format[AdditionalReferenceType06])
-  /*  implicit lazy val additionalReferenceType07Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType07])
-  implicit lazy val additionalReferenceType08Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType08]) */
   implicit lazy val addressType01Format                            = Json.format[AddressType01]
   implicit lazy val addressType02Format                            = Json.format[AddressType02]
   implicit lazy val addressType03Format                            = Json.format[AddressType03]
