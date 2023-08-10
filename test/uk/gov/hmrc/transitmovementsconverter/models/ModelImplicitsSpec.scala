@@ -69,7 +69,7 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
     case object NCTS5u460 extends PhaseIDtype { override def toString = "NCTS5.0" }
      */
     "A phase ID of 'NCTS5.1' should be accepted" in {
-      ModelImplicits.phaseIDtypeReads.reads(JsString(" NCTS5.1")) mustBe JsSuccess(NCTS5u461)
+      ModelImplicits.phaseIDtypeReads.reads(JsString("NCTS5.1")) mustBe JsSuccess(NCTS5u461)
     }
 
     "an invalid code should return an error" in {
@@ -87,7 +87,7 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
     }
 
     "A phase ID of 'NCTS5.1' should be written for NCTS5u461" in {
-      ModelImplicits.phaseIDtypeWrites.writes(NCTS5u461) mustBe JsString(" NCTS5.1")
+      ModelImplicits.phaseIDtypeWrites.writes(NCTS5u461) mustBe JsString("NCTS5.1")
     }
   }
 
