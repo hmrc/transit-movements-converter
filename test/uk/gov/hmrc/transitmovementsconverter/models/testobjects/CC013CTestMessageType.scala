@@ -38,7 +38,7 @@ object CC013CTestMessageType extends TestMessageType {
       <LRN>string</LRN>
       <!--Optional:-->
       <MRN>string</MRN>
-      <DeclarationType>token</DeclarationType>
+      <declarationType>token</declarationType>
       <additionalDeclarationType>token</additionalDeclarationType>
       <!--Optional:-->
       <TIRCarnetNumber>string</TIRCarnetNumber>
@@ -118,7 +118,7 @@ object CC013CTestMessageType extends TestMessageType {
     <Guarantee>
       <sequenceNumber>token</sequenceNumber>
       <!--Optional:-->
-      <GuaranteeType>s</GuaranteeType>
+      <guaranteeType>s</guaranteeType>
       <!--Optional:-->
       <otherGuaranteeReference>string</otherGuaranteeReference>
       <!--0 to 99 repetitions:-->
@@ -459,7 +459,7 @@ object CC013CTestMessageType extends TestMessageType {
           <goodsItemNumber>token</goodsItemNumber>
           <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           <!--Optional:-->
-          <DeclarationType>token</DeclarationType>
+          <declarationType>token</declarationType>
           <!--Optional:-->
           <countryOfDispatch>st</countryOfDispatch>
           <!--Optional:-->
@@ -586,7 +586,7 @@ object CC013CTestMessageType extends TestMessageType {
       |        "TransitOperation": {
       |            "LRN": "string",
       |            "MRN": "string",
-      |            "DeclarationType": "token",
+      |            "declarationType": "token",
       |            "additionalDeclarationType": "token",
       |            "TIRCarnetNumber": "string",
       |            "presentationOfTheGoodsDateAndTime": "2014-06-09T16:15:04+01:00",
@@ -867,7 +867,7 @@ object CC013CTestMessageType extends TestMessageType {
       |                        {
       |                            "goodsItemNumber": "token",
       |                            "declarationGoodsItemNumber": 100,
-      |                            "DeclarationType": "token",
+      |                            "declarationType": "token",
       |                            "countryOfDispatch": "st",
       |                            "countryOfDestination": "token",
       |                            "referenceNumberUCR": "string",
@@ -1023,7 +1023,7 @@ object CC013CTestMessageType extends TestMessageType {
       |        "Guarantee": [
       |            {
       |                "sequenceNumber": "token",
-      |                "GuaranteeType": "s",
+      |                "guaranteeType": "s",
       |                "otherGuaranteeReference": "string",
       |                "GuaranteeReference": [
       |                    {

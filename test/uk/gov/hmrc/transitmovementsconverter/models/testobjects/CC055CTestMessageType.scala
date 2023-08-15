@@ -58,12 +58,12 @@ object CC055CTestMessageType extends TestMessageType {
     <GuaranteeReference>
       <sequenceNumber>token</sequenceNumber>
       <GRN>string</GRN>
-      <GuaranteeTypeWithGrn>
+      <InvalidGuaranteeReason>
         <sequenceNumber>token</sequenceNumber>
         <code>token</code>
         <!--Optional:-->
         <text>string</text>
-      </GuaranteeTypeWithGrn>
+      </InvalidGuaranteeReason>
     </GuaranteeReference>
   </ncts:CC055C>
 
@@ -71,11 +71,11 @@ object CC055CTestMessageType extends TestMessageType {
     """
       |{
       |    "n1:CC055C": {
+      |        "preparationDateAndTime": "2007-10-26T07:36:28",
       |        "TransitOperation": {
       |            "MRN": "string",
       |            "declarationAcceptanceDate": "2014-06-09+01:00"
       |        },
-      |        "preparationDateAndTime": "2007-10-26T07:36:28",
       |        "CustomsOfficeOfDeparture": {
       |            "referenceNumber": "stringst"
       |        },
@@ -98,7 +98,7 @@ object CC055CTestMessageType extends TestMessageType {
       |            {
       |                "sequenceNumber": "token",
       |                "GRN": "string",
-      |                "GuaranteeTypeWithGrn": [ {
+      |                "InvalidGuaranteeReason": [ {
       |                    "sequenceNumber": "token",
       |                    "code": "token",
       |                    "text": "string"
