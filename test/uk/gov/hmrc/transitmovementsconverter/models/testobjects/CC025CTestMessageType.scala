@@ -48,12 +48,12 @@ object CC025CTestMessageType extends TestMessageType {
       <!--1 to 99 repetitions:-->
       <HouseConsignment>
         <sequenceNumber>token</sequenceNumber>
-        <releaseType>token</releaseType>
+        <ReleaseType>token</ReleaseType>
         <!--0 to 999 repetitions:-->
         <ConsignmentItem>
           <goodsItemNumber>token</goodsItemNumber>
           <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
-          <releaseType>token</releaseType>
+          <ReleaseType>token</ReleaseType>
           <Commodity>
             <descriptionOfGoods>string</descriptionOfGoods>
             <!--Optional:-->
@@ -116,13 +116,13 @@ object CC025CTestMessageType extends TestMessageType {
       |      [
       |    {
       |      "sequenceNumber": "token",
-      |      "releaseType": "token",
+      |      "ReleaseType": "token",
       |      "ConsignmentItem":
       |      [
       |    {
       |      "goodsItemNumber": "token",
       |      "declarationGoodsItemNumber": 100,
-      |      "releaseType": "token",
+      |      "ReleaseType": "token",
       |      "Commodity":
       |    {
       |      "descriptionOfGoods": "string",

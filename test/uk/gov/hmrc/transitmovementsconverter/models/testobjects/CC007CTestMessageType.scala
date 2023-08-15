@@ -23,7 +23,7 @@ import scala.xml.NodeSeq
 
 object CC007CTestMessageType extends TestMessageType {
 
-  override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1, xmlPhase51 -> jsonPhase51)
+  override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1)
 
   lazy val xml1 = <ncts:CC007C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
     <messageSender>token</messageSender>

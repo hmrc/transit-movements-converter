@@ -64,6 +64,10 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
     }
 
     // In the stock XSDs, this incorrectly tried to read " NCTS5.1", not "NCTS5.1", hence this test.
+    /*
+    case object NCTS5u461 extends PhaseIDtype { override def toString = " NCTS5.1" }
+    case object NCTS5u460 extends PhaseIDtype { override def toString = "NCTS5.0" }
+     */
     "A phase ID of 'NCTS5.1' should be accepted" in {
       ModelImplicits.phaseIDtypeReads.reads(JsString("NCTS5.1")) mustBe JsSuccess(NCTS5u461)
     }

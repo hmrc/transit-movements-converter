@@ -124,6 +124,7 @@ object ModelImplicits {
   implicit lazy val commodityCodeType01Format                      = Json.format[CommodityCodeType01]
   implicit lazy val commodityCodeType02Format                      = Json.format[CommodityCodeType02]
   implicit lazy val commodityCodeType03Format                      = Json.format[CommodityCodeType03]
+  implicit lazy val commodityCodeType05Format                      = Json.format[CommodityCodeType05]
   implicit lazy val commodityCodeType06Format                      = Json.format[CommodityCodeType06]
   implicit lazy val dangerousGoodsType01Format                     = Json.format[DangerousGoodsType01]
   implicit lazy val dangerousGoodsType02Format                     = Json.format[DangerousGoodsType02]
@@ -131,8 +132,10 @@ object ModelImplicits {
   implicit lazy val goodsMeasureType03Format                       = Json.format[GoodsMeasureType03]
   implicit lazy val goodsMeasureType04Format                       = Json.format[GoodsMeasureType04]
   implicit lazy val commodityType02Format                          = Json.format[CommodityType02]
+  implicit lazy val commodityType03Format                          = Json.format[CommodityType03]
   implicit lazy val commodityType05Format                          = Json.format[CommodityType05]
   implicit lazy val commodityType06Format                          = Json.format[CommodityType06]
+  implicit lazy val commodityType07Format                          = Json.format[CommodityType07]
   implicit lazy val commodityType08Format                          = Json.format[CommodityType08]
   implicit lazy val additionalReferenceType01Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType01])
   implicit lazy val additionalReferenceType02Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType02])
@@ -140,8 +143,6 @@ object ModelImplicits {
   implicit lazy val additionalReferenceType04Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType04])
   implicit lazy val additionalReferenceType05Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType05])
   implicit lazy val additionalReferenceType06Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType06])
-  implicit lazy val additionalReferenceType07Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType07])
-  implicit lazy val additionalReferenceType08Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType08])
   implicit lazy val addressType01Format                            = Json.format[AddressType01]
   implicit lazy val addressType02Format                            = Json.format[AddressType02]
   implicit lazy val addressType03Format                            = Json.format[AddressType03]
@@ -298,7 +299,7 @@ object ModelImplicits {
   implicit lazy val customsOfficeOfDepartureType03Format              = Json.format[CustomsOfficeOfDepartureType03]
   implicit lazy val customsOfficeOfEnquiryAtDeparture01               = Json.format[CustomsOfficeOfEnquiryAtDepartureType01]
   implicit lazy val customsOfficeOfDestinationDeclaredType01Format    = Json.format[CustomsOfficeOfDestinationDeclaredType01]
-  implicit lazy val customsOfficeOfTransitDeclaredType03Format        = Json.format[CustomsOfficeOfTransitDeclaredType03]
+  implicit lazy val customsOfficeOfTransitDeclaredType04Format        = Json.format[CustomsOfficeOfTransitDeclaredType04]
   implicit lazy val customsOfficeOfExitForTransitDeclaredType02Format = Json.format[CustomsOfficeOfExitForTransitDeclaredType02]
   implicit lazy val customsOfficeOfDestinationActualType01Format      = Json.format[CustomsOfficeOfDestinationActualType01]
   implicit lazy val customsOfficeOfDestinationActualType03Format      = Json.format[CustomsOfficeOfDestinationActualType03]
@@ -365,7 +366,7 @@ object ModelImplicits {
           (x \ "PreviousDocument").asSeq[PreviousDocumentType06],
           (x \ "SupportingDocument").asSeq[SupportingDocumentType06],
           (x \ "TransportDocument").asSeq[TransportDocumentType02],
-          (x \ "AdditionalReference").asSeq[AdditionalReferenceType04],
+          (x \ "AdditionalReference").asSeq[AdditionalReferenceType03],
           (x \ "AdditionalInformation").asSeq[AdditionalInformationType02],
           (x \ "TransportCharges").asOption[TransportChargesType],
           (x \ "HouseConsignment").asSeq[HouseConsignmentType03]
@@ -431,7 +432,7 @@ object ModelImplicits {
           (x \ "PreviousDocument").asSeq[PreviousDocumentType09],
           (x \ "SupportingDocument").asSeq[SupportingDocumentType05],
           (x \ "TransportDocument").asSeq[TransportDocumentType04],
-          (x \ "AdditionalReference").asSeq[AdditionalReferenceType06],
+          (x \ "AdditionalReference").asSeq[AdditionalReferenceType05],
           (x \ "AdditionalInformation").asSeq[AdditionalInformationType03],
           (x \ "TransportCharges").asOption[TransportChargesType],
           (x \ "HouseConsignment").asSeq[HouseConsignmentType10]

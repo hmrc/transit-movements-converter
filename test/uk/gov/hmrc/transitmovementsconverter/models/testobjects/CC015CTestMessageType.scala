@@ -33,7 +33,7 @@ object CC015CTestMessageType extends TestMessageType {
     <messageType>CC015C</messageType>
     <TransitOperation>
       <LRN>qvRcL</LRN>
-      <declarationType>Pbg</declarationType>
+      <DeclarationType>Pbg</DeclarationType>
       <additionalDeclarationType>O</additionalDeclarationType>
       <security>8</security>
       <reducedDatasetIndicator>1</reducedDatasetIndicator>
@@ -50,7 +50,7 @@ object CC015CTestMessageType extends TestMessageType {
     </HolderOfTheTransitProcedure>
     <Guarantee>
       <sequenceNumber>48711</sequenceNumber>
-      <guaranteeType>1</guaranteeType>
+      <GuaranteeType>1</GuaranteeType>
       <otherGuaranteeReference>1qJMA6MbhnnrOJJjHBHX</otherGuaranteeReference>
     </Guarantee>
     <Consignment>
@@ -85,7 +85,7 @@ object CC015CTestMessageType extends TestMessageType {
           "messageType"            -> "CC015C",
           "TransitOperation" -> Json.obj(
             "LRN"                       -> "qvRcL",
-            "declarationType"           -> "Pbg",
+            "DeclarationType"           -> "Pbg",
             "additionalDeclarationType" -> "O",
             "security"                  -> "8",
             "reducedDatasetIndicator"   -> "1",
@@ -103,7 +103,7 @@ object CC015CTestMessageType extends TestMessageType {
           "Guarantee" -> Json.arr(
             Json.obj(
               "sequenceNumber"          -> "48711",
-              "guaranteeType"           -> "1",
+              "GuaranteeType"           -> "1",
               "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX",
               "GuaranteeReference"      -> Json.arr()
             )

@@ -34,7 +34,7 @@ object TestObjects {
       <messageType>CC015C</messageType>
       <TransitOperation>
         <LRN>qvRcL</LRN>
-        <declarationType>Pbg</declarationType>
+        <DeclarationType>Pbg</DeclarationType>
         <additionalDeclarationType>O</additionalDeclarationType>
         <security>8</security>
         <reducedDatasetIndicator>1</reducedDatasetIndicator>
@@ -51,7 +51,7 @@ object TestObjects {
       </HolderOfTheTransitProcedure>
       <Guarantee>
         <sequenceNumber>48711</sequenceNumber>
-        <guaranteeType>1</guaranteeType>
+        <GuaranteeType>1</GuaranteeType>
         <otherGuaranteeReference>1qJMA6MbhnnrOJJjHBHX</otherGuaranteeReference>
       </Guarantee>
       <Consignment>
@@ -95,7 +95,7 @@ object TestObjects {
             "messageType"            -> "CC015C",
             "TransitOperation" -> Json.obj(
               "LRN"                       -> "qvRcL",
-              "declarationType"           -> "Pbg",
+              "DeclarationType"           -> "Pbg",
               "additionalDeclarationType" -> "O",
               "security"                  -> "8",
               "reducedDatasetIndicator"   -> "1",
@@ -113,7 +113,7 @@ object TestObjects {
             "Guarantee" -> Json.arr(
               Json.obj(
                 "sequenceNumber"          -> "48711",
-                "guaranteeType"           -> "1",
+                "GuaranteeType"           -> "1",
                 "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX",
                 "GuaranteeReference"      -> Json.arr()
               )
@@ -247,11 +247,11 @@ object TestObjects {
       <Consignment>
         <HouseConsignment>
           <sequenceNumber>3</sequenceNumber>
-          <releaseType>1</releaseType>
+          <ReleaseType>1</ReleaseType>
           <ConsignmentItem>
             <goodsItemNumber>10</goodsItemNumber>
             <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
-            <releaseType>2</releaseType>
+            <ReleaseType>2</ReleaseType>
             <Commodity>
               <descriptionOfGoods>jeans</descriptionOfGoods>
               <cusCode>5</cusCode>
@@ -305,12 +305,12 @@ object TestObjects {
               "HouseConsignment" -> Json.arr(
                 Json.obj(
                   "sequenceNumber" -> "3",
-                  "releaseType"    -> "1",
+                  "ReleaseType"    -> "1",
                   "ConsignmentItem" -> Json.arr(
                     Json.obj(
                       "goodsItemNumber"            -> "10",
                       "declarationGoodsItemNumber" -> 100,
-                      "releaseType"                -> "2",
+                      "ReleaseType"                -> "2",
                       "Commodity" -> Json.obj(
                         "descriptionOfGoods" -> "jeans",
                         "cusCode"            -> "5",
@@ -479,7 +479,7 @@ object TestObjects {
         <correlationIdentifier>corr-1</correlationIdentifier>
         <TransitOperation>
           <MRN>mrn1</MRN>
-          <declarationType>3</declarationType>
+          <DeclarationType>3</DeclarationType>
           <declarationAcceptanceDate>2014-06-09+01:00</declarationAcceptanceDate>
           <security>4</security>
           <reducedDatasetIndicator>1</reducedDatasetIndicator>
@@ -681,7 +681,7 @@ object TestObjects {
             <ConsignmentItem>
               <goodsItemNumber>6</goodsItemNumber>
               <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
-              <declarationType>2</declarationType>
+              <DeclarationType>2</DeclarationType>
               <countryOfDestination>DE</countryOfDestination>
               <Consignee>
                 <identificationNumber>5</identificationNumber>
@@ -758,7 +758,7 @@ object TestObjects {
           "preparationDateAndTime" -> "2007-10-26T07:36:28",
           "TransitOperation" -> Json.obj(
             "MRN"                       -> "mrn1",
-            "declarationType"           -> "3",
+            "DeclarationType"           -> "3",
             "declarationAcceptanceDate" -> "2014-06-09+01:00",
             "security"                  -> "4",
             "reducedDatasetIndicator"   -> "1"
@@ -981,7 +981,7 @@ object TestObjects {
                   Json.obj(
                     "goodsItemNumber"            -> "6",
                     "declarationGoodsItemNumber" -> 100,
-                    "declarationType"            -> "2",
+                    "DeclarationType"            -> "2",
                     "countryOfDestination"       -> "DE",
                     "Consignee" -> Json.obj(
                       "identificationNumber" -> "5",
