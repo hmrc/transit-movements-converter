@@ -36,7 +36,7 @@ object CC043CTestMessageType extends TestMessageType {
       <TransitOperation>
         <MRN>string</MRN>
         <!--Optional:-->
-        <DeclarationType>token</DeclarationType>
+        <declarationType>token</declarationType>
         <!--Optional:-->
         <declarationAcceptanceDate>2014-06-09+01:00</declarationAcceptanceDate>
         <security>token</security>
@@ -308,7 +308,7 @@ object CC043CTestMessageType extends TestMessageType {
             <goodsItemNumber>token</goodsItemNumber>
             <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
             <!--Optional:-->
-            <DeclarationType>token</DeclarationType>
+            <declarationType>token</declarationType>
             <!--Optional:-->
             <countryOfDestination>token</countryOfDestination>
             <!--Optional:-->
@@ -408,7 +408,7 @@ object CC043CTestMessageType extends TestMessageType {
     |      "TransitOperation":
     |    {
     |      "MRN": "string",
-    |      "DeclarationType": "token",
+    |      "declarationType": "token",
     |      "declarationAcceptanceDate": "2014-06-09+01:00",
     |      "security": "token",
     |      "reducedDatasetIndicator": "1"
@@ -667,7 +667,7 @@ object CC043CTestMessageType extends TestMessageType {
     |    {
     |      "goodsItemNumber": "token",
     |      "declarationGoodsItemNumber": 100,
-    |      "DeclarationType": "token",
+    |      "declarationType": "token",
     |      "countryOfDestination": "token",
     |      "Consignee":
     |    {
