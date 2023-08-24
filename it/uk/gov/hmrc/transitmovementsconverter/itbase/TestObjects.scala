@@ -263,10 +263,6 @@ object TestObjects {
                 <sequenceNumber>4</sequenceNumber>
                 <UNNumber>6</UNNumber>
               </DangerousGoods>
-              <GoodsMeasure>
-                <grossMass>9876.5432</grossMass>
-                <netMass>9876.12</netMass>
-              </GoodsMeasure>
             </Commodity>
             <Packaging>
               <sequenceNumber>4</sequenceNumber>
@@ -323,10 +319,6 @@ object TestObjects {
                             "sequenceNumber" -> "4",
                             "UNNumber"       -> "6"
                           )
-                        ),
-                        "GoodsMeasure" -> Json.obj(
-                          "grossMass" -> 9876.5432,
-                          "netMass"   -> 9876.12
                         )
                       ),
                       "Packaging" -> Json.arr(
@@ -704,10 +696,6 @@ object TestObjects {
                   <sequenceNumber>5</sequenceNumber>
                   <UNNumber>1</UNNumber>
                 </DangerousGoods>
-                <GoodsMeasure>
-                  <grossMass>123.45</grossMass>
-                  <netMass>123.45</netMass>
-                </GoodsMeasure>
               </Commodity>
               <Packaging>
                 <sequenceNumber>5</sequenceNumber>
@@ -1005,10 +993,6 @@ object TestObjects {
                           "sequenceNumber" -> "5",
                           "UNNumber"       -> "1"
                         )
-                      ),
-                      "GoodsMeasure" -> Json.obj(
-                        "grossMass" -> 123.45,
-                        "netMass"   -> 123.45
                       )
                     ),
                     "Packaging" -> Json.arr(
