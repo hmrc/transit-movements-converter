@@ -394,7 +394,6 @@ object ModelImplicits {
         consignmentType20.DepartureTransportMeans.entry("DepartureTransportMeans") ++
         consignmentType20.CountryOfRoutingOfConsignment.entry("CountryOfRoutingOfConsignment") ++
         consignmentType20.ActiveBorderTransportMeans.entry("ActiveBorderTransportMeans") ++
-//        Seq[(String, JsValueWrapper)]("PlaceOfLoading" -> consignmentType20.PlaceOfLoading) ++
         consignmentType20.PlaceOfLoading.entry("PlaceOfLoading") ++
         consignmentType20.PlaceOfUnloading.entry("PlaceOfUnloading") ++
         consignmentType20.PreviousDocument.entry("PreviousDocument") ++
