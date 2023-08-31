@@ -287,14 +287,6 @@ object CC029CTestMessageType extends TestMessageType {
           <!--Optional:-->
           <conveyanceReferenceNumber>string</conveyanceReferenceNumber>
         </ActiveBorderTransportMeans>
-        <PlaceOfLoading>
-          <!--Optional:-->
-          <UNLocode>token</UNLocode>
-          <!--Optional:-->
-          <country>st</country>
-          <!--Optional:-->
-          <location>string</location>
-        </PlaceOfLoading>
         <!--Optional:-->
         <PlaceOfUnloading>
           <!--Optional:-->
@@ -496,11 +488,6 @@ object CC029CTestMessageType extends TestMessageType {
                 <sequenceNumber>token</sequenceNumber>
                 <UNNumber>token</UNNumber>
               </DangerousGoods>
-              <GoodsMeasure>
-                <grossMass>1000.000000000000</grossMass>
-                <!--Optional:-->
-                <netMass>1000.000000000000</netMass>
-              </GoodsMeasure>
             </Commodity>
             <!--1 to 99 repetitions:-->
             <Packaging>
@@ -715,11 +702,6 @@ object CC029CTestMessageType extends TestMessageType {
       |                    "conveyanceReferenceNumber": "string"
       |                }
       |            ],
-      |            "PlaceOfLoading": {
-      |                "UNLocode": "token",
-      |                "country": "st",
-      |                "location": "string"
-      |            },
       |            "PlaceOfUnloading": {
       |                "UNLocode": "token",
       |                "country": "st",
@@ -891,11 +873,7 @@ object CC029CTestMessageType extends TestMessageType {
       |                                        "sequenceNumber": "token",
       |                                        "UNNumber": "token"
       |                                    }
-      |                                ],
-      |                                "GoodsMeasure": {
-      |                                    "grossMass": 1000,
-      |                                    "netMass": 1000
-      |                                }
+      |                                ]
       |                            },
       |                            "Packaging": [
       |                                {

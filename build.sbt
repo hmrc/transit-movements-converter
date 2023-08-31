@@ -21,7 +21,6 @@ lazy val microservice = Project(appName, file("."))
       "uk.gov.hmrc.transitmovementsconverter.models.Binders._"
     )
   )
-  .settings(publishingSettings: _*)
   .configs(IntegrationTest)
   .settings(integrationTestSettings(): _*)
   .settings(resolvers += Resolver.jcenterRepo)

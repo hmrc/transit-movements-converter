@@ -361,7 +361,7 @@ object ModelImplicits {
           (x \ "DepartureTransportMeans").asSeq[DepartureTransportMeansType02],
           (x \ "CountryOfRoutingOfConsignment").asSeq[CountryOfRoutingOfConsignmentType01],
           (x \ "ActiveBorderTransportMeans").asSeq[ActiveBorderTransportMeansType01],
-          (x \ "PlaceOfLoading").as[PlaceOfLoadingType02],
+          (x \ "PlaceOfLoading").asOption[PlaceOfLoadingType02],
           (x \ "PlaceOfUnloading").asOption[PlaceOfUnloadingType02],
           (x \ "PreviousDocument").asSeq[PreviousDocumentType06],
           (x \ "SupportingDocument").asSeq[SupportingDocumentType06],
@@ -394,7 +394,7 @@ object ModelImplicits {
         consignmentType20.DepartureTransportMeans.entry("DepartureTransportMeans") ++
         consignmentType20.CountryOfRoutingOfConsignment.entry("CountryOfRoutingOfConsignment") ++
         consignmentType20.ActiveBorderTransportMeans.entry("ActiveBorderTransportMeans") ++
-        Seq[(String, JsValueWrapper)]("PlaceOfLoading" -> consignmentType20.PlaceOfLoading) ++
+        consignmentType20.PlaceOfLoading.entry("PlaceOfLoading") ++
         consignmentType20.PlaceOfUnloading.entry("PlaceOfUnloading") ++
         consignmentType20.PreviousDocument.entry("PreviousDocument") ++
         consignmentType20.SupportingDocument.entry("SupportingDocument") ++

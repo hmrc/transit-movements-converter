@@ -69,11 +69,6 @@ object CC025CTestMessageType extends TestMessageType {
               <sequenceNumber>token</sequenceNumber>
               <UNNumber>token</UNNumber>
             </DangerousGoods>
-            <GoodsMeasure>
-              <grossMass>1000.000000000000</grossMass>
-              <!--Optional:-->
-              <netMass>1000.000000000000</netMass>
-            </GoodsMeasure>
           </Commodity>
           <!--1 to 99 repetitions:-->
           <Packaging>
@@ -138,12 +133,7 @@ object CC025CTestMessageType extends TestMessageType {
       |      "sequenceNumber": "token",
       |      "UNNumber": "token"
       |    }
-      |      ],
-      |      "GoodsMeasure":
-      |    {
-      |      "grossMass": 1000,
-      |      "netMass": 1000
-      |    }
+      |      ]
       |    },
       |      "Packaging":
       |      [
