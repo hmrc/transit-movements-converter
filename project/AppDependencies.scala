@@ -8,7 +8,6 @@ object AppDependencies {
 
   val AkkaVersion      = "2.6.19"
   val catsVersion      = "2.7.0"
-  val dispatchV        = "1.2.0"
   val bootstrapVersion = "7.12.0"
 
   val compile = Seq(
@@ -19,8 +18,7 @@ object AppDependencies {
     // required for scalaxb
     "org.scala-lang.modules" %% "scala-xml"                % "1.3.0",
     "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-    "javax.xml.bind"          % "jaxb-api"                 % "2.3.1",
-    "org.dispatchhttp"       %% "dispatch-core"            % dispatchV
+    "javax.xml.bind"          % "jaxb-api"                 % "2.3.1"
   )
 
   val test = Seq(
