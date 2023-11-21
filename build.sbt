@@ -1,6 +1,5 @@
 import play.sbt.routes.RoutesKeys
 import uk.gov.hmrc.DefaultBuildSettings.integrationTestSettings
-import uk.gov.hmrc.sbtdistributables.SbtDistributablesPlugin.publishingSettings
 
 val appName = "transit-movements-converter"
 
@@ -13,7 +12,6 @@ lazy val microservice = Project(appName, file("."))
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     scalacOptions += "-Wconf:src=routes/.*:s",
     // scalaxb
-    Compile / scalaxb / scalaxbDispatchVersion := AppDependencies.dispatchV,
     Compile / scalaxb / scalaxbPackageName := "generated",
     // Play routing
     RoutesKeys.routesImport ++= Seq(
