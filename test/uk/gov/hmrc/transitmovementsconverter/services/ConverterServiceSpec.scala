@@ -16,9 +16,9 @@
 
 package uk.gov.hmrc.transitmovementsconverter.services
 
-import akka.stream.scaladsl.Flow
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
+import org.apache.pekko.stream.scaladsl.Flow
+import org.apache.pekko.stream.scaladsl.Source
+import org.apache.pekko.util.ByteString
 import generated.XMLProtocol
 import org.scalatest.concurrent.PatienceConfiguration.Timeout
 import org.scalatest.concurrent.ScalaFutures
