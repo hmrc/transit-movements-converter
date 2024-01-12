@@ -6,7 +6,6 @@ import sbt._
 
 object AppDependencies {
 
-//  val AkkaVersion      = "2.6.19"
   val catsVersion      = "2.9.0"
   val bootstrapVersion = "8.4.0"
 
