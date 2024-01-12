@@ -10,4 +10,3 @@ addSbtPlugin("org.scalameta"     % "sbt-scalafmt"       % "2.4.6")
 addSbtPlugin(dependency = "com.timushev.sbt" % "sbt-updates" % "0.6.3")
 
 addSbtPlugin("org.scalaxb" % "sbt-scalaxb" % "1.12.0")
-//addSbtPlugin("org.scalaxb" % "sbt-scalaxb" % "1.8.3")

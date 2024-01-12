@@ -16,8 +16,7 @@ object AppDependencies {
     "org.apache.pekko" %% "pekko-stream"              % "1.0.1",
     "org.typelevel"    %% "cats-core"                 % catsVersion,
     // required for scalaxb
-    "org.scala-lang.modules" %% "scala-xml" % "2.2.0", // TODO: ??recommend remove
-//    "org.scala-lang.modules" %% "scala-xml"                % "1.3.0", // TODO: ??recommend remove
+    "org.scala-lang.modules" %% "scala-xml"                % "2.2.0",
     "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
     "javax.xml.bind"          % "jaxb-api"                 % "2.3.1"
   )
