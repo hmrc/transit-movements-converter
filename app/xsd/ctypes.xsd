@@ -2139,7 +2139,7 @@
       <xs:element name="combinedNomenclatureCode" minOccurs="0" type="CombinedNomenclatureCodeContentType02">
         <xs:annotation>
           <xs:documentation>
-            <descripCommodityCodeType03tion value="Combined nomenclature code" />
+            <description value="Combined nomenclature code" />
             <format value="an2" />
             <optionality value="D" />
             <xsdBaseType value="AlphaNumeric_2_NoSpaces" />
@@ -7832,7 +7832,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="HouseConsignment" maxOccurs="99" type="HouseConsignmentType14">
+      <xs:element name="HouseConsignment" maxOccurs="99" type="">
         <xs:annotation>
           <xs:documentation>
             <description value="HOUSE CONSIGNMENT" />
@@ -12913,6 +12913,53 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="GuaranteeType08">
+    <xs:annotation>
+      <xs:documentation>
+        <usedBy>Used by 1/91 messages: CC029C</usedBy>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="sequenceNumber" type="SequenceNumberContentType">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="Sequence number" />
+            <format value="n..5" />
+            <optionality value="R" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="guaranteeType" type="GuaranteeTypeContentType">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="Guarantee type" />
+            <codeList code="CL251" type="business" name="GuaranteeType" />
+            <format value="an1" />
+            <optionality value="R" />
+            <xsdBaseType value="AlphanumericCapital1Type" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="otherGuaranteeReference" minOccurs="0" type="OtherGuaranteeReferenceContentType01">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="Other guarantee reference" />
+            <format value="an..35" />
+            <optionality value="D" />
+            <xsdBaseType value="Alphanumeric_Max35" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GuaranteeReference" minOccurs="0" maxOccurs="99" type="GuaranteeReferenceType03">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="GUARANTEE REFERENCE" />
+            <optionality value="D" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <!--================================================================================-->
   <!--===== GuarantorNotification                                                           -->
   <!--================================================================================-->
@@ -15444,7 +15491,7 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="HouseConsignmentType14">
-    <xs:annotation>
+    <xs:annotation>HouseConsignmentType14
       <xs:documentation>
         <usedBy>Used by 1/91 messages: CC029C</usedBy>
       </xs:documentation>
