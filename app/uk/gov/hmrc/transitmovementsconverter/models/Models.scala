@@ -814,12 +814,12 @@ object Models {
   implicit lazy val cc043cFormats: OFormat[CC043CType] =
     (
       commonTypesWithSender(cc043cRoot) and
-        (__ \ cc043cRoot \ "TransitOperation").format[TransitOperationType14] and
+        (__ \ cc043cRoot \ "TransitOperation").format[TransitOperationType50] and
         (__ \ cc043cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
         (__ \ cc043cRoot \ "HolderOfTheTransitProcedure").formatNullable[HolderOfTheTransitProcedureType06] and
         (__ \ cc043cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
         (__ \ cc043cRoot \ "CTLControl").formatNullable[CTLControlType] and
-        (__ \ cc043cRoot \ "Consignment").formatNullable[ConsignmentType05] and
+        (__ \ cc043cRoot \ "Consignment").formatNullable[ConsignmentType23] and
         (__ \ cc043cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
