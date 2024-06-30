@@ -21,7 +21,7 @@
   <xs:complexType name="CC043CType">
     <xs:sequence>
       <xs:group ref="MESSAGE" />
-      <xs:element name="TransitOperation" type="TransitOperationType14">
+      <xs:element name="TransitOperation" type="TransitOperationType50">
         <xs:annotation>
           <xs:documentation>
             <description value="TRANSIT OPERATION" />
@@ -61,7 +61,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Consignment" minOccurs="0" type="ConsignmentType05">
+      <xs:element name="Consignment" minOccurs="0" type="ConsignmentType23">
         <xs:annotation>
           <xs:documentation>
             <description value="CONSIGNMENT" />
