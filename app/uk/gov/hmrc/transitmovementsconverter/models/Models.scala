@@ -662,7 +662,7 @@ object Models {
         (__ \ cc029cRoot \ "Representative").formatNullable[RepresentativeType02] and
         (__ \ cc029cRoot \ "ControlResult").formatNullable[ControlResultType02] and
         (__ \ cc029cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType03]] and
-        (__ \ cc029cRoot \ "Consignment").format[ConsignmentType04] and
+        (__ \ cc029cRoot \ "Consignment").format[ConsignmentType23] and
         (__ \ cc029cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
