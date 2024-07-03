@@ -133,6 +133,7 @@ object ModelImplicits {
   implicit lazy val goodsMeasureType03Format                       = Json.format[GoodsMeasureType03]
   implicit lazy val goodsMeasureType04Format                       = Json.format[GoodsMeasureType04]
   implicit lazy val goodsMeasureType06Format                       = Json.format[GoodsMeasureType06]
+  implicit lazy val goodsMeasureType07Format                       = Json.format[GoodsMeasureType07]
   implicit lazy val commodityType02Format                          = Json.format[CommodityType02]
   implicit lazy val commodityType03Format                          = Json.format[CommodityType03]
   implicit lazy val commodityType05Format                          = Json.format[CommodityType05]
@@ -140,6 +141,7 @@ object ModelImplicits {
   implicit lazy val commodityType07Format                          = Json.format[CommodityType07]
   implicit lazy val commodityType08Format                          = Json.format[CommodityType08]
   implicit lazy val commodityType12Format                          = Json.format[CommodityType12]
+  implicit lazy val commodityType13Format                          = Json.format[CommodityType13]
   implicit lazy val additionalReferenceType01Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType01])
   implicit lazy val additionalReferenceType02Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType02])
   implicit lazy val additionalReferenceType03Format                = formatWithTypeAdjusted(Json.format[AdditionalReferenceType03])
