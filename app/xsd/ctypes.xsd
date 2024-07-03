@@ -2870,6 +2870,59 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="CommodityType13">
+    <xs:annotation>
+      <xs:documentation>
+        <usedBy>Used by 1/91 messages: CC043C</usedBy>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="descriptionOfGoods" type="DescriptionOfGoodsContentType01">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="Description of goods" />
+            <format value="an..512" />
+            <optionality value="R" />
+            <xsdBaseType value="AlphaNumeric_MAX512" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="cusCode" minOccurs="0" type="CusCodeContentType">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="CUS code" />
+            <codeList code="CL016" type="business" name="CusCode" />
+            <format value="an9" />
+            <optionality value="O" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CommodityCode" minOccurs="0" type="CommodityCodeType05">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="COMMODITY CODE" />
+            <optionality value="D" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DangerousGoods" minOccurs="0" maxOccurs="99" type="DangerousGoodsType01">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="DANGEROUS GOODS" />
+            <optionality value="O" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GoodsMeasure" minOccurs="0" type="GoodsMeasureType07"> <!--##Added minOccurs="0" as this is optional (IE029 Only)##-->
+        <xs:annotation>
+          <xs:documentation>
+            <description value="GOODS MEASURE" />
+            <optionality value="O" />    <!--##Changed to Optional (IE029 & IE043)##-->
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <!--================================================================================-->
   <!--===== CompetentCustomsOfficeAtDeparture                                               -->
   <!--================================================================================-->
@@ -3847,7 +3900,7 @@
           </xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Commodity" type="CommodityType08">
+      <xs:element name="Commodity" type="CommodityType13">
         <xs:annotation>
           <xs:documentation>
             <description value="COMMODITY" />
@@ -11355,7 +11408,36 @@
       </xs:documentation>
     </xs:annotation>
     <xs:sequence>
-      <xs:element name="grossMass" type="GrossMassContentType02">
+      <xs:element name="grossMass" minOccurs="0" type="GrossMassContentType02">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="Gross mass" />
+            <format value="n..16,6" />
+            <optionality value="O" />
+            <xsdBaseType value="DecimalWithZero_16_6" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="netMass" minOccurs="0" type="NetMassContentType">
+        <xs:annotation>
+          <xs:documentation>
+            <description value="Net mass" />
+            <format value="n..16,6" />
+            <optionality value="D" />
+            <xsdBaseType value="DecimalWithoutZero_16_6" />
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GoodsMeasureType07">
+    <xs:annotation>
+      <xs:documentation>
+        <usedBy>Used by 1/91 messages: CC043C</usedBy>
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="grossMass" minOccurs="0" type="GrossMassContentType02">
         <xs:annotation>
           <xs:documentation>
             <description value="Gross mass" />
