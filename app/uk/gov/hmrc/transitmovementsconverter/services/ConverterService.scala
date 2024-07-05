@@ -16,17 +16,18 @@
 
 package uk.gov.hmrc.transitmovementsconverter.services
 
-import org.apache.pekko.stream.Materializer
-import org.apache.pekko.stream.scaladsl.Source
-import org.apache.pekko.stream.scaladsl.StreamConverters
-import org.apache.pekko.util.ByteString
 import cats.data.EitherT
 import cats.syntax.all._
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.google.inject.ImplementedBy
 import com.google.inject.Inject
+import org.apache.pekko.stream.Materializer
+import org.apache.pekko.stream.scaladsl.Source
+import org.apache.pekko.stream.scaladsl.StreamConverters
+import org.apache.pekko.util.ByteString
 import org.xml.sax.InputSource
+import play.api.Logging
 import play.api.libs.json.JsResultException
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
@@ -61,7 +62,7 @@ object ConverterServiceImpl {
   )
 }
 
-class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends ConverterService {
+class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends ConverterService with Logging {
 
   override def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, JsValue] =
     EitherT {
@@ -77,7 +78,10 @@ class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: E
             x => Json.toJsObject(x)(conversionFormat.jsonWrites)
           )
       }.recoverWith {
-        case NonFatal(e) => Future.successful(Left(ConversionError.UnexpectedError(thr = Some(e))))
+
+        case NonFatal(e) =>
+          logger.error(s"Xml to Json conversion got failed: $e", e)
+          Future.successful(Left(ConversionError.UnexpectedError(thr = Some(e))))
       }
     }
 
@@ -106,7 +110,9 @@ class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: E
               )(conversionFormat.xmlFormat)
           }
       }.recoverWith {
-        case NonFatal(e) => Future.successful(Left(ConversionError.UnexpectedError(thr = Some(e))))
+        case NonFatal(e) =>
+          logger.error(s"Json to Xml conversion got failed: $e", e)
+          Future.successful(Left(ConversionError.UnexpectedError(thr = Some(e))))
       }
     }
 
