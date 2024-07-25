@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
-import generated._
+import generated.transitional._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers

@@ -16,11 +16,12 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
-import generated._
+import generated.transitional._
 import play.api.libs.json.Reads
 import play.api.libs.json.OWrites
 import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.models.Models._
+import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 
 sealed abstract class MessageType[T](val name: String, val xmlRoot: String)(implicit
   override val xmlFormat: XMLFormat[T],
@@ -56,7 +57,7 @@ object MessageType extends XMLProtocol {
   case object IE906 extends MessageType[CC906CType]("IE906", "CC906C")
   case object IE928 extends MessageType[CC928CType]("IE928", "CC928C")
 
-  val values = Seq(
+  val values: Seq[MessageType[_]] = Seq(
     IE004,
     IE007,
     IE009,

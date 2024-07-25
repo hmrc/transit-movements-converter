@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
-import generated._
+import generated.transitional._
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.OFormat
 import play.api.libs.json.__

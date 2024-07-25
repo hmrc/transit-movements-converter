@@ -31,10 +31,10 @@ import play.api.Logging
 import play.api.libs.json.JsResultException
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
-import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 import uk.gov.hmrc.transitmovementsconverter.services.ConverterServiceImpl.conversionTimeout
 import uk.gov.hmrc.transitmovementsconverter.services.ConverterServiceImpl.namespace
+import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
