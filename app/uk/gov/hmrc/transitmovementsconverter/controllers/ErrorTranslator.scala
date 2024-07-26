@@ -36,13 +36,10 @@ trait ErrorTranslator {
     def convert(input: E): PresentationError
   }
 
-  implicit val conversionErrorConverter = new Converter[ConversionError] {
-
-    def convert(conversionError: ConversionError): PresentationError = conversionError match {
-      case err: ConversionError.UnexpectedError => PresentationError.internalServiceError(cause = err.thr)
-      case ConversionError.XMLParsingError(x)   => PresentationError.badRequestError(x)
-      case ConversionError.JsonParsingError(x)  => PresentationError.badRequestError(x.getMessage)
-    }
+  implicit val conversionErrorConverter: Converter[ConversionError] = {
+    case err: ConversionError.UnexpectedError => PresentationError.internalServiceError(cause = err.thr)
+    case ConversionError.XMLParsingError(x)   => PresentationError.badRequestError(x)
+    case ConversionError.JsonParsingError(x)  => PresentationError.badRequestError(x.getMessage)
   }
 
 }

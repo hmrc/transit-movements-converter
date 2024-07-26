@@ -31,11 +31,11 @@ import play.api.mvc.Action
 import play.api.mvc.ControllerComponents
 import play.api.mvc.Request
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
-import uk.gov.hmrc.transitmovementsconverter.controllers.stream.StreamingParsers
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
 import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
+import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
 
 import javax.inject.Inject
 import javax.inject.Singleton
