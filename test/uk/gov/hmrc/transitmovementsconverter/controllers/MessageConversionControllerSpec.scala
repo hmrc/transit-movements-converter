@@ -96,7 +96,7 @@ class MessageConversionControllerSpec
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustBe Json.obj(
         "code"    -> "UNSUPPORTED_MEDIA_TYPE",
-        "message" -> "Combination of content-type header [not supplied] and accept header [not supplied] is not supported!"
+        "message" -> "Content-Type header or Accept header or both were not supplied"
       )
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
@@ -113,7 +113,7 @@ class MessageConversionControllerSpec
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustBe Json.obj(
         "code"    -> "UNSUPPORTED_MEDIA_TYPE",
-        "message" -> "Combination of content-type header text/plain and accept header application/json is not supported!"
+        "message" -> "Combination of Content-Type header text/plain and Accept header application/json is not supported!"
       )
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
@@ -130,7 +130,7 @@ class MessageConversionControllerSpec
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustBe Json.obj(
         "code"    -> "UNSUPPORTED_MEDIA_TYPE",
-        "message" -> "Combination of content-type header application/xml and accept header text/plain is not supported!"
+        "message" -> "Combination of Content-Type header application/xml and Accept header text/plain is not supported!"
       )
       whenReady(resultMatVal) {
         _ mustBe "<valid></valid>" // testing we drain the stream
