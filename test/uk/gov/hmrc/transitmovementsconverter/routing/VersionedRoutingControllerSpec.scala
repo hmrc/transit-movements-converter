@@ -26,7 +26,6 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatestplus.mockito.MockitoSugar
 import play.api.http.Status.BAD_REQUEST
 import play.api.http.Status.OK
-import play.api.libs.Files.TemporaryFileCreator
 import play.api.mvc.Action
 import play.api.test.FakeHeaders
 import play.api.test.FakeRequest
