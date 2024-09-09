@@ -16,32 +16,28 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v2_1.controllers
 
+import cats.data.EitherT
+import cats.implicits.catsStdInstancesForFuture
 import org.apache.pekko.stream.Materializer
 import org.apache.pekko.stream.scaladsl.Sink
 import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
-import cats.data.EitherT
-import cats.implicits.catsStdInstancesForFuture
 import play.api.http.HeaderNames
 import play.api.http.MimeTypes
-import play.api.http.Writeable
-import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import play.api.mvc.Action
 import play.api.mvc.ControllerComponents
-import play.api.mvc.Request
+import play.api.mvc.Result
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
+import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.PresentationError
 import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterService
-import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
 
 import javax.inject.Inject
 import javax.inject.Singleton
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
-import scala.xml.NodeSeq
 
 @Singleton()
 class MessageConversionController @Inject() (cc: ControllerComponents, converterService: ConverterService)(implicit
@@ -51,45 +47,33 @@ class MessageConversionController @Inject() (cc: ControllerComponents, converter
     with StreamingParsers
     with ErrorTranslator {
 
-  def message(messageType: MessageType[_]): Action[Source[ByteString, _]] = route {
-    case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) => convertMessage[JsValue](messageType, converterService.xmlToJson(_, _))
-    case (Some(MimeTypes.JSON), Some(MimeTypes.XML)) => convertMessage[NodeSeq](messageType, converterService.jsonToXml(_, _))
-  }
-
-  def convertMessage[A](messageType: MessageType[_], convert: (MessageType[_], Source[ByteString, _]) => EitherT[Future, ConversionError, A])(implicit
-    writable: Writeable[A]
-  ): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
+  def message(messageType: MessageType[_]): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
     implicit request =>
-      convert(messageType, request.body).asPresentation
-        .map(Ok(_))
-        .valueOr(
-          error => Status(error.code.statusCode)(Json.toJson(error))
-        )
-  }
-
-  private def route(routes: PartialFunction[(Option[String], Option[String]), Action[_]])(implicit materializer: Materializer): Action[Source[ByteString, _]] =
-    Action.async(streamFromMemory) {
-      (request: Request[Source[ByteString, _]]) =>
-        routes
-          .lift((request.headers.get(HeaderNames.CONTENT_TYPE), request.headers.get(HeaderNames.ACCEPT)))
-          .map(
-            action => action(request).run(request.body)
-          )
-          .getOrElse {
-            // To avoid a memory leak, we need to ensure we run the request stream and ignore it.
-            request.body.to(Sink.ignore).run()
-            val contentType = request.headers.get(HeaderNames.CONTENT_TYPE).getOrElse("[not supplied]")
-            val accept      = request.headers.get(HeaderNames.ACCEPT).getOrElse("[not supplied]")
-            Future.successful(
-              UnsupportedMediaType(
-                Json.toJson(
-                  PresentationError.unsupportedMediaTypeError(
-                    s"Combination of content-type header $contentType and accept header $accept is not supported!"
-                  )
-                )
-              )
+      val result: EitherT[Future, PresentationError, Result] = (request.headers.get(HeaderNames.CONTENT_TYPE), request.headers.get(HeaderNames.ACCEPT)) match {
+        case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) =>
+          converterService
+            .xmlToJson(messageType, request.body)
+            .asPresentation
+            .map(Ok(_))
+        case (Some(MimeTypes.JSON), Some(MimeTypes.XML)) =>
+          converterService
+            .jsonToXml(messageType, request.body)
+            .asPresentation
+            .map(Ok(_))
+        case (Some(contentType), Some(accept)) =>
+          request.body.runWith(Sink.ignore)
+          EitherT.leftT(
+            PresentationError.unsupportedMediaTypeError(
+              s"Combination of Content-Type header $contentType and Accept header $accept is not supported!"
             )
-          }
-    }
+          )
+        case _ =>
+          request.body.runWith(Sink.ignore)
+          EitherT.leftT(PresentationError.unsupportedMediaTypeError("Content-Type header or Accept header or both were not supplied"))
+      }
+      result.valueOr(
+        presentationError => Status(presentationError.code.statusCode)(Json.toJson(presentationError))
+      )
+  }
 
 }
