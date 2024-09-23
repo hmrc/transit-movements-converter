@@ -1,0 +1,42 @@
+<ncts:CC055C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <TransitOperation>
+    <MRN>string</MRN>
+    <declarationAcceptanceDate>2014-06-09+01:00</declarationAcceptanceDate>
+  </TransitOperation>
+  <CustomsOfficeOfDeparture>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDeparture>
+  <HolderOfTheTransitProcedure>
+    <!--Optional:-->
+    <identificationNumber>string</identificationNumber>
+    <!--Optional:-->
+    <name>string</name>
+    <!--Optional:-->
+    <Address>
+      <streetAndNumber>string</streetAndNumber>
+      <!--Optional:-->
+      <postcode>string</postcode>
+      <city>string</city>
+      <country>st</country>
+    </Address>
+  </HolderOfTheTransitProcedure>
+  <!--1 to 99 repetitions:-->
+  <GuaranteeReference>
+    <sequenceNumber>100</sequenceNumber>
+    <GRN>string</GRN>
+    <!--1 to 9 repetitions:-->
+    <InvalidGuaranteeReason>
+      <sequenceNumber>100</sequenceNumber>
+      <code>token</code>
+      <!--Optional:-->
+      <text>string</text>
+    </InvalidGuaranteeReason>
+  </GuaranteeReference>
+</ncts:CC055C>

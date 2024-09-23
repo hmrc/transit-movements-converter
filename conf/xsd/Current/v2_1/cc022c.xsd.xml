@@ -1,0 +1,43 @@
+<ncts:CC022C PhaseID="NCTS5. 1" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <TransitOperation>
+    <MRN>string</MRN>
+    <amendmentNotificationDateAndTime>2014-06-09T16:15:04+01:00</amendmentNotificationDateAndTime>
+  </TransitOperation>
+  <CustomsOfficeOfDeparture>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDeparture>
+  <HolderOfTheTransitProcedure>
+    <!--Optional:-->
+    <identificationNumber>string</identificationNumber>
+    <!--Optional:-->
+    <TIRHolderIdentificationNumber>string</TIRHolderIdentificationNumber>
+    <!--Optional:-->
+    <name>string</name>
+    <!--Optional:-->
+    <Address>
+      <streetAndNumber>string</streetAndNumber>
+      <!--Optional:-->
+      <postcode>string</postcode>
+      <city>string</city>
+      <country>st</country>
+    </Address>
+  </HolderOfTheTransitProcedure>
+  <!--0 to 9999 repetitions:-->
+  <FunctionalError>
+    <sequenceNumber>token</sequenceNumber>
+    <!--Optional:-->
+    <errorPointer>string</errorPointer>
+    <errorCode>13</errorCode>
+    <!--Optional:-->
+    <errorReason>string</errorReason>
+    <!--Optional:-->
+    <originalAttributeValue>string</originalAttributeValue>
+  </FunctionalError>
+</ncts:CC022C>

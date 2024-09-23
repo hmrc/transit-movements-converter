@@ -1,0 +1,36 @@
+<ncts:CC225C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <HolderOfTheTransitProcedure>
+    <identificationNumber>string</identificationNumber>
+  </HolderOfTheTransitProcedure>
+  <!--1 to 99 repetitions:-->
+  <GuaranteeReference>
+    <sequenceNumber>100</sequenceNumber>
+    <GRN>string</GRN>
+    <currency>token</currency>
+    <!--Optional:-->
+    <referenceAmount>1000.000000000000</referenceAmount>
+    <!--Optional:-->
+    <percentageOfReferenceAmount>100</percentageOfReferenceAmount>
+    <!--Optional:-->
+    <guaranteeAmount>1000.000000000000</guaranteeAmount>
+    <!--Optional:-->
+    <numberOfCertificates>100</numberOfCertificates>
+    <!--Optional:-->
+    <validityDate>2014-06-09+01:00</validityDate>
+    <!--Optional:-->
+    <invalidityDate>2008-11-15</invalidityDate>
+    <!--Optional:-->
+    <invalidityReasonCode>token</invalidityReasonCode>
+    <restrictedUseSuspendedGoods>0</restrictedUseSuspendedGoods>
+    <CustomsOfficeOfGuarantee>
+      <referenceNumber>stringst</referenceNumber>
+    </CustomsOfficeOfGuarantee>
+  </GuaranteeReference>
+</ncts:CC225C>

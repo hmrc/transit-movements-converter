@@ -1,0 +1,191 @@
+<ncts:CC044C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <TransitOperation>
+    <MRN>string</MRN>
+    <!--Optional:-->
+    <otherThingsToReport>string</otherThingsToReport>
+  </TransitOperation>
+  <CustomsOfficeOfDestinationActual>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDestinationActual>
+  <TraderAtDestination>
+    <identificationNumber>string</identificationNumber>
+  </TraderAtDestination>
+  <UnloadingRemark>
+    <conform>0</conform>
+    <unloadingCompletion>0</unloadingCompletion>
+    <unloadingDate>2018-11-01+00:00</unloadingDate>
+    <!--Optional:-->
+    <stateOfSeals>0</stateOfSeals>
+    <!--Optional:-->
+    <unloadingRemark>string</unloadingRemark>
+  </UnloadingRemark>
+  <!--Optional:-->
+  <Consignment>
+    <!--Optional:-->
+    <grossMass>1000.000000000000</grossMass>
+    <!--0 to 9999 repetitions:-->
+    <TransportEquipment>
+      <sequenceNumber>100</sequenceNumber>
+      <!--Optional:-->
+      <containerIdentificationNumber>string</containerIdentificationNumber>
+      <!--Optional:-->
+      <numberOfSeals>100</numberOfSeals>
+      <!--0 to 99 repetitions:-->
+      <Seal>
+        <sequenceNumber>100</sequenceNumber>
+        <identifier>string</identifier>
+      </Seal>
+      <!--0 to 9999 repetitions:-->
+      <GoodsReference>
+        <sequenceNumber>100</sequenceNumber>
+        <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+      </GoodsReference>
+    </TransportEquipment>
+    <!--0 to 999 repetitions:-->
+    <DepartureTransportMeans>
+      <sequenceNumber>100</sequenceNumber>
+      <!--Optional:-->
+      <typeOfIdentification>token</typeOfIdentification>
+      <!--Optional:-->
+      <identificationNumber>string</identificationNumber>
+      <!--Optional:-->
+      <nationality>st</nationality>
+    </DepartureTransportMeans>
+    <!--0 to 99 repetitions:-->
+    <SupportingDocument>
+      <sequenceNumber>100</sequenceNumber>
+      <!--Optional:-->
+      <type>token</type>
+      <!--Optional:-->
+      <referenceNumber>string</referenceNumber>
+      <!--Optional:-->
+      <complementOfInformation>string</complementOfInformation>
+    </SupportingDocument>
+    <!--0 to 99 repetitions:-->
+    <TransportDocument>
+      <sequenceNumber>100</sequenceNumber>
+      <!--Optional:-->
+      <type>token</type>
+      <!--Optional:-->
+      <referenceNumber>string</referenceNumber>
+    </TransportDocument>
+    <!--0 to 99 repetitions:-->
+    <AdditionalReference>
+      <sequenceNumber>100</sequenceNumber>
+      <!--Optional:-->
+      <type>token</type>
+      <!--Optional:-->
+      <referenceNumber>string</referenceNumber>
+    </AdditionalReference>
+    <!--0 to 1999 repetitions:-->
+    <HouseConsignment>
+      <sequenceNumber>100</sequenceNumber>
+      <!--Optional:-->
+      <grossMass>1000.000000000000</grossMass>
+      <!--0 to 999 repetitions:-->
+      <DepartureTransportMeans>
+        <sequenceNumber>100</sequenceNumber>
+        <!--Optional:-->
+        <typeOfIdentification>token</typeOfIdentification>
+        <!--Optional:-->
+        <identificationNumber>string</identificationNumber>
+        <!--Optional:-->
+        <nationality>st</nationality>
+      </DepartureTransportMeans>
+      <!--0 to 99 repetitions:-->
+      <SupportingDocument>
+        <sequenceNumber>100</sequenceNumber>
+        <!--Optional:-->
+        <type>token</type>
+        <!--Optional:-->
+        <referenceNumber>string</referenceNumber>
+        <!--Optional:-->
+        <complementOfInformation>string</complementOfInformation>
+      </SupportingDocument>
+      <!--0 to 99 repetitions:-->
+      <TransportDocument>
+        <sequenceNumber>100</sequenceNumber>
+        <!--Optional:-->
+        <type>token</type>
+        <!--Optional:-->
+        <referenceNumber>string</referenceNumber>
+      </TransportDocument>
+      <!--0 to 99 repetitions:-->
+      <AdditionalReference>
+        <sequenceNumber>100</sequenceNumber>
+        <!--Optional:-->
+        <type>token</type>
+        <!--Optional:-->
+        <referenceNumber>string</referenceNumber>
+      </AdditionalReference>
+      <!--0 to 999 repetitions:-->
+      <ConsignmentItem>
+        <goodsItemNumber>100</goodsItemNumber>
+        <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+        <!--Optional:-->
+        <Commodity>
+          <!--Optional:-->
+          <descriptionOfGoods>string</descriptionOfGoods>
+          <!--Optional:-->
+          <cusCode>token</cusCode>
+          <!--Optional:-->
+          <CommodityCode>
+            <harmonizedSystemSubHeadingCode>token</harmonizedSystemSubHeadingCode>
+            <!--Optional:-->
+            <combinedNomenclatureCode>st</combinedNomenclatureCode>
+          </CommodityCode>
+          <!--Optional:-->
+          <GoodsMeasure>
+            <!--Optional:-->
+            <grossMass>1000.000000000000</grossMass>
+            <!--Optional:-->
+            <netMass>1000.000000000000</netMass>
+          </GoodsMeasure>
+        </Commodity>
+        <!--0 to 99 repetitions:-->
+        <Packaging>
+          <sequenceNumber>100</sequenceNumber>
+          <!--Optional:-->
+          <typeOfPackages>token</typeOfPackages>
+          <!--Optional:-->
+          <numberOfPackages>100</numberOfPackages>
+          <!--Optional:-->
+          <shippingMarks>string</shippingMarks>
+        </Packaging>
+        <!--0 to 99 repetitions:-->
+        <SupportingDocument>
+          <sequenceNumber>100</sequenceNumber>
+          <!--Optional:-->
+          <type>token</type>
+          <!--Optional:-->
+          <referenceNumber>string</referenceNumber>
+          <!--Optional:-->
+          <complementOfInformation>string</complementOfInformation>
+        </SupportingDocument>
+        <!--0 to 99 repetitions:-->
+        <TransportDocument>
+          <sequenceNumber>100</sequenceNumber>
+          <!--Optional:-->
+          <type>token</type>
+          <!--Optional:-->
+          <referenceNumber>string</referenceNumber>
+        </TransportDocument>
+        <!--0 to 99 repetitions:-->
+        <AdditionalReference>
+          <sequenceNumber>100</sequenceNumber>
+          <!--Optional:-->
+          <type>token</type>
+          <!--Optional:-->
+          <referenceNumber>string</referenceNumber>
+        </AdditionalReference>
+      </ConsignmentItem>
+    </HouseConsignment>
+  </Consignment>
+</ncts:CC044C>

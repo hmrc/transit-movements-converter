@@ -1,0 +1,14 @@
+After putting the DDNTA 5.15.2 Version 2 XSD schema files from the DDNTA Appendices X folder:
+
+<!--===== This Custom_ctypes.xsd file contains the only changes to the DDNTA ctypes.xsd.    -->
+<!--===== This file must be place in the folder that contains the "Include-files" folder.   -->
+<!--===== The ctypes.xsd remains as per the DDNTA, but must be in the "Include-files" folder-->
+<!--===== This matches exactly the structured on ERMIS and wont change any other IE messages-->
+
+<!--===== The altered IE messages, IE025, IE029 and IE043:                                  -->
+<!--===== CUSTOM_ConsignmentType05 is the only alteraton in the IE043 XSD.                  -->
+<!--===== CUSTOM_ConsignmentType04 is the only alteraton in the IE029 XSD.                  -->
+<!--===== CUSTOM_ConsignmentType03 is the only alteraton in the IE025 XSD.                  -->
+<!--===== This is a label chang for custom types only as seen in custom_ctypes.xsd.         -->
+<!--===== GoodsMeasure and PlaceOfLoading have been made Optional for IE025, IE029 & IE045  -->
+<!--===== These files (IE025, IE029 & IE045) should replace their DDNTA versions.           -->

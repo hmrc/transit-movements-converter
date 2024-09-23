@@ -1,0 +1,23 @@
+<ncts:CC906C PhaseID="NCTS5. 1" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <Header>
+    <!--Optional:-->
+    <LRN>string</LRN>
+    <!--Optional:-->
+    <MRN>string</MRN>
+  </Header>
+  <!--1 to 9999 repetitions:-->
+  <FunctionalError>
+    <errorPointer>string</errorPointer>
+    <errorCode>14</errorCode>
+    <errorReason>string</errorReason>
+    <!--Optional:-->
+    <originalAttributeValue>string</originalAttributeValue>
+  </FunctionalError>
+</ncts:CC906C>

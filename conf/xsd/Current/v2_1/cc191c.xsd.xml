@@ -1,0 +1,45 @@
+<ncts:CC191C PhaseID="NCTS5. 1" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <TransitOperation>
+    <!--Optional:-->
+    <LRN>string</LRN>
+    <!--Optional:-->
+    <MRN>string</MRN>
+  </TransitOperation>
+  <CustomsOfficeOfExit>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfExit>
+  <CustomsOfficeOfDeparture>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDeparture>
+  <AESResults>
+    <AESCommunicationPurpose>token</AESCommunicationPurpose>
+    <responseDateAndTime>2014-06-09T16:15:04+01:00</responseDateAndTime>
+    <globalValidationResponse>1</globalValidationResponse>
+    <!--1 to 99 repetitions:-->
+    <ExportOperation>
+      <sequenceNumber>token</sequenceNumber>
+      <MRN>string</MRN>
+      <security>token</security>
+      <resultIndicator>token</resultIndicator>
+      <!--Optional:-->
+      <GoodsShipment>
+        <!--1 to 999 repetitions:-->
+        <GoodsItem>
+          <exportDeclarationGoodsItemNumber>100</exportDeclarationGoodsItemNumber>
+          <transitDeclarationGoodsItemNumber>100</transitDeclarationGoodsItemNumber>
+          <PreviousDocument>
+            <type>token</type>
+            <referenceNumber>string</referenceNumber>
+          </PreviousDocument>
+        </GoodsItem>
+      </GoodsShipment>
+    </ExportOperation>
+  </AESResults>
+</ncts:CC191C>

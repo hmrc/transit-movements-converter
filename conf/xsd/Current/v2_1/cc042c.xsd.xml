@@ -1,0 +1,31 @@
+<ncts:CC042C PhaseID="NCTS5. 1" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <TransitOperation>
+    <MRN>string</MRN>
+    <declarationType>strin</declarationType>
+  </TransitOperation>
+  <!--1 to 99 repetitions:-->
+  <ExportOperation>
+    <sequenceNumber>token</sequenceNumber>
+    <MRN>string</MRN>
+    <ControlResult>
+      <code>token</code>
+      <date>2014-06-09+01:00</date>
+    </ControlResult>
+  </ExportOperation>
+  <CustomsOfficeOfExit>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfExit>
+  <CustomsOfficeOfDeparture>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDeparture>
+  <CustomsOfficeOfDestination>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDestination>
+</ncts:CC042C>

@@ -1,0 +1,31 @@
+<ncts:CC057C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <TransitOperation>
+    <MRN>string</MRN>
+    <businessRejectionType>token</businessRejectionType>
+    <rejectionDateAndTime>2014-06-09T16:15:04+01:00</rejectionDateAndTime>
+    <rejectionCode>token</rejectionCode>
+    <!--Optional:-->
+    <rejectionReason>string</rejectionReason>
+  </TransitOperation>
+  <CustomsOfficeOfDestinationActual>
+    <referenceNumber>stringst</referenceNumber>
+  </CustomsOfficeOfDestinationActual>
+  <TraderAtDestination>
+    <identificationNumber>string</identificationNumber>
+  </TraderAtDestination>
+  <!--0 to 9999 repetitions:-->
+  <FunctionalError>
+    <errorPointer>string</errorPointer>
+    <errorCode>13</errorCode>
+    <errorReason>string</errorReason>
+    <!--Optional:-->
+    <originalAttributeValue>string</originalAttributeValue>
+  </FunctionalError>
+</ncts:CC057C>

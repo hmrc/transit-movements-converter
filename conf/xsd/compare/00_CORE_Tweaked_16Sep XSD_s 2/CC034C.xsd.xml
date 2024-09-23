@@ -1,0 +1,32 @@
+<ncts:CC034C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <Requester>
+    <identificationNumber>string</identificationNumber>
+    <role>token</role>
+  </Requester>
+  <!--1 to 99 repetitions:-->
+  <GuaranteeReference>
+    <sequenceNumber>100</sequenceNumber>
+    <GRN>string</GRN>
+    <GuaranteeQuery>
+      <queryIdentifier>token</queryIdentifier>
+      <!--Optional:-->
+      <periodFromDate>2014-06-09+01:00</periodFromDate>
+      <!--Optional:-->
+      <periodToDate>2008-11-15</periodToDate>
+    </GuaranteeQuery>
+    <!--Optional:-->
+    <Owner>
+      <identificationNumber>string</identificationNumber>
+    </Owner>
+    <AccessCode>
+      <accessCode>stri</accessCode>
+    </AccessCode>
+  </GuaranteeReference>
+</ncts:CC034C>

@@ -1,0 +1,29 @@
+<ncts:CC229C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <Guarantor>
+    <identificationNumber>string</identificationNumber>
+    <!--Optional:-->
+    <name>string</name>
+    <!--Optional:-->
+    <Address>
+      <streetAndNumber>string</streetAndNumber>
+      <!--Optional:-->
+      <postcode>string</postcode>
+      <city>string</city>
+      <country>MT</country>
+    </Address>
+  </Guarantor>
+  <GuaranteeReference>
+    <GRN>string</GRN>
+    <invalidityDate>2006-08-19+01:00</invalidityDate>
+    <CustomsOfficeOfGuarantee>
+      <referenceNumber>stringst</referenceNumber>
+    </CustomsOfficeOfGuarantee>
+  </GuaranteeReference>
+</ncts:CC229C>

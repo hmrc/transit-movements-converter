@@ -1,0 +1,23 @@
+<ncts:CC231C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+  <messageSender>token</messageSender>
+  <messageRecipient>token</messageRecipient>
+  <preparationDateAndTime>2007-10-26T07:36:28</preparationDateAndTime>
+  <messageIdentification>token</messageIdentification>
+  <messageType>CD975C</messageType>
+  <!--Optional:-->
+  <correlationIdentifier>token</correlationIdentifier>
+  <HolderOfTheTransitProcedure>
+    <identificationNumber>string</identificationNumber>
+  </HolderOfTheTransitProcedure>
+  <GuaranteeReference>
+    <GRN>string</GRN>
+    <invalidityDate>2014-06-09+01:00</invalidityDate>
+    <!--Optional:-->
+    <invalidityReasonCode>token</invalidityReasonCode>
+    <!--Optional:-->
+    <invalidityReasonText>string</invalidityReasonText>
+    <CustomsOfficeOfGuarantee>
+      <referenceNumber>stringst</referenceNumber>
+    </CustomsOfficeOfGuarantee>
+  </GuaranteeReference>
+</ncts:CC231C>
