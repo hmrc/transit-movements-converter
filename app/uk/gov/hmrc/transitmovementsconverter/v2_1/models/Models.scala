@@ -533,7 +533,7 @@ object Models {
         (__ \ cc025cRoot \ "TransitOperation").format[TransitOperationType10] and
         (__ \ cc025cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
         (__ \ cc025cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
-        (__ \ cc025cRoot \ "Consignment").formatNullable[ConsignmentType03] and
+        (__ \ cc025cRoot \ "Consignment").formatNullable[CUSTOM_ConsignmentType03] and
         (__ \ cc025cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -662,7 +662,7 @@ object Models {
         (__ \ cc029cRoot \ "Representative").formatNullable[RepresentativeType02] and
         (__ \ cc029cRoot \ "ControlResult").formatNullable[ControlResultType02] and
         (__ \ cc029cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType03]] and
-        (__ \ cc029cRoot \ "Consignment").format[ConsignmentType04] and
+        (__ \ cc029cRoot \ "Consignment").format[CUSTOM_ConsignmentType04] and
         (__ \ cc029cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -819,7 +819,7 @@ object Models {
         (__ \ cc043cRoot \ "HolderOfTheTransitProcedure").formatNullable[HolderOfTheTransitProcedureType06] and
         (__ \ cc043cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
         (__ \ cc043cRoot \ "CTLControl").formatNullable[CTLControlType] and
-        (__ \ cc043cRoot \ "Consignment").formatNullable[ConsignmentType05] and
+        (__ \ cc043cRoot \ "Consignment").formatNullable[CUSTOM_ConsignmentType05] and
         (__ \ cc043cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
