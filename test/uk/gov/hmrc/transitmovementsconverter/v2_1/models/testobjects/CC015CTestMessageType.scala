@@ -77,7 +77,6 @@ object CC015CTestMessageType extends TestMessageType {
     Json.obj(
       "n1:CC015C" ->
         Json.obj(
-          "@PhaseID"               -> "NCTS5.0",
           "messageSender"          -> "token",
           "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
           "preparationDateAndTime" -> "2022-01-22T07:43:36",
@@ -102,7 +101,7 @@ object CC015CTestMessageType extends TestMessageType {
           ),
           "Guarantee" -> Json.arr(
             Json.obj(
-              "sequenceNumber"          -> "48711",
+              "sequenceNumber"          -> 48711,
               "guaranteeType"           -> "1",
               "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX",
               "GuaranteeReference"      -> Json.arr()
@@ -112,7 +111,7 @@ object CC015CTestMessageType extends TestMessageType {
             "grossMass" -> 6430669292.48125,
             "HouseConsignment" -> Json.arr(
               Json.obj(
-                "sequenceNumber"             -> "48711",
+                "sequenceNumber"             -> 48711,
                 "grossMass"                  -> 6430669292.48125,
                 "AdditionalSupplyChainActor" -> Json.arr(),
                 "DepartureTransportMeans"    -> Json.arr(),
@@ -123,7 +122,7 @@ object CC015CTestMessageType extends TestMessageType {
                 "AdditionalInformation"      -> Json.arr(),
                 "ConsignmentItem" -> Json.arr(
                   Json.obj(
-                    "goodsItemNumber"            -> "18914",
+                    "goodsItemNumber"            -> 18914,
                     "declarationGoodsItemNumber" -> 1458,
                     "AdditionalSupplyChainActor" -> Json.arr(),
                     "Commodity" -> Json.obj(
@@ -132,7 +131,7 @@ object CC015CTestMessageType extends TestMessageType {
                     ),
                     "Packaging" -> Json.arr(
                       Json.obj(
-                        "sequenceNumber" -> "48711",
+                        "sequenceNumber" -> 48711,
                         "typeOfPackages" -> "Oi"
                       )
                     ),
@@ -145,7 +144,8 @@ object CC015CTestMessageType extends TestMessageType {
                 )
               )
             )
-          )
+          ),
+          "@PhaseID" -> "NCTS5.0"
         )
     )
 

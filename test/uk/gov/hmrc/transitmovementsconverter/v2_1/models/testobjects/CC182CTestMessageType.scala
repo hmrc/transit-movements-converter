@@ -43,7 +43,7 @@ object CC182CTestMessageType extends TestMessageType {
     </CustomsOfficeOfIncidentRegistration>
     <Consignment>
       <Incident>
-        <sequenceNumber>token</sequenceNumber>
+        <sequenceNumber>100</sequenceNumber>
         <code>token</code>
         <text>string</text>
         <Endorsement>
@@ -67,16 +67,15 @@ object CC182CTestMessageType extends TestMessageType {
           </Address>
         </Location>
         <TransportEquipment>
-          <sequenceNumber>token</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
           <containerIdentificationNumber>string</containerIdentificationNumber>
           <numberOfSeals>100</numberOfSeals>
           <Seal>
-            <sequenceNumber>token</sequenceNumber>
-            <identifier>string</identifier>
+            <sequenceNumber>100</sequenceNumber>           <identifier>string</identifier>
           </Seal>
           <GoodsReference>
-            <sequenceNumber>token</sequenceNumber>
-            <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+            <sequenceNumber>100</sequenceNumber>
+           <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           </GoodsReference>
         </TransportEquipment>
         <Transhipment>
@@ -93,98 +92,83 @@ object CC182CTestMessageType extends TestMessageType {
 
   lazy val json1 = Json.parse(
     """
-        |{
-        |    "n1:CC182C":
-        |    {
-        |        "preparationDateAndTime": "2007-10-26T07:36:28",
-        |        "TransitOperation":
-        |        {
-        |            "MRN": "string",
-        |            "incidentNotificationDateAndTime": "2014-06-09T16:15:04+01:00"
-        |        },
-        |        "CustomsOfficeOfDeparture":
-        |        {
-        |            "referenceNumber": "stringst"
-        |        },
-        |        "messageType": "CC182C",
-        |        "@PhaseID": "NCTS5.0",
-        |        "correlationIdentifier": "token",
-        |        "messageSender": "token",
-        |        "messageRecipient": "token",
-        |        "Consignment":
-        |        {
-        |            "Incident":
-        |            [
-        |                {
-        |                    "sequenceNumber": "token",
-        |                    "code": "token",
-        |                    "text": "string",
-        |                    "Endorsement":
-        |                    {
-        |                        "date": "2008-11-15",
-        |                        "authority": "string",
-        |                        "place": "string",
-        |                        "country": "st"
-        |                    },
-        |                    "Location":
-        |                    {
-        |                        "qualifierOfIdentification": "token",
-        |                        "UNLocode": "token",
-        |                        "country": "st",
-        |                        "GNSS":
-        |                        {
-        |                            "latitude": "string",
-        |                            "longitude": "string"
-        |                        },
-        |                        "Address":
-        |                        {
-        |                            "streetAndNumber": "string",
-        |                            "postcode": "string",
-        |                            "city": "string"
-        |                        }
-        |                    },
-        |                    "TransportEquipment":
-        |                    [
-        |                        {
-        |                            "sequenceNumber": "token",
-        |                            "containerIdentificationNumber": "string",
-        |                            "numberOfSeals": 100,
-        |                            "Seal":
-        |                            [
-        |                                {
-        |                                    "sequenceNumber": "token",
-        |                                    "identifier": "string"
-        |                                }
-        |                            ],
-        |                            "GoodsReference":
-        |                            [
-        |                                {
-        |                                    "sequenceNumber": "token",
-        |                                    "declarationGoodsItemNumber": 100
-        |                                }
-        |                            ]
-        |                        }
-        |                    ],
-        |                    "Transhipment":
-        |                    {
-        |                        "containerIndicator": "0",
-        |                        "TransportMeans":
-        |                        {
-        |                            "typeOfIdentification": "token",
-        |                            "identificationNumber": "string",
-        |                            "nationality": "st"
-        |                        }
-        |                    }
-        |                }
-        |            ]
-        |        },
-        |        "messageIdentification": "token",
-        |        "CustomsOfficeOfIncidentRegistration":
-        |        {
-        |            "referenceNumber": "stringst"
-        |        }
-        |    }
-        |}
+      |{
+      |  "n1:CC182C": {
+      |    "messageSender": "token",
+      |    "messageRecipient": "token",
+      |    "preparationDateAndTime": "2007-10-26T07:36:28",
+      |    "messageIdentification": "token",
+      |    "messageType": "CC182C",
+      |    "correlationIdentifier": "token",
+      |    "TransitOperation": {
+      |      "MRN": "string",
+      |      "incidentNotificationDateAndTime": "2014-06-09T16:15:04+01:00"
+      |    },
+      |    "CustomsOfficeOfDeparture": {
+      |      "referenceNumber": "stringst"
+      |    },
+      |    "CustomsOfficeOfIncidentRegistration": {
+      |      "referenceNumber": "stringst"
+      |    },
+      |    "Consignment": {
+      |      "Incident": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "code": "token",
+      |          "text": "string",
+      |          "Endorsement": {
+      |            "date": "2008-11-15",
+      |            "authority": "string",
+      |            "place": "string",
+      |            "country": "st"
+      |          },
+      |          "Location": {
+      |            "qualifierOfIdentification": "token",
+      |            "UNLocode": "token",
+      |            "country": "st",
+      |            "GNSS": {
+      |              "latitude": "string",
+      |              "longitude": "string"
+      |            },
+      |            "Address": {
+      |              "streetAndNumber": "string",
+      |              "postcode": "string",
+      |              "city": "string"
+      |            }
+      |          },
+      |          "TransportEquipment": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "containerIdentificationNumber": "string",
+      |              "numberOfSeals": 100,
+      |              "Seal": [
+      |                {
+      |                  "sequenceNumber": 100,
+      |                  "identifier": "string"
+      |                }
+      |              ],
+      |              "GoodsReference": [
+      |                {
+      |                  "sequenceNumber": 100,
+      |                  "declarationGoodsItemNumber": 100
+      |                }
+      |              ]
+      |            }
+      |          ],
+      |          "Transhipment": {
+      |            "containerIndicator": "0",
+      |            "TransportMeans": {
+      |              "typeOfIdentification": "token",
+      |              "identificationNumber": "string",
+      |              "nationality": "st"
+      |            }
+      |          }
+      |        }
+      |      ]
+      |    },
+      |    "@PhaseID": "NCTS5.0"
+      |  }
+      |}
         |""".stripMargin
   )
 

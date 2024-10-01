@@ -78,19 +78,18 @@ object CC170CTestMessageType extends TestMessageType {
         <modeOfTransportAtTheBorder>token</modeOfTransportAtTheBorder>
         <!--0 to 9999 repetitions:-->
         <TransportEquipment>
-          <sequenceNumber>token</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
           <!--Optional:-->
           <containerIdentificationNumber>string</containerIdentificationNumber>
           <numberOfSeals>100</numberOfSeals>
           <!--0 to 99 repetitions:-->
           <Seal>
-            <sequenceNumber>token</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
             <identifier>string</identifier>
           </Seal>
           <!--0 to 9999 repetitions:-->
           <GoodsReference>
-            <sequenceNumber>token</sequenceNumber>
-            <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+            <sequenceNumber>100</sequenceNumber>            <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           </GoodsReference>
         </TransportEquipment>
         <LocationOfGoods>
@@ -140,15 +139,14 @@ object CC170CTestMessageType extends TestMessageType {
         </LocationOfGoods>
         <!--0 to 999 repetitions:-->
         <DepartureTransportMeans>
-          <sequenceNumber>token</sequenceNumber>
-          <typeOfIdentification>token</typeOfIdentification>
+          <sequenceNumber>100</sequenceNumber>
+         <typeOfIdentification>token</typeOfIdentification>
           <identificationNumber>string</identificationNumber>
           <nationality>st</nationality>
         </DepartureTransportMeans>
         <!--0 to 9 repetitions:-->
         <ActiveBorderTransportMeans>
-          <sequenceNumber>token</sequenceNumber>
-          <customsOfficeAtBorderReferenceNumber>token</customsOfficeAtBorderReferenceNumber>
+          <sequenceNumber>100</sequenceNumber>         <customsOfficeAtBorderReferenceNumber>token</customsOfficeAtBorderReferenceNumber>
           <typeOfIdentification>token</typeOfIdentification>
           <identificationNumber>string</identificationNumber>
           <nationality>st</nationality>
@@ -166,11 +164,10 @@ object CC170CTestMessageType extends TestMessageType {
         </PlaceOfLoading>
         <!--1 to 99 repetitions:-->
         <HouseConsignment>
-          <sequenceNumber>token</sequenceNumber>
-          <!--0 to 999 repetitions:-->
+          <sequenceNumber>100</sequenceNumber>
+         <!--0 to 999 repetitions:-->
           <DepartureTransportMeans>
-            <sequenceNumber>token</sequenceNumber>
-            <typeOfIdentification>token</typeOfIdentification>
+            <sequenceNumber>100</sequenceNumber>          <typeOfIdentification>token</typeOfIdentification>
             <identificationNumber>string</identificationNumber>
             <nationality>st</nationality>
           </DepartureTransportMeans>
@@ -180,137 +177,137 @@ object CC170CTestMessageType extends TestMessageType {
 
   lazy val json1 = Json.parse(
     """
-        |{
-        |    "n1:CC170C": {
-        |        "preparationDateAndTime": "2007-10-26T07:36:28",
-        |        "TransitOperation": {
-        |            "LRN": "string",
-        |            "limitDate": "2014-06-09+01:00"
-        |        },
-        |        "CustomsOfficeOfDeparture": {
-        |            "referenceNumber": "stringst"
-        |        },
-        |        "messageType": "CC170C",
-        |        "@PhaseID": "NCTS5.0",
-        |        "correlationIdentifier": "token",
-        |        "messageRecipient": "token",
-        |         "messageSender": "token",
-        |        "HolderOfTheTransitProcedure": {
-        |            "identificationNumber": "string",
-        |            "TIRHolderIdentificationNumber": "string",
-        |            "name": "string",
-        |            "Address": {
-        |                "streetAndNumber": "string",
-        |                "postcode": "string",
-        |                "city": "string",
-        |                "country": "st"
-        |            }
-        |        },
-        |        "Consignment": {
-        |            "containerIndicator": "1",
-        |            "inlandModeOfTransport": "token",
-        |            "modeOfTransportAtTheBorder": "token",
-        |            "TransportEquipment": [
-        |                {
-        |                    "sequenceNumber": "token",
-        |                    "containerIdentificationNumber": "string",
-        |                    "numberOfSeals": 100,
-        |                    "Seal": [
-        |                        {
-        |                            "sequenceNumber": "token",
-        |                            "identifier": "string"
-        |                        }
-        |                    ],
-        |                    "GoodsReference": [
-        |                        {
-        |                            "sequenceNumber": "token",
-        |                            "declarationGoodsItemNumber": 100
-        |                        }
-        |                    ]
-        |                }
-        |            ],
-        |            "LocationOfGoods": {
-        |                "typeOfLocation": "token",
-        |                "qualifierOfIdentification": "token",
-        |                "authorisationNumber": "string",
-        |                "additionalIdentifier": "stri",
-        |                "UNLocode": "token",
-        |                "CustomsOffice": {
-        |                    "referenceNumber": "stringst"
-        |                },
-        |                "GNSS": {
-        |                    "latitude": "string",
-        |                    "longitude": "string"
-        |                },
-        |                "EconomicOperator": {
-        |                    "identificationNumber": "string"
-        |                },
-        |                "Address": {
-        |                    "streetAndNumber": "string",
-        |                    "postcode": "string",
-        |                    "city": "string",
-        |                    "country": "st"
-        |                },
-        |                "PostcodeAddress": {
-        |                    "houseNumber": "string",
-        |                    "postcode": "string",
-        |                    "country": "st"
-        |                },
-        |                "ContactPerson": {
-        |                    "name": "string",
-        |                    "phoneNumber": "token",
-        |                    "eMailAddress": "string"
-        |                }
-        |            },
-        |            "DepartureTransportMeans": [
-        |                {
-        |                    "sequenceNumber": "token",
-        |                    "typeOfIdentification": "token",
-        |                    "identificationNumber": "string",
-        |                    "nationality": "st"
-        |                }
-        |            ],
-        |            "ActiveBorderTransportMeans": [
-        |                {
-        |                    "sequenceNumber": "token",
-        |                    "customsOfficeAtBorderReferenceNumber": "token",
-        |                    "typeOfIdentification": "token",
-        |                    "identificationNumber": "string",
-        |                    "nationality": "st",
-        |                    "conveyanceReferenceNumber": "string"
-        |                }
-        |            ],
-        |            "PlaceOfLoading": {
-        |                "UNLocode": "token",
-        |                "country": "st",
-        |                "location": "string"
-        |            },
-        |            "HouseConsignment": [
-        |                {
-        |                    "sequenceNumber": "token",
-        |                    "DepartureTransportMeans": [
-        |                        {
-        |                            "sequenceNumber": "token",
-        |                            "typeOfIdentification": "token",
-        |                            "identificationNumber": "string",
-        |                            "nationality": "st"
-        |                        }
-        |                    ]
-        |                }
-        |            ]
-        |        },
-        |        "Representative": {
-        |            "identificationNumber": "string",
-        |            "status": "token",
-        |            "ContactPerson": {
-        |                "name": "string",
-        |                "phoneNumber": "token",
-        |                "eMailAddress": "string"
-        |            }
-        |        },
-        |        "messageIdentification": "token"
-        |    }
-        |}
+      |{
+      |  "n1:CC170C": {
+      |    "messageSender": "token",
+      |    "messageRecipient": "token",
+      |    "preparationDateAndTime": "2007-10-26T07:36:28",
+      |    "messageIdentification": "token",
+      |    "messageType": "CC170C",
+      |    "correlationIdentifier": "token",
+      |    "TransitOperation": {
+      |      "LRN": "string",
+      |      "limitDate": "2014-06-09+01:00"
+      |    },
+      |    "CustomsOfficeOfDeparture": {
+      |      "referenceNumber": "stringst"
+      |    },
+      |    "HolderOfTheTransitProcedure": {
+      |      "identificationNumber": "string",
+      |      "TIRHolderIdentificationNumber": "string",
+      |      "name": "string",
+      |      "Address": {
+      |        "streetAndNumber": "string",
+      |        "postcode": "string",
+      |        "city": "string",
+      |        "country": "st"
+      |      }
+      |    },
+      |    "Representative": {
+      |      "identificationNumber": "string",
+      |      "status": "token",
+      |      "ContactPerson": {
+      |        "name": "string",
+      |        "phoneNumber": "token",
+      |        "eMailAddress": "string"
+      |      }
+      |    },
+      |    "Consignment": {
+      |      "containerIndicator": "1",
+      |      "inlandModeOfTransport": "token",
+      |      "modeOfTransportAtTheBorder": "token",
+      |      "TransportEquipment": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "containerIdentificationNumber": "string",
+      |          "numberOfSeals": 100,
+      |          "Seal": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "identifier": "string"
+      |            }
+      |          ],
+      |          "GoodsReference": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "declarationGoodsItemNumber": 100
+      |            }
+      |          ]
+      |        }
+      |      ],
+      |      "LocationOfGoods": {
+      |        "typeOfLocation": "token",
+      |        "qualifierOfIdentification": "token",
+      |        "authorisationNumber": "string",
+      |        "additionalIdentifier": "stri",
+      |        "UNLocode": "token",
+      |        "CustomsOffice": {
+      |          "referenceNumber": "stringst"
+      |        },
+      |        "GNSS": {
+      |          "latitude": "string",
+      |          "longitude": "string"
+      |        },
+      |        "EconomicOperator": {
+      |          "identificationNumber": "string"
+      |        },
+      |        "Address": {
+      |          "streetAndNumber": "string",
+      |          "postcode": "string",
+      |          "city": "string",
+      |          "country": "st"
+      |        },
+      |        "PostcodeAddress": {
+      |          "houseNumber": "string",
+      |          "postcode": "string",
+      |          "country": "st"
+      |        },
+      |        "ContactPerson": {
+      |          "name": "string",
+      |          "phoneNumber": "token",
+      |          "eMailAddress": "string"
+      |        }
+      |      },
+      |      "DepartureTransportMeans": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "typeOfIdentification": "token",
+      |          "identificationNumber": "string",
+      |          "nationality": "st"
+      |        }
+      |      ],
+      |      "ActiveBorderTransportMeans": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "customsOfficeAtBorderReferenceNumber": "token",
+      |          "typeOfIdentification": "token",
+      |          "identificationNumber": "string",
+      |          "nationality": "st",
+      |          "conveyanceReferenceNumber": "string"
+      |        }
+      |      ],
+      |      "PlaceOfLoading": {
+      |        "UNLocode": "token",
+      |        "country": "st",
+      |        "location": "string"
+      |      },
+      |      "HouseConsignment": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "DepartureTransportMeans": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "typeOfIdentification": "token",
+      |              "identificationNumber": "string",
+      |              "nationality": "st"
+      |            }
+      |          ]
+      |        }
+      |      ]
+      |    },
+      |    "@PhaseID": "NCTS5.0"
+      |  }
+      |}
         |""".stripMargin
   )
 

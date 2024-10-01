@@ -56,10 +56,10 @@ object CC055CTestMessageType extends TestMessageType {
     </HolderOfTheTransitProcedure>
     <!--1 to 99 repetitions:-->
     <GuaranteeReference>
-      <sequenceNumber>token</sequenceNumber>
+      <sequenceNumber>100</sequenceNumber>
       <GRN>string</GRN>
       <InvalidGuaranteeReason>
-        <sequenceNumber>token</sequenceNumber>
+        <sequenceNumber>100</sequenceNumber>
         <code>token</code>
         <!--Optional:-->
         <text>string</text>
@@ -70,44 +70,45 @@ object CC055CTestMessageType extends TestMessageType {
   lazy val json1: JsValue = Json.parse(
     """
       |{
-      |    "n1:CC055C": {
-      |        "preparationDateAndTime": "2007-10-26T07:36:28",
-      |        "TransitOperation": {
-      |            "MRN": "string",
-      |            "declarationAcceptanceDate": "2014-06-09+01:00"
-      |        },
-      |        "CustomsOfficeOfDeparture": {
-      |            "referenceNumber": "stringst"
-      |        },
-      |        "messageType": "CC055C",
-      |        "@PhaseID": "NCTS5.0",
-      |        "correlationIdentifier": "token",
-      |        "messageSender": "token",
-      |        "messageRecipient": "token",
-      |        "HolderOfTheTransitProcedure": {
-      |            "identificationNumber": "string",
-      |            "name": "string",
-      |            "Address": {
-      |                "streetAndNumber": "string",
-      |                "postcode": "string",
-      |                "city": "string",
-      |                "country": "st"
-      |            }
-      |        },
-      |        "GuaranteeReference": [
-      |            {
-      |                "sequenceNumber": "token",
-      |                "GRN": "string",
-      |                "InvalidGuaranteeReason": [ {
-      |                    "sequenceNumber": "token",
-      |                    "code": "token",
-      |                    "text": "string"
-      |                }
-      |                ]
-      |            }
-      |        ],
-      |        "messageIdentification": "token"
-      |    }
+      |  "n1:CC055C": {
+      |    "messageSender": "token",
+      |    "messageRecipient": "token",
+      |    "preparationDateAndTime": "2007-10-26T07:36:28",
+      |    "messageIdentification": "token",
+      |    "messageType": "CC055C",
+      |    "correlationIdentifier": "token",
+      |    "TransitOperation": {
+      |      "MRN": "string",
+      |      "declarationAcceptanceDate": "2014-06-09+01:00"
+      |    },
+      |    "CustomsOfficeOfDeparture": {
+      |      "referenceNumber": "stringst"
+      |    },
+      |    "HolderOfTheTransitProcedure": {
+      |      "identificationNumber": "string",
+      |      "name": "string",
+      |      "Address": {
+      |        "streetAndNumber": "string",
+      |        "postcode": "string",
+      |        "city": "string",
+      |        "country": "st"
+      |      }
+      |    },
+      |    "GuaranteeReference": [
+      |      {
+      |        "sequenceNumber": 100,
+      |        "GRN": "string",
+      |        "InvalidGuaranteeReason": [
+      |          {
+      |            "sequenceNumber": 100,
+      |            "code": "token",
+      |            "text": "string"
+      |          }
+      |        ]
+      |      }
+      |    ],
+      |    "@PhaseID": "NCTS5.0"
+      |  }
       |}
       |""".stripMargin
   )

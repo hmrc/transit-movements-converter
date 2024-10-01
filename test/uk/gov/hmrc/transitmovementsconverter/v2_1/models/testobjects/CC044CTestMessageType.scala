@@ -52,77 +52,77 @@ object CC044CTestMessageType extends TestMessageType {
         <grossMass>1000.000000000001</grossMass>
         <!--0 to 9999 repetitions:-->
         <TransportEquipment>
-          <sequenceNumber>1122</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
           <!--0 to 99 repetitions:-->
           <Seal>
-            <sequenceNumber>sq1</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
             <identifier>id1</identifier>
           </Seal>
           <!--0 to 9999 repetitions:-->
           <GoodsReference>
-            <sequenceNumber>gr1</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
             <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           </GoodsReference>
         </TransportEquipment>
         <!--0 to 999 repetitions:-->
         <DepartureTransportMeans>
-          <sequenceNumber>dtm1</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
         </DepartureTransportMeans>
         <!--0 to 99 repetitions:-->
         <SupportingDocument>
-          <sequenceNumber>123</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
         </SupportingDocument>
         <!--0 to 99 repetitions:-->
         <TransportDocument>
-          <sequenceNumber>4567</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
         </TransportDocument>
         <!--0 to 99 repetitions:-->
         <AdditionalReference>
-          <sequenceNumber>ar2</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
           <!--Optional:-->
         </AdditionalReference>
         <!--0 to 99 repetitions:-->
         <HouseConsignment>
-          <sequenceNumber>hc1</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
           <!--Optional:-->
           <grossMass>3000.000000000002</grossMass>
           <!--0 to 999 repetitions:-->
           <DepartureTransportMeans>
-            <sequenceNumber>dtm1</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
           </DepartureTransportMeans>
           <!--0 to 99 repetitions:-->
           <SupportingDocument>
-            <sequenceNumber>sd1</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
           </SupportingDocument>
           <!--0 to 99 repetitions:-->
           <TransportDocument>
-            <sequenceNumber>td1</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
           </TransportDocument>
           <!--0 to 99 repetitions:-->
           <AdditionalReference>
-            <sequenceNumber>AD2</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
           </AdditionalReference>
           <!--0 to 999 repetitions:-->
           <ConsignmentItem>
-            <goodsItemNumber>token</goodsItemNumber>
+            <goodsItemNumber>100</goodsItemNumber>
             <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
             <!--0 to 99 repetitions:-->
             <Packaging>
-              <sequenceNumber>pkg123</sequenceNumber>
+              <sequenceNumber>100</sequenceNumber>
             </Packaging>
             <!--0 to 99 repetitions:-->
             <SupportingDocument>
-              <sequenceNumber>SD1</sequenceNumber>
+              <sequenceNumber>100</sequenceNumber>
             </SupportingDocument>
             <!--0 to 99 repetitions:-->
             <TransportDocument>
-              <sequenceNumber>TD1</sequenceNumber>
+              <sequenceNumber>100</sequenceNumber>
               <type>A</type>
               <referenceNumber>A1</referenceNumber>
             </TransportDocument>
             <!--0 to 99 repetitions:-->
             <AdditionalReference>
-              <sequenceNumber>ar22</sequenceNumber>
+              <sequenceNumber>100</sequenceNumber>
             </AdditionalReference>
           </ConsignmentItem>
         </HouseConsignment>
@@ -131,148 +131,125 @@ object CC044CTestMessageType extends TestMessageType {
 
   lazy val json1: JsValue = Json.parse(
     """
-    |{
-    |  "n1:CC044C":
-    |    {
-    |      "preparationDateAndTime": "2007-10-26T07:36:28",
-    |      "TransitOperation":
-    |    {
-    |      "MRN": "qvRcL"
-    |    },
-    |      "TraderAtDestination":
-    |    {
-    |      "identificationNumber": "G35dSwQ"
-    |    },
-    |      "UnloadingRemark":
-    |    {
-    |      "conform": "0",
-    |      "unloadingCompletion": "1",
-    |      "unloadingDate": "2018-11-01"
-    |    },
-    |      "messageType": "CC044C",
-    |      "@PhaseID": "NCTS5.0",
-    |      "messageSender": "token",
-    |      "correlationIdentifier": "token",
-    |      "messageRecipient": "token",
-    |      "Consignment":
-    |    {
-    |      "grossMass": 1000.000000000001,
-    |      "TransportEquipment":
-    |      [
-    |    {
-    |      "sequenceNumber": "1122",
-    |      "Seal":
-    |      [
-    |    {
-    |      "sequenceNumber": "sq1",
-    |      "identifier": "id1"
-    |    }
-    |      ],
-    |      "GoodsReference":
-    |      [
-    |    {
-    |      "sequenceNumber": "gr1",
-    |      "declarationGoodsItemNumber": 100
-    |    }
-    |      ]
-    |    }
-    |      ],
-    |      "DepartureTransportMeans":
-    |      [
-    |    {
-    |      "sequenceNumber": "dtm1"
-    |    }
-    |      ],
-    |      "SupportingDocument":
-    |      [
-    |    {
-    |      "sequenceNumber": "123"
-    |    }
-    |      ],
-    |      "TransportDocument":
-    |      [
-    |    {
-    |      "sequenceNumber": "4567"
-    |    }
-    |      ],
-    |      "AdditionalReference":
-    |      [
-    |    {
-    |      "sequenceNumber": "ar2"
-    |    }
-    |      ],
-    |      "HouseConsignment":
-    |      [
-    |    {
-    |      "sequenceNumber": "hc1",
-    |      "grossMass": 3000.000000000002,
-    |      "DepartureTransportMeans":
-    |      [
-    |    {
-    |      "sequenceNumber": "dtm1"
-    |    }
-    |      ],
-    |      "SupportingDocument":
-    |      [
-    |    {
-    |      "sequenceNumber": "sd1"
-    |    }
-    |      ],
-    |      "TransportDocument":
-    |      [
-    |    {
-    |      "sequenceNumber": "td1"
-    |    }
-    |      ],
-    |      "AdditionalReference":
-    |      [
-    |    {
-    |      "sequenceNumber": "AD2"
-    |    }
-    |      ],
-    |      "ConsignmentItem":
-    |      [
-    |    {
-    |      "goodsItemNumber": "token",
-    |      "declarationGoodsItemNumber": 100,
-    |      "Packaging":
-    |      [
-    |    {
-    |      "sequenceNumber": "pkg123"
-    |    }
-    |      ],
-    |      "SupportingDocument":
-    |      [
-    |    {
-    |      "sequenceNumber": "SD1"
-    |    }
-    |      ],
-    |      "TransportDocument":
-    |      [
-    |    {
-    |      "sequenceNumber": "TD1",
-    |      "referenceNumber": "A1",
-    |      "type": "A"
-    |    }
-    |      ],
-    |      "AdditionalReference":
-    |      [
-    |    {
-    |      "sequenceNumber": "ar22"
-    |    }
-    |      ]
-    |    }
-    |      ]
-    |    }
-    |      ]
-    |    },
-    |      "messageIdentification": "token",
-    |      "CustomsOfficeOfDestinationActual":
-    |    {
-    |      "referenceNumber": "ZQZ20443"
-    |    }
-    |    }
-    |}
+      |{
+      |  "n1:CC044C": {
+      |    "messageSender": "token",
+      |    "messageRecipient": "token",
+      |    "preparationDateAndTime": "2007-10-26T07:36:28",
+      |    "messageIdentification": "token",
+      |    "messageType": "CC044C",
+      |    "correlationIdentifier": "token",
+      |    "TransitOperation": {
+      |      "MRN": "qvRcL"
+      |    },
+      |    "CustomsOfficeOfDestinationActual": {
+      |      "referenceNumber": "ZQZ20443"
+      |    },
+      |    "TraderAtDestination": {
+      |      "identificationNumber": "G35dSwQ"
+      |    },
+      |    "UnloadingRemark": {
+      |      "conform": "0",
+      |      "unloadingCompletion": "1",
+      |      "unloadingDate": "2018-11-01"
+      |    },
+      |    "Consignment": {
+      |      "grossMass": 1000.000000000001,
+      |      "TransportEquipment": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "Seal": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "identifier": "id1"
+      |            }
+      |          ],
+      |          "GoodsReference": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "declarationGoodsItemNumber": 100
+      |            }
+      |          ]
+      |        }
+      |      ],
+      |      "DepartureTransportMeans": [
+      |        {
+      |          "sequenceNumber": 100
+      |        }
+      |      ],
+      |      "SupportingDocument": [
+      |        {
+      |          "sequenceNumber": 100
+      |        }
+      |      ],
+      |      "TransportDocument": [
+      |        {
+      |          "sequenceNumber": 100
+      |        }
+      |      ],
+      |      "AdditionalReference": [
+      |        {
+      |          "sequenceNumber": 100
+      |        }
+      |      ],
+      |      "HouseConsignment": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "grossMass": 3000.000000000002,
+      |          "DepartureTransportMeans": [
+      |            {
+      |              "sequenceNumber": 100
+      |            }
+      |          ],
+      |          "SupportingDocument": [
+      |            {
+      |              "sequenceNumber": 100
+      |            }
+      |          ],
+      |          "TransportDocument": [
+      |            {
+      |              "sequenceNumber": 100
+      |            }
+      |          ],
+      |          "AdditionalReference": [
+      |            {
+      |              "sequenceNumber": 100
+      |            }
+      |          ],
+      |          "ConsignmentItem": [
+      |            {
+      |              "goodsItemNumber": 100,
+      |              "declarationGoodsItemNumber": 100,
+      |              "Packaging": [
+      |                {
+      |                  "sequenceNumber": 100
+      |                }
+      |              ],
+      |              "SupportingDocument": [
+      |                {
+      |                  "sequenceNumber": 100
+      |                }
+      |              ],
+      |              "TransportDocument": [
+      |                {
+      |                  "sequenceNumber": 100,
+      |                  "referenceNumber": "A1",
+      |                  "type": "A"
+      |                }
+      |              ],
+      |              "AdditionalReference": [
+      |                {
+      |                  "sequenceNumber": 100
+      |                }
+      |              ]
+      |            }
+      |          ]
+      |        }
+      |      ]
+      |    },
+      |    "@PhaseID": "NCTS5.0"
+      |  }
+      |}
     |""".stripMargin
   )
 }

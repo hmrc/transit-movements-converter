@@ -47,11 +47,11 @@ object CC025CTestMessageType extends TestMessageType {
     <Consignment>
       <!--1 to 99 repetitions:-->
       <HouseConsignment>
-        <sequenceNumber>token</sequenceNumber>
+        <sequenceNumber>100</sequenceNumber>
         <releaseType>token</releaseType>
         <!--0 to 999 repetitions:-->
         <ConsignmentItem>
-          <goodsItemNumber>token</goodsItemNumber>
+          <goodsItemNumber>100</goodsItemNumber>
           <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           <releaseType>token</releaseType>
           <Commodity>
@@ -66,14 +66,13 @@ object CC025CTestMessageType extends TestMessageType {
             </CommodityCode>
             <!--0 to 99 repetitions:-->
             <DangerousGoods>
-              <sequenceNumber>token</sequenceNumber>
+              <sequenceNumber>100</sequenceNumber>
               <UNNumber>token</UNNumber>
             </DangerousGoods>
           </Commodity>
           <!--1 to 99 repetitions:-->
           <Packaging>
-            <sequenceNumber>token</sequenceNumber>
-            <typeOfPackages>token</typeOfPackages>
+            <sequenceNumber>100</sequenceNumber>            <typeOfPackages>token</typeOfPackages>
             <!--Optional:-->
             <numberOfPackages>100</numberOfPackages>
             <!--Optional:-->
@@ -110,12 +109,12 @@ object CC025CTestMessageType extends TestMessageType {
       |      "HouseConsignment":
       |      [
       |    {
-      |      "sequenceNumber": "token",
+      |      "sequenceNumber": 100,
       |      "releaseType": "token",
       |      "ConsignmentItem":
       |      [
       |    {
-      |      "goodsItemNumber": "token",
+      |      "goodsItemNumber": 100,
       |      "declarationGoodsItemNumber": 100,
       |      "releaseType": "token",
       |      "Commodity":
@@ -130,7 +129,7 @@ object CC025CTestMessageType extends TestMessageType {
       |      "DangerousGoods":
       |      [
       |    {
-      |      "sequenceNumber": "token",
+      |      "sequenceNumber": 100,
       |      "UNNumber": "token"
       |    }
       |      ]
@@ -138,7 +137,7 @@ object CC025CTestMessageType extends TestMessageType {
       |      "Packaging":
       |      [
       |    {
-      |      "sequenceNumber": "token",
+      |      "sequenceNumber": 100,
       |      "typeOfPackages": "token",
       |      "numberOfPackages": 100,
       |      "shippingMarks": "string"
