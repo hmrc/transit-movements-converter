@@ -23,7 +23,7 @@ import scala.xml.NodeSeq
 
 object CC007CTestMessageType extends TestMessageType {
 
-  override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1, xmlPhase51 -> jsonPhase51)
+  override lazy val testAssociations: IndexedSeq[(NodeSeq, JsValue)] = IndexedSeq(xml1 -> json1)
 
   lazy val xml1 = <ncts:CC007C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
     <messageSender>token</messageSender>
@@ -41,7 +41,7 @@ object CC007CTestMessageType extends TestMessageType {
     </TransitOperation>
     <!--0 to 9 repetitions:-->
     <Authorisation>
-      <sequenceNumber>token</sequenceNumber>
+      <sequenceNumber>100</sequenceNumber>
       <type>token</type>
       <referenceNumber>string</referenceNumber>
     </Authorisation>
@@ -101,7 +101,7 @@ object CC007CTestMessageType extends TestMessageType {
       </LocationOfGoods>
       <!--0 to 9 repetitions:-->
       <Incident>
-        <sequenceNumber>token</sequenceNumber>
+        <sequenceNumber>100</sequenceNumber>
         <code>token</code>
         <text>string</text>
         <!--Optional:-->
@@ -131,20 +131,18 @@ object CC007CTestMessageType extends TestMessageType {
         </Location>
         <!--0 to 9999 repetitions:-->
         <TransportEquipment>
-          <sequenceNumber>token</sequenceNumber>
-          <!--Optional:-->
+          <sequenceNumber>100</sequenceNumber>          <!--Optional:-->
           <containerIdentificationNumber>string</containerIdentificationNumber>
           <!--Optional:-->
           <numberOfSeals>100</numberOfSeals>
           <!--0 to 99 repetitions:-->
           <Seal>
-            <sequenceNumber>token</sequenceNumber>
-            <identifier>string</identifier>
+            <sequenceNumber>100</sequenceNumber>
+          <identifier>string</identifier>
           </Seal>
           <!--0 to 9999 repetitions:-->
           <GoodsReference>
-            <sequenceNumber>token</sequenceNumber>
-            <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+            <sequenceNumber>100</sequenceNumber>           <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           </GoodsReference>
         </TransportEquipment>
         <!--Optional:-->
@@ -162,125 +160,125 @@ object CC007CTestMessageType extends TestMessageType {
 
   lazy val json1 = Json.parse(
     """
-      |{
-      |    "n1:CC007C": {
-      |        "preparationDateAndTime": "2007-10-26T07:36:28",
-      |        "TransitOperation": {
-      |            "MRN": "string",
-      |            "arrivalNotificationDateAndTime": "2014-06-09T16:15:04+01:00",
-      |            "simplifiedProcedure": "1",
-      |            "incidentFlag": "1"
+     {
+      |  "n1:CC007C": {
+      |    "messageSender": "token",
+      |    "messageRecipient": "token",
+      |    "preparationDateAndTime": "2007-10-26T07:36:28",
+      |    "messageIdentification": "token",
+      |    "messageType": "CC007C",
+      |    "correlationIdentifier": "token",
+      |    "TransitOperation": {
+      |      "MRN": "string",
+      |      "arrivalNotificationDateAndTime": "2014-06-09T16:15:04+01:00",
+      |      "simplifiedProcedure": "1",
+      |      "incidentFlag": "1"
+      |    },
+      |    "Authorisation": [
+      |      {
+      |        "sequenceNumber": 100,
+      |        "referenceNumber": "string",
+      |        "type": "token"
+      |      }
+      |    ],
+      |    "CustomsOfficeOfDestinationActual": {
+      |      "referenceNumber": "stringst"
+      |    },
+      |    "TraderAtDestination": {
+      |      "identificationNumber": "string",
+      |      "communicationLanguageAtDestination": "token"
+      |    },
+      |    "Consignment": {
+      |      "LocationOfGoods": {
+      |        "typeOfLocation": "token",
+      |        "qualifierOfIdentification": "token",
+      |        "authorisationNumber": "string",
+      |        "additionalIdentifier": "stri",
+      |        "UNLocode": "token",
+      |        "CustomsOffice": {
+      |          "referenceNumber": "stringst"
       |        },
-      |        "TraderAtDestination": {
-      |            "identificationNumber": "string",
-      |            "communicationLanguageAtDestination": "token"
+      |        "GNSS": {
+      |          "latitude": "string",
+      |          "longitude": "string"
       |        },
-      |        "messageType": "CC007C",
-      |        "@PhaseID": "NCTS5.0",
-      |        "correlationIdentifier": "token",
-      |        "messageSender": "token",
-      |        "Authorisation": [
-      |            {
-      |                "sequenceNumber": "token",
-      |                "referenceNumber": "string",
-      |                "type": "token"
-      |            }
-      |        ],
-      |        "messageRecipient": "token",
-      |        "Consignment": {
-      |            "LocationOfGoods": {
-      |                "typeOfLocation": "token",
-      |                "qualifierOfIdentification": "token",
-      |                "authorisationNumber": "string",
-      |                "additionalIdentifier": "stri",
-      |                "UNLocode": "token",
-      |                "CustomsOffice": {
-      |                    "referenceNumber": "stringst"
-      |                },
-      |                "GNSS": {
-      |                    "latitude": "string",
-      |                    "longitude": "string"
-      |                },
-      |                "EconomicOperator": {
-      |                    "identificationNumber": "string"
-      |                },
-      |                "Address": {
-      |                    "streetAndNumber": "string",
-      |                    "postcode": "string",
-      |                    "city": "string",
-      |                    "country": "st"
-      |                },
-      |                "PostcodeAddress": {
-      |                    "houseNumber": "string",
-      |                    "postcode": "string",
-      |                    "country": "st"
-      |                },
-      |                "ContactPerson": {
-      |                    "name": "string",
-      |                    "phoneNumber": "token",
-      |                    "eMailAddress": "string"
-      |                }
-      |            },
-      |            "Incident": [
-      |                {
-      |                    "sequenceNumber": "token",
-      |                    "code": "token",
-      |                    "text": "string",
-      |                    "Endorsement": {
-      |                        "date": "2013-05-22+01:00",
-      |                        "authority": "string",
-      |                        "place": "string",
-      |                        "country": "st"
-      |                    },
-      |                    "Location": {
-      |                        "qualifierOfIdentification": "token",
-      |                        "UNLocode": "token",
-      |                        "country": "st",
-      |                        "GNSS": {
-      |                            "latitude": "string",
-      |                            "longitude": "string"
-      |                        },
-      |                        "Address": {
-      |                            "streetAndNumber": "string",
-      |                            "postcode": "string",
-      |                            "city": "string"
-      |                        }
-      |                    },
-      |                    "TransportEquipment": [
-      |                        {
-      |                            "sequenceNumber": "token",
-      |                            "containerIdentificationNumber": "string",
-      |                            "numberOfSeals": 100,
-      |                            "Seal": [
-      |                                {
-      |                                    "sequenceNumber": "token",
-      |                                    "identifier": "string"
-      |                                }
-      |                            ],
-      |                            "GoodsReference": [
-      |                                {
-      |                                    "sequenceNumber": "token",
-      |                                    "declarationGoodsItemNumber": 100
-      |                                }
-      |                            ]
-      |                        }
-      |                    ],
-      |                    "Transhipment": {
-      |                        "containerIndicator": "0",
-      |                        "TransportMeans": {
-      |                            "typeOfIdentification": "token",
-      |                            "identificationNumber": "string",
-      |                            "nationality": "st"
-      |                        }
-      |                    }
-      |                }
-      |            ]
+      |        "EconomicOperator": {
+      |          "identificationNumber": "string"
       |        },
-      |        "messageIdentification": "token",
-      |        "CustomsOfficeOfDestinationActual": {
-      |            "referenceNumber": "stringst"
+      |        "Address": {
+      |          "streetAndNumber": "string",
+      |          "postcode": "string",
+      |          "city": "string",
+      |          "country": "st"
+      |        },
+      |        "PostcodeAddress": {
+      |          "houseNumber": "string",
+      |          "postcode": "string",
+      |          "country": "st"
+      |        },
+      |        "ContactPerson": {
+      |          "name": "string",
+      |          "phoneNumber": "token",
+      |          "eMailAddress": "string"
       |        }
-      |    }
+      |      },
+      |      "Incident": [
+      |        {
+      |          "sequenceNumber": 100,
+      |          "code": "token",
+      |          "text": "string",
+      |          "Endorsement": {
+      |            "date": "2013-05-22+01:00",
+      |            "authority": "string",
+      |            "place": "string",
+      |            "country": "st"
+      |          },
+      |          "Location": {
+      |            "qualifierOfIdentification": "token",
+      |            "UNLocode": "token",
+      |            "country": "st",
+      |            "GNSS": {
+      |              "latitude": "string",
+      |              "longitude": "string"
+      |            },
+      |            "Address": {
+      |              "streetAndNumber": "string",
+      |              "postcode": "string",
+      |              "city": "string"
+      |            }
+      |          },
+      |          "TransportEquipment": [
+      |            {
+      |              "sequenceNumber": 100,
+      |              "containerIdentificationNumber": "string",
+      |              "numberOfSeals": 100,
+      |              "Seal": [
+      |                {
+      |                  "sequenceNumber": 100,
+      |                  "identifier": "string"
+      |                }
+      |              ],
+      |              "GoodsReference": [
+      |                {
+      |                  "sequenceNumber": 100,
+      |                  "declarationGoodsItemNumber": 100
+      |                }
+      |              ]
+      |            }
+      |          ],
+      |          "Transhipment": {
+      |            "containerIndicator": "0",
+      |            "TransportMeans": {
+      |              "typeOfIdentification": "token",
+      |              "identificationNumber": "string",
+      |              "nationality": "st"
+      |            }
+      |          }
+      |        }
+      |      ]
+      |    },
+      |    "@PhaseID": "NCTS5.0"
+      |  }
       |}
       |""".stripMargin
   )
@@ -301,7 +299,7 @@ object CC007CTestMessageType extends TestMessageType {
     </TransitOperation>
     <!--0 to 9 repetitions:-->
     <Authorisation>
-      <sequenceNumber>token</sequenceNumber>
+      <sequenceNumber>100</sequenceNumber>
       <type>token</type>
       <referenceNumber>string</referenceNumber>
     </Authorisation>
@@ -361,7 +359,7 @@ object CC007CTestMessageType extends TestMessageType {
       </LocationOfGoods>
       <!--0 to 9 repetitions:-->
       <Incident>
-        <sequenceNumber>token</sequenceNumber>
+        <sequenceNumber>100</sequenceNumber>
         <code>token</code>
         <text>string</text>
         <!--Optional:-->
@@ -391,19 +389,19 @@ object CC007CTestMessageType extends TestMessageType {
         </Location>
         <!--0 to 9999 repetitions:-->
         <TransportEquipment>
-          <sequenceNumber>token</sequenceNumber>
+          <sequenceNumber>100</sequenceNumber>
           <!--Optional:-->
           <containerIdentificationNumber>string</containerIdentificationNumber>
           <!--Optional:-->
           <numberOfSeals>100</numberOfSeals>
           <!--0 to 99 repetitions:-->
           <Seal>
-            <sequenceNumber>token</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
             <identifier>string</identifier>
           </Seal>
           <!--0 to 9999 repetitions:-->
           <GoodsReference>
-            <sequenceNumber>token</sequenceNumber>
+            <sequenceNumber>100</sequenceNumber>
             <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
           </GoodsReference>
         </TransportEquipment>
@@ -440,7 +438,7 @@ object CC007CTestMessageType extends TestMessageType {
       |        "correlationIdentifier": "token",
       |        "Authorisation": [
       |            {
-      |                "sequenceNumber": "token",
+      |                "sequenceNumber": "100",
       |                "referenceNumber": "string",
       |                "type": "token"
       |            }
@@ -483,7 +481,7 @@ object CC007CTestMessageType extends TestMessageType {
       |            },
       |            "Incident": [
       |                {
-      |                    "sequenceNumber": "token",
+      |                    "sequenceNumber": "100",
       |                    "code": "token",
       |                    "text": "string",
       |                    "Endorsement": {
@@ -508,18 +506,18 @@ object CC007CTestMessageType extends TestMessageType {
       |                    },
       |                    "TransportEquipment": [
       |                        {
-      |                            "sequenceNumber": "token",
+      |                            "sequenceNumber": "100",
       |                            "containerIdentificationNumber": "string",
       |                            "numberOfSeals": 100,
       |                            "Seal": [
       |                                {
-      |                                    "sequenceNumber": "token",
+      |                                    "sequenceNumber": "100",
       |                                    "identifier": "string"
       |                                }
       |                            ],
       |                            "GoodsReference": [
       |                                {
-      |                                    "sequenceNumber": "token",
+      |                                    "sequenceNumber": "100",
       |                                    "declarationGoodsItemNumber": 100
       |                                }
       |                            ]

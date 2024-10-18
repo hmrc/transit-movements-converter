@@ -22,7 +22,6 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import uk.gov.hmrc.transitmovementsconverter.itbase.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestActorSystem
-import uk.gov.hmrc.transitmovementsconverter.itbase.TestObjects
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
 

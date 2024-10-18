@@ -81,14 +81,14 @@ object CC060CTestMessageType extends TestMessageType {
     </Representative>
     <!--0 to 99 repetitions:-->
     <TypeOfControls>
-      <sequenceNumber>token</sequenceNumber>
+      <sequenceNumber>100</sequenceNumber>
       <type>str</type>
       <!--Optional:-->
       <text>string</text>
     </TypeOfControls>
     <!--0 to 99 repetitions:-->
     <RequestedDocument>
-      <sequenceNumber>token</sequenceNumber>
+      <sequenceNumber>100</sequenceNumber>
       <documentType>token</documentType>
       <!--Optional:-->
       <description>string</description>
@@ -98,63 +98,63 @@ object CC060CTestMessageType extends TestMessageType {
   lazy val json1: JsValue = Json.parse(
     """
       |{
-      |    "n1:CC060C": {
-      |        "preparationDateAndTime": "2007-10-26T07:36:28",
-      |        "TransitOperation": {
-      |            "LRN": "string",
-      |            "MRN": "string",
-      |            "controlNotificationDateAndTime": "2014-06-09T16:15:04+01:00",
-      |            "notificationType": "token"
-      |        },
-      |        "CustomsOfficeOfDeparture": {
-      |            "referenceNumber": "stringst"
-      |        },
-      |        "TypeOfControls": [
-      |            {
-      |                "sequenceNumber": "token",
-      |                "type": "str",
-      |                "text": "string"
-      |            }
-      |        ],
-      |        "messageSender": "token",
-      |        "RequestedDocument": [
-      |            {
-      |                "sequenceNumber": "token",
-      |                "documentType": "token",
-      |                "description": "string"
-      |            }
-      |        ],
-      |        "messageType": "CC060C",
-      |        "@PhaseID": "NCTS5.0",
-      |        "correlationIdentifier": "token",
-      |        "messageRecipient": "token",
-      |        "HolderOfTheTransitProcedure": {
-      |            "identificationNumber": "string",
-      |            "TIRHolderIdentificationNumber": "string",
-      |            "name": "string",
-      |            "Address": {
-      |                "streetAndNumber": "string",
-      |                "postcode": "string",
-      |                "city": "string",
-      |                "country": "st"
-      |            },
-      |            "ContactPerson": {
-      |                "name": "string",
-      |                "phoneNumber": "token",
-      |                "eMailAddress": "string"
-      |            }
-      |        },
-      |        "Representative": {
-      |            "identificationNumber": "string",
-      |            "status": "token",
-      |            "ContactPerson": {
-      |                "name": "string",
-      |                "phoneNumber": "token",
-      |                "eMailAddress": "string"
-      |            }
-      |        },
-      |        "messageIdentification": "token"
-      |    }
+      |  "n1:CC060C": {
+      |    "messageSender": "token",
+      |    "messageRecipient": "token",
+      |    "preparationDateAndTime": "2007-10-26T07:36:28",
+      |    "messageIdentification": "token",
+      |    "messageType": "CC060C",
+      |    "correlationIdentifier": "token",
+      |    "TransitOperation": {
+      |      "LRN": "string",
+      |      "MRN": "string",
+      |      "controlNotificationDateAndTime": "2014-06-09T16:15:04+01:00",
+      |      "notificationType": "token"
+      |    },
+      |    "CustomsOfficeOfDeparture": {
+      |      "referenceNumber": "stringst"
+      |    },
+      |    "HolderOfTheTransitProcedure": {
+      |      "identificationNumber": "string",
+      |      "TIRHolderIdentificationNumber": "string",
+      |      "name": "string",
+      |      "Address": {
+      |        "streetAndNumber": "string",
+      |        "postcode": "string",
+      |        "city": "string",
+      |        "country": "st"
+      |      },
+      |      "ContactPerson": {
+      |        "name": "string",
+      |        "phoneNumber": "token",
+      |        "eMailAddress": "string"
+      |      }
+      |    },
+      |    "Representative": {
+      |      "identificationNumber": "string",
+      |      "status": "token",
+      |      "ContactPerson": {
+      |        "name": "string",
+      |        "phoneNumber": "token",
+      |        "eMailAddress": "string"
+      |      }
+      |    },
+      |    "TypeOfControls": [
+      |      {
+      |        "sequenceNumber": 100,
+      |        "text": "string",
+      |        "type": "str"
+      |      }
+      |    ],
+      |    "RequestedDocument": [
+      |      {
+      |        "sequenceNumber": 100,
+      |        "documentType": "token",
+      |        "description": "string"
+      |      }
+      |    ],
+      |    "@PhaseID": "NCTS5.0"
+      |  }
       |}
       |""".stripMargin
   )
