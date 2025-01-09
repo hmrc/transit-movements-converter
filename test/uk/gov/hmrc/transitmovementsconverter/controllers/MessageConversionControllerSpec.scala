@@ -66,7 +66,7 @@ class MessageConversionControllerSpec
     with BeforeAndAfterEach
     with TestActorSystem {
 
-  val messageTypeGen: Gen[MessageType[_]] = Gen.oneOf(MessageType.values)
+  val messageTypeGen: Gen[MessageType[?]] = Gen.oneOf(MessageType.values)
 
   val mockXmlToJsonService = mock[ConverterService]
 
@@ -90,7 +90,7 @@ class MessageConversionControllerSpec
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
-      val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = FakeHeaders(), body = sourceUnderTest)
+      val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = FakeHeaders(), body = sourceUnderTest)
       val result                    = sut.message(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
@@ -107,7 +107,7 @@ class MessageConversionControllerSpec
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
-      val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = textToJsonHeader, body = sourceUnderTest)
+      val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = textToJsonHeader, body = sourceUnderTest)
       val result                    = sut.message(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
@@ -124,7 +124,7 @@ class MessageConversionControllerSpec
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
       val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
-      val request                   = FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToTextHeader, body = sourceUnderTest)
+      val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = xmlToTextHeader, body = sourceUnderTest)
       val result                    = sut.message(sample)(request)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
@@ -146,7 +146,7 @@ class MessageConversionControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<valid></valid>")))
+          FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<valid></valid>")))
         val result = sut.message(sample)(request)
 
         status(result) mustBe OK
@@ -160,7 +160,7 @@ class MessageConversionControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
+          FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
         val result = sut.message(sample)(request)
 
         status(result) mustBe BAD_REQUEST
@@ -174,7 +174,7 @@ class MessageConversionControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
+          FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = xmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
         val result = sut.message(sample)(request)
 
         status(result) mustBe INTERNAL_SERVER_ERROR
@@ -191,7 +191,7 @@ class MessageConversionControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = jsonToXmlHeader, body = Source.single(ByteString("""{ "valid": "ok" } """)))
+          FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = jsonToXmlHeader, body = Source.single(ByteString("""{ "valid": "ok" } """)))
         val result = sut.message(sample)(request)
 
         status(result) mustBe OK
@@ -205,7 +205,7 @@ class MessageConversionControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = jsonToXmlHeader, body = Source.single(ByteString("""{ "valid": "ok"  """)))
+          FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = jsonToXmlHeader, body = Source.single(ByteString("""{ "valid": "ok"  """)))
         val result = sut.message(sample)(request)
 
         status(result) mustBe BAD_REQUEST
@@ -219,7 +219,7 @@ class MessageConversionControllerSpec
 
         val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
         val request =
-          FakeRequest[Source[ByteString, _]](method = "POST", uri = "/", headers = jsonToXmlHeader, body = Source.single(ByteString("""{ "valid": "ok"  """)))
+          FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = jsonToXmlHeader, body = Source.single(ByteString("""{ "valid": "ok"  """)))
         val result = sut.message(sample)(request)
 
         status(result) mustBe INTERNAL_SERVER_ERROR

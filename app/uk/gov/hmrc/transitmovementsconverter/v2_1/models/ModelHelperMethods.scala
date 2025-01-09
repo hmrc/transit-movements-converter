@@ -43,7 +43,7 @@ object ModelHelperMethods {
   private def writeWithTypeAdjusted[A](writes: OWrites[A])(in: A): JsObject =
     writes
       .transform {
-        in: JsObject =>
+        in =>
           in.value.get("typeValue") match {
             case Some(typeVal) => (in - "typeValue") + ("type" -> typeVal)
             case None          => in

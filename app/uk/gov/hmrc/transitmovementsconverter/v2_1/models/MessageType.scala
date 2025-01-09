@@ -87,5 +87,5 @@ case object MessageType extends XMLProtocol {
     IE928
   )
 
-  def fromName(value: String): Option[MessageType[_]] = values.find(_.name == value)
+  def fromName(value: String): Option[MessageType[?]] = values.find(_.name == value)
 }
