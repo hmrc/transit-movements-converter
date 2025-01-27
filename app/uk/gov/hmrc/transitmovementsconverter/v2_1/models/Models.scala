@@ -80,21 +80,19 @@ object Models {
           )
           .getOrElse(Map.empty)
       ),
-    {
-      obj: CC004CType =>
-        (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
-          obj.TransitOperation,
-          obj.CustomsOfficeOfDeparture,
-          obj.HolderOfTheTransitProcedure,
-          obj.PhaseID
-        )
-    }
+    obj =>
+      (
+        obj.messageSequence1.messageSender,
+        obj.messageSequence1.messageRecipient,
+        obj.messageSequence1.preparationDateAndTime,
+        obj.messageSequence1.messageIdentification,
+        obj.messageSequence1.messageType,
+        obj.messageSequence1.correlationIdentifier,
+        obj.TransitOperation,
+        obj.CustomsOfficeOfDeparture,
+        obj.HolderOfTheTransitProcedure,
+        obj.PhaseID
+      )
   )
 
   // ** CC007C **
@@ -144,23 +142,21 @@ object Models {
           )
           .getOrElse(Map.empty)
       ),
-    {
-      obj: CC007CType =>
-        (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
-          obj.TransitOperation,
-          obj.Authorisation,
-          obj.CustomsOfficeOfDestinationActual,
-          obj.TraderAtDestination,
-          obj.Consignment,
-          obj.PhaseID
-        )
-    }
+    obj =>
+      (
+        obj.messageSequence1.messageSender,
+        obj.messageSequence1.messageRecipient,
+        obj.messageSequence1.preparationDateAndTime,
+        obj.messageSequence1.messageIdentification,
+        obj.messageSequence1.messageType,
+        obj.messageSequence1.correlationIdentifier,
+        obj.TransitOperation,
+        obj.Authorisation,
+        obj.CustomsOfficeOfDestinationActual,
+        obj.TraderAtDestination,
+        obj.Consignment,
+        obj.PhaseID
+      )
   )
 
   // ** CC009C **
@@ -207,22 +203,20 @@ object Models {
           )
           .getOrElse(Map.empty)
       ),
-    {
-      obj: CC009CType =>
-        (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
-          obj.TransitOperation,
-          obj.Invalidation,
-          obj.CustomsOfficeOfDeparture,
-          obj.HolderOfTheTransitProcedure,
-          obj.PhaseID
-        )
-    }
+    obj =>
+      (
+        obj.messageSequence1.messageSender,
+        obj.messageSequence1.messageRecipient,
+        obj.messageSequence1.preparationDateAndTime,
+        obj.messageSequence1.messageIdentification,
+        obj.messageSequence1.messageType,
+        obj.messageSequence1.correlationIdentifier,
+        obj.TransitOperation,
+        obj.Invalidation,
+        obj.CustomsOfficeOfDeparture,
+        obj.HolderOfTheTransitProcedure,
+        obj.PhaseID
+      )
   )
 
   // ** CC013C **
@@ -287,28 +281,26 @@ object Models {
           )
           .getOrElse(Map.empty)
       ),
-    {
-      obj: CC013CType =>
-        (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
-          obj.TransitOperation,
-          obj.Authorisation.toOption,
-          obj.CustomsOfficeOfDeparture,
-          obj.CustomsOfficeOfDestinationDeclared,
-          obj.CustomsOfficeOfTransitDeclared.toOption,
-          obj.CustomsOfficeOfExitForTransitDeclared.toOption,
-          obj.HolderOfTheTransitProcedure,
-          obj.Representative,
-          obj.Guarantee.toOption,
-          obj.Consignment,
-          obj.PhaseID
-        )
-    }
+    obj =>
+      (
+        obj.messageSequence1.messageSender,
+        obj.messageSequence1.messageRecipient,
+        obj.messageSequence1.preparationDateAndTime,
+        obj.messageSequence1.messageIdentification,
+        obj.messageSequence1.messageType,
+        obj.messageSequence1.correlationIdentifier,
+        obj.TransitOperation,
+        obj.Authorisation.toOption,
+        obj.CustomsOfficeOfDeparture,
+        obj.CustomsOfficeOfDestinationDeclared,
+        obj.CustomsOfficeOfTransitDeclared.toOption,
+        obj.CustomsOfficeOfExitForTransitDeclared.toOption,
+        obj.HolderOfTheTransitProcedure,
+        obj.Representative,
+        obj.Guarantee.toOption,
+        obj.Consignment,
+        obj.PhaseID
+      )
   )
 
   // ** CC014C **
@@ -356,22 +348,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC014CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.Invalidation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.Invalidation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.PhaseID
+        )
     )
 
   // ** CC015C **
@@ -436,28 +426,26 @@ object Models {
           )
           .getOrElse(Map.empty)
       ),
-    {
-      obj: CC015CType =>
-        (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
-          obj.TransitOperation,
-          obj.Authorisation.toOption,
-          obj.CustomsOfficeOfDeparture,
-          obj.CustomsOfficeOfDestinationDeclared,
-          obj.CustomsOfficeOfTransitDeclared.toOption,
-          obj.CustomsOfficeOfExitForTransitDeclared.toOption,
-          obj.HolderOfTheTransitProcedure,
-          obj.Representative,
-          obj.Guarantee.toOption,
-          obj.Consignment,
-          obj.PhaseID
-        )
-    }
+    obj =>
+      (
+        obj.messageSequence1.messageSender,
+        obj.messageSequence1.messageRecipient,
+        obj.messageSequence1.preparationDateAndTime,
+        obj.messageSequence1.messageIdentification,
+        obj.messageSequence1.messageType,
+        obj.messageSequence1.correlationIdentifier,
+        obj.TransitOperation,
+        obj.Authorisation.toOption,
+        obj.CustomsOfficeOfDeparture,
+        obj.CustomsOfficeOfDestinationDeclared,
+        obj.CustomsOfficeOfTransitDeclared.toOption,
+        obj.CustomsOfficeOfExitForTransitDeclared.toOption,
+        obj.HolderOfTheTransitProcedure,
+        obj.Representative,
+        obj.Guarantee.toOption,
+        obj.Consignment,
+        obj.PhaseID
+      )
   )
 
   // ** CC019C **
@@ -505,22 +493,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC019CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Guarantor,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Guarantor,
+          obj.PhaseID
+        )
     )
 
   // ** CC025C **
@@ -568,22 +554,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC025CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDestinationActual,
-            obj.TraderAtDestination,
-            obj.Consignment,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDestinationActual,
+          obj.TraderAtDestination,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC028C **
@@ -628,21 +612,19 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC028CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.PhaseID
+        )
     )
 
   // ** CC029C **
@@ -711,30 +693,27 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC029CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.Authorisation.toOption,
-            obj.CustomsOfficeOfDeparture,
-            obj.CustomsOfficeOfDestinationDeclared,
-            obj.CustomsOfficeOfTransitDeclared.toOption,
-            obj.CustomsOfficeOfExitForTransitDeclared.toOption,
-            obj.HolderOfTheTransitProcedure,
-            obj.Representative,
-            obj.ControlResult,
-            obj.Guarantee.toOption,
-            obj.Consignment,
-            obj.PhaseID
-          )
-
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.Authorisation.toOption,
+          obj.CustomsOfficeOfDeparture,
+          obj.CustomsOfficeOfDestinationDeclared,
+          obj.CustomsOfficeOfTransitDeclared.toOption,
+          obj.CustomsOfficeOfExitForTransitDeclared.toOption,
+          obj.HolderOfTheTransitProcedure,
+          obj.Representative,
+          obj.ControlResult,
+          obj.Guarantee.toOption,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC035C **
@@ -788,24 +767,22 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC035CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.RecoveryNotification,
-            obj.CustomsOfficeOfDeparture,
-            obj.CustomsOfficeOfRecoveryAtDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Guarantor,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.RecoveryNotification,
+          obj.CustomsOfficeOfDeparture,
+          obj.CustomsOfficeOfRecoveryAtDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Guarantor,
+          obj.PhaseID
+        )
     )
 
   // ** CC043C **
@@ -858,24 +835,22 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC043CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDestinationActual,
-            obj.HolderOfTheTransitProcedure,
-            obj.TraderAtDestination,
-            obj.CTLControl,
-            obj.Consignment,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDestinationActual,
+          obj.HolderOfTheTransitProcedure,
+          obj.TraderAtDestination,
+          obj.CTLControl,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC044C **
@@ -925,23 +900,21 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC044CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDestinationActual,
-            obj.TraderAtDestination,
-            obj.UnloadingRemark,
-            obj.Consignment,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDestinationActual,
+          obj.TraderAtDestination,
+          obj.UnloadingRemark,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC045C **
@@ -989,22 +962,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC045CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Guarantor,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Guarantor,
+          obj.PhaseID
+        )
     )
 
   // ** CC051C **
@@ -1052,22 +1023,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC051CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Representative,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Representative,
+          obj.PhaseID
+        )
     )
 
   // ** CC055C **
@@ -1115,22 +1084,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC055CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.GuaranteeReference.toOption,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.GuaranteeReference.toOption,
+          obj.PhaseID
+        )
     )
 
   // ** CC056C **
@@ -1181,23 +1148,21 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC056CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Representative,
-            obj.FunctionalError.toOption,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Representative,
+          obj.FunctionalError.toOption,
+          obj.PhaseID
+        )
     )
 
   // ** CC057C **
@@ -1245,22 +1210,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC057CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDestinationActual,
-            obj.TraderAtDestination,
-            obj.FunctionalError.toOption,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDestinationActual,
+          obj.TraderAtDestination,
+          obj.FunctionalError.toOption,
+          obj.PhaseID
+        )
     )
 
   // ** CC060C **
@@ -1314,24 +1277,22 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC060CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Representative,
-            obj.TypeOfControls.toOption,
-            obj.RequestedDocument.toOption,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Representative,
+          obj.TypeOfControls.toOption,
+          obj.RequestedDocument.toOption,
+          obj.PhaseID
+        )
     )
 
   // ** CC140C **
@@ -1379,22 +1340,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC140CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.CustomsOfficeOfEnquiryAtDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.CustomsOfficeOfEnquiryAtDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.PhaseID
+        )
     )
 
   // ** CC140C **
@@ -1448,24 +1407,22 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC141CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDestinationActual,
-            obj.CustomsOfficeOfEnquiryAtDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Enquiry,
-            obj.Consignment,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDestinationActual,
+          obj.CustomsOfficeOfEnquiryAtDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Enquiry,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC170C **
@@ -1516,23 +1473,21 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC170CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.Representative,
-            obj.Consignment,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.Representative,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC182C **
@@ -1580,22 +1535,20 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC182CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.CustomsOfficeOfIncidentRegistration,
-            obj.Consignment,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.CustomsOfficeOfIncidentRegistration,
+          obj.Consignment,
+          obj.PhaseID
+        )
     )
 
   // ** CC906C **
@@ -1637,20 +1590,18 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC906CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.Header,
-            obj.FunctionalError.toOption,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.Header,
+          obj.FunctionalError.toOption,
+          obj.PhaseID
+        )
     )
 
   // ** CC928C **
@@ -1695,21 +1646,19 @@ object Models {
             )
             .getOrElse(Map.empty)
         ),
-      {
-        obj: CC928CType =>
-          (
-            obj.messageSequence1.messageSender,
-            obj.messageSequence1.messageRecipient,
-            obj.messageSequence1.preparationDateAndTime,
-            obj.messageSequence1.messageIdentification,
-            obj.messageSequence1.messageType,
-            obj.messageSequence1.correlationIdentifier,
-            obj.TransitOperation,
-            obj.CustomsOfficeOfDeparture,
-            obj.HolderOfTheTransitProcedure,
-            obj.PhaseID
-          )
-      }
+      obj =>
+        (
+          obj.messageSequence1.messageSender,
+          obj.messageSequence1.messageRecipient,
+          obj.messageSequence1.preparationDateAndTime,
+          obj.messageSequence1.messageIdentification,
+          obj.messageSequence1.messageType,
+          obj.messageSequence1.correlationIdentifier,
+          obj.TransitOperation,
+          obj.CustomsOfficeOfDeparture,
+          obj.HolderOfTheTransitProcedure,
+          obj.PhaseID
+        )
     )
 
 }

@@ -48,8 +48,8 @@ import scala.xml.XML
 
 @ImplementedBy(classOf[ConverterServiceImpl])
 trait ConverterService {
-  def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, JsValue]
-  def jsonToXml[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, NodeSeq]
+  def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, JsValue]
+  def jsonToXml[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, NodeSeq]
 }
 
 object ConverterServiceImpl {
@@ -64,7 +64,7 @@ object ConverterServiceImpl {
 
 class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends ConverterService with Logging {
 
-  override def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, JsValue] =
+  override def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, JsValue] =
     EitherT {
       Future {
         // Note that we use 20 seconds here as this is the standard timeout on the service, if we're taking
@@ -73,7 +73,7 @@ class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: E
         // It's important to note that 20 seconds is the upper limit, and not a target
         scalaxb
           .fromXMLEither(XML.load(new InputSource(source.runWith(StreamConverters.asInputStream(conversionTimeout)))))(conversionFormat.xmlFormat)
-          .leftMap(ConversionError.XMLParsingError)
+          .leftMap(ConversionError.XMLParsingError.apply)
           .map(
             x => Json.toJsObject(x)(conversionFormat.jsonWrites)
           )
@@ -85,7 +85,7 @@ class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: E
       }
     }
 
-  override def jsonToXml[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, _]): EitherT[Future, ConversionError, NodeSeq] =
+  override def jsonToXml[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, NodeSeq] =
     EitherT {
       Future {
         // Note that we use 20 seconds here as this is the standard timeout on the service, if we're taking

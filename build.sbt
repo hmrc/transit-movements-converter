@@ -5,7 +5,9 @@ import sbtscalaxb.ScalaxbPlugin.*
 val appName = "transit-movements-converter"
 
 ThisBuild / majorVersion := 0
-ThisBuild / scalaVersion := "2.13.12"
+ThisBuild / scalaVersion := "3.4.3"
+
+scalacOptions ++= Seq("-rewrite", "-source:3.4-migration")
 
 lazy val Transitional = config("transitional") extend(Compile)
 lazy val V2_1 = config("v2_1") extend(Compile)

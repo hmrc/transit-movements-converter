@@ -47,7 +47,7 @@ class MessageConversionController @Inject() (cc: ControllerComponents, converter
     with StreamingParsers
     with ErrorTranslator {
 
-  def message(messageType: MessageType[_]): Action[Source[ByteString, _]] = Action.async(streamFromMemory) {
+  def message(messageType: MessageType[?]): Action[Source[ByteString, ?]] = Action.async(streamFromMemory) {
     implicit request =>
       val result: EitherT[Future, PresentationError, Result] = (request.headers.get(HeaderNames.CONTENT_TYPE), request.headers.get(HeaderNames.ACCEPT)) match {
         case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) =>

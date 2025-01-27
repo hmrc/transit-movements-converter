@@ -127,7 +127,7 @@ object CC015CTestMessageType extends TestMessageType {
                     "AdditionalSupplyChainActor" -> Json.arr(),
                     "Commodity" -> Json.obj(
                       "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
-                      "DangerousGoods"     -> Json.arr()
+                      "DangerousGoods" -> Json.arr()
                     ),
                     "Packaging" -> Json.arr(
                       Json.obj(

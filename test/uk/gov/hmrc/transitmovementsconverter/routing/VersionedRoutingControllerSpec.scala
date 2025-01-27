@@ -101,7 +101,7 @@ class VersionedRoutingControllerSpec extends AnyWordSpec with Matchers with Mock
       mockTransitionalConverterService
     ) {
 
-      override def message(messageType: models.MessageType[_]): Action[Source[ByteString, _]] =
+      override def message(messageType: models.MessageType[?]): Action[Source[ByteString, ?]] =
         Action.async(streamFromMemory) {
           _ =>
             Future.successful(Ok("transitional"))
@@ -114,7 +114,7 @@ class VersionedRoutingControllerSpec extends AnyWordSpec with Matchers with Mock
       mockConverterService
     ) {
 
-      override def message(messageType: MessageType[_]): Action[Source[ByteString, _]] =
+      override def message(messageType: MessageType[?]): Action[Source[ByteString, ?]] =
         Action.async(streamFromMemory) {
           _ =>
             Future.successful(Ok("final"))
