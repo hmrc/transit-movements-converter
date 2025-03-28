@@ -46,31 +46,20 @@ class PresentationErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar 
           )
           .getOrElse("does not contain")
         s"for an unexpected error that $textFragment a Throwable" in {
-          // Given this exception
           val exception = new IllegalStateException("message")
+          val sut       = PresentationError.internalServiceError(cause = Some(exception))
+          val json      = Json.toJson(sut)
 
-          // when we create a error for this
-          val sut = PresentationError.internalServiceError(cause = Some(exception))
-
-          // and when we turn it to Json
-          val json = Json.toJson(sut)
-
-          // then we should get an expected output
           json mustBe Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
         }
     }
 
     "for an upstream error" in {
-      // Given this upstream error
+
       val upstreamErrorResponse = UpstreamErrorResponse("error", 500)
+      val sut                   = UpstreamServiceError.causedBy(upstreamErrorResponse)
+      val json                  = Json.toJson(sut)
 
-      // when we create a error for this
-      val sut = UpstreamServiceError.causedBy(upstreamErrorResponse)
-
-      // and when we turn it to Json
-      val json = Json.toJson(sut)
-
-      // then we should get an expected output
       json mustBe Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
     }
   }

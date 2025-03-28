@@ -17,8 +17,15 @@ object CodeCoverageSettings {
     ".*generated.transitional.*"
   )
 
+  private val excludedFiles: Seq[String] = Seq(
+    ".*PresentationError.*",
+    ".*AppConfig.*",
+    ".*ModelImplicits.*"
+  )
+
   val settings: Seq[Setting[_]] = Seq(
     ScoverageKeys.coverageExcludedPackages := excludedPackages.mkString(";"),
+    ScoverageKeys.coverageExcludedFiles := excludedFiles.mkString(";"),
     ScoverageKeys.coverageMinimumStmtTotal := 90,
     ScoverageKeys.coverageFailOnMinimum := true,
     ScoverageKeys.coverageHighlighting := true

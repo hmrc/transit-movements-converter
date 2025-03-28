@@ -16,7 +16,11 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v2_1.controllers
 
+import cats.data.Validated.Valid
 import cats.data.EitherT
+import cats.data.NonEmptyList
+import cats.data.Validated
+import cats.data.ValidatedNel
 import cats.implicits.catsStdInstancesForFuture
 import org.apache.pekko.stream.Materializer
 import org.apache.pekko.stream.scaladsl.Sink
@@ -29,10 +33,11 @@ import play.api.mvc.Action
 import play.api.mvc.ControllerComponents
 import play.api.mvc.Result
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
-import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.PresentationError
 import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterService
+import uk.gov.hmrc.transitmovementsconverter.v2_1.stream.StreamingParsers
+import cats.implicits.*
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -71,6 +76,7 @@ class MessageConversionController @Inject() (cc: ControllerComponents, converter
           request.body.runWith(Sink.ignore)
           EitherT.leftT(PresentationError.unsupportedMediaTypeError("Content-Type header or Accept header or both were not supplied"))
       }
+
       result.valueOr(
         presentationError => Status(presentationError.code.statusCode)(Json.toJson(presentationError))
       )
