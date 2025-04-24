@@ -16,12 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v2_1.controllers
 
-import cats.data.Validated.Valid
 import cats.data.EitherT
-import cats.data.NonEmptyList
-import cats.data.Validated
-import cats.data.ValidatedNel
-import cats.implicits.catsStdInstancesForFuture
 import org.apache.pekko.stream.Materializer
 import org.apache.pekko.stream.scaladsl.Sink
 import org.apache.pekko.stream.scaladsl.Source
