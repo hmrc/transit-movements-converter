@@ -18,11 +18,12 @@ package uk.gov.hmrc.transitmovementsconverter.v2_1.models
 
 import generated.v2_1.AesNctsP5FunctionalErrorCodes
 import generated.v2_1.CountryCodesCustomsOfficeLists
+import generated.v2_1.HeaderType01
 import generated.v2_1.MessageTypes
-import generated.v2_1.NCTS5u461
 import generated.v2_1.Number0
 import generated.v2_1.Number1
 import generated.v2_1.PhaseIDtype
+import generated.v2_1.RepresentativeType01
 import org.scalacheck.Gen
 import org.scalatest.OptionValues
 import org.scalatest.concurrent.ScalaFutures
@@ -35,11 +36,13 @@ import play.api.libs.json.JsNumber
 import play.api.libs.json.JsString
 import play.api.libs.json.JsSuccess
 import play.api.libs.json.JsTrue
+import play.api.libs.json.Json
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
 import java.util.GregorianCalendar
 import javax.xml.datatype.DatatypeFactory
+import javax.xml.datatype.XMLGregorianCalendar
 
 class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers with OptionValues with TestActorSystem with StreamTestHelpers {
 
@@ -251,4 +254,30 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
 
   }
 
+  "RepresentativeType01" - {
+    "must serialise to json" in {
+      val rep = RepresentativeType01("foo", "bar")
+      val expectedResult = Json.parse("""
+          |{
+          |  "identificationNumber" : "foo",
+          |  "status" : "bar"
+          |}
+          |""".stripMargin)
+      val result = Json.toJson(rep)(ModelImplicits.representativeType01Format)
+      result mustBe expectedResult
+    }
+
+    "must deserialise from json" in {
+      val json = Json.parse("""
+          |{
+          |  "identificationNumber" : "foo",
+          |  "status" : "bar"
+          |}
+          |""".stripMargin)
+
+      val expectedResult = RepresentativeType01("foo", "bar")
+      val result         = json.as[RepresentativeType01](ModelImplicits.representativeType01Format)
+      result mustBe expectedResult
+    }
+  }
 }

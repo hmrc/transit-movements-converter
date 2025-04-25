@@ -1,4 +1,5 @@
 import play.sbt.routes.RoutesKeys
+
 import uk.gov.hmrc.DefaultBuildSettings
 import sbtscalaxb.ScalaxbPlugin.*
 
@@ -7,23 +8,20 @@ val appName = "transit-movements-converter"
 ThisBuild / majorVersion := 0
 ThisBuild / scalaVersion := "3.4.3"
 
-scalacOptions ++= Seq("-rewrite", "-source:3.4-migration")
+Compile / unmanagedSources / scalacOptions += "-nowarn"
 
-lazy val Transitional = config("transitional") extend(Compile)
-lazy val V2_1 = config("v2_1") extend(Compile)
+lazy val V2_1 = config("v2_1") extend Compile
 
-def customScalaxbSettingsFor(base: String): Seq[Def.Setting[_]] = Seq(
-  sourceManaged := (Compile / sourceManaged).value,
-  scalaxbXsdSource := new File(s"./conf/xsd/$base"),
+def customScalaxbSettingsFor(base: String): Seq[Def.Setting[?]] = Seq(
+  sourceManaged          := (Compile / sourceManaged).value,
+  scalaxbXsdSource       := new File(s"./conf/xsd/$base"),
   scalaxbDispatchVersion := "1.1.3",
-  scalaxbPackageName := s"generated.$base"
+  scalaxbPackageName     := s"generated.$base"
 )
 
-def customScalaxbSettings: Seq[Def.Setting[_]] =
-  inConfig(Transitional)(baseScalaxbSettings ++ inTask(scalaxb)(customScalaxbSettingsFor("transitional"))) ++
-    inConfig(V2_1)(baseScalaxbSettings ++ inTask(scalaxb)(customScalaxbSettingsFor("v2_1"))) ++
+def customScalaxbSettings: Seq[Def.Setting[?]] =
+  inConfig(V2_1)(baseScalaxbSettings ++ inTask(scalaxb)(customScalaxbSettingsFor("v2_1"))) ++
     Seq(
-      Compile / sourceGenerators += (Transitional / scalaxb).taskValue,
       Compile / sourceGenerators += (V2_1 / scalaxb).taskValue
     )
 
@@ -32,11 +30,14 @@ lazy val microservice = Project(appName, file("."))
   .settings(
     PlayKeys.playDefaultPort := 9475,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
-    scalacOptions += "-Wconf:src=routes/.*:s"
+    RoutesKeys.routesImport ++= Seq(
+      "uk.gov.hmrc.transitmovementsconverter.v2_1.models._",
+      "uk.gov.hmrc.transitmovementsconverter.v2_1.models.Binders._"
+    )
   )
-  .settings(customScalaxbSettings: _*)
+  .settings(customScalaxbSettings*)
   .settings(resolvers += Resolver.jcenterRepo)
-  .settings(CodeCoverageSettings.settings: _*)
+  .settings(CodeCoverageSettings.settings*)
   .settings(inThisBuild(buildSettings))
 
 lazy val it = project
