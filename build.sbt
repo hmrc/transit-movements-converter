@@ -36,7 +36,6 @@ lazy val microservice = Project(appName, file("."))
     )
   )
   .settings(customScalaxbSettings*)
-  .settings(resolvers += Resolver.jcenterRepo)
   .settings(CodeCoverageSettings.settings*)
   .settings(inThisBuild(buildSettings))
 
