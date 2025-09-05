@@ -18,12 +18,10 @@ package uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors
 
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
-import play.api.http.Status._ // Import status codes directly
-import play.api.libs.json.Json
-import play.api.libs.json.JsString
+import play.api.http.Status.*
 
 // Import all ErrorCode objects directly into scope
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ErrorCode._
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ErrorCode.*
 
 class ErrorCodeSpec extends AnyWordSpec with Matchers {
 

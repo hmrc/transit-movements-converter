@@ -16,13 +16,6 @@
 
 package uk.gov.hmrc.transitmovementsconverter.routing
 
-import play.api.http.Status.NOT_ACCEPTABLE
-import play.api.libs.json.JsError
-import play.api.libs.json.JsString
-import play.api.libs.json.JsSuccess
-import play.api.libs.json.Reads
-import play.api.libs.json.Writes
-
 object VersionHeaderError {
 
   val MessageFieldName = "message"
@@ -30,6 +23,9 @@ object VersionHeaderError {
 
   def notAcceptableError(message: String): VersionHeaderError =
     StandardError(message, ErrorCode.NotAcceptable)
+
+  def unsupportedMediaTypeError(message: String): VersionHeaderError =
+    StandardError(message, ErrorCode.UnsupportedMediaType)
 
 }
 
@@ -40,28 +36,17 @@ sealed abstract class VersionHeaderError extends Product with Serializable {
 
 case class StandardError(message: String, code: ErrorCode) extends VersionHeaderError
 
-sealed abstract class ErrorCode(val code: String, val statusCode: Int) extends Product with Serializable
-
-object ErrorCode {
-  case object NotAcceptable extends ErrorCode("NOT_ACCEPTABLE", NOT_ACCEPTABLE)
-
-  lazy val errorCodes: Seq[ErrorCode] = Seq(
-    NotAcceptable
-  )
+object VersionHeaderErrorFormats {
+  import play.api.libs.json.*
 
   implicit val errorCodeWrites: Writes[ErrorCode] = Writes {
     errorCode => JsString(errorCode.code)
   }
 
-  implicit val errorCodeReads: Reads[ErrorCode] = Reads {
-    errorCode =>
-      errorCodes
-        .find(
-          value => value.code == errorCode.asInstanceOf[JsString].value
-        )
-        .map(
-          errorCode => JsSuccess(errorCode)
-        )
-        .getOrElse(JsError())
+  implicit val standardErrorWrites: Writes[StandardError] = Json.writes[StandardError]
+
+  implicit val versionHeaderErrorWrites: Writes[VersionHeaderError] = Writes {
+    case e: StandardError => standardErrorWrites.writes(e)
   }
+
 }

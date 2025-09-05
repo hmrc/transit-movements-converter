@@ -21,6 +21,7 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalacheck.Gen
 import org.scalatestplus.mockito.MockitoSugar
+import VersionHeaderErrorFormats._
 
 class VersionHeaderErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar {
 
@@ -30,8 +31,20 @@ class VersionHeaderErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar
 
     val json = Json.toJson(notAcceptableError)
 
-    json mustBe Json.obj(
+    json `mustBe` Json.obj(
       "code"    -> "NOT_ACCEPTABLE",
+      "message" -> gen
+    )
+  }
+
+  "for not supported media type error" in {
+    val gen                       = Gen.alphaNumStr.sample.getOrElse("something")
+    val unsupportedMediaTypeError = VersionHeaderError.unsupportedMediaTypeError(gen)
+
+    val json = Json.toJson(unsupportedMediaTypeError)
+
+    json `mustBe` Json.obj(
+      "code"    -> "UNSUPPORTED_MEDIA_TYPE",
       "message" -> gen
     )
   }

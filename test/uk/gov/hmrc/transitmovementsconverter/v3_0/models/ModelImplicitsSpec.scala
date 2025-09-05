@@ -18,7 +18,6 @@ package uk.gov.hmrc.transitmovementsconverter.v3_0.models
 
 import generated.v2_1.AesNctsP5FunctionalErrorCodes
 import generated.v2_1.CountryCodesCustomsOfficeLists
-import generated.v2_1.HeaderType01
 import generated.v2_1.MessageTypes
 import generated.v2_1.Number0
 import generated.v2_1.Number1
@@ -29,14 +28,7 @@ import org.scalatest.OptionValues
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import play.api.libs.json.JsError
-import play.api.libs.json.JsFalse
-import play.api.libs.json.JsNull
-import play.api.libs.json.JsNumber
-import play.api.libs.json.JsString
-import play.api.libs.json.JsSuccess
-import play.api.libs.json.JsTrue
-import play.api.libs.json.Json
+import play.api.libs.json.*
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 
