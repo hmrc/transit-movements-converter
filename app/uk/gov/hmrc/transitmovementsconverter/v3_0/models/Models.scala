@@ -16,18 +16,18 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v3_0.models
 
-import generated.v2_1._
+import generated.v3_0._
 import play.api.libs.functional.syntax.toFunctionalBuilderOps
 import play.api.libs.json.OFormat
 import play.api.libs.json.__
 import scalaxb.DataRecord
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.ModelHelperMethods._
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.ModelHelperMethods._
 
 import javax.xml.datatype.XMLGregorianCalendar
 
 object Models {
 
-  import uk.gov.hmrc.transitmovementsconverter.v2_1.models.ModelImplicits._
+  import uk.gov.hmrc.transitmovementsconverter.v3_0.models.ModelImplicits._
 
   // Message Types
 

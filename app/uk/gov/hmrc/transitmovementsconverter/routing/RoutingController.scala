@@ -20,13 +20,12 @@ import org.apache.pekko.stream.Materializer
 import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
 import play.api.Logging
-import play.api.http.HeaderNames
 import play.api.libs.json.Json
 import play.api.mvc.*
 import uk.gov.hmrc.transitmovementsconverter.routing.VersionHeaderErrorFormats.*
 import uk.gov.hmrc.transitmovementsconverter.v2_1.controllers.MessageConversionController as Version2MessageConversionController
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v2_1.stream.StreamingParsers
+import uk.gov.hmrc.transitmovementsconverter.v3_0.stream.StreamingParsers
 import uk.gov.hmrc.transitmovementsconverter.v3_0.controllers.MessageConversionController as Version3MessageConversionController
 
 import javax.inject.Inject
@@ -45,27 +44,28 @@ class RoutingController @Inject() (
     with Logging {
 
   private lazy val validHeaders: Seq[String] = Seq(
-    VERSION_HEADER_2_1.value,
-    VERSION_HEADER_3_0.value
+    API_VERSION_2_1.value,
+    API_VERSION_3_0.value
   )
 
-  private def checkAcceptHeaders(implicit request: Request[?]): Either[Result, VersionHeader] =
-    request.headers.get(HeaderNames.ACCEPT) match {
-      case None => Left(NotAcceptable(Json.toJson(VersionHeaderError.notAcceptableError("The Accept header is missing."))))
+  private def checkAcceptHeaders(implicit request: Request[?]): Either[Result, APIVersionHeader] =
+    val APIVersion = request.headers.get("APIVersion")
+    APIVersion match {
+      case None => Left(NotAcceptable(Json.toJson(ApiVersionHeaderError.notAcceptableError("The Accept header is missing."))))
       case Some(value) =>
-        VersionHeader(value) match {
+        APIVersionHeader(value) match {
           case Right(valid) if validHeaders.contains(valid.value) => Right(valid)
           case _ =>
-            Left(UnsupportedMediaType(Json.toJson(VersionHeaderError.unsupportedMediaTypeError("The Accept header is invalid."))))
+            Left(UnsupportedMediaType(Json.toJson(ApiVersionHeaderError.unsupportedMediaTypeError("The Accept header is invalid."))))
         }
     }
 
   def routeRequest(messageType: MessageType[?]): Action[Source[ByteString, ?]] = Action.async(streamFromMemory) {
     implicit request =>
       checkAcceptHeaders match {
-        case Left(err)                 => Future.successful(err)
-        case Right(VERSION_HEADER_2_1) => version2_1Controller.message(messageType)(request)
-        case Right(VERSION_HEADER_3_0) => version3_0Controller.message(messageType)(request)
+        case Left(err)              => Future.successful(err)
+        case Right(API_VERSION_2_1) => version2_1Controller.message(messageType)(request)
+        case Right(API_VERSION_3_0) => version3_0Controller.message(messageType)(request)
       }
   }
 }

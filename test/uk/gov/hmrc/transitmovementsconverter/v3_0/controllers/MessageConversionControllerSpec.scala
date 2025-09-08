@@ -48,8 +48,8 @@ import play.api.test.Helpers.status
 import play.api.test.Helpers.stubControllerComponents
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterService
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

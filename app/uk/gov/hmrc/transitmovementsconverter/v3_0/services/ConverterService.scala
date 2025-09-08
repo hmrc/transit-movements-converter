@@ -32,9 +32,9 @@ import play.api.libs.json.JsResultException
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.ConversionFormat
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl.conversionTimeout
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl.namespace
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterServiceImpl.conversionTimeout
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterServiceImpl.namespace
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future

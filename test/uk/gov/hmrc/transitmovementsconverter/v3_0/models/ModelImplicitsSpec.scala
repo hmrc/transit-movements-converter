@@ -16,13 +16,13 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v3_0.models
 
-import generated.v2_1.AesNctsP5FunctionalErrorCodes
-import generated.v2_1.CountryCodesCustomsOfficeLists
-import generated.v2_1.MessageTypes
-import generated.v2_1.Number0
-import generated.v2_1.Number1
-import generated.v2_1.PhaseIDtype
-import generated.v2_1.RepresentativeType01
+import generated.v3_0.AesNctsP5FunctionalErrorCodes
+import generated.v3_0.CountryCodesCustomsOfficeLists
+import generated.v3_0.MessageTypes
+import generated.v3_0.Number0
+import generated.v3_0.Number1
+import generated.v3_0.PhaseIDtype
+import generated.v3_0.RepresentativeType01
 import org.scalacheck.Gen
 import org.scalatest.OptionValues
 import org.scalatest.concurrent.ScalaFutures

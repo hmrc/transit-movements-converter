@@ -29,9 +29,9 @@ import play.api.mvc.ControllerComponents
 import play.api.mvc.Result
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.PresentationError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterService
-import uk.gov.hmrc.transitmovementsconverter.v2_1.stream.StreamingParsers
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.PresentationError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService
+import uk.gov.hmrc.transitmovementsconverter.v3_0.stream.StreamingParsers
 import cats.implicits.*
 
 import javax.inject.Inject

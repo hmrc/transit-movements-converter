@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v3_0.models
 
-import generated.v2_1._
+import generated.v3_0._
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
@@ -24,7 +24,7 @@ import play.api.libs.json.OFormat
 import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.testobjects._
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects._
 
 class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestActorSystem with StreamTestHelpers {
 

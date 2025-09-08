@@ -27,7 +27,7 @@ class VersionHeaderErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar
 
   "for not acceptable error" in {
     val gen                = Gen.alphaNumStr.sample.getOrElse("something")
-    val notAcceptableError = VersionHeaderError.notAcceptableError(gen)
+    val notAcceptableError = ApiVersionHeaderError.notAcceptableError(gen)
 
     val json = Json.toJson(notAcceptableError)
 
@@ -39,7 +39,7 @@ class VersionHeaderErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar
 
   "for not supported media type error" in {
     val gen                       = Gen.alphaNumStr.sample.getOrElse("something")
-    val unsupportedMediaTypeError = VersionHeaderError.unsupportedMediaTypeError(gen)
+    val unsupportedMediaTypeError = ApiVersionHeaderError.unsupportedMediaTypeError(gen)
 
     val json = Json.toJson(unsupportedMediaTypeError)
 

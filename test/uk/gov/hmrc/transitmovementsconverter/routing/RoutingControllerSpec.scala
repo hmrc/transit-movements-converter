@@ -22,13 +22,11 @@ import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.verify
-import org.mockito.Mockito.verifyNoInteractions
 import org.mockito.Mockito.when
 import org.scalacheck.Gen
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
-import org.scalatest.matchers.should.Matchers.should
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import play.api.http.HeaderNames
@@ -39,22 +37,22 @@ import play.api.libs.json.Json
 import play.api.mvc.Results.Ok
 import play.api.mvc.Action
 import play.api.mvc.ControllerComponents
-import play.api.test.FakeHeaders
-import play.api.test.FakeRequest
-import play.api.test.Helpers
 import play.api.test.Helpers.contentAsJson
 import play.api.test.Helpers.contentAsString
 import play.api.test.Helpers.defaultAwaitTimeout
 import play.api.test.Helpers.status
 import play.api.test.Helpers.stubControllerComponents
+import play.api.test.FakeHeaders
+import play.api.test.FakeRequest
+import play.api.test.Helpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.v2_1.controllers.MessageConversionController as Vesion2MessageConversionController
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.controllers.MessageConversionController as Vesion3MessageConversionController
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
 
 class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures with ScalaCheckDrivenPropertyChecks with MockitoSugar with TestActorSystem {
 
@@ -86,7 +84,7 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
       headers = FakeHeaders(
         accept
           .map(
-            ac => Seq(HeaderNames.ACCEPT -> ac)
+            ac => Seq("APIVersion" -> ac)
           )
           .getOrElse(Seq.empty)
       ),
@@ -100,9 +98,9 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
 
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
 
-      val versionHeader_2_1 = VERSION_HEADER_2_1.value
+      val apiVersion_2_1 = API_VERSION_2_1.value
 
-      val request = reqWithAccept(Some(versionHeader_2_1))
+      val request = reqWithAccept(Some(apiVersion_2_1))
 
       val result = routingController.routeRequest(sample)(request)
 
@@ -118,9 +116,9 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
 
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
 
-      val versionHeader_3_0 = VERSION_HEADER_3_0.value
+      val apiVersion_3_0 = API_VERSION_3_0.value
 
-      val request = reqWithAccept(Some(versionHeader_3_0))
+      val request = reqWithAccept(Some(apiVersion_3_0))
 
       val result = routingController.routeRequest(sample)(request)
 

@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v3_0.models
 
-import generated.v2_1._
+import generated.v3_0._
 import play.api.libs.json.JsError
 import play.api.libs.json.JsNumber
 import play.api.libs.json.JsObject
@@ -28,8 +28,8 @@ import play.api.libs.json.Reads
 import play.api.libs.json.Writes
 import play.api.libs.json.Json.JsValueWrapper
 import scalaxb.DataTypeFactory
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.ModelHelperMethods._
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.MalformedJsonException
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.ModelHelperMethods._
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.MalformedJsonException
 
 import javax.xml.datatype.XMLGregorianCalendar
 import scala.util.Try
@@ -504,7 +504,7 @@ object ModelImplicits {
 
   implicit lazy val messageTypesReads: Reads[MessageTypes] = Reads {
     case JsString(messageType) =>
-      Try(generated.v2_1.MessageTypes.fromString(messageType, TopScope))
+      Try(generated.v3_0.MessageTypes.fromString(messageType, TopScope))
         .map(
           x => JsSuccess(x)
         )

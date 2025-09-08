@@ -26,7 +26,7 @@ import play.api.libs.json.OFormat
 import play.api.libs.json.OWrites
 import play.api.libs.json.Reads
 import play.api.libs.json.Writes
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.MalformedJsonException
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.MalformedJsonException
 
 object ModelHelperMethods {
 

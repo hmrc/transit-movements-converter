@@ -20,9 +20,9 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.EitherValues
 import play.api.mvc.PathBindable
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.Binders.*
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.*
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.Binders.*
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.*
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.MessageType
 
 class BindersSpec extends AnyWordSpec with Matchers with EitherValues {
 

@@ -16,11 +16,11 @@
 
 package uk.gov.hmrc.transitmovementsconverter.v3_0.models
 
-import generated.v2_1._
+import generated.v3_0._
 import play.api.libs.json.Reads
 import play.api.libs.json.OWrites
 import scalaxb.XMLFormat
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.Models._
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.Models._
 
 sealed trait VersionedMessageType[T]
 

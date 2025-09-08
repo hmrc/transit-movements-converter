@@ -18,8 +18,8 @@ package uk.gov.hmrc.transitmovementsconverter.v3_0.controllers
 
 import cats.data.EitherT
 import cats.implicits.catsStdInstancesForFuture
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.PresentationError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.PresentationError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future

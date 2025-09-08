@@ -19,7 +19,7 @@ package uk.gov.hmrc.transitmovementsconverter.v3_0.services
 import org.apache.pekko.stream.scaladsl.Flow
 import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
-import generated.v2_1.XMLProtocol
+import generated.v3_0.XMLProtocol
 import org.scalatest.concurrent.PatienceConfiguration.Timeout
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
@@ -34,8 +34,8 @@ import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.v2_1.models.ConversionFormat
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError.XMLParsingError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError.XMLParsingError
 
 import java.io.IOException
 import java.nio.charset.StandardCharsets

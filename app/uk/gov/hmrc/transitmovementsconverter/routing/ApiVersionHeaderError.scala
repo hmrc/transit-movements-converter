@@ -16,25 +16,25 @@
 
 package uk.gov.hmrc.transitmovementsconverter.routing
 
-object VersionHeaderError {
+object ApiVersionHeaderError {
 
   val MessageFieldName = "message"
   val CodeFieldName    = "code"
 
-  def notAcceptableError(message: String): VersionHeaderError =
+  def notAcceptableError(message: String): ApiVersionHeaderError =
     StandardError(message, ErrorCode.NotAcceptable)
 
-  def unsupportedMediaTypeError(message: String): VersionHeaderError =
+  def unsupportedMediaTypeError(message: String): ApiVersionHeaderError =
     StandardError(message, ErrorCode.UnsupportedMediaType)
 
 }
 
-sealed abstract class VersionHeaderError extends Product with Serializable {
+sealed abstract class ApiVersionHeaderError extends Product with Serializable {
   def message: String
   def code: ErrorCode
 }
 
-case class StandardError(message: String, code: ErrorCode) extends VersionHeaderError
+case class StandardError(message: String, code: ErrorCode) extends ApiVersionHeaderError
 
 object VersionHeaderErrorFormats {
   import play.api.libs.json.*
@@ -45,7 +45,7 @@ object VersionHeaderErrorFormats {
 
   implicit val standardErrorWrites: Writes[StandardError] = Json.writes[StandardError]
 
-  implicit val versionHeaderErrorWrites: Writes[VersionHeaderError] = Writes {
+  implicit val versionHeaderErrorWrites: Writes[ApiVersionHeaderError] = Writes {
     case e: StandardError => standardErrorWrites.writes(e)
   }
 

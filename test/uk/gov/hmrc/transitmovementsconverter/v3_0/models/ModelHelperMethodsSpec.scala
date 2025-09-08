@@ -31,7 +31,7 @@ import play.api.libs.json.JsUndefined
 import play.api.libs.json.Json
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.MalformedJsonException
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.MalformedJsonException
 
 import scala.util.Failure
 import scala.util.Try
