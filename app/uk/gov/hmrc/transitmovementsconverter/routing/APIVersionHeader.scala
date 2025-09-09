@@ -18,22 +18,14 @@ package uk.gov.hmrc.transitmovementsconverter.routing
 
 import cats.implicits.catsSyntaxEitherId
 
-sealed trait APIVersionHeader {
-  val value: String
+enum APIVersionHeader(val value: String) {
+  case API_VERSION_2_1 extends APIVersionHeader("2.1")
+  case API_VERSION_3_0 extends APIVersionHeader("3.0")
 }
 
 object APIVersionHeader {
-  def apply(value: String): Either[ApiVersionHeaderError, APIVersionHeader] = value match {
-    case API_VERSION_2_1.value => API_VERSION_2_1.asRight
-    case API_VERSION_3_0.value => API_VERSION_3_0.asRight
-    case invalidAcceptHeader   => ApiVersionHeaderError.notAcceptableError(s"Invalid APIVersion Header: $invalidAcceptHeader").asLeft
-  }
-}
-
-case object API_VERSION_2_1 extends APIVersionHeader {
-  override val value: String = "2.1"
-}
-
-case object API_VERSION_3_0 extends APIVersionHeader {
-  override val value: String = "3.0"
+  def fromString(value: String): Either[ApiVersionHeaderError, APIVersionHeader] =
+    values
+      .find(_.value == value)
+      .toRight(ApiVersionHeaderError.notAcceptableError(s"Invalid APIVersionHeader: $value"))
 }

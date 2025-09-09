@@ -43,18 +43,13 @@ class RoutingController @Inject() (
     with StreamingParsers
     with Logging {
 
-  private lazy val validHeaders: Seq[String] = Seq(
-    API_VERSION_2_1.value,
-    API_VERSION_3_0.value
-  )
-
   private def checkAcceptHeaders(implicit request: Request[?]): Either[Result, APIVersionHeader] =
     val APIVersion = request.headers.get("APIVersion")
     APIVersion match {
       case None => Left(NotAcceptable(Json.toJson(ApiVersionHeaderError.notAcceptableError("The Accept header is missing."))))
       case Some(value) =>
-        APIVersionHeader(value) match {
-          case Right(valid) if validHeaders.contains(valid.value) => Right(valid)
+        APIVersionHeader.fromString(value) match {
+          case Right(valid) => Right(valid)
           case _ =>
             Left(UnsupportedMediaType(Json.toJson(ApiVersionHeaderError.unsupportedMediaTypeError("The Accept header is invalid."))))
         }
@@ -63,9 +58,9 @@ class RoutingController @Inject() (
   def routeRequest(messageType: MessageType[?]): Action[Source[ByteString, ?]] = Action.async(streamFromMemory) {
     implicit request =>
       checkAcceptHeaders match {
-        case Left(err)              => Future.successful(err)
-        case Right(API_VERSION_2_1) => version2_1Controller.message(messageType)(request)
-        case Right(API_VERSION_3_0) => version3_0Controller.message(messageType)(request)
+        case Left(err)                               => Future.successful(err)
+        case Right(APIVersionHeader.API_VERSION_2_1) => version2_1Controller.message(messageType)(request)
+        case Right(APIVersionHeader.API_VERSION_3_0) => version3_0Controller.message(messageType)(request)
       }
   }
 }
