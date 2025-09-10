@@ -33,9 +33,9 @@ import scalaxb.ElemName
 import scalaxb.XMLFormat
 import uk.gov.hmrc.transitmovementsconverter.base.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.ConversionFormat
-import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v3_0.models.errors.ConversionError.XMLParsingError
+import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError.XMLParsingError
 
 import java.io.IOException
 import java.nio.charset.StandardCharsets

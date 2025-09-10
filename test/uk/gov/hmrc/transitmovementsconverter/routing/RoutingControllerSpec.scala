@@ -45,9 +45,9 @@ import play.api.test.Helpers.defaultAwaitTimeout
 import play.api.test.Helpers.status
 import play.api.test.Helpers.stubControllerComponents
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
-import uk.gov.hmrc.transitmovementsconverter.v2_1.controllers.MessageConversionController as Vesion2MessageConversionController
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v3_0.controllers.MessageConversionController as Vesion3MessageConversionController
+import uk.gov.hmrc.transitmovementsconverter.controllers.MessageConversionController as Vesion2MessageConversionController
+import uk.gov.hmrc.transitmovementsconverter.models.MessageType
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterServiceFactory
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.ExecutionContext
@@ -60,13 +60,14 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
   private val controllerComponents: ControllerComponents = Helpers.stubControllerComponents()
 
   private val mockVersion2MessageController = mock[Vesion2MessageConversionController]
-
-  private val mockVersion3MessageController = mock[Vesion3MessageConversionController]
+  
+  private val mockConverterServiceFactory = mock[ConverterServiceFactory]
+  
 
   val routingController = new RoutingController(
     controllerComponents,
     mockVersion2MessageController,
-    mockVersion3MessageController
+    mockConverterServiceFactory
   )
 
   private def actionReturning(marker: String): Action[Source[ByteString, ?]] =
@@ -94,7 +95,7 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
     "Route to MessageConversionController(V2_1) when the accept header is APIVersion:2.1" in {
       when(mockVersion2MessageController.message(any()))
         .thenReturn(actionReturning("v2.1"))
-
+      
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
 
       val apiVersion_2_1 = APIVersionHeader.API_VERSION_2_1.value
@@ -107,6 +108,7 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
       contentAsString(result) mustBe "v2.1"
 
       verify(mockVersion2MessageController).message(any[MessageType[?]])
+
     }
 
     "Route to MessageConversionController(V3_0) when the accept header is APIVersion:3.0" in {
@@ -132,17 +134,24 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
       val result = routingController.routeRequest(sample)(reqWithAccept(None))
 
+      val resultMatVal = matVal.map(_.utf8String)
+
       status(result) mustBe NOT_ACCEPTABLE
 
       contentAsJson(result) mustBe Json.obj(
         "code"    -> "NOT_ACCEPTABLE",
         "message" -> "The Accept header is missing."
       )
+      whenReady(resultMatVal) {
+        _ mustBe "<valid></valid>" // testing we drain the stream
+      }
     }
     "Return NotSupportedMediaTypeError when the AcceptHeader is not recognised" in {
       val invalidHeader = Gen.alphaNumStr.sample.getOrElse("invalidHeader")
       val sample        = messageTypeGen.sample.getOrElse(MessageType.values.head)
       val result        = routingController.routeRequest(sample)(reqWithAccept(Some(invalidHeader)))
+
+      val resultMatVal = matVal.map(_.utf8String)
 
       status(result) mustBe UNSUPPORTED_MEDIA_TYPE
 
@@ -150,6 +159,10 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
         "code"    -> "UNSUPPORTED_MEDIA_TYPE",
         "message" -> "The Accept header is invalid."
       )
+
+      whenReady(resultMatVal) {
+        _ mustBe "<valid></valid>" // testing we drain the stream
+      }
     }
   }
 

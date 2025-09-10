@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,6 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.routing
+package uk.gov.hmrc.transitmovementsconverter.models.errors
 
-enum APIVersionHeader(val value: String) {
-  case API_VERSION_2_1 extends APIVersionHeader("2.1")
-  case API_VERSION_3_0 extends APIVersionHeader("3.0")
-}
-
-object APIVersionHeader {
-  def fromString(value: String): Either[ApiVersionHeaderError, APIVersionHeader] =
-    values
-      .find(_.value == value)
-      .toRight(ApiVersionHeaderError.notAcceptableError(s"Invalid APIVersionHeader: $value"))
-}
+case class MalformedJsonException(message: String) extends Exception(message)
