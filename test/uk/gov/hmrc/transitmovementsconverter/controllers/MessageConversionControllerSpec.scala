@@ -17,10 +17,13 @@
 package uk.gov.hmrc.transitmovementsconverter.controllers
 
 import cats.data.EitherT
-import org.apache.pekko.stream.scaladsl.{Keep, Sink, Source}
+import org.apache.pekko.stream.scaladsl.Keep
+import org.apache.pekko.stream.scaladsl.Sink
+import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
 import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.{reset, when}
+import org.mockito.Mockito.reset
+import org.mockito.Mockito.when
 import org.scalacheck.Gen
 import org.scalatest.BeforeAndAfterEach
 import org.scalatest.concurrent.ScalaFutures
@@ -28,11 +31,21 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import play.api.http.{HeaderNames, MimeTypes}
-import play.api.http.Status.{BAD_REQUEST, INTERNAL_SERVER_ERROR, OK, UNSUPPORTED_MEDIA_TYPE}
-import play.api.libs.json.{JsValue, Json}
-import play.api.test.{FakeHeaders, FakeRequest}
-import play.api.test.Helpers.{contentAsJson, contentAsString, defaultAwaitTimeout, status, stubControllerComponents}
+import play.api.http.HeaderNames
+import play.api.http.MimeTypes
+import play.api.http.Status.BAD_REQUEST
+import play.api.http.Status.INTERNAL_SERVER_ERROR
+import play.api.http.Status.OK
+import play.api.http.Status.UNSUPPORTED_MEDIA_TYPE
+import play.api.libs.json.JsValue
+import play.api.libs.json.Json
+import play.api.test.FakeHeaders
+import play.api.test.FakeRequest
+import play.api.test.Helpers.contentAsJson
+import play.api.test.Helpers.contentAsString
+import play.api.test.Helpers.defaultAwaitTimeout
+import play.api.test.Helpers.status
+import play.api.test.Helpers.stubControllerComponents
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
@@ -41,7 +54,8 @@ import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.xml.Utility.trim
-import scala.xml.{NodeSeq, XML}
+import scala.xml.NodeSeq
+import scala.xml.XML
 
 class MessageConversionControllerSpec
     extends AnyFreeSpec

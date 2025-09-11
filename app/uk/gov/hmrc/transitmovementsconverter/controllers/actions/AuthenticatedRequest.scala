@@ -14,14 +14,9 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.routing
+package uk.gov.hmrc.transitmovementsconverter.controllers.actions
 
-enum APIVersionHeader(val value: String) {
-  case v2_1 extends APIVersionHeader("2.1")
-  case v3_0 extends APIVersionHeader("3.0")
-}
+import play.api.mvc.Request
+import play.api.mvc.WrappedRequest
 
-object APIVersionHeader {
-  def fromString(value: String): Option[APIVersionHeader] =
-    values.find(_.value == value)
-}
+case class AuthenticatedRequest[A](request: Request[A]) extends WrappedRequest[A](request) {}

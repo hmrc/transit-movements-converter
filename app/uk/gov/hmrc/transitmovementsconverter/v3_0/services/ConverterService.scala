@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.v2_1.services
+package uk.gov.hmrc.transitmovementsconverter.v3_0.services
 
 import cats.data.EitherT
 import cats.syntax.all.*
@@ -31,11 +31,10 @@ import play.api.Logging
 import play.api.libs.json.JsResultException
 import play.api.libs.json.JsValue
 import play.api.libs.json.Json
-import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
 import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl.conversionTimeout
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl.namespace
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService.conversionTimeout
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService.namespace
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
@@ -47,9 +46,9 @@ import scala.xml.NodeSeq
 import scala.xml.TopScope
 import scala.xml.XML
 
-class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends ConverterService with Logging {
+class ConverterService @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends Logging {
 
-  override def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, JsValue] =
+  def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, JsValue] =
     EitherT {
       Future {
         // Note that we use 20 seconds here as this is the standard timeout on the service, if we're taking
@@ -70,7 +69,7 @@ class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: E
       }
     }
 
-  override def jsonToXml[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, NodeSeq] =
+  def jsonToXml[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, NodeSeq] =
     EitherT {
       Future {
         // Note that we use 20 seconds here as this is the standard timeout on the service, if we're taking
@@ -103,7 +102,7 @@ class ConverterServiceImpl @Inject() (implicit materializer: Materializer, ec: E
 
 }
 
-object ConverterServiceImpl {
+object ConverterService {
   val conversionTimeout = 20.seconds
 
   val namespace = NamespaceBinding(

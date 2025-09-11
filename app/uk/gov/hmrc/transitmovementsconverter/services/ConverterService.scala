@@ -17,18 +17,14 @@
 package uk.gov.hmrc.transitmovementsconverter.services
 
 import cats.data.EitherT
-import com.google.inject.ImplementedBy
 import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
 import play.api.libs.json.JsValue
 import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl
 
 import scala.concurrent.Future
-import scala.xml.NamespaceBinding
 import scala.xml.NodeSeq
-import scala.xml.TopScope
 
 trait ConverterService {
   def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, JsValue]

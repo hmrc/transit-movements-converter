@@ -14,14 +14,22 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.routing
+package uk.gov.hmrc.transitmovementsconverter.controllers.actions
 
-enum APIVersionHeader(val value: String) {
-  case v2_1 extends APIVersionHeader("2.1")
-  case v3_0 extends APIVersionHeader("3.0")
-}
+import javax.inject._
+import scala.concurrent.ExecutionContext
+import scala.concurrent.Future
+import play.api.mvc._
 
-object APIVersionHeader {
-  def fromString(value: String): Option[APIVersionHeader] =
-    values.find(_.value == value)
+@Singleton
+class NoAuthAction @Inject() (
+  val parser: BodyParsers.Default
+)(implicit val executionContext: ExecutionContext)
+    extends ActionBuilder[AuthenticatedRequest, AnyContent] {
+
+  override def invokeBlock[A](
+    request: Request[A],
+    block: AuthenticatedRequest[A] => Future[Result]
+  ): Future[Result] =
+    block(AuthenticatedRequest(request))
 }

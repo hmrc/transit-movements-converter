@@ -18,9 +18,11 @@ package uk.gov.hmrc.transitmovementsconverter.controllers
 
 import cats.data.EitherT
 import cats.implicits.catsStdInstancesForFuture
-import uk.gov.hmrc.transitmovementsconverter.models.errors.{ConversionError, PresentationError}
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.ExecutionContext
+import scala.concurrent.Future
 
 trait ErrorTranslator {
 

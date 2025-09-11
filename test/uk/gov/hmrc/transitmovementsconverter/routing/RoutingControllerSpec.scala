@@ -60,9 +60,8 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
   private val controllerComponents: ControllerComponents = Helpers.stubControllerComponents()
 
   private val mockVersion2MessageController = mock[Vesion2MessageConversionController]
-  
+
   private val mockConverterServiceFactory = mock[ConverterServiceFactory]
-  
 
   val routingController = new RoutingController(
     controllerComponents,
@@ -95,10 +94,10 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
     "Route to MessageConversionController(V2_1) when the accept header is APIVersion:2.1" in {
       when(mockVersion2MessageController.message(any()))
         .thenReturn(actionReturning("v2.1"))
-      
+
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
 
-      val apiVersion_2_1 = APIVersionHeader.API_VERSION_2_1.value
+      val apiVersion_2_1 = APIVersionHeader1.API_VERSION_2_1.value
 
       val request = reqWithAccept(Some(apiVersion_2_1))
 
@@ -117,7 +116,7 @@ class RoutingControllerSpec extends AnyFreeSpec with Matchers with ScalaFutures 
 
       val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
 
-      val apiVersion_3_0 = APIVersionHeader.API_VERSION_3_0.value
+      val apiVersion_3_0 = APIVersionHeader1.API_VERSION_3_0.value
 
       val request = reqWithAccept(Some(apiVersion_3_0))
 

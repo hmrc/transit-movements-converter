@@ -42,7 +42,6 @@ object VersionHeaderErrorFormats {
   implicit val errorCodeWrites: Writes[ErrorCode] = Writes {
     errorCode => JsString(errorCode.code)
   }
-
   implicit val standardErrorWrites: Writes[StandardError] = Json.writes[StandardError]
 
   implicit val versionHeaderErrorWrites: Writes[ApiVersionHeaderError] = Writes {

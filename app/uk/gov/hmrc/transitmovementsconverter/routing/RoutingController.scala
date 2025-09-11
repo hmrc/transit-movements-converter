@@ -26,7 +26,8 @@ import play.api.mvc.*
 import uk.gov.hmrc.transitmovementsconverter.routing.VersionHeaderErrorFormats.*
 import uk.gov.hmrc.transitmovementsconverter.controllers.MessageConversionController
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.services.{ConverterService, ConverterServiceFactory}
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterServiceFactory
 import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
 
 import javax.inject.Inject
@@ -44,12 +45,12 @@ class RoutingController @Inject() (
     with StreamingParsers
     with Logging {
 
-  private def checkAcceptHeaders(implicit request: Request[?]): Either[Result, APIVersionHeader] =
+  private def checkAcceptHeaders(implicit request: Request[?]): Either[Result, APIVersionHeader1] =
     val APIVersion = request.headers.get("APIVersion")
     APIVersion match {
       case None => Left(NotAcceptable(Json.toJson(ApiVersionHeaderError.notAcceptableError("The Accept header is missing."))))
       case Some(value) =>
-        APIVersionHeader.fromString(value) match {
+        APIVersionHeader1.fromString(value) match {
           case Right(valid) => Right(valid)
           case _ =>
             Left(UnsupportedMediaType(Json.toJson(ApiVersionHeaderError.unsupportedMediaTypeError("The Accept header is invalid."))))
@@ -62,9 +63,9 @@ class RoutingController @Inject() (
         case Left(err) =>
           request.body.runWith(Sink.ignore)
           Future.successful(err)
-        case Right(APIVersionHeader.API_VERSION_2_1) => messageConversionController.message(messageType)(request)
-        case Right(APIVersionHeader.API_VERSION_3_0) => messageConversionController.message(messageType)(request)
+        case Right(APIVersionHeader1.API_VERSION_2_1) => messageConversionController.message(messageType)(request)
+        case Right(APIVersionHeader1.API_VERSION_3_0) => messageConversionController.message(messageType)(request)
       }
   }
-  
+
 }

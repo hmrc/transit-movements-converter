@@ -24,7 +24,8 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.mockito.MockitoSugar
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import uk.gov.hmrc.transitmovementsconverter.models.errors.{ConversionError, PresentationError}
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
