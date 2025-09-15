@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.routing
+package uk.gov.hmrc.transitmovementsconverter.models
 
-import play.api.http.Status.NOT_ACCEPTABLE
-import play.api.http.Status.UNSUPPORTED_MEDIA_TYPE
+enum APIVersionHeader(val value: String) {
+  case v2_1 extends APIVersionHeader("2.1")
+  case v3_0 extends APIVersionHeader("3.0")
+}
 
-sealed abstract class ErrorCode(val code: String, val statusCode: Int) extends Product with Serializable
-
-object ErrorCode {
-  case object NotAcceptable        extends ErrorCode("NOT_ACCEPTABLE", NOT_ACCEPTABLE)
-  case object UnsupportedMediaType extends ErrorCode("UNSUPPORTED_MEDIA_TYPE", UNSUPPORTED_MEDIA_TYPE)
-
+object APIVersionHeader {
+  def fromString(value: String): Option[APIVersionHeader] =
+    values.find(_.value == value)
 }

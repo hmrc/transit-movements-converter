@@ -114,7 +114,7 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
     override def xmlRoot: String = throw new UnsupportedOperationException()
   }
 
-  val service = new ConverterServiceImpl
+  val service = new V2ConverterService
 
   "When handed an XML stream" - {
 

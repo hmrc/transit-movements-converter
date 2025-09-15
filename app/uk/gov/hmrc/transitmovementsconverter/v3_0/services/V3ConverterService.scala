@@ -33,8 +33,9 @@ import play.api.libs.json.JsValue
 import play.api.libs.json.Json
 import uk.gov.hmrc.transitmovementsconverter.models.ConversionFormat
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService.conversionTimeout
-import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService.namespace
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.V3ConverterService.conversionTimeout
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.V3ConverterService.namespace
 
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
@@ -46,7 +47,7 @@ import scala.xml.NodeSeq
 import scala.xml.TopScope
 import scala.xml.XML
 
-class ConverterService @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends Logging {
+class V3ConverterService @Inject() (implicit materializer: Materializer, ec: ExecutionContext) extends ConverterService with Logging {
 
   def xmlToJson[T](conversionFormat: ConversionFormat[T], source: Source[ByteString, ?]): EitherT[Future, ConversionError, JsValue] =
     EitherT {
@@ -102,7 +103,7 @@ class ConverterService @Inject() (implicit materializer: Materializer, ec: Execu
 
 }
 
-object ConverterService {
+object V3ConverterService {
   val conversionTimeout = 20.seconds
 
   val namespace = NamespaceBinding(

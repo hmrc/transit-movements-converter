@@ -19,8 +19,6 @@ package uk.gov.hmrc.transitmovementsconverter.models.errors
 import org.scalatest.matchers.should.Matchers
 import org.scalatest.wordspec.AnyWordSpec
 import play.api.http.Status.*
-import play.api.libs.json.JsString
-import play.api.libs.json.Json
 
 // Import all ErrorCode objects directly into scope
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ErrorCode.*
@@ -36,7 +34,8 @@ class ErrorCodeSpec extends AnyWordSpec with Matchers {
     SchemaValidation,
     EntityTooLarge,
     UnsupportedMediaType,
-    Unauthorized
+    Unauthorized,
+    NotAcceptable
   )
 
   def testErrorCode(errorCode: ErrorCode, expectedCode: String, expectedStatus: Int): Unit =
@@ -45,7 +44,7 @@ class ErrorCodeSpec extends AnyWordSpec with Matchers {
         errorCode.code shouldBe expectedCode
       }
       s"have statusCode $expectedStatus" in {
-        errorCode.statusCode shouldBe expectedStatus
+        errorCode.statusCode shouldEqual expectedStatus
       }
     }
 
@@ -60,6 +59,7 @@ class ErrorCodeSpec extends AnyWordSpec with Matchers {
     testErrorCode(EntityTooLarge, "REQUEST_ENTITY_TOO_LARGE", REQUEST_ENTITY_TOO_LARGE)
     testErrorCode(UnsupportedMediaType, "UNSUPPORTED_MEDIA_TYPE", UNSUPPORTED_MEDIA_TYPE)
     testErrorCode(Unauthorized, "UNAUTHORIZED", UNAUTHORIZED)
+    testErrorCode(NotAcceptable, "NOT_ACCEPTABLE", NOT_ACCEPTABLE)
 
     "accessing the errorCodes sequence" should {
       "contain all defined ErrorCode instances" in {
@@ -68,7 +68,7 @@ class ErrorCodeSpec extends AnyWordSpec with Matchers {
 
       "have the correct size" in {
         ErrorCode.errorCodes should have size allExpectedErrorCodes.size
-        ErrorCode.errorCodes.size shouldBe 9
+        ErrorCode.errorCodes.size shouldEqual 10
       }
     }
   }

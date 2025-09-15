@@ -30,6 +30,9 @@ object PresentationError {
   def unsupportedMediaTypeError(message: String): PresentationError =
     StandardError(message, ErrorCode.UnsupportedMediaType)
 
+  def notAcceptableError(message: String): PresentationError =
+    StandardError(message, ErrorCode.NotAcceptable)
+
   def badRequestError(message: String): PresentationError =
     StandardError(message, ErrorCode.BadRequest)
 

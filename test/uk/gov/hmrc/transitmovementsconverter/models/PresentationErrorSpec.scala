@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.transitmovementsconverter.models
 
+import org.scalacheck.Gen
 import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.must.Matchers
 import org.scalatestplus.mockito.MockitoSugar
@@ -31,7 +32,7 @@ class PresentationErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar 
       val sut    = function(message)
       val result = Json.toJson(sut)
 
-      result mustBe Json.obj("message" -> message, "code" -> code)
+      result mustEqual Json.obj("message" -> message, "code" -> code)
     }
 
     "for UnsupportedMediaType" in testStandard(PresentationError.unsupportedMediaTypeError, "unsupported media type", "UNSUPPORTED_MEDIA_TYPE")
@@ -50,7 +51,7 @@ class PresentationErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar 
           val sut       = PresentationError.internalServiceError(cause = Some(exception))
           val json      = Json.toJson(sut)
 
-          json mustBe Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
+          json mustEqual Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
         }
     }
 
@@ -60,7 +61,18 @@ class PresentationErrorSpec extends AnyFreeSpec with Matchers with MockitoSugar 
       val sut                   = UpstreamServiceError.causedBy(upstreamErrorResponse)
       val json                  = Json.toJson(sut)
 
-      json mustBe Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
+      json mustEqual Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
+    }
+    "for not acceptable error" in {
+      val gen                = Gen.alphaNumStr.sample.getOrElse("something")
+      val notAcceptableError = PresentationError.notAcceptableError(gen)
+
+      val json = Json.toJson(notAcceptableError)
+
+      json mustEqual Json.obj(
+        "code"    -> "NOT_ACCEPTABLE",
+        "message" -> gen
+      )
     }
   }
 

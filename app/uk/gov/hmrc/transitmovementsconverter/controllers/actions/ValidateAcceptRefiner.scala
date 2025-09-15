@@ -16,24 +16,14 @@
 
 package uk.gov.hmrc.transitmovementsconverter.controllers.actions
 
-import cats.implicits.catsSyntaxEitherId
 import org.apache.pekko.stream.Materializer
 import org.apache.pekko.stream.scaladsl.Sink
 import org.apache.pekko.stream.scaladsl.Source
-import play.api.http.HeaderNames
 import play.api.libs.json.Json
-import uk.gov.hmrc.transitmovementsconverter.routing.VersionHeaderErrorFormats.*
-import play.api.mvc.Results.NotAcceptable
+import play.api.mvc.*
 import play.api.mvc.Results.Status
-import play.api.mvc.ActionBuilder
-import play.api.mvc.ActionFunction
-import play.api.mvc.ActionRefiner
-import play.api.mvc.ActionTransformer
-import play.api.mvc.Request
-import play.api.mvc.Result
-import play.api.mvc.WrappedRequest
-import uk.gov.hmrc.transitmovementsconverter.routing.APIVersionHeader
-import uk.gov.hmrc.transitmovementsconverter.routing.ApiVersionHeaderError
+import uk.gov.hmrc.transitmovementsconverter.models.APIVersionHeader
+import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
 
 import javax.inject.Inject
 import scala.concurrent.ExecutionContext
@@ -44,19 +34,20 @@ final case class ValidatedVersionedRequest[T](
   request: Request[T]
 ) extends WrappedRequest[T](request)
 
-final class ValidateAcceptRefiner @Inject() (implicit val ec: ExecutionContext, mat: Materializer)
-    extends ActionTransformer[Request, ValidatedVersionedRequest] {
+final class ValidateAcceptRefiner @Inject() (cc: ControllerComponents)(implicit val ec: ExecutionContext, mat: Materializer)
+    extends ActionRefiner[Request, ValidatedVersionedRequest]
+    with ActionBuilder[ValidatedVersionedRequest, AnyContent] {
 
-  private def validateAcceptHeader(request: Request[?]): Either[ApiVersionHeaderError, APIVersionHeader] =
+  private def validateAcceptHeader(request: Request[?]): Either[PresentationError, APIVersionHeader] =
     for {
       acceptHeaderValue <-
         request.headers
           .get("APIVersion")
-          .toRight(ApiVersionHeaderError.notAcceptableError("An Accept header is missing."))
+          .toRight(PresentationError.notAcceptableError("An Accept header is missing."))
       version <-
         APIVersionHeader
           .fromString(acceptHeaderValue)
-          .toRight(ApiVersionHeaderError.unsupportedMediaTypeError(s"The Accept header $acceptHeaderValue is not supported."))
+          .toRight(PresentationError.unsupportedMediaTypeError(s"The Accept header $acceptHeaderValue is not supported."))
     } yield version
 
   def refine[T](request: Request[T]): Future[Either[Result, ValidatedVersionedRequest[T]]] =
@@ -76,4 +67,5 @@ final class ValidateAcceptRefiner @Inject() (implicit val ec: ExecutionContext, 
 
   override protected def executionContext: ExecutionContext = ec
 
+  override def parser: BodyParser[AnyContent] = cc.parsers.defaultBodyParser
 }

@@ -26,19 +26,17 @@ import play.api.http.HeaderNames
 import play.api.http.MimeTypes
 import play.api.libs.json.Json
 import play.api.mvc.Action
-import uk.gov.hmrc.transitmovementsconverter.routing.VersionHeaderErrorFormats.*
 import play.api.mvc.ControllerComponents
 import play.api.mvc.Result
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
-import uk.gov.hmrc.transitmovementsconverter.controllers.actions.NoAuthAction
 import uk.gov.hmrc.transitmovementsconverter.controllers.actions.ValidateAcceptRefiner
+import uk.gov.hmrc.transitmovementsconverter.models.APIVersionHeader
 import uk.gov.hmrc.transitmovementsconverter.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.routing.APIVersionHeader
-import uk.gov.hmrc.transitmovementsconverter.routing.ApiVersionHeaderError
 import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
+import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
 import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterService as V2ConverterService
-import uk.gov.hmrc.transitmovementsconverter.v3_0.services.ConverterService as V3ConverterService
+import uk.gov.hmrc.transitmovementsconverter.v2_1.services.V2ConverterService
+import uk.gov.hmrc.transitmovementsconverter.v3_0.services.V3ConverterService
 
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -50,7 +48,6 @@ class MessageConversionController @Inject() (
   cc: ControllerComponents,
   v2ConverterService: V2ConverterService,
   v3ConverterService: V3ConverterService,
-  noAuthAction: NoAuthAction,
   validateAcceptRefiner: ValidateAcceptRefiner
 )(implicit
   val materializer: Materializer,
@@ -61,9 +58,9 @@ class MessageConversionController @Inject() (
 
   def message(messageType: MessageType[?]): Action[Source[ByteString, ?]] = validateAcceptRefiner.async(streamFromMemory) {
     implicit request =>
-      val converterService = request.versionHeader match {
-        case v2_1 => v2ConverterService
-        case v3_0 => v3ConverterService
+      val converterService: ConverterService = request.versionHeader match {
+        case APIVersionHeader.v2_1 => v2ConverterService
+        case APIVersionHeader.v3_0 => v3ConverterService
       }
       val result: EitherT[Future, PresentationError, Result] = (request.headers.get(HeaderNames.CONTENT_TYPE), request.headers.get(HeaderNames.ACCEPT)) match {
         case (Some(MimeTypes.XML), Some(MimeTypes.JSON)) =>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.services
+package uk.gov.hmrc.transitmovementsconverter.v2_1.services
 
 import org.scalatest.concurrent.IntegrationPatience
 import org.scalatest.concurrent.ScalaFutures
@@ -23,24 +23,29 @@ import org.scalatest.matchers.must.Matchers
 import uk.gov.hmrc.transitmovementsconverter.itbase.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestObjects
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.errors.ConversionError
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.ConverterServiceImpl
+import uk.gov.hmrc.transitmovementsconverter.models.MessageType
+import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.xml.Elem
 import scala.xml.Utility.trim
 
-class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with ScalaFutures with IntegrationPatience with TestActorSystem with StreamTestHelpers {
+class V2ConverterServiceIntegrationSpec
+    extends AnyFreeSpec
+    with Matchers
+    with ScalaFutures
+    with IntegrationPatience
+    with TestActorSystem
+    with StreamTestHelpers {
 
-  val service = new ConverterServiceImpl
+  val service = new V2ConverterService
 
   "converting XML to Json" - {
 
     "converting CC015C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE015, createStream(TestObjects.CC015C.xml1))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC015C.json1
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC015C.json1
       }
     }
 
@@ -54,7 +59,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC019C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE019, createStream(TestObjects.CC019C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC019C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC019C.jsonValid
       }
     }
 
@@ -68,7 +73,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC025C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE025, createStream(TestObjects.CC025C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC025C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC025C.jsonValid
       }
     }
 
@@ -82,7 +87,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC035C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE035, createStream(TestObjects.CC035C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC035C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC035C.jsonValid
       }
     }
 
@@ -96,7 +101,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC043C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE043, createStream(TestObjects.CC043C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC043C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC043C.jsonValid
       }
     }
 
@@ -110,7 +115,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC044C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE044, createStream(TestObjects.CC044C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC044C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC044C.jsonValid
       }
     }
 
@@ -124,7 +129,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC045C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE045, createStream(TestObjects.CC045C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC045C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC045C.jsonValid
       }
     }
 
@@ -138,7 +143,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC057C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE057, createStream(TestObjects.CC057C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC057C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC057C.jsonValid
       }
     }
 
@@ -152,7 +157,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC140C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE140, createStream(TestObjects.CC140C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC140C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC140C.jsonValid
       }
     }
 
@@ -166,7 +171,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC141C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE141, createStream(TestObjects.CC141C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC141C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC141C.jsonValid
       }
     }
 
@@ -180,7 +185,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC182C XML to Json is as expected" in {
       val result = service.xmlToJson(MessageType.IE182, createStream(TestObjects.CC182C.xmlValid))
       whenReady(result.value) {
-        _.getOrElse(fail("Unexpected failure")) mustBe TestObjects.CC182C.jsonValid
+        _.getOrElse(fail("Unexpected failure")) mustEqual TestObjects.CC182C.jsonValid
       }
     }
 
@@ -197,7 +202,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC015C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE015, createStream(TestObjects.CC015C.json1))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC015C.xml1)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC015C.xml1)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -212,7 +217,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC019C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE019, createStream(TestObjects.CC019C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC019C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC019C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -227,7 +232,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC025C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE025, createStream(TestObjects.CC025C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC025C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC025C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -242,7 +247,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC035C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE035, createStream(TestObjects.CC035C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC035C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC035C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -257,7 +262,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC043C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE043, createStream(TestObjects.CC043C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC043C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC043C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -272,7 +277,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC044C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE044, createStream(TestObjects.CC044C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC044C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC044C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -287,7 +292,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC045C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE045, createStream(TestObjects.CC045C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC045C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC045C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -302,7 +307,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC057C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE057, createStream(TestObjects.CC057C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC057C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC057C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -317,7 +322,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC140C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE140, createStream(TestObjects.CC140C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC140C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC140C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -332,7 +337,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC141C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE141, createStream(TestObjects.CC141C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC141C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC141C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }
@@ -347,7 +352,7 @@ class ConverterServiceIntegrationSpec extends AnyFreeSpec with Matchers with Sca
     "converting CC182C Json to XML is as expected" in {
       val result = service.jsonToXml(MessageType.IE182, createStream(TestObjects.CC182C.jsonValid))
       whenReady(result.value) {
-        case Right(x: Elem) => trim(x) mustBe trim(TestObjects.CC182C.xmlValid)
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC182C.xmlValid)
         case x              => fail(s"$x is not what was expected")
       }
     }

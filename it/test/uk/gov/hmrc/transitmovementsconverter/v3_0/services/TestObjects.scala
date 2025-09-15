@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.v2_1.services
+package uk.gov.hmrc.transitmovementsconverter.v3_0.services
 
 import play.api.libs.json.Json
 
