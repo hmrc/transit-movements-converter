@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.v2_1.services
+package uk.gov.hmrc.transitmovementsconverter.v3_0.services
 
 import org.apache.pekko.stream.scaladsl.Flow
 import org.apache.pekko.stream.scaladsl.Source
 import org.apache.pekko.util.ByteString
-import generated.v2_1.XMLProtocol
+import generated.v3_0.XMLProtocol
 import org.scalatest.concurrent.PatienceConfiguration.Timeout
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.freespec.AnyFreeSpec
@@ -114,7 +114,7 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
     override def xmlRoot: String = throw new UnsupportedOperationException()
   }
 
-  val service = new V2ConverterService
+  val service = new V3ConverterService
 
   "When handed an XML stream" - {
 

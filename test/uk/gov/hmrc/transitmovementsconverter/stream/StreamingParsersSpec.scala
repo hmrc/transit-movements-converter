@@ -34,7 +34,7 @@ import play.api.test.Helpers.defaultAwaitTimeout
 import play.api.test.Helpers.status
 import play.api.test.Helpers.stubControllerComponents
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
-import uk.gov.hmrc.transitmovementsconverter.v2_1.stream.StreamingParsers
+import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
 
 import java.nio.charset.StandardCharsets
 import scala.annotation.tailrec

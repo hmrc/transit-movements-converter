@@ -1,13 +1,10 @@
-import play.core.PlayVersion
-import play.core.PlayVersion.current
-import play.sbt.PlayImport._
-import sbt.Keys.libraryDependencies
-import sbt._
+import play.sbt.PlayImport.*
+import sbt.*
 
 object AppDependencies {
 
   val catsVersion      = "2.12.0"
-  val bootstrapVersion = "9.16.0"
+  val bootstrapVersion = "9.19.0"
 
   val compile = Seq(
     "uk.gov.hmrc"      %% "bootstrap-backend-play-30" % bootstrapVersion,

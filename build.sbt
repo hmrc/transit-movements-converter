@@ -11,6 +11,7 @@ ThisBuild / scalaVersion := "3.4.3"
 Compile / unmanagedSources / scalacOptions += "-nowarn"
 
 lazy val V2_1 = config("v2_1") extend Compile
+lazy val V3_0 = config("v3_0") extend Compile
 
 def customScalaxbSettingsFor(base: String): Seq[Def.Setting[?]] = Seq(
   sourceManaged          := (Compile / sourceManaged).value,
@@ -19,10 +20,17 @@ def customScalaxbSettingsFor(base: String): Seq[Def.Setting[?]] = Seq(
   scalaxbPackageName     := s"generated.$base"
 )
 
-def customScalaxbSettings: Seq[Def.Setting[?]] =
+
+def customScalaxbSettingsForV2_1: Seq[Def.Setting[?]] =
   inConfig(V2_1)(baseScalaxbSettings ++ inTask(scalaxb)(customScalaxbSettingsFor("v2_1"))) ++
     Seq(
       Compile / sourceGenerators += (V2_1 / scalaxb).taskValue
+    )
+
+def customScalaxbSettingsForV3_0: Seq[Def.Setting[?]] =
+  inConfig(V3_0)(baseScalaxbSettings ++ inTask(scalaxb)(customScalaxbSettingsFor("v3_0"))) ++
+    Seq(
+      Compile / sourceGenerators += (V3_0 / scalaxb).taskValue
     )
 
 lazy val microservice = Project(appName, file("."))
@@ -31,11 +39,12 @@ lazy val microservice = Project(appName, file("."))
     PlayKeys.playDefaultPort := 9475,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     RoutesKeys.routesImport ++= Seq(
-      "uk.gov.hmrc.transitmovementsconverter.v2_1.models._",
-      "uk.gov.hmrc.transitmovementsconverter.v2_1.models.Binders._"
+      "uk.gov.hmrc.transitmovementsconverter.models._",
+      "uk.gov.hmrc.transitmovementsconverter.models.Binders._"
     )
   )
-  .settings(customScalaxbSettings*)
+  .settings(customScalaxbSettingsForV2_1*)
+  .settings(customScalaxbSettingsForV3_0*)
   .settings(CodeCoverageSettings.settings*)
   .settings(inThisBuild(buildSettings))
 
