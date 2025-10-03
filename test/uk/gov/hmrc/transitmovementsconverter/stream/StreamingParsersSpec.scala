@@ -47,7 +47,8 @@ class StreamingParsersSpec extends AnyFreeSpec with Matchers with TestActorSyste
   class Harness(implicit val materializer: Materializer) extends BaseController with StreamingParsers {
 
     def testFromMemory: Action[Source[ByteString, ?]] = Action.async(streamFromMemory) {
-      request => result.apply(request).run(request.body)(materializer)
+      request =>
+        result.apply(request).run(request.body)(materializer)
     }
 
     def result: Action[String] = Action.async(parse.text) {
@@ -70,7 +71,7 @@ class StreamingParsersSpec extends AnyFreeSpec with Matchers with TestActorSyste
     Source(byteString.grouped(1024).toList)
 
   "Streaming" - {
-    "from Memory" - {
+    "from Memory" -
       (1 to 5).foreach {
         value =>
           s"~$value kb string is created" in {
@@ -82,7 +83,6 @@ class StreamingParsersSpec extends AnyFreeSpec with Matchers with TestActorSyste
             contentAsString(result) mustBe byteString.decodeString(StandardCharsets.UTF_8)
           }
       }
-    }
   }
 
 }

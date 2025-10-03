@@ -47,11 +47,13 @@ object ModelImplicits {
   implicit lazy val aesNctsP5FunctionalErrorCodesReads: Reads[AesNctsP5FunctionalErrorCodes] = Reads {
     case JsNumber(n) =>
       Try(JsSuccess(AesNctsP5FunctionalErrorCodes.fromString(n.toString, TopScope))).recover {
-        case _: RuntimeException => JsError()
+        case _: RuntimeException =>
+          JsError()
       }.get
     case JsString(s) =>
       Try(JsSuccess(AesNctsP5FunctionalErrorCodes.fromString(s, TopScope))).recover {
-        case _: RuntimeException => JsError()
+        case _: RuntimeException =>
+          JsError()
       }.get
     case _ => JsError()
   }
@@ -64,7 +66,8 @@ object ModelImplicits {
   implicit lazy val countryCodeReads: Reads[CountryCodesCustomsOfficeLists] = Reads {
     case JsString(s) =>
       Try(JsSuccess(CountryCodesCustomsOfficeLists.fromString(s, TopScope))).recover {
-        case _: RuntimeException => JsError()
+        case _: RuntimeException =>
+          JsError()
       }.get
     case _ => JsError()
   }
@@ -77,7 +80,8 @@ object ModelImplicits {
   implicit lazy val flagReads: Reads[Flag] = Reads {
     case JsString(s) =>
       Try(JsSuccess(Flag.fromString(s, TopScope))).recover {
-        case _: RuntimeException => JsError()
+        case _: RuntimeException =>
+          JsError()
       }.get
     case JsNumber(n) if n.intValue == 1 => JsSuccess(Number1)
     case JsNumber(n) if n.intValue == 0 => JsSuccess(Number0)
@@ -92,7 +96,8 @@ object ModelImplicits {
   implicit lazy val phaseIDtypeReads: Reads[PhaseIDtype] = Reads {
     case JsString(x) =>
       Try(JsSuccess(PhaseIDtype.fromString(x, TopScope))).recover {
-        case _: RuntimeException => JsError()
+        case _: RuntimeException =>
+          JsError()
       }.get
     case _ => JsError()
   }

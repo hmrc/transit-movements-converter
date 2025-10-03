@@ -63,7 +63,6 @@ class V2ConverterService @Inject() (implicit materializer: Materializer, ec: Exe
             x => Json.toJsObject(x)(conversionFormat.jsonWrites)
           )
       }.recoverWith {
-
         case NonFatal(e) =>
           logger.error(s"Xml to Json conversion got failed: $e", e)
           Future.successful(Left(ConversionError.UnexpectedError(thr = Some(e))))

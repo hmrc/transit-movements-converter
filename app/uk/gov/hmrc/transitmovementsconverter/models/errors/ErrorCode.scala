@@ -48,6 +48,7 @@ object ErrorCode {
   )
 
   implicit val errorCodeWrites: Writes[ErrorCode] = Writes {
-    errorCode => JsString(errorCode.code)
+    errorCode =>
+      JsString(errorCode.code)
   }
 }

@@ -198,16 +198,13 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
 
   }
 
-  "messageTypeWrites implicit val" - {
-
+  "messageTypeWrites implicit val" -
     MessageTypes.values.foreach {
       messageType =>
         s"${messageType.toString} should be returned as a JsString" in {
           ModelImplicits.messageTypesWrites.writes(messageType) mustBe JsString(messageType.toString)
         }
     }
-
-  }
 
   "aesNctsP5FunctionalErrorCodesReads implicit val" - {
 
@@ -236,8 +233,7 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
 
   }
 
-  "aesNctsP5FunctionalErrorCodesWrites implicit val" - {
-
+  "aesNctsP5FunctionalErrorCodesWrites implicit val" -
     AesNctsP5FunctionalErrorCodes.values.foreach {
       errorCode =>
         s"${errorCode.toString} should be returned as a JsString" in {
@@ -245,11 +241,9 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
         }
     }
 
-  }
-
   "RepresentativeType01" - {
     "must serialise to json" in {
-      val rep = RepresentativeType01("foo", "bar")
+      val rep            = RepresentativeType01("foo", "bar")
       val expectedResult = Json.parse("""
           |{
           |  "identificationNumber" : "foo",
