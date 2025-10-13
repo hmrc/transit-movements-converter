@@ -82,7 +82,7 @@ object CC015CTestMessageType extends TestMessageType {
           "preparationDateAndTime" -> "2022-01-22T07:43:36",
           "messageIdentification"  -> "6Onxa3En",
           "messageType"            -> "CC015C",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "LRN"                       -> "qvRcL",
             "declarationType"           -> "Pbg",
             "additionalDeclarationType" -> "O",
@@ -108,7 +108,7 @@ object CC015CTestMessageType extends TestMessageType {
             )
           ),
           "Consignment" -> Json.obj(
-            "grossMass" -> 6430669292.48125,
+            "grossMass"        -> 6430669292.48125,
             "HouseConsignment" -> Json.arr(
               Json.obj(
                 "sequenceNumber"             -> 48711,
@@ -120,12 +120,12 @@ object CC015CTestMessageType extends TestMessageType {
                 "TransportDocument"          -> Json.arr(),
                 "AdditionalReference"        -> Json.arr(),
                 "AdditionalInformation"      -> Json.arr(),
-                "ConsignmentItem" -> Json.arr(
+                "ConsignmentItem"            -> Json.arr(
                   Json.obj(
                     "goodsItemNumber"            -> 18914,
                     "declarationGoodsItemNumber" -> 1458,
                     "AdditionalSupplyChainActor" -> Json.arr(),
-                    "Commodity" -> Json.obj(
+                    "Commodity"                  -> Json.obj(
                       "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
                       "DangerousGoods" -> Json.arr()
                     ),

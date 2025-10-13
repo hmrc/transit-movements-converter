@@ -8,7 +8,11 @@ val appName = "transit-movements-converter"
 ThisBuild / majorVersion := 0
 ThisBuild / scalaVersion := "3.4.3"
 
-Compile / unmanagedSources / scalacOptions += "-nowarn"
+Compile / scalacOptions ++= Seq(
+  "-nowarn",
+  "-rewrite",
+  "-source:3.4-migration"
+)
 
 lazy val V2_1 = config("v2_1") extend Compile
 lazy val V3_0 = config("v3_0") extend Compile

@@ -136,7 +136,7 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
 
     "if an exception is thrown, should return the appropriate error" in {
       val exception = new IllegalArgumentException
-      val result = service.xmlToJson(
+      val result    = service.xmlToJson(
         testConverter,
         Source
           .single(ByteString(invalidXml.mkString, StandardCharsets.UTF_8))
@@ -174,7 +174,7 @@ class ConverterServiceSpec extends AnyFreeSpec with ScalaFutures with Matchers w
 
     "if an exception is thrown inside the try block, should return the appropriate error" in {
       val exception = new IllegalArgumentException
-      val result = service.jsonToXml(
+      val result    = service.jsonToXml(
         testConverter,
         Source
           .single(ByteString(Json.stringify(invalidJson), StandardCharsets.UTF_8))
