@@ -92,7 +92,7 @@ object TestObjects {
             "preparationDateAndTime" -> "2022-01-22T07:43:36",
             "messageIdentification"  -> "6Onxa3En",
             "messageType"            -> "CC015C",
-            "TransitOperation" -> Json.obj(
+            "TransitOperation"       -> Json.obj(
               "LRN"                       -> "qvRcL",
               "declarationType"           -> "Pbg",
               "additionalDeclarationType" -> "O",
@@ -118,7 +118,7 @@ object TestObjects {
               )
             ),
             "Consignment" -> Json.obj(
-              "grossMass" -> 6430669292.48125,
+              "grossMass"        -> 6430669292.48125,
               "HouseConsignment" -> Json.arr(
                 Json.obj(
                   "sequenceNumber"             -> 48711,
@@ -130,12 +130,12 @@ object TestObjects {
                   "TransportDocument"          -> Json.arr(),
                   "AdditionalReference"        -> Json.arr(),
                   "AdditionalInformation"      -> Json.arr(),
-                  "ConsignmentItem" -> Json.arr(
+                  "ConsignmentItem"            -> Json.arr(
                     Json.obj(
                       "goodsItemNumber"            -> 18914,
                       "declarationGoodsItemNumber" -> 1458,
                       "AdditionalSupplyChainActor" -> Json.arr(),
-                      "Commodity" -> Json.obj(
+                      "Commodity"                  -> Json.obj(
                         "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
                         "DangerousGoods" -> Json.arr()
                       ),
@@ -193,7 +193,7 @@ object TestObjects {
         "n1:CC019C" ->
           Json.obj(
             "preparationDateAndTime" -> "2022-01-22T07:43:36",
-            "TransitOperation" -> Json.obj(
+            "TransitOperation"       -> Json.obj(
               "MRN"                           -> "qvRcL",
               "discrepanciesNotificationDate" -> "2014-06-09"
             ),
@@ -204,7 +204,7 @@ object TestObjects {
             "@PhaseID"         -> "NCTS5.0",
             "messageSender"    -> "GdOcminxBxSLGm1rRUn0q96S2",
             "messageRecipient" -> "FdOcminxBxSLGm1rRUn0q96S1",
-            "Guarantor" -> Json.obj(
+            "Guarantor"        -> Json.obj(
               "identificationNumber" -> "GdzWtySAdjL"
             ),
             "HolderOfTheTransitProcedure" -> Json.obj(
@@ -289,7 +289,7 @@ object TestObjects {
             "messageIdentification"  -> "6Onxa3En",
             "messageType"            -> "CC025C",
             "correlationIdentifier"  -> "co-id-1",
-            "TransitOperation" -> Json.obj(
+            "TransitOperation"       -> Json.obj(
               "MRN"              -> "qvRcL",
               "releaseDate"      -> "2022-06-09+01:00",
               "releaseIndicator" -> "1"
@@ -303,17 +303,17 @@ object TestObjects {
             "Consignment" -> Json.obj(
               "HouseConsignment" -> Json.arr(
                 Json.obj(
-                  "sequenceNumber" -> 3,
-                  "releaseType"    -> "1",
+                  "sequenceNumber"  -> 3,
+                  "releaseType"     -> "1",
                   "ConsignmentItem" -> Json.arr(
                     Json.obj(
                       "goodsItemNumber"            -> 10,
                       "declarationGoodsItemNumber" -> 100,
                       "releaseType"                -> "2",
-                      "Commodity" -> Json.obj(
+                      "Commodity"                  -> Json.obj(
                         "descriptionOfGoods" -> "jeans",
                         "cusCode"            -> "5",
-                        "CommodityCode" -> Json.obj(
+                        "CommodityCode"      -> Json.obj(
                           "harmonizedSystemSubHeadingCode" -> "12",
                           "combinedNomenclatureCode"       -> "13"
                         ),
@@ -409,7 +409,7 @@ object TestObjects {
             "referenceNumber" -> "DOVER-2"
           ),
           "preparationDateAndTime" -> "2007-10-26T07:36:28",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN"                       -> "mrn-1",
             "declarationAcceptanceDate" -> "2014-06-09+01:00"
           ),
@@ -427,10 +427,10 @@ object TestObjects {
           "@PhaseID"              -> "NCTS5.0",
           "correlationIdentifier" -> "cn-id-1",
           "messageRecipient"      -> "FdOcminxBxSLGm1rRUn0q96S1",
-          "Guarantor" -> Json.obj(
+          "Guarantor"             -> Json.obj(
             "identificationNumber" -> "23456",
             "name"                 -> "Jane Doe",
-            "Address" -> Json.obj(
+            "Address"              -> Json.obj(
               "streetAndNumber" -> "Main Street 2",
               "postcode"        -> "N98 1ZZ",
               "city"            -> "Newcastle",
@@ -441,7 +441,7 @@ object TestObjects {
             "identificationNumber"          -> "30001",
             "TIRHolderIdentificationNumber" -> "30002",
             "name"                          -> "Smith",
-            "Address" -> Json.obj(
+            "Address"                       -> Json.obj(
               "streetAndNumber" -> "10 The High Street",
               "postcode"        -> "N1 3PZ",
               "city"            -> "Paris",
@@ -749,7 +749,7 @@ object TestObjects {
           "messageIdentification"  -> "6Onxa3En",
           "messageType"            -> "CC043C",
           "correlationIdentifier"  -> "corr-1",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN"                       -> "mrn1",
             "declarationType"           -> "3",
             "declarationAcceptanceDate" -> "2014-06-09+01:00",
@@ -763,7 +763,7 @@ object TestObjects {
             "identificationNumber"          -> "Fzsisks",
             "TIRHolderIdentificationNumber" -> "trp-id-1",
             "name"                          -> "Jean Doe",
-            "Address" -> Json.obj(
+            "Address"                       -> Json.obj(
               "streetAndNumber" -> "1 avenue marceau",
               "postcode"        -> "10006",
               "city"            -> "Paris",
@@ -781,10 +781,10 @@ object TestObjects {
             "containerIndicator"    -> "1",
             "inlandModeOfTransport" -> "2",
             "grossMass"             -> 1000.99,
-            "Consignor" -> Json.obj(
+            "Consignor"             -> Json.obj(
               "identificationNumber" -> "id2",
               "name"                 -> "john doe",
-              "Address" -> Json.obj(
+              "Address"              -> Json.obj(
                 "streetAndNumber" -> "1 high street",
                 "postcode"        -> "N1 99Z",
                 "city"            -> "Newcastle",
@@ -794,7 +794,7 @@ object TestObjects {
             "Consignee" -> Json.obj(
               "identificationNumber" -> "csgnee-1",
               "name"                 -> "Jane Doe",
-              "Address" -> Json.obj(
+              "Address"              -> Json.obj(
                 "streetAndNumber" -> "1 Champs Elysees",
                 "postcode"        -> "75008",
                 "city"            -> "Paris",
@@ -806,7 +806,7 @@ object TestObjects {
                 "sequenceNumber"                -> 100,
                 "containerIdentificationNumber" -> "cin-1",
                 "numberOfSeals"                 -> 103,
-                "Seal" -> Json.arr(
+                "Seal"                          -> Json.arr(
                   Json.obj(
                     "sequenceNumber" -> 1001,
                     "identifier"     -> "1002"
@@ -870,7 +870,7 @@ object TestObjects {
                 "sequenceNumber" -> 100,
                 "code"           -> "5",
                 "text"           -> "some text 1",
-                "Endorsement" -> Json.obj(
+                "Endorsement"    -> Json.obj(
                   "date"      -> "2013-05-22+01:00",
                   "authority" -> "de",
                   "place"     -> "Cologne",
@@ -880,7 +880,7 @@ object TestObjects {
                   "qualifierOfIdentification" -> "loc1",
                   "UNLocode"                  -> "34",
                   "country"                   -> "DE",
-                  "GNSS" -> Json.obj(
+                  "GNSS"                      -> Json.obj(
                     "latitude"  -> "91.0",
                     "longitude" -> "92.0"
                   ),
@@ -895,7 +895,7 @@ object TestObjects {
                     "sequenceNumber"                -> 100,
                     "containerIdentificationNumber" -> "tn1",
                     "numberOfSeals"                 -> 34,
-                    "Seal" -> Json.arr(
+                    "Seal"                          -> Json.arr(
                       Json.obj(
                         "sequenceNumber" -> 100,
                         "identifier"     -> "sl7"
@@ -911,7 +911,7 @@ object TestObjects {
                 ),
                 "Transhipment" -> Json.obj(
                   "containerIndicator" -> "1",
-                  "TransportMeans" -> Json.obj(
+                  "TransportMeans"     -> Json.obj(
                     "typeOfIdentification" -> "5",
                     "identificationNumber" -> "44",
                     "nationality"          -> "FR"
@@ -924,10 +924,10 @@ object TestObjects {
                 "sequenceNumber"                         -> 100,
                 "grossMass"                              -> 1234.567,
                 "securityIndicatorFromExportDeclaration" -> "si1",
-                "Consignor" -> Json.obj(
+                "Consignor"                              -> Json.obj(
                   "identificationNumber" -> "csgr1",
                   "name"                 -> "michael doe",
-                  "Address" -> Json.obj(
+                  "Address"              -> Json.obj(
                     "streetAndNumber" -> "3 main street",
                     "postcode"        -> "bc2 45d",
                     "city"            -> "city4",
@@ -937,7 +937,7 @@ object TestObjects {
                 "Consignee" -> Json.obj(
                   "identificationNumber" -> "csgee1",
                   "name"                 -> "John Smith",
-                  "Address" -> Json.obj(
+                  "Address"              -> Json.obj(
                     "streetAndNumber" -> "5 main street",
                     "postcode"        -> "cd4 56e",
                     "city"            -> "city5",
@@ -995,10 +995,10 @@ object TestObjects {
                     "declarationGoodsItemNumber" -> 100,
                     "declarationType"            -> "2",
                     "countryOfDestination"       -> "DE",
-                    "Consignee" -> Json.obj(
+                    "Consignee"                  -> Json.obj(
                       "identificationNumber" -> "5",
                       "name"                 -> "Smith",
-                      "Address" -> Json.obj(
+                      "Address"              -> Json.obj(
                         "streetAndNumber" -> "5 main street",
                         "postcode"        -> "ab12 3cd",
                         "city"            -> "Newcastle",
@@ -1008,7 +1008,7 @@ object TestObjects {
                     "Commodity" -> Json.obj(
                       "descriptionOfGoods" -> "shirts",
                       "cusCode"            -> "1",
-                      "CommodityCode" -> Json.obj(
+                      "CommodityCode"      -> Json.obj(
                         "harmonizedSystemSubHeadingCode" -> "3",
                         "combinedNomenclatureCode"       -> "45"
                       ),
@@ -1169,7 +1169,7 @@ object TestObjects {
       "n1:CC044C" ->
         Json.obj(
           "preparationDateAndTime" -> "2007-10-26T07:36:28",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN" -> "qvRcL"
           ),
           "TraderAtDestination" -> Json.obj(
@@ -1184,12 +1184,12 @@ object TestObjects {
           "@PhaseID"         -> "NCTS5.0",
           "messageSender"    -> "Ge1cminxBxSLGm1rRUn0q96R3",
           "messageRecipient" -> "FdOcminxBxSLGm1rRUn0q96S1",
-          "Consignment" -> Json.obj(
-            "grossMass" -> 1000.000000000001,
+          "Consignment"      -> Json.obj(
+            "grossMass"          -> 1000.000000000001,
             "TransportEquipment" -> Json.arr(
               Json.obj(
                 "sequenceNumber" -> 1122,
-                "Seal" -> Json.arr(
+                "Seal"           -> Json.arr(
                   Json.obj(
                     "sequenceNumber" -> 100,
                     "identifier"     -> "id1"
@@ -1225,8 +1225,8 @@ object TestObjects {
             ),
             "HouseConsignment" -> Json.arr(
               Json.obj(
-                "sequenceNumber" -> 100,
-                "grossMass"      -> 3000.000000000002,
+                "sequenceNumber"          -> 100,
+                "grossMass"               -> 3000.000000000002,
                 "DepartureTransportMeans" -> Json.arr(
                   Json.obj(
                     "sequenceNumber" -> 100
@@ -1251,7 +1251,7 @@ object TestObjects {
                   Json.obj(
                     "goodsItemNumber"            -> 100,
                     "declarationGoodsItemNumber" -> 100,
-                    "Packaging" -> Json.arr(
+                    "Packaging"                  -> Json.arr(
                       Json.obj(
                         "sequenceNumber" -> 100
                       )
@@ -1278,7 +1278,7 @@ object TestObjects {
               )
             )
           ),
-          "messageIdentification" -> "6Onxa3En",
+          "messageIdentification"            -> "6Onxa3En",
           "CustomsOfficeOfDestinationActual" -> Json.obj(
             "referenceNumber" -> "ZQZ20443"
           )
@@ -1342,7 +1342,7 @@ object TestObjects {
       "n1:CC045C" ->
         Json.obj(
           "preparationDateAndTime" -> "2022-10-26T07:36:28",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN"          -> "mrn1",
             "writeOffDate" -> "2022-06-09+01:00"
           ),
@@ -1354,10 +1354,10 @@ object TestObjects {
           "correlationIdentifier" -> "corr-1",
           "messageSender"         -> "FdOcminxBxSLGm1rRUn0q96S1",
           "messageRecipient"      -> "XzcminxBxSLGm1rRUn0q96S2",
-          "Guarantor" -> Json.obj(
+          "Guarantor"             -> Json.obj(
             "identificationNumber" -> "id2",
             "name"                 -> "john doe",
-            "Address" -> Json.obj(
+            "Address"              -> Json.obj(
               "streetAndNumber" -> "1 high street",
               "postcode"        -> "N1 99Z",
               "city"            -> "Newcastle",
@@ -1368,7 +1368,7 @@ object TestObjects {
             "identificationNumber"          -> "Fzsisks",
             "TIRHolderIdentificationNumber" -> "tir-id-1",
             "name"                          -> "Jean Doe",
-            "Address" -> Json.obj(
+            "Address"                       -> Json.obj(
               "streetAndNumber" -> "1 main street",
               "postcode"        -> "ab12 3cd",
               "city"            -> "Newcastle",
@@ -1427,7 +1427,7 @@ object TestObjects {
       "n1:CC057C" ->
         Json.obj(
           "preparationDateAndTime" -> "2022-12-25T07:36:28",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN"                   -> "qvRc",
             "businessRejectionType" -> "sdfghj",
             "rejectionDateAndTime"  -> "2014-12-25T16:15:04+01:00",
@@ -1440,7 +1440,7 @@ object TestObjects {
           "messageType"           -> "CC057C",
           "@PhaseID"              -> "NCTS5.0",
           "correlationIdentifier" -> "co-id-1",
-          "FunctionalError" -> Json.arr(
+          "FunctionalError"       -> Json.arr(
             Json.obj(
               "errorPointer"           -> "2",
               "errorCode"              -> "13",
@@ -1448,9 +1448,9 @@ object TestObjects {
               "originalAttributeValue" -> "2"
             )
           ),
-          "messageSender"         -> "token",
-          "messageRecipient"      -> "FdOcminxBxSLGm1rRUn0q96S1",
-          "messageIdentification" -> "6Onxa3En",
+          "messageSender"                    -> "token",
+          "messageRecipient"                 -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageIdentification"            -> "6Onxa3En",
           "CustomsOfficeOfDestinationActual" -> Json.obj(
             "referenceNumber" -> "2"
           )
@@ -1508,7 +1508,7 @@ object TestObjects {
       "n1:CC140C" ->
         Json.obj(
           "preparationDateAndTime" -> "2022-10-26T07:36:28",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN"                             -> "mrn1",
             "requestOnNonArrivedMovementDate" -> "2022-06-09+01:00",
             "limitForResponseDate"            -> "2022-11-15"
@@ -1516,19 +1516,19 @@ object TestObjects {
           "CustomsOfficeOfDeparture" -> Json.obj(
             "referenceNumber" -> "1"
           ),
-          "messageType" -> "CC140C",
+          "messageType"                       -> "CC140C",
           "CustomsOfficeOfEnquiryAtDeparture" -> Json.obj(
             "referenceNumber" -> "2"
           ),
-          "@PhaseID"              -> "NCTS5.0",
-          "correlationIdentifier" -> "corr-1",
-          "messageSender"         -> "FdOcminxBxSLGm1rRUn0q96S1",
-          "messageRecipient"      -> "XzcminxBxSLGm1rRUn0q96S2",
+          "@PhaseID"                    -> "NCTS5.0",
+          "correlationIdentifier"       -> "corr-1",
+          "messageSender"               -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageRecipient"            -> "XzcminxBxSLGm1rRUn0q96S2",
           "HolderOfTheTransitProcedure" -> Json.obj(
             "identificationNumber"          -> "Fzsisks",
             "TIRHolderIdentificationNumber" -> "tir-id-1",
             "name"                          -> "Jean Doe",
-            "Address" -> Json.obj(
+            "Address"                       -> Json.obj(
               "streetAndNumber" -> "1 main street",
               "postcode"        -> "ab12 3cd",
               "city"            -> "Newcastle",
@@ -1589,29 +1589,29 @@ object TestObjects {
       "n1:CC141C" ->
         Json.obj(
           "preparationDateAndTime" -> "2022-10-26T07:36:28",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN" -> "mrn1"
           ),
-          "messageType" -> "CC141C",
+          "messageType"                       -> "CC141C",
           "CustomsOfficeOfEnquiryAtDeparture" -> Json.obj(
             "referenceNumber" -> "2"
           ),
-          "@PhaseID"              -> "NCTS5.0",
-          "correlationIdentifier" -> "corr-1",
-          "messageSender"         -> "FdOcminxBxSLGm1rRUn0q96S1",
-          "messageRecipient"      -> "XzcminxBxSLGm1rRUn0q96S2",
+          "@PhaseID"                    -> "NCTS5.0",
+          "correlationIdentifier"       -> "corr-1",
+          "messageSender"               -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageRecipient"            -> "XzcminxBxSLGm1rRUn0q96S2",
           "HolderOfTheTransitProcedure" -> Json.obj(
             "identificationNumber"          -> "Fzsisks",
             "TIRHolderIdentificationNumber" -> "tir-id-1",
             "name"                          -> "Jean Doe",
-            "Address" -> Json.obj(
+            "Address"                       -> Json.obj(
               "streetAndNumber" -> "1 main street",
               "postcode"        -> "ab12 3cd",
               "city"            -> "Newcastle",
               "country"         -> "GB"
             )
           ),
-          "messageIdentification" -> "6Onxa3En",
+          "messageIdentification"            -> "6Onxa3En",
           "CustomsOfficeOfDestinationActual" -> Json.obj(
             "referenceNumber" -> "1"
           )
@@ -1711,7 +1711,7 @@ object TestObjects {
           "messageIdentification"  -> "6Onxa3En",
           "messageType"            -> "CC182C",
           "correlationIdentifier"  -> "corr-1",
-          "TransitOperation" -> Json.obj(
+          "TransitOperation"       -> Json.obj(
             "MRN"                             -> "mrn1",
             "incidentNotificationDateAndTime" -> "2022-06-09T16:15:04+01:00"
           ),
@@ -1727,7 +1727,7 @@ object TestObjects {
                 "sequenceNumber" -> 3,
                 "code"           -> "1",
                 "text"           -> "an incident",
-                "Endorsement" -> Json.obj(
+                "Endorsement"    -> Json.obj(
                   "date"      -> "2022-11-15",
                   "authority" -> "ports",
                   "place"     -> "Dover",
@@ -1737,7 +1737,7 @@ object TestObjects {
                   "qualifierOfIdentification" -> "token",
                   "UNLocode"                  -> "34",
                   "country"                   -> "FR",
-                  "GNSS" -> Json.obj(
+                  "GNSS"                      -> Json.obj(
                     "latitude"  -> "90.1",
                     "longitude" -> "90.2"
                   ),
@@ -1752,7 +1752,7 @@ object TestObjects {
                     "sequenceNumber"                -> 5,
                     "containerIdentificationNumber" -> "1",
                     "numberOfSeals"                 -> 100,
-                    "Seal" -> Json.arr(
+                    "Seal"                          -> Json.arr(
                       Json.obj(
                         "sequenceNumber" -> 34,
                         "identifier"     -> "sl7"
@@ -1768,7 +1768,7 @@ object TestObjects {
                 ),
                 "Transhipment" -> Json.obj(
                   "containerIndicator" -> "0",
-                  "TransportMeans" -> Json.obj(
+                  "TransportMeans"     -> Json.obj(
                     "typeOfIdentification" -> "4",
                     "identificationNumber" -> "22",
                     "nationality"          -> "FR"
