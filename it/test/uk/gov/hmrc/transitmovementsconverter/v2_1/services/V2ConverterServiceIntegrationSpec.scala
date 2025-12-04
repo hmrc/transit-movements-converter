@@ -23,8 +23,8 @@ import org.scalatest.matchers.must.Matchers
 import uk.gov.hmrc.transitmovementsconverter.itbase.StreamTestHelpers
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestActorSystem
 import uk.gov.hmrc.transitmovementsconverter.itbase.TestObjects
-import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.xml.Elem

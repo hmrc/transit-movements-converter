@@ -14,13 +14,14 @@ object CodeCoverageSettings {
     "testOnlyDoNotUseInAppConf.*",
     ".*generated.*",
     ".*scalaxb.*",
-    ".*generated.transitional.*"
+    ".*generated.transitional.*",
   )
 
   private val excludedFiles: Seq[String] = Seq(
     ".*PresentationError.*",
     ".*AppConfig.*",
-    ".*ModelImplicits.*"
+    ".*ModelImplicits.*",
+    ".*models.*",
   )
 
   val settings: Seq[Setting[_]] = Seq(

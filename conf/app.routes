@@ -1,2 +1,2 @@
 # microservice specific routes
-POST        /messages/:messageType        uk.gov.hmrc.transitmovementsconverter.controllers.MessageConversionController.message(messageType: MessageType[_])
+POST        /messages/:messageType        uk.gov.hmrc.transitmovementsconverter.controllers.MessageConversionController.message(messageType: String)
