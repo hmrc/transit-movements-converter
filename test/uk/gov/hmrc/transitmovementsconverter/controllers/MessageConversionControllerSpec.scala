@@ -44,9 +44,11 @@ import play.api.test.Helpers.defaultAwaitTimeout
 import play.api.test.Helpers.status
 import play.api.test.Helpers.stubControllerComponents
 import uk.gov.hmrc.transitmovementsconverter.base.TestActorSystem
+import uk.gov.hmrc.transitmovementsconverter.config.AppConfig
 import uk.gov.hmrc.transitmovementsconverter.controllers.actions.ValidateAcceptRefiner
-import uk.gov.hmrc.transitmovementsconverter.models.MessageType
 import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
+import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType as V2MessageType
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.MessageType as V3MessageType
 import uk.gov.hmrc.transitmovementsconverter.v2_1.services.V2ConverterService
 import uk.gov.hmrc.transitmovementsconverter.v3_0.services.V3ConverterService
 
@@ -65,16 +67,21 @@ class MessageConversionControllerSpec
     with BeforeAndAfterEach
     with TestActorSystem {
 
-  val messageTypeGen: Gen[MessageType[?]] = Gen.oneOf(MessageType.values)
+  val v2MessageTypeGen: Gen[V2MessageType[?]] = Gen.oneOf(V2MessageType.values)
+  val v3MessageTypeGen: Gen[V3MessageType[?]] = Gen.oneOf(V3MessageType.values)
 
   val v2MockXmlToJsonService = mock[V2ConverterService]
   val v3MockXmlToJsonService = mock[V3ConverterService]
+
+  val mockAppConfig = mock[AppConfig]
+  when(mockAppConfig.errorLogging).thenReturn(true)
 
   val sut = new MessageConversionController(
     stubControllerComponents(),
     v2MockXmlToJsonService,
     v3MockXmlToJsonService,
-    new ValidateAcceptRefiner(stubControllerComponents())
+    new ValidateAcceptRefiner(stubControllerComponents()),
+    mockAppConfig
   )
 
   override def beforeEach(): Unit =
@@ -102,11 +109,11 @@ class MessageConversionControllerSpec
 
       val resultMatVal = matVal.map(_.utf8String)
 
-      val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
 
       val request = reqWithAccept(None)
 
-      val result = sut.message(sample)(request)
+      val result = sut.message(sample.name)(request)
 
       status(result) mustEqual NOT_ACCEPTABLE
 
@@ -125,11 +132,11 @@ class MessageConversionControllerSpec
 
       val resultMatVal = matVal.map(_.utf8String)
 
-      val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
 
       val request = reqWithAccept(Some(invalidAPIVersion))
 
-      val result = sut.message(sample)(request)
+      val result = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
 
@@ -148,11 +155,11 @@ class MessageConversionControllerSpec
 
       val resultMatVal = matVal.map(_.utf8String)
 
-      val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
 
       val request = reqWithAccept(Some(emptyAPIVersion))
 
-      val result = sut.message(sample)(request)
+      val result = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
 
@@ -182,14 +189,14 @@ class MessageConversionControllerSpec
       val apiVersion                = "2.1"
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
-      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample                    = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, ?]](
         method = "POST",
         uri = "/",
         headers = FakeHeaders(Seq("APIVersion" -> apiVersion)),
         body = sourceUnderTest
       )
-      val result = sut.message(sample)(request)
+      val result = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustEqual Json.obj(
@@ -204,9 +211,9 @@ class MessageConversionControllerSpec
     "with a text content type returns a bad request" in {
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
-      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample                    = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v2_1TextToJsonHeader, body = sourceUnderTest)
-      val result                    = sut.message(sample)(request)
+      val result                    = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustEqual Json.obj(
@@ -221,9 +228,9 @@ class MessageConversionControllerSpec
     "with a text accept returns a bad request" in {
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
-      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample                    = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v2_1XmlToTextHeader, body = sourceUnderTest)
-      val result                    = sut.message(sample)(request)
+      val result                    = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustEqual Json.obj(
@@ -242,10 +249,10 @@ class MessageConversionControllerSpec
         when(v2MockXmlToJsonService.xmlToJson(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v2_1XmlToJsonHeader, body = Source.single(ByteString("<valid></valid>")))
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual OK
         contentAsJson(result) mustEqual Json.obj("success" -> true)
@@ -256,10 +263,10 @@ class MessageConversionControllerSpec
         when(v2MockXmlToJsonService.xmlToJson(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Left(ConversionError.XMLParsingError("error")))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v2_1XmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual BAD_REQUEST
         contentAsJson(result) mustEqual Json.obj("code" -> "BAD_REQUEST", "message" -> "error")
@@ -270,10 +277,10 @@ class MessageConversionControllerSpec
         when(v2MockXmlToJsonService.xmlToJson(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Left(ConversionError.UnexpectedError(thr = None)))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v2_1XmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual INTERNAL_SERVER_ERROR
         contentAsJson(result) mustEqual Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
@@ -287,7 +294,7 @@ class MessageConversionControllerSpec
         when(v2MockXmlToJsonService.jsonToXml(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, NodeSeq](Future.successful(Right(<test><success>ok</success></test>))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](
             method = "POST",
@@ -295,7 +302,7 @@ class MessageConversionControllerSpec
             headers = v2_1JsonToXmlHeader,
             body = Source.single(ByteString("""{ "valid": "ok" } """))
           )
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual OK
         trim(XML.loadString(contentAsString(result))) mustEqual <test><success>ok</success></test>
@@ -306,7 +313,7 @@ class MessageConversionControllerSpec
         when(v2MockXmlToJsonService.jsonToXml(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, NodeSeq](Future.successful(Left(ConversionError.JsonParsingError(new IllegalStateException("error"))))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](
             method = "POST",
@@ -314,7 +321,7 @@ class MessageConversionControllerSpec
             headers = v2_1JsonToXmlHeader,
             body = Source.single(ByteString("""{ "valid": "ok"  """))
           )
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual BAD_REQUEST
         contentAsJson(result) mustEqual Json.obj("code" -> "BAD_REQUEST", "message" -> "error")
@@ -325,7 +332,7 @@ class MessageConversionControllerSpec
         when(v2MockXmlToJsonService.jsonToXml(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, NodeSeq](Future.successful(Left(ConversionError.UnexpectedError(thr = None)))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v2MessageTypeGen.sample.getOrElse(V2MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](
             method = "POST",
@@ -333,7 +340,7 @@ class MessageConversionControllerSpec
             headers = v2_1JsonToXmlHeader,
             body = Source.single(ByteString("""{ "valid": "ok"  """))
           )
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual INTERNAL_SERVER_ERROR
         contentAsJson(result) mustEqual Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
@@ -353,14 +360,14 @@ class MessageConversionControllerSpec
       val apiVersion                = "3.0"
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
-      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample                    = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, ?]](
         method = "POST",
         uri = "/",
         headers = FakeHeaders(Seq("APIVersion" -> apiVersion)),
         body = sourceUnderTest
       )
-      val result = sut.message(sample)(request)
+      val result = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustEqual Json.obj(
@@ -375,9 +382,9 @@ class MessageConversionControllerSpec
     "with a text content type returns a bad request" in {
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
-      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample                    = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v3_0TextToJsonHeader, body = sourceUnderTest)
-      val result                    = sut.message(sample)(request)
+      val result                    = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustEqual Json.obj(
@@ -392,9 +399,9 @@ class MessageConversionControllerSpec
     "with a text accept returns a bad request" in {
       val (matVal, sourceUnderTest) = Source.single(ByteString("<valid></valid>")).alsoToMat(Sink.head)(Keep.right).preMaterialize()
       val resultMatVal              = matVal.map(_.utf8String)
-      val sample                    = messageTypeGen.sample.getOrElse(MessageType.values.head)
+      val sample                    = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
       val request                   = FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v3_0XmlToTextHeader, body = sourceUnderTest)
-      val result                    = sut.message(sample)(request)
+      val result                    = sut.message(sample.name)(request)
 
       status(result) mustEqual UNSUPPORTED_MEDIA_TYPE
       contentAsJson(result) mustEqual Json.obj(
@@ -413,12 +420,12 @@ class MessageConversionControllerSpec
         when(v3MockXmlToJsonService.xmlToJson(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Right(Json.obj("success" -> true)))))
 
-        val sample = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
 
         val request =
           FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v3_0XmlToJsonHeader, body = Source.single(ByteString("<valid></valid>")))
 
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual OK
         contentAsJson(result) mustEqual Json.obj("success" -> true)
@@ -429,10 +436,10 @@ class MessageConversionControllerSpec
         when(v3MockXmlToJsonService.xmlToJson(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Left(ConversionError.XMLParsingError("error")))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v3_0XmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual BAD_REQUEST
         contentAsJson(result) mustEqual Json.obj("code" -> "BAD_REQUEST", "message" -> "error")
@@ -443,10 +450,10 @@ class MessageConversionControllerSpec
         when(v3MockXmlToJsonService.xmlToJson(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, JsValue](Future.successful(Left(ConversionError.UnexpectedError(thr = None)))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](method = "POST", uri = "/", headers = v3_0XmlToJsonHeader, body = Source.single(ByteString("<invalid></invalid>")))
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual INTERNAL_SERVER_ERROR
         contentAsJson(result) mustEqual Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")
@@ -460,7 +467,7 @@ class MessageConversionControllerSpec
         when(v3MockXmlToJsonService.jsonToXml(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, NodeSeq](Future.successful(Right(<test><success>ok</success></test>))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](
             method = "POST",
@@ -468,7 +475,7 @@ class MessageConversionControllerSpec
             headers = v3_0JsonToXmlHeader,
             body = Source.single(ByteString("""{ "valid": "ok" } """))
           )
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual OK
         trim(XML.loadString(contentAsString(result))) mustEqual <test><success>ok</success></test>
@@ -479,7 +486,7 @@ class MessageConversionControllerSpec
         when(v3MockXmlToJsonService.jsonToXml(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, NodeSeq](Future.successful(Left(ConversionError.JsonParsingError(new IllegalStateException("error"))))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](
             method = "POST",
@@ -487,7 +494,7 @@ class MessageConversionControllerSpec
             headers = v3_0JsonToXmlHeader,
             body = Source.single(ByteString("""{ "valid": "ok"  """))
           )
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual BAD_REQUEST
         contentAsJson(result) mustEqual Json.obj("code" -> "BAD_REQUEST", "message" -> "error")
@@ -498,7 +505,7 @@ class MessageConversionControllerSpec
         when(v3MockXmlToJsonService.jsonToXml(any(), any()))
           .thenReturn(EitherT[Future, ConversionError, NodeSeq](Future.successful(Left(ConversionError.UnexpectedError(thr = None)))))
 
-        val sample  = messageTypeGen.sample.getOrElse(MessageType.values.head)
+        val sample  = v3MessageTypeGen.sample.getOrElse(V3MessageType.values.head)
         val request =
           FakeRequest[Source[ByteString, ?]](
             method = "POST",
@@ -506,7 +513,7 @@ class MessageConversionControllerSpec
             headers = v3_0JsonToXmlHeader,
             body = Source.single(ByteString("""{ "valid": "ok"  """))
           )
-        val result = sut.message(sample)(request)
+        val result = sut.message(sample.name)(request)
 
         status(result) mustEqual INTERNAL_SERVER_ERROR
         contentAsJson(result) mustEqual Json.obj("code" -> "INTERNAL_SERVER_ERROR", "message" -> "Internal server error")

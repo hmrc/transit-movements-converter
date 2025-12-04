@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.transitmovementsconverter.config
+package uk.gov.hmrc.transitmovementsconverter.v2_1.models.testobjects
 
-import javax.inject.Inject
-import javax.inject.Singleton
-import play.api.Configuration
+import play.api.libs.json.JsValue
 
-@Singleton
-class AppConfig @Inject() (config: Configuration) {
+import scala.xml.NodeSeq
 
-  lazy val appName: String              = config.get[String]("appName")
-  lazy val errorLogging: Boolean = config.get[Boolean]("error.logging")
+trait TestMessageType {
+
+  def testAssociations: IndexedSeq[(NodeSeq, JsValue)]
+
 }

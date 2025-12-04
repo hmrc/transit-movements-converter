@@ -43,8 +43,7 @@ lazy val microservice = Project(appName, file("."))
     PlayKeys.playDefaultPort := 9475,
     libraryDependencies ++= AppDependencies.compile ++ AppDependencies.test,
     RoutesKeys.routesImport ++= Seq(
-      "uk.gov.hmrc.transitmovementsconverter.models._",
-      "uk.gov.hmrc.transitmovementsconverter.models.Binders._"
+      "uk.gov.hmrc.transitmovementsconverter.models._"
     )
   )
   .settings(customScalaxbSettingsForV2_1*)
