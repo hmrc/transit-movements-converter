@@ -66,7 +66,7 @@ class MessageConversionController @Inject() (
 
   private def logError(conversionError: ConversionError): ConversionError = {
     if (appConfig.errorLogging) {
-      logger.warn(s"Error converting message: ${conversionError}")
+      logger.warn(s"Error converting message: $conversionError")
     }
     conversionError
   }
