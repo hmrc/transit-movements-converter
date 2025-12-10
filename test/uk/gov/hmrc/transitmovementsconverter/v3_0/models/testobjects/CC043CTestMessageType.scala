@@ -385,6 +385,397 @@ object CC043CTestMessageType extends TestMessageType {
     </ncts:CC043C>
 
   lazy val json1: JsValue = Json.parse(
-    """{"n1:CC043C":{"messageSender":"token","messageRecipient":"token","preparationDateAndTime":"2007-10-26T07:36:28","messageIdentification":"token","messageType":"CD975C","correlationIdentifier":"token","TransitOperation":{"MRN":"string","declarationType":"token","declarationAcceptanceDate":"2014-06-09+01:00","security":"token","reducedDatasetIndicator":"1"},"CustomsOfficeOfDestinationActual":{"referenceNumber":"stringst"},"HolderOfTheTransitProcedure":{"identificationNumber":"string","TIRHolderIdentificationNumber":"string","name":"string","Address":{"streetAndNumber":"string","postcode":"string","city":"string","country":"st"}},"TraderAtDestination":{"identificationNumber":"string"},"CTLControl":{"continueUnloading":9},"Consignment":{"countryOfDestination":"token","containerIndicator":"1","inlandModeOfTransport":"token","grossMass":1000,"Consignor":{"identificationNumber":"string","name":"string","Address":{"streetAndNumber":"string","postcode":"string","city":"string","country":"st"}},"Consignee":{"identificationNumber":"string","name":"string","Address":{"streetAndNumber":"string","postcode":"string","city":"string","country":"st"}},"TransportEquipment":[{"sequenceNumber":100,"containerIdentificationNumber":"string","numberOfSeals":100,"Seal":[{"sequenceNumber":100,"identifier":"string"}],"GoodsReference":[{"sequenceNumber":100,"declarationGoodsItemNumber":100}]}],"DepartureTransportMeans":[{"sequenceNumber":100,"typeOfIdentification":"token","identificationNumber":"string","nationality":"st"}],"CountryOfRoutingOfConsignment":[],"PreviousDocument":[{"sequenceNumber":100,"typeValue":"token","referenceNumber":"string","complementOfInformation":"string"}],"SupportingDocument":[{"sequenceNumber":100,"referenceNumber":"string","complementOfInformation":"string","type":"token"}],"TransportDocument":[{"sequenceNumber":100,"referenceNumber":"string","type":"token"}],"AdditionalReference":[{"sequenceNumber":100,"referenceNumber":"string","type":"token"}],"AdditionalInformation":[{"sequenceNumber":100,"code":"token","text":"string"}],"Incident":[{"sequenceNumber":100,"code":"token","text":"string","Endorsement":{"date":"2013-05-22+01:00","authority":"string","place":"string","country":"st"},"Location":{"qualifierOfIdentification":"token","UNLocode":"token","country":"st","GNSS":{"latitude":"string","longitude":"string"},"Address":{"streetAndNumber":"string","postcode":"string","city":"string"}},"TransportEquipment":[{"sequenceNumber":100,"containerIdentificationNumber":"string","numberOfSeals":100,"Seal":[{"sequenceNumber":100,"identifier":"string"}],"GoodsReference":[{"sequenceNumber":100,"declarationGoodsItemNumber":100}]}],"Transhipment":{"containerIndicator":"0","TransportMeans":{"typeOfIdentification":"token","identificationNumber":"string","nationality":"st"}}}],"HouseConsignment":[{"sequenceNumber":100,"grossMass":1000,"securityIndicatorFromExportDeclaration":"token","Consignor":{"identificationNumber":"string","name":"string","Address":{"streetAndNumber":"string","postcode":"string","city":"string","country":"st"}},"Consignee":{"identificationNumber":"string","name":"string","Address":{"streetAndNumber":"string","postcode":"string","city":"string","country":"st"}},"DepartureTransportMeans":[{"sequenceNumber":100,"typeOfIdentification":"token","identificationNumber":"string","nationality":"st"}],"PreviousDocument":[{"sequenceNumber":100,"referenceNumber":"string","complementOfInformation":"string","type":"token"}],"SupportingDocument":[{"sequenceNumber":100,"referenceNumber":"string","complementOfInformation":"string","type":"token"}],"TransportDocument":[{"sequenceNumber":100,"referenceNumber":"string","type":"token"}],"AdditionalReference":[{"sequenceNumber":100,"referenceNumber":"string","type":"token"}],"AdditionalInformation":[{"sequenceNumber":100,"code":"token","text":"string"}],"ConsignmentItem":[{"goodsItemNumber":100,"declarationGoodsItemNumber":100,"declarationType":"token","countryOfDestination":"token","Consignee":{"identificationNumber":"string","name":"string","Address":{"streetAndNumber":"string","postcode":"string","city":"string","country":"st"}},"Commodity":{"descriptionOfGoods":"string","cusCode":"token","CommodityCode":{"harmonizedSystemSubHeadingCode":"token","combinedNomenclatureCode":"st"},"DangerousGoods":[{"sequenceNumber":100,"UNNumber":"token"}],"GoodsMeasure":{"grossMass":10}},"Packaging":[{"sequenceNumber":100,"typeOfPackages":"token","numberOfPackages":100,"shippingMarks":"string"}],"PreviousDocument":[{"sequenceNumber":100,"referenceNumber":"string","goodsItemNumber":100,"complementOfInformation":"string","type":"token"}],"SupportingDocument":[{"sequenceNumber":100,"referenceNumber":"string","complementOfInformation":"string","type":"token"}],"TransportDocument":[{"sequenceNumber":100,"referenceNumber":"string","type":"token"}],"AdditionalReference":[{"sequenceNumber":100,"referenceNumber":"string","type":"token"}],"AdditionalInformation":[{"sequenceNumber":100,"code":"token","text":"string"}]}]}]},"@PhaseID":"NCTS5.0"}}"""
+    """{
+      |    "n1:CC043C":
+      |    {
+      |        "messageSender": "token",
+      |        "messageRecipient": "token",
+      |        "preparationDateAndTime": "2007-10-26T07:36:28",
+      |        "messageIdentification": "token",
+      |        "messageType": "CD975C",
+      |        "correlationIdentifier": "token",
+      |        "TransitOperation":
+      |        {
+      |            "MRN": "string",
+      |            "declarationType": "token",
+      |            "declarationAcceptanceDate": "2014-06-09+01:00",
+      |            "security": "token",
+      |            "reducedDatasetIndicator": "1"
+      |        },
+      |        "CustomsOfficeOfDestinationActual":
+      |        {
+      |            "referenceNumber": "stringst"
+      |        },
+      |        "HolderOfTheTransitProcedure":
+      |        {
+      |            "identificationNumber": "string",
+      |            "TIRHolderIdentificationNumber": "string",
+      |            "name": "string",
+      |            "Address":
+      |            {
+      |                "streetAndNumber": "string",
+      |                "postcode": "string",
+      |                "city": "string",
+      |                "country": "st"
+      |            }
+      |        },
+      |        "TraderAtDestination":
+      |        {
+      |            "identificationNumber": "string"
+      |        },
+      |        "CTLControl":
+      |        {
+      |            "continueUnloading": 9
+      |        },
+      |        "Consignment":
+      |        {
+      |            "countryOfDestination": "token",
+      |            "containerIndicator": "1",
+      |            "inlandModeOfTransport": "token",
+      |            "grossMass": 1000,
+      |            "Consignor":
+      |            {
+      |                "identificationNumber": "string",
+      |                "name": "string",
+      |                "Address":
+      |                {
+      |                    "streetAndNumber": "string",
+      |                    "postcode": "string",
+      |                    "city": "string",
+      |                    "country": "st"
+      |                }
+      |            },
+      |            "Consignee":
+      |            {
+      |                "identificationNumber": "string",
+      |                "name": "string",
+      |                "Address":
+      |                {
+      |                    "streetAndNumber": "string",
+      |                    "postcode": "string",
+      |                    "city": "string",
+      |                    "country": "st"
+      |                }
+      |            },
+      |            "TransportEquipment":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "containerIdentificationNumber": "string",
+      |                    "numberOfSeals": 100,
+      |                    "Seal":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "identifier": "string"
+      |                        }
+      |                    ],
+      |                    "GoodsReference":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "declarationGoodsItemNumber": 100
+      |                        }
+      |                    ]
+      |                }
+      |            ],
+      |            "DepartureTransportMeans":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "typeOfIdentification": "token",
+      |                    "identificationNumber": "string",
+      |                    "nationality": "st"
+      |                }
+      |            ],
+      |            "CountryOfRoutingOfConsignment":
+      |            [],
+      |            "PreviousDocument":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "referenceNumber": "string",
+      |                    "complementOfInformation": "string",
+      |                    "type": "token"
+      |                }
+      |            ],
+      |            "SupportingDocument":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "referenceNumber": "string",
+      |                    "complementOfInformation": "string",
+      |                    "type": "token"
+      |                }
+      |            ],
+      |            "TransportDocument":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "referenceNumber": "string",
+      |                    "type": "token"
+      |                }
+      |            ],
+      |            "AdditionalReference":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "referenceNumber": "string",
+      |                    "type": "token"
+      |                }
+      |            ],
+      |            "AdditionalInformation":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "code": "token",
+      |                    "text": "string"
+      |                }
+      |            ],
+      |            "Incident":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "code": "token",
+      |                    "text": "string",
+      |                    "Endorsement":
+      |                    {
+      |                        "date": "2013-05-22+01:00",
+      |                        "authority": "string",
+      |                        "place": "string",
+      |                        "country": "st"
+      |                    },
+      |                    "Location":
+      |                    {
+      |                        "qualifierOfIdentification": "token",
+      |                        "UNLocode": "token",
+      |                        "country": "st",
+      |                        "GNSS":
+      |                        {
+      |                            "latitude": "string",
+      |                            "longitude": "string"
+      |                        },
+      |                        "Address":
+      |                        {
+      |                            "streetAndNumber": "string",
+      |                            "postcode": "string",
+      |                            "city": "string"
+      |                        }
+      |                    },
+      |                    "TransportEquipment":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "containerIdentificationNumber": "string",
+      |                            "numberOfSeals": 100,
+      |                            "Seal":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "identifier": "string"
+      |                                }
+      |                            ],
+      |                            "GoodsReference":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "declarationGoodsItemNumber": 100
+      |                                }
+      |                            ]
+      |                        }
+      |                    ],
+      |                    "Transhipment":
+      |                    {
+      |                        "containerIndicator": "0",
+      |                        "TransportMeans":
+      |                        {
+      |                            "typeOfIdentification": "token",
+      |                            "identificationNumber": "string",
+      |                            "nationality": "st"
+      |                        }
+      |                    }
+      |                }
+      |            ],
+      |            "HouseConsignment":
+      |            [
+      |                {
+      |                    "sequenceNumber": 100,
+      |                    "grossMass": 1000,
+      |                    "securityIndicatorFromExportDeclaration": "token",
+      |                    "Consignor":
+      |                    {
+      |                        "identificationNumber": "string",
+      |                        "name": "string",
+      |                        "Address":
+      |                        {
+      |                            "streetAndNumber": "string",
+      |                            "postcode": "string",
+      |                            "city": "string",
+      |                            "country": "st"
+      |                        }
+      |                    },
+      |                    "Consignee":
+      |                    {
+      |                        "identificationNumber": "string",
+      |                        "name": "string",
+      |                        "Address":
+      |                        {
+      |                            "streetAndNumber": "string",
+      |                            "postcode": "string",
+      |                            "city": "string",
+      |                            "country": "st"
+      |                        }
+      |                    },
+      |                    "DepartureTransportMeans":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "typeOfIdentification": "token",
+      |                            "identificationNumber": "string",
+      |                            "nationality": "st"
+      |                        }
+      |                    ],
+      |                    "PreviousDocument":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "referenceNumber": "string",
+      |                            "complementOfInformation": "string",
+      |                            "type": "token"
+      |                        }
+      |                    ],
+      |                    "SupportingDocument":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "referenceNumber": "string",
+      |                            "complementOfInformation": "string",
+      |                            "type": "token"
+      |                        }
+      |                    ],
+      |                    "TransportDocument":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "referenceNumber": "string",
+      |                            "type": "token"
+      |                        }
+      |                    ],
+      |                    "AdditionalReference":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "referenceNumber": "string",
+      |                            "type": "token"
+      |                        }
+      |                    ],
+      |                    "AdditionalInformation":
+      |                    [
+      |                        {
+      |                            "sequenceNumber": 100,
+      |                            "code": "token",
+      |                            "text": "string"
+      |                        }
+      |                    ],
+      |                    "ConsignmentItem":
+      |                    [
+      |                        {
+      |                            "goodsItemNumber": 100,
+      |                            "declarationGoodsItemNumber": 100,
+      |                            "declarationType": "token",
+      |                            "countryOfDestination": "token",
+      |                            "Consignee":
+      |                            {
+      |                                "identificationNumber": "string",
+      |                                "name": "string",
+      |                                "Address":
+      |                                {
+      |                                    "streetAndNumber": "string",
+      |                                    "postcode": "string",
+      |                                    "city": "string",
+      |                                    "country": "st"
+      |                                }
+      |                            },
+      |                            "Commodity":
+      |                            {
+      |                                "descriptionOfGoods": "string",
+      |                                "cusCode": "token",
+      |                                "CommodityCode":
+      |                                {
+      |                                    "harmonizedSystemSubHeadingCode": "token",
+      |                                    "combinedNomenclatureCode": "st"
+      |                                },
+      |                                "DangerousGoods":
+      |                                [
+      |                                    {
+      |                                        "sequenceNumber": 100,
+      |                                        "UNNumber": "token"
+      |                                    }
+      |                                ],
+      |                                "GoodsMeasure":
+      |                                {
+      |                                    "grossMass": 10
+      |                                }
+      |                            },
+      |                            "Packaging":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "typeOfPackages": "token",
+      |                                    "numberOfPackages": 100,
+      |                                    "shippingMarks": "string"
+      |                                }
+      |                            ],
+      |                            "PreviousDocument":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "referenceNumber": "string",
+      |                                    "goodsItemNumber": 100,
+      |                                    "complementOfInformation": "string",
+      |                                    "type": "token"
+      |                                }
+      |                            ],
+      |                            "SupportingDocument":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "referenceNumber": "string",
+      |                                    "complementOfInformation": "string",
+      |                                    "type": "token"
+      |                                }
+      |                            ],
+      |                            "TransportDocument":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "referenceNumber": "string",
+      |                                    "type": "token"
+      |                                }
+      |                            ],
+      |                            "AdditionalReference":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "referenceNumber": "string",
+      |                                    "type": "token"
+      |                                }
+      |                            ],
+      |                            "AdditionalInformation":
+      |                            [
+      |                                {
+      |                                    "sequenceNumber": 100,
+      |                                    "code": "token",
+      |                                    "text": "string"
+      |                                }
+      |                            ]
+      |                        }
+      |                    ]
+      |                }
+      |            ]
+      |        },
+      |        "@PhaseID": "NCTS5.0"
+      |    }
+      |}""".stripMargin
   )
 }
