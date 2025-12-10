@@ -45,9 +45,9 @@ object Models {
 
   implicit lazy val cc004cFormats: OFormat[CC004CType] = (
     commonTypesWithSender(cc004cRoot) and
-      (__ \ cc004cRoot \ "TransitOperation").format[TransitOperationType49] and
-      (__ \ cc004cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-      (__ \ cc004cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+      (__ \ cc004cRoot \ "TransitOperation").format[TransitOperationType01] and
+      (__ \ cc004cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+      (__ \ cc004cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
       (__ \ cc004cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
   )(
     (
@@ -101,7 +101,7 @@ object Models {
 
   implicit lazy val cc007cFormats: OFormat[CC007CType] = (
     commonTypesWithSender(cc007cRoot) and
-      (__ \ cc007cRoot \ "TransitOperation").format[TransitOperationType01] and
+      (__ \ cc007cRoot \ "TransitOperation").format[TransitOperationType02] and
       (__ \ cc007cRoot \ "Authorisation").format[Seq[AuthorisationType01]] and
       (__ \ cc007cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
       (__ \ cc007cRoot \ "TraderAtDestination").format[TraderAtDestinationType01] and
@@ -165,10 +165,10 @@ object Models {
 
   implicit lazy val cc009cFormats: OFormat[CC009CType] = (
     commonTypesWithSender(cc009cRoot) and
-      (__ \ cc009cRoot \ "TransitOperation").format[TransitOperationType56] and
-      (__ \ cc009cRoot \ "Invalidation").format[InvalidationType02] and
-      (__ \ cc009cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-      (__ \ cc009cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType23] and
+      (__ \ cc009cRoot \ "TransitOperation").format[TransitOperationType03] and
+      (__ \ cc009cRoot \ "Invalidation").format[InvalidationType01] and
+      (__ \ cc009cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+      (__ \ cc009cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
       (__ \ cc009cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
   )(
     (
@@ -225,16 +225,16 @@ object Models {
 
   implicit lazy val cc013cFormats: OFormat[CC013CType] = (
     commonTypesWithSender(cc013cRoot) and
-      (__ \ cc013cRoot \ "TransitOperation").format[TransitOperationType02] and
-      (__ \ cc013cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType02]] and
-      (__ \ cc013cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+      (__ \ cc013cRoot \ "TransitOperation").format[TransitOperationType04] and
+      (__ \ cc013cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
+      (__ \ cc013cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
       (__ \ cc013cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-      (__ \ cc013cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType06]] and
+      (__ \ cc013cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType04]] and
       (__ \ cc013cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
-      (__ \ cc013cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType23] and
-      (__ \ cc013cRoot \ "Representative").formatNullable[RepresentativeType06] and
-      (__ \ cc013cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType05]] and
-      (__ \ cc013cRoot \ "Consignment").format[ConsignmentType23] and
+      (__ \ cc013cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
+      (__ \ cc013cRoot \ "Representative").formatNullable[RepresentativeType05] and
+      (__ \ cc013cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType01]] and
+      (__ \ cc013cRoot \ "Consignment").format[ConsignmentType20] and
       (__ \ cc013cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
   )(
     (
@@ -310,10 +310,10 @@ object Models {
   implicit lazy val cc014cFormats: OFormat[CC014CType] =
     (
       commonTypesWithSender(cc014cRoot) and
-        (__ \ cc014cRoot \ "TransitOperation").format[TransitOperationType56] and
+        (__ \ cc014cRoot \ "TransitOperation").format[TransitOperationType05] and
         (__ \ cc014cRoot \ "Invalidation").format[InvalidationType02] and
-        (__ \ cc014cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc014cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType23] and
+        (__ \ cc014cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc014cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType02] and
         (__ \ cc014cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -370,16 +370,16 @@ object Models {
 
   implicit lazy val cc015cFormats: OFormat[CC015CType] = (
     commonTypesWithSender(cc015cRoot) and
-      (__ \ cc015cRoot \ "TransitOperation").format[TransitOperationType03] and
-      (__ \ cc015cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType02]] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+      (__ \ cc015cRoot \ "TransitOperation").format[TransitOperationType06] and
+      (__ \ cc015cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType03]] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
       (__ \ cc015cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-      (__ \ cc015cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType06]] and
+      (__ \ cc015cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType04]] and
       (__ \ cc015cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
-      (__ \ cc015cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType23] and
-      (__ \ cc015cRoot \ "Representative").formatNullable[RepresentativeType06] and
-      (__ \ cc015cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType05]] and
-      (__ \ cc015cRoot \ "Consignment").format[ConsignmentType23] and
+      (__ \ cc015cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType14] and
+      (__ \ cc015cRoot \ "Representative").formatNullable[RepresentativeType05] and
+      (__ \ cc015cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType02]] and
+      (__ \ cc015cRoot \ "Consignment").format[ConsignmentType20] and
       (__ \ cc015cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
   )(
     (
@@ -455,9 +455,9 @@ object Models {
   implicit lazy val cc019cFormats: OFormat[CC019CType] =
     (
       commonTypesWithSender(cc019cRoot) and
-        (__ \ cc019cRoot \ "TransitOperation").format[TransitOperationType05] and
-        (__ \ cc019cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc019cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc019cRoot \ "TransitOperation").format[TransitOperationType08] and
+        (__ \ cc019cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc019cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
         (__ \ cc019cRoot \ "Guarantor").formatNullable[GuarantorType06] and
         (__ \ cc019cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
@@ -516,9 +516,9 @@ object Models {
   implicit lazy val cc025cFormats: OFormat[CC025CType] =
     (
       commonTypesWithSender(cc025cRoot) and
-        (__ \ cc025cRoot \ "TransitOperation").format[TransitOperationType07] and
+        (__ \ cc025cRoot \ "TransitOperation").format[TransitOperationType10] and
         (__ \ cc025cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
-        (__ \ cc025cRoot \ "TraderAtDestination").format[TraderAtDestinationType02] and
+        (__ \ cc025cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
         (__ \ cc025cRoot \ "Consignment").formatNullable[ConsignmentType03] and
         (__ \ cc025cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
@@ -577,9 +577,9 @@ object Models {
   implicit lazy val cc028cFormats: OFormat[CC028CType] =
     (
       commonTypesWithSender(cc028cRoot) and
-        (__ \ cc028cRoot \ "TransitOperation").format[TransitOperationType50] and
-        (__ \ cc028cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc028cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc028cRoot \ "TransitOperation").format[TransitOperationType11] and
+        (__ \ cc028cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc028cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
         (__ \ cc028cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -634,16 +634,16 @@ object Models {
   implicit lazy val cc029cFormats: OFormat[CC029CType] =
     (
       commonTypesWithSender(cc029cRoot) and
-        (__ \ cc029cRoot \ "TransitOperation").format[TransitOperationType08] and
+        (__ \ cc029cRoot \ "TransitOperation").format[TransitOperationType12] and
         (__ \ cc029cRoot \ "Authorisation").formatNullable[Seq[AuthorisationType02]] and
-        (__ \ cc029cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc029cRoot \ "CustomsOfficeOfDestinationDeclared").format[CustomsOfficeOfDestinationDeclaredType01] and
-        (__ \ cc029cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType06]] and
+        (__ \ cc029cRoot \ "CustomsOfficeOfTransitDeclared").formatNullable[Seq[CustomsOfficeOfTransitDeclaredType04]] and
         (__ \ cc029cRoot \ "CustomsOfficeOfExitForTransitDeclared").formatNullable[Seq[CustomsOfficeOfExitForTransitDeclaredType02]] and
-        (__ \ cc029cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType23] and
-        (__ \ cc029cRoot \ "Representative").formatNullable[RepresentativeType06] and
-        (__ \ cc029cRoot \ "ControlResult").formatNullable[ControlResultType04] and
-        (__ \ cc029cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType05]] and
+        (__ \ cc029cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType05] and
+        (__ \ cc029cRoot \ "Representative").formatNullable[RepresentativeType02] and
+        (__ \ cc029cRoot \ "ControlResult").formatNullable[ControlResultType02] and
+        (__ \ cc029cRoot \ "Guarantee").formatNullable[Seq[GuaranteeType03]] and
         (__ \ cc029cRoot \ "Consignment").format[ConsignmentType04] and
         (__ \ cc029cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
@@ -723,11 +723,11 @@ object Models {
   implicit lazy val cc035cFormats: OFormat[CC035CType] =
     (
       commonTypesWithSender(cc035cRoot) and
-        (__ \ cc035cRoot \ "TransitOperation").format[TransitOperationType60] and
+        (__ \ cc035cRoot \ "TransitOperation").format[TransitOperationType48] and
         (__ \ cc035cRoot \ "RecoveryNotification").format[RecoveryNotificationType] and
-        (__ \ cc035cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+        (__ \ cc035cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc035cRoot \ "CustomsOfficeOfRecoveryAtDeparture").format[CustomsOfficeOfRecoveryAtDepartureType01] and
-        (__ \ cc035cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc035cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
         (__ \ cc035cRoot \ "Guarantor").formatNullable[GuarantorType06] and
         (__ \ cc035cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
@@ -791,10 +791,10 @@ object Models {
   implicit lazy val cc043cFormats: OFormat[CC043CType] =
     (
       commonTypesWithSender(cc043cRoot) and
-        (__ \ cc043cRoot \ "TransitOperation").format[TransitOperationType10] and
+        (__ \ cc043cRoot \ "TransitOperation").format[TransitOperationType14] and
         (__ \ cc043cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
         (__ \ cc043cRoot \ "HolderOfTheTransitProcedure").formatNullable[HolderOfTheTransitProcedureType06] and
-        (__ \ cc043cRoot \ "TraderAtDestination").format[TraderAtDestinationType02] and
+        (__ \ cc043cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
         (__ \ cc043cRoot \ "CTLControl").formatNullable[CTLControlType] and
         (__ \ cc043cRoot \ "Consignment").formatNullable[ConsignmentType05] and
         (__ \ cc043cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
@@ -859,7 +859,7 @@ object Models {
   implicit lazy val cc044cFormats: OFormat[CC044CType] =
     (
       commonTypesWithSender(cc044cRoot) and
-        (__ \ cc044cRoot \ "TransitOperation").format[TransitOperationType11] and
+        (__ \ cc044cRoot \ "TransitOperation").format[TransitOperationType15] and
         (__ \ cc044cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
         (__ \ cc044cRoot \ "TraderAtDestination").format[TraderAtDestinationType02] and
         (__ \ cc044cRoot \ "UnloadingRemark").format[UnloadingRemarkType] and
@@ -924,9 +924,9 @@ object Models {
   implicit lazy val cc045cFormats: OFormat[CC045CType] =
     (
       commonTypesWithSender(cc045cRoot) and
-        (__ \ cc045cRoot \ "TransitOperation").format[TransitOperationType12] and
-        (__ \ cc045cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc045cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc045cRoot \ "TransitOperation").format[TransitOperationType16] and
+        (__ \ cc045cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc045cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
         (__ \ cc045cRoot \ "Guarantor").formatNullable[GuarantorType06] and
         (__ \ cc045cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
@@ -985,9 +985,9 @@ object Models {
   implicit lazy val cc051cFormats: OFormat[CC051CType] =
     (
       commonTypesWithSender(cc051cRoot) and
-        (__ \ cc051cRoot \ "TransitOperation").format[TransitOperationType14] and
-        (__ \ cc051cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc051cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc051cRoot \ "TransitOperation").format[TransitOperationType18] and
+        (__ \ cc051cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc051cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType15] and
         (__ \ cc051cRoot \ "Representative").formatNullable[RepresentativeType03] and
         (__ \ cc051cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
@@ -1046,10 +1046,10 @@ object Models {
   implicit lazy val cc055cFormats: OFormat[CC055CType] =
     (
       commonTypesWithSender(cc055cRoot) and
-        (__ \ cc055cRoot \ "TransitOperation").format[TransitOperationType60] and
-        (__ \ cc055cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+        (__ \ cc055cRoot \ "TransitOperation").format[TransitOperationType48] and
+        (__ \ cc055cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc055cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType07] and
-        (__ \ cc055cRoot \ "GuaranteeReference").formatNullable[Seq[GuaranteeReferenceType07]] and
+        (__ \ cc055cRoot \ "GuaranteeReference").formatNullable[Seq[GuaranteeReferenceType08]] and
         (__ \ cc055cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1107,11 +1107,11 @@ object Models {
   implicit lazy val cc056cFormats: OFormat[CC056CType] =
     (
       commonTypesWithSender(cc056cRoot) and
-        (__ \ cc056cRoot \ "TransitOperation").format[TransitOperationType16] and
-        (__ \ cc056cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc056cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType15] and
+        (__ \ cc056cRoot \ "TransitOperation").format[TransitOperationType20] and
+        (__ \ cc056cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc056cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType08] and
         (__ \ cc056cRoot \ "Representative").formatNullable[RepresentativeType01] and
-        (__ \ cc056cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType02]] and
+        (__ \ cc056cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType04]] and
         (__ \ cc056cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1172,10 +1172,10 @@ object Models {
   implicit lazy val cc057cFormats: OFormat[CC057CType] =
     (
       commonTypesWithSender(cc057cRoot) and
-        (__ \ cc057cRoot \ "TransitOperation").format[TransitOperationType18] and
+        (__ \ cc057cRoot \ "TransitOperation").format[TransitOperationType21] and
         (__ \ cc057cRoot \ "CustomsOfficeOfDestinationActual").format[CustomsOfficeOfDestinationActualType03] and
-        (__ \ cc057cRoot \ "TraderAtDestination").format[TraderAtDestinationType02] and
-        (__ \ cc057cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType07]] and
+        (__ \ cc057cRoot \ "TraderAtDestination").format[TraderAtDestinationType03] and
+        (__ \ cc057cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType04]] and
         (__ \ cc057cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1233,10 +1233,10 @@ object Models {
   implicit lazy val cc060cFormats: OFormat[CC060CType] =
     (
       commonTypesWithSender(cc060cRoot) and
-        (__ \ cc060cRoot \ "TransitOperation").format[TransitOperationType20] and
-        (__ \ cc060cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc060cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType23] and
-        (__ \ cc060cRoot \ "Representative").formatNullable[RepresentativeType06] and
+        (__ \ cc060cRoot \ "TransitOperation").format[TransitOperationType22] and
+        (__ \ cc060cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc060cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc060cRoot \ "Representative").formatNullable[RepresentativeType04] and
         (__ \ cc060cRoot \ "TypeOfControls").formatNullable[Seq[TypeOfControlsType]] and
         (__ \ cc060cRoot \ "RequestedDocument").formatNullable[Seq[RequestedDocumentType]] and
         (__ \ cc060cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
@@ -1302,10 +1302,10 @@ object Models {
   implicit lazy val cc140cFormats: OFormat[CC140CType] =
     (
       commonTypesWithSender(cc140cRoot) and
-        (__ \ cc140cRoot \ "TransitOperation").format[TransitOperationType22] and
-        (__ \ cc140cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+        (__ \ cc140cRoot \ "TransitOperation").format[TransitOperationType23] and
+        (__ \ cc140cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc140cRoot \ "CustomsOfficeOfEnquiryAtDeparture").format[CustomsOfficeOfEnquiryAtDepartureType01] and
-        (__ \ cc140cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc140cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
         (__ \ cc140cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1363,12 +1363,12 @@ object Models {
   implicit lazy val cc141cFormats: OFormat[CC141CType] =
     (
       commonTypesWithSender(cc141cRoot) and
-        (__ \ cc141cRoot \ "TransitOperation").format[TransitOperationType55] and
+        (__ \ cc141cRoot \ "TransitOperation").format[TransitOperationType43] and
         (__ \ cc141cRoot \ "CustomsOfficeOfDestinationActual").formatNullable[CustomsOfficeOfDestinationActualType01] and
         (__ \ cc141cRoot \ "CustomsOfficeOfEnquiryAtDeparture").format[CustomsOfficeOfEnquiryAtDepartureType01] and
-        (__ \ cc141cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc141cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType19] and
         (__ \ cc141cRoot \ "Enquiry").formatNullable[EnquiryType01] and
-        (__ \ cc141cRoot \ "Consignment").formatNullable[ConsignmentType09] and
+        (__ \ cc141cRoot \ "Consignment").formatNullable[ConsignmentType07] and
         (__ \ cc141cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1432,11 +1432,11 @@ object Models {
   implicit lazy val cc170cFormats: OFormat[CC170CType] =
     (
       commonTypesWithSender(cc170cRoot) and
-        (__ \ cc170cRoot \ "TransitOperation").format[TransitOperationType23] and
-        (__ \ cc170cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc170cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
-        (__ \ cc170cRoot \ "Representative").formatNullable[RepresentativeType06] and
-        (__ \ cc170cRoot \ "Consignment").format[ConsignmentType10] and
+        (__ \ cc170cRoot \ "TransitOperation").format[TransitOperationTypeErmisIE170] and
+        (__ \ cc170cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc170cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType19] and
+        (__ \ cc170cRoot \ "Representative").formatNullable[RepresentativeType05] and
+        (__ \ cc170cRoot \ "Consignment").format[ConsignmentType08] and
         (__ \ cc170cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1497,10 +1497,10 @@ object Models {
   implicit lazy val cc182cFormats: OFormat[CC182CType] =
     (
       commonTypesWithSender(cc182cRoot) and
-        (__ \ cc182cRoot \ "TransitOperation").format[TransitOperationType57] and
-        (__ \ cc182cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
+        (__ \ cc182cRoot \ "TransitOperation").format[TransitOperationType47] and
+        (__ \ cc182cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
         (__ \ cc182cRoot \ "CustomsOfficeOfIncidentRegistration").format[CustomsOfficeOfIncidentRegistrationType02] and
-        (__ \ cc182cRoot \ "Consignment").format[ConsignmentType28] and
+        (__ \ cc182cRoot \ "Consignment").format[ConsignmentType22] and
         (__ \ cc182cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1559,7 +1559,7 @@ object Models {
     (
       commonTypesWithSender(cc906cRoot) and
         (__ \ cc906cRoot \ "Header").format[HeaderType01] and
-        (__ \ cc906cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType08]] and
+        (__ \ cc906cRoot \ "FunctionalError").formatNullable[Seq[FunctionalErrorType02]] and
         (__ \ cc906cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
@@ -1611,9 +1611,9 @@ object Models {
   implicit lazy val cc928cFormats: OFormat[CC928CType] =
     (
       commonTypesWithSender(cc928cRoot) and
-        (__ \ cc928cRoot \ "TransitOperation").format[TransitOperationType58] and
-        (__ \ cc928cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType05] and
-        (__ \ cc928cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType13] and
+        (__ \ cc928cRoot \ "TransitOperation").format[TransitOperationTypeErmisIE928] and
+        (__ \ cc928cRoot \ "CustomsOfficeOfDeparture").format[CustomsOfficeOfDepartureType03] and
+        (__ \ cc928cRoot \ "HolderOfTheTransitProcedure").format[HolderOfTheTransitProcedureType20] and
         (__ \ cc928cRoot \ "@PhaseID").formatNullable[PhaseIDtype]
     )(
       (
