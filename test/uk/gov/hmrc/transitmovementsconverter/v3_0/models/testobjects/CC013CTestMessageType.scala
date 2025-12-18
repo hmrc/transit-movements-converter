@@ -813,10 +813,10 @@ object CC013CTestMessageType extends TestMessageType {
       |            [
       |                {
       |                    "sequenceNumber": 100,
-      |                    "typeValue": "token",
       |                    "referenceNumber": "string",
       |                    "documentLineItemNumber": 100,
-      |                    "complementOfInformation": "string"
+      |                    "complementOfInformation": "string",
+      |                    "type": "token"
       |                }
       |            ],
       |            "TransportDocument":
@@ -831,8 +831,8 @@ object CC013CTestMessageType extends TestMessageType {
       |            [
       |                {
       |                    "sequenceNumber": 100,
-      |                    "typeValue": "token",
-      |                    "referenceNumber": "string"
+      |                    "referenceNumber": "string",
+      |                    "type": "token"
       |                }
       |            ],
       |            "AdditionalInformation":
@@ -914,10 +914,10 @@ object CC013CTestMessageType extends TestMessageType {
       |                    [
       |                        {
       |                            "sequenceNumber": 100,
-      |                            "typeValue": "token",
       |                            "referenceNumber": "string",
       |                            "documentLineItemNumber": 100,
-      |                            "complementOfInformation": "string"
+      |                            "complementOfInformation": "string",
+      |                            "type": "token"
       |                        }
       |                    ],
       |                    "TransportDocument":
@@ -932,8 +932,8 @@ object CC013CTestMessageType extends TestMessageType {
       |                    [
       |                        {
       |                            "sequenceNumber": 100,
-      |                            "typeValue": "token",
-      |                            "referenceNumber": "string"
+      |                            "referenceNumber": "string",
+      |                            "type": "token"
       |                        }
       |                    ],
       |                    "AdditionalInformation":
@@ -1015,10 +1015,10 @@ object CC013CTestMessageType extends TestMessageType {
       |                            [
       |                                {
       |                                    "sequenceNumber": 100,
-      |                                    "typeValue": "token",
       |                                    "referenceNumber": "string",
       |                                    "documentLineItemNumber": 100,
-      |                                    "complementOfInformation": "string"
+      |                                    "complementOfInformation": "string",
+      |                                    "type": "token"
       |                                }
       |                            ],
       |                            "AdditionalReference":
