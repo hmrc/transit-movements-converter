@@ -108,8 +108,8 @@ object ModelImplicits {
   }
 
   // Order sensitive - formats without dependencies should go first.
-  implicit lazy val placeOfUnloadingType01Format: OFormat[PlaceOfUnloadingType01]                         = Json.format[PlaceOfUnloadingType01]
-  implicit lazy val additionalReferenceType04Format: OFormat[AdditionalReferenceType04]                   = Json.format[AdditionalReferenceType04]
+  implicit lazy val placeOfUnloadingType01Format: OFormat[PlaceOfUnloadingType01]       = Json.format[PlaceOfUnloadingType01]
+  implicit lazy val additionalReferenceType04Format: OFormat[AdditionalReferenceType04] = formatWithTypeAdjusted(Json.format[AdditionalReferenceType04])
   implicit lazy val customsOfficeOfDestinationType02Format: OFormat[CustomsOfficeOfDestinationType02]     = Json.format[CustomsOfficeOfDestinationType02]
   implicit lazy val individualGuaranteeVoucherTypeFormat: OFormat[IndividualGuaranteeVoucherType]         = Json.format[IndividualGuaranteeVoucherType]
   implicit lazy val locationOfGoodsType05Format: OFormat[LocationOfGoodsType05]                           = Json.format[LocationOfGoodsType05]
@@ -173,7 +173,7 @@ object ModelImplicits {
   implicit lazy val placeOfLoadingType03Format: OFormat[PlaceOfLoadingType03]                   = Json.format[PlaceOfLoadingType03]
   implicit lazy val postcodeAddressType01Format: OFormat[PostcodeAddressType01]                 = Json.format[PostcodeAddressType01]
   implicit lazy val postcodeAddressType02Format: OFormat[PostcodeAddressType02]                 = Json.format[PostcodeAddressType02]
-  implicit lazy val previousDocumentType09Format: OFormat[PreviousDocumentType09]               = Json.format[PreviousDocumentType09]
+  implicit lazy val previousDocumentType09Format: OFormat[PreviousDocumentType09]               = formatWithTypeAdjusted(Json.format[PreviousDocumentType09])
   implicit lazy val sealType04Format: OFormat[SealType04]                                       = Json.format[SealType04]
   implicit lazy val sealType05Format: OFormat[SealType05]                                       = Json.format[SealType05]
   implicit lazy val supportingDocumentType05Format: OFormat[SupportingDocumentType05]           = formatWithTypeAdjusted(Json.format[SupportingDocumentType05])
@@ -347,7 +347,7 @@ object ModelImplicits {
   implicit lazy val transitOperationType50Format: OFormat[TransitOperationType50]                           = Json.format[TransitOperationType50]
   implicit lazy val authorisationType01Format: OFormat[AuthorisationType01] = formatWithTypeAdjusted(Json.format[AuthorisationType01])
   implicit lazy val authorisationType02Format: OFormat[AuthorisationType02] = formatWithTypeAdjusted(Json.format[AuthorisationType02])
-  implicit lazy val authorisationType03Format: OFormat[AuthorisationType03] = Json.format[AuthorisationType03]
+  implicit lazy val authorisationType03Format: OFormat[AuthorisationType03] = formatWithTypeAdjusted(Json.format[AuthorisationType03])
 
   implicit lazy val customsOfficeOfDepartureType03Format: OFormat[CustomsOfficeOfDepartureType03]         = Json.format[CustomsOfficeOfDepartureType03]
   implicit lazy val customsOfficeOfEnquiryAtDeparture01: OFormat[CustomsOfficeOfEnquiryAtDepartureType01] = Json.format[CustomsOfficeOfEnquiryAtDepartureType01]

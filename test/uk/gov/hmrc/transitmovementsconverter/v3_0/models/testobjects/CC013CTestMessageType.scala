@@ -567,8 +567,8 @@ object CC013CTestMessageType extends TestMessageType {
       |        [
       |            {
       |                "sequenceNumber": 100,
-      |                "typeValue": "token",
-      |                "referenceNumber": "string"
+      |                "referenceNumber": "string",
+      |                "type": "token"
       |            }
       |        ],
       |        "CustomsOfficeOfDeparture":
@@ -804,9 +804,9 @@ object CC013CTestMessageType extends TestMessageType {
       |            [
       |                {
       |                    "sequenceNumber": 100,
-      |                    "typeValue": "token",
       |                    "referenceNumber": "string",
-      |                    "complementOfInformation": "string"
+      |                    "complementOfInformation": "string",
+      |                    "type": "token"
       |                }
       |            ],
       |            "SupportingDocument":
@@ -1025,8 +1025,8 @@ object CC013CTestMessageType extends TestMessageType {
       |                            [
       |                                {
       |                                    "sequenceNumber": 100,
-      |                                    "typeValue": "token",
-      |                                    "referenceNumber": "string"
+      |                                    "referenceNumber": "string",
+      |                                    "type": "token"
       |                                }
       |                            ],
       |                            "AdditionalInformation":
