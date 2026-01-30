@@ -123,6 +123,7 @@ object Models {
       phaseId
     ) =>
       CC007CType(
+        Seq.empty,
         MESSAGESequence(
           messageSender,
           messageRecipient,
@@ -144,12 +145,12 @@ object Models {
       ),
     obj =>
       (
-        obj.messageSequence1.messageSender,
-        obj.messageSequence1.messageRecipient,
-        obj.messageSequence1.preparationDateAndTime,
-        obj.messageSequence1.messageIdentification,
-        obj.messageSequence1.messageType,
-        obj.messageSequence1.correlationIdentifier,
+        obj.messageSequence2.messageSender,
+        obj.messageSequence2.messageRecipient,
+        obj.messageSequence2.preparationDateAndTime,
+        obj.messageSequence2.messageIdentification,
+        obj.messageSequence2.messageType,
+        obj.messageSequence2.correlationIdentifier,
         obj.TransitOperation,
         obj.Authorisation,
         obj.CustomsOfficeOfDestinationActual,
@@ -257,6 +258,7 @@ object Models {
       phaseId
     ) =>
       CC013CType(
+        Seq.empty,
         MESSAGESequence(
           messageSender,
           messageRecipient,
@@ -283,12 +285,12 @@ object Models {
       ),
     obj =>
       (
-        obj.messageSequence1.messageSender,
-        obj.messageSequence1.messageRecipient,
-        obj.messageSequence1.preparationDateAndTime,
-        obj.messageSequence1.messageIdentification,
-        obj.messageSequence1.messageType,
-        obj.messageSequence1.correlationIdentifier,
+        obj.messageSequence2.messageSender,
+        obj.messageSequence2.messageRecipient,
+        obj.messageSequence2.preparationDateAndTime,
+        obj.messageSequence2.messageIdentification,
+        obj.messageSequence2.messageType,
+        obj.messageSequence2.correlationIdentifier,
         obj.TransitOperation,
         obj.Authorisation.toOption,
         obj.CustomsOfficeOfDeparture,
@@ -330,6 +332,7 @@ object Models {
         phaseId
       ) =>
         CC014CType(
+          Seq.empty,
           MESSAGESequence(
             messageSender,
             messageRecipient,
@@ -350,12 +353,12 @@ object Models {
         ),
       obj =>
         (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
+          obj.messageSequence2.messageSender,
+          obj.messageSequence2.messageRecipient,
+          obj.messageSequence2.preparationDateAndTime,
+          obj.messageSequence2.messageIdentification,
+          obj.messageSequence2.messageType,
+          obj.messageSequence2.correlationIdentifier,
           obj.TransitOperation,
           obj.Invalidation,
           obj.CustomsOfficeOfDeparture,
@@ -402,6 +405,7 @@ object Models {
       phaseId
     ) =>
       CC015CType(
+        Seq.empty,
         MESSAGESequence(
           messageSender,
           messageRecipient,
@@ -428,12 +432,12 @@ object Models {
       ),
     obj =>
       (
-        obj.messageSequence1.messageSender,
-        obj.messageSequence1.messageRecipient,
-        obj.messageSequence1.preparationDateAndTime,
-        obj.messageSequence1.messageIdentification,
-        obj.messageSequence1.messageType,
-        obj.messageSequence1.correlationIdentifier,
+        obj.messageSequence2.messageSender,
+        obj.messageSequence2.messageRecipient,
+        obj.messageSequence2.preparationDateAndTime,
+        obj.messageSequence2.messageIdentification,
+        obj.messageSequence2.messageType,
+        obj.messageSequence2.correlationIdentifier,
         obj.TransitOperation,
         obj.Authorisation.toOption,
         obj.CustomsOfficeOfDeparture,
@@ -881,6 +885,7 @@ object Models {
         phaseId
       ) =>
         CC044CType(
+          Seq.empty,
           MESSAGESequence(
             messageSender,
             messageRecipient,
@@ -902,12 +907,12 @@ object Models {
         ),
       obj =>
         (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
+          obj.messageSequence2.messageSender,
+          obj.messageSequence2.messageRecipient,
+          obj.messageSequence2.preparationDateAndTime,
+          obj.messageSequence2.messageIdentification,
+          obj.messageSequence2.messageType,
+          obj.messageSequence2.correlationIdentifier,
           obj.TransitOperation,
           obj.CustomsOfficeOfDestinationActual,
           obj.TraderAtDestination,
@@ -1387,6 +1392,7 @@ object Models {
         phaseId
       ) =>
         CC141CType(
+          Seq.empty,
           MESSAGESequence(
             messageSender,
             messageRecipient,
@@ -1409,12 +1415,12 @@ object Models {
         ),
       obj =>
         (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
+          obj.messageSequence2.messageSender,
+          obj.messageSequence2.messageRecipient,
+          obj.messageSequence2.preparationDateAndTime,
+          obj.messageSequence2.messageIdentification,
+          obj.messageSequence2.messageType,
+          obj.messageSequence2.correlationIdentifier,
           obj.TransitOperation,
           obj.CustomsOfficeOfDestinationActual,
           obj.CustomsOfficeOfEnquiryAtDeparture,
@@ -1454,6 +1460,7 @@ object Models {
         phaseId
       ) =>
         CC170CType(
+          Seq.empty,
           MESSAGESequence(
             messageSender,
             messageRecipient,
@@ -1475,12 +1482,12 @@ object Models {
         ),
       obj =>
         (
-          obj.messageSequence1.messageSender,
-          obj.messageSequence1.messageRecipient,
-          obj.messageSequence1.preparationDateAndTime,
-          obj.messageSequence1.messageIdentification,
-          obj.messageSequence1.messageType,
-          obj.messageSequence1.correlationIdentifier,
+          obj.messageSequence2.messageSender,
+          obj.messageSequence2.messageRecipient,
+          obj.messageSequence2.preparationDateAndTime,
+          obj.messageSequence2.messageIdentification,
+          obj.messageSequence2.messageType,
+          obj.messageSequence2.correlationIdentifier,
           obj.TransitOperation,
           obj.CustomsOfficeOfDeparture,
           obj.HolderOfTheTransitProcedure,
