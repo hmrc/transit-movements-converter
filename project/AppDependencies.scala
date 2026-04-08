@@ -5,7 +5,7 @@ object AppDependencies {
 
   val catsVersion      = "2.13.0"
   val bootstrapVersion = "10.7.0"
-  val pekkoVersion = "1.4.0"
+  val pekkoVersion = "1.5.0"
 
   val compile = Seq(
     "uk.gov.hmrc"      %% "bootstrap-backend-play-30" % bootstrapVersion,
