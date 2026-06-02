@@ -46,6 +46,10 @@ class ModelImplicitsSpec extends AnyFreeSpec with ScalaFutures with Matchers wit
 
   "phaseIdtypeReads implicit val" - {
 
+    "parse a phaseID with a leading space correctly" in {
+      ModelImplicits.phaseIDtypeReads.reads(JsString(" NCTS5.1")) mustBe JsSuccess(NCTS5u461)
+    }
+
     "all valid phase IDs should return their respective phase ID" - PhaseIDtype.values.foreach {
       code =>
         s"for ${code.toString}" in {
