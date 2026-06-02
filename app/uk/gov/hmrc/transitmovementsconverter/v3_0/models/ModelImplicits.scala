@@ -108,6 +108,7 @@ object ModelImplicits {
   }
 
   // Order sensitive - formats without dependencies should go first.
+  implicit lazy val exportOperationType02: OFormat[ExportOperationType02]               = Json.format[ExportOperationType02]
   implicit lazy val placeOfUnloadingType01Format: OFormat[PlaceOfUnloadingType01]       = Json.format[PlaceOfUnloadingType01]
   implicit lazy val additionalReferenceType04Format: OFormat[AdditionalReferenceType04] = formatWithTypeAdjusted(Json.format[AdditionalReferenceType04])
   implicit lazy val customsOfficeOfDestinationType02Format: OFormat[CustomsOfficeOfDestinationType02]     = Json.format[CustomsOfficeOfDestinationType02]
