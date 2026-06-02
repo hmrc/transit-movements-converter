@@ -81,7 +81,7 @@ object ModelImplicits {
 
   implicit lazy val phaseIDtypeReads: Reads[PhaseIDtype] = Reads {
     case JsString(x) =>
-      Try(JsSuccess(PhaseIDtype.fromString(x.trim, TopScope))).recover {
+      Try(JsSuccess(PhaseIDtype.fromString(x, TopScope))).recover {
         case _: RuntimeException =>
           JsError()
       }.get
