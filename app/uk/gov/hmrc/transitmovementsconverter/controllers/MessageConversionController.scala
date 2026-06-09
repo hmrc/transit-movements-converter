@@ -39,9 +39,7 @@ import uk.gov.hmrc.transitmovementsconverter.models.errors.ConversionError
 import uk.gov.hmrc.transitmovementsconverter.models.errors.PresentationError
 import uk.gov.hmrc.transitmovementsconverter.services.ConverterService
 import uk.gov.hmrc.transitmovementsconverter.stream.StreamingParsers
-import uk.gov.hmrc.transitmovementsconverter.v2_1.models.MessageType as V2MessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.MessageType
-import uk.gov.hmrc.transitmovementsconverter.v2_1.services.V2ConverterService
 import uk.gov.hmrc.transitmovementsconverter.v3_0.services.V3ConverterService
 
 import javax.inject.Inject
@@ -52,8 +50,7 @@ import scala.concurrent.Future
 @Singleton()
 class MessageConversionController @Inject() (
   cc: ControllerComponents,
-  v2ConverterService: V2ConverterService,
-  v3ConverterService: V3ConverterService,
+  converterService: V3ConverterService,
   validateAcceptRefiner: ValidateAcceptRefiner,
   appConfig: AppConfig
 )(implicit
@@ -73,14 +70,8 @@ class MessageConversionController @Inject() (
 
   def message(messageType: String): Action[Source[ByteString, ?]] = validateAcceptRefiner.async(streamFromMemory) {
     implicit request =>
-      val converterService: ConverterService = request.versionHeader match {
-        case APIVersionHeader.v2_1 => v2ConverterService
-        case APIVersionHeader.v3_0 => v3ConverterService
-      }
 
-      val maybeConversionFormat: Option[ConversionFormat[?]] = request.versionHeader match
-        case models.APIVersionHeader.v2_1 => V2MessageType.fromName(messageType)
-        case models.APIVersionHeader.v3_0 => MessageType.fromName(messageType)
+      val maybeConversionFormat = MessageType.fromName(messageType)
 
       val result: EitherT[Future, PresentationError, Result] =
         (request.headers.get(HeaderNames.CONTENT_TYPE), request.headers.get(HeaderNames.ACCEPT), maybeConversionFormat) match {
