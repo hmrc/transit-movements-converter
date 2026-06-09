@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.transitmovementsconverter.itbase
 
+import play.api.libs.json.JsNumber
+import play.api.libs.json.JsObject
 import play.api.libs.json.Json
 
 object TestObjects {
@@ -26,53 +28,57 @@ object TestObjects {
       <messageSender>FdOcminxBxSLGm1rRUn0q96S1</messageSender>
     </ncts:CC015C>
 
-    lazy val xml1 = <ncts:CC015C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
-      <messageSender>Ge1cminxBxSLGm1rRUn0q96R2</messageSender>
-      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
-      <preparationDateAndTime>2022-01-22T07:43:36</preparationDateAndTime>
-      <messageIdentification>6Onxa3En</messageIdentification>
-      <messageType>CC015C</messageType>
-      <TransitOperation>
-        <LRN>qvRcL</LRN>
-        <declarationType>Pbg</declarationType>
-        <additionalDeclarationType>O</additionalDeclarationType>
-        <security>8</security>
-        <reducedDatasetIndicator>1</reducedDatasetIndicator>
-        <bindingItinerary>0</bindingItinerary>
-      </TransitOperation>
-      <CustomsOfficeOfDeparture>
-        <referenceNumber>ZQZ20442</referenceNumber>
-      </CustomsOfficeOfDeparture>
-      <CustomsOfficeOfDestinationDeclared>
-        <referenceNumber>ZQZ20442</referenceNumber>
-      </CustomsOfficeOfDestinationDeclared>
-      <HolderOfTheTransitProcedure>
-        <identificationNumber>SFzsisksA</identificationNumber>
-      </HolderOfTheTransitProcedure>
-      <Guarantee>
-        <sequenceNumber>48711</sequenceNumber>
-        <guaranteeType>1</guaranteeType>
-        <otherGuaranteeReference>1qJMA6MbhnnrOJJjHBHX</otherGuaranteeReference>
-      </Guarantee>
-      <Consignment>
-        <grossMass>6430669292.48125</grossMass>
-        <HouseConsignment>
+    lazy val xml1 =
+      <ncts:CC015C xmlns:ncts="http://ncts.dgtaxud.ec" PhaseID="NCTS5.0">
+        <messageSender>Ge1cminxBxSLGm1rRUn0q96R2</messageSender>
+        <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+        <preparationDateAndTime>2022-01-22T07:43:36</preparationDateAndTime>
+        <messageIdentification>6Onxa3En</messageIdentification>
+        <messageType>CC015C</messageType>
+        <TransitOperation>
+          <LRN>qvRcL</LRN>
+          <declarationType>Pbg</declarationType>
+          <additionalDeclarationType>O</additionalDeclarationType>
+          <security>8</security>
+          <reducedDatasetIndicator>1</reducedDatasetIndicator>
+          <bindingItinerary>0</bindingItinerary>
+        </TransitOperation>
+        <CustomsOfficeOfDeparture>
+          <referenceNumber>ZQZ20442</referenceNumber>
+        </CustomsOfficeOfDeparture>
+        <CustomsOfficeOfDestinationDeclared>
+          <referenceNumber>ZQZ20442</referenceNumber>
+        </CustomsOfficeOfDestinationDeclared>
+        <HolderOfTheTransitProcedure>
+          <identificationNumber>SFzsisksA</identificationNumber>
+        </HolderOfTheTransitProcedure>
+        <Guarantee>
           <sequenceNumber>48711</sequenceNumber>
+          <guaranteeType>1</guaranteeType>
+          <otherGuaranteeReference>1qJMA6MbhnnrOJJjHBHX</otherGuaranteeReference>
+        </Guarantee>
+        <Consignment>
           <grossMass>6430669292.48125</grossMass>
-          <ConsignmentItem>
-            <goodsItemNumber>18914</goodsItemNumber>
-            <declarationGoodsItemNumber>1458</declarationGoodsItemNumber>
-            <Commodity>
-              <descriptionOfGoods>ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe</descriptionOfGoods>
-            </Commodity>
-            <Packaging>
-              <sequenceNumber>48711</sequenceNumber>
-              <typeOfPackages>Oi</typeOfPackages>
-            </Packaging>
-          </ConsignmentItem>
-        </HouseConsignment>
-      </Consignment>
-    </ncts:CC015C>
+          <HouseConsignment>
+            <sequenceNumber>48711</sequenceNumber>
+            <grossMass>6430669292.48125</grossMass>
+            <ConsignmentItem>
+              <goodsItemNumber>18914</goodsItemNumber>
+              <declarationGoodsItemNumber>1458</declarationGoodsItemNumber>
+              <Commodity>
+                <descriptionOfGoods>ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe</descriptionOfGoods>
+                <GoodsMeasure>
+                  <grossMass>10</grossMass>
+                </GoodsMeasure>
+              </Commodity>
+              <Packaging>
+                <sequenceNumber>48711</sequenceNumber>
+                <typeOfPackages>Oi</typeOfPackages>
+              </Packaging>
+            </ConsignmentItem>
+          </HouseConsignment>
+        </Consignment>
+      </ncts:CC015C>
 
     lazy val invalidJson1 =
       Json.obj(
@@ -85,109 +91,96 @@ object TestObjects {
 
     lazy val json1 =
       Json.obj(
-        "n1:CC015C" ->
-          Json.obj(
-            "messageSender"          -> "Ge1cminxBxSLGm1rRUn0q96R2",
-            "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
-            "preparationDateAndTime" -> "2022-01-22T07:43:36",
-            "messageIdentification"  -> "6Onxa3En",
-            "messageType"            -> "CC015C",
-            "TransitOperation"       ->
+        "n1:CC015C" -> Json.obj(
+          "messageSender"          -> "Ge1cminxBxSLGm1rRUn0q96R2",
+          "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "preparationDateAndTime" -> "2022-01-22T07:43:36",
+          "messageIdentification"  -> "6Onxa3En",
+          "messageType"            -> "CC015C",
+          "TransitOperation"       -> Json.obj(
+            "LRN"                       -> "qvRcL",
+            "declarationType"           -> "Pbg",
+            "additionalDeclarationType" -> "O",
+            "security"                  -> "8",
+            "reducedDatasetIndicator"   -> "1",
+            "bindingItinerary"          -> "0"
+          ),
+          "CustomsOfficeOfDeparture" -> Json.obj(
+            "referenceNumber" -> "ZQZ20442"
+          ),
+          "CustomsOfficeOfDestinationDeclared" -> Json.obj(
+            "referenceNumber" -> "ZQZ20442"
+          ),
+          "HolderOfTheTransitProcedure" -> Json.obj(
+            "identificationNumber" -> "SFzsisksA"
+          ),
+          "Guarantee" -> Json.arr(
+            Json.obj(
+              "sequenceNumber"          -> 48711,
+              "guaranteeType"           -> "1",
+              "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX",
+              "GuaranteeReference"      -> Json.arr()
+            )
+          ),
+          "Consignment" -> Json.obj(
+            "grossMass"                     -> JsNumber(BigDecimal("6430669292.48125")),
+            "AdditionalSupplyChainActor"    -> Json.arr(),
+            "TransportEquipment"            -> Json.arr(),
+            "DepartureTransportMeans"       -> Json.arr(),
+            "CountryOfRoutingOfConsignment" -> Json.arr(),
+            "ActiveBorderTransportMeans"    -> Json.arr(),
+            "PreviousDocument"              -> Json.arr(),
+            "SupportingDocument"            -> Json.arr(),
+            "TransportDocument"             -> Json.arr(),
+            "AdditionalReference"           -> Json.arr(),
+            "AdditionalInformation"         -> Json.arr(),
+            "HouseConsignment"              -> Json.arr(
               Json.obj(
-                "LRN"                       -> "qvRcL",
-                "reducedDatasetIndicator"   -> "1",
-                "bindingItinerary"          -> "0",
-                "additionalDeclarationType" -> "O",
-                "declarationType"           -> "Pbg",
-                "security"                  -> "8"
-              ),
-            "CustomsOfficeOfDeparture" ->
-              Json.obj(
-                "referenceNumber" -> "ZQZ20442"
-              ),
-            "CustomsOfficeOfDestinationDeclared" ->
-              Json.obj(
-                "referenceNumber" -> "ZQZ20442"
-              ),
-            "HolderOfTheTransitProcedure" ->
-              Json.obj(
-                "identificationNumber" -> "SFzsisksA"
-              ),
-            "Guarantee" ->
-              Json.arr(
-                Json.obj(
-                  "sequenceNumber"     -> 48711,
-                  "guaranteeType"      -> "1",
-                  "GuaranteeReference" ->
-                    Json.arr(),
-                  "otherGuaranteeReference" -> "1qJMA6MbhnnrOJJjHBHX"
-                )
-              ),
-            "Consignment" ->
-              Json.obj(
-                "grossMass"        -> 6430669292.48125,
-                "HouseConsignment" ->
-                  Json.arr(
-                    Json.obj(
-                      "TransportDocument" ->
-                        Json.arr(),
-                      "ConsignmentItem" ->
-                        Json.arr(
-                          Json.obj(
-                            "goodsItemNumber"   -> 18914,
-                            "TransportDocument" ->
-                              Json.arr(),
-                            "AdditionalInformation" ->
-                              Json.arr(),
-                            "Commodity" ->
-                              Json.obj(
-                                "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
-                                "DangerousGoods" ->
-                                  Json.arr()
-                              ),
-                            "declarationGoodsItemNumber" -> 1458,
-                            "SupportingDocument"         ->
-                              Json.arr(),
-                            "Packaging" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber" -> 48711,
-                                  "typeOfPackages" -> "Oi"
-                                )
-                              ),
-                            "PreviousDocument" ->
-                              Json.arr(),
-                            "AdditionalReference" ->
-                              Json.arr(),
-                            "AdditionalSupplyChainActor" ->
-                              Json.arr()
-                          )
-                        ),
-                      "AdditionalInformation" ->
-                        Json.arr(),
-                      "grossMass"        -> 6430669292.48125,
-                      "PreviousDocument" ->
-                        Json.arr(),
-                      "sequenceNumber"          -> 48711,
-                      "DepartureTransportMeans" ->
-                        Json.arr(),
-                      "SupportingDocument" ->
-                        Json.arr(),
-                      "AdditionalReference" ->
-                        Json.arr(),
-                      "AdditionalSupplyChainActor" ->
-                        Json.arr()
-                    )
+                "sequenceNumber"             -> 48711,
+                "grossMass"                  -> JsNumber(BigDecimal("6430669292.48125")),
+                "AdditionalSupplyChainActor" -> Json.arr(),
+                "DepartureTransportMeans"    -> Json.arr(),
+                "PreviousDocument"           -> Json.arr(),
+                "SupportingDocument"         -> Json.arr(),
+                "TransportDocument"          -> Json.arr(),
+                "AdditionalReference"        -> Json.arr(),
+                "AdditionalInformation"      -> Json.arr(),
+                "ConsignmentItem"            -> Json.arr(
+                  Json.obj(
+                    "goodsItemNumber"            -> 18914,
+                    "declarationGoodsItemNumber" -> 1458,
+                    "AdditionalSupplyChainActor" -> Json.arr(),
+                    "Commodity"                  -> Json.obj(
+                      "descriptionOfGoods" -> "ZMyM5HTSTnLqT5FT9aHXwScqXKC1VitlWeO5gs91cVXBXOB8xBdXG5aGhG9VFjjDGiraIETFfbQWeA7VUokO7ngDOrKZ23ccKKMA6C3GpXciUTt9nS2pzCFFFeg4BXdkIe",
+                      "DangerousGoods" -> Json.arr(),
+                      "GoodsMeasure"   -> Json.obj(
+                        "grossMass" -> 10
+                      )
+                    ),
+                    "Packaging" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber" -> 48711,
+                        "typeOfPackages" -> "Oi"
+                      )
+                    ),
+                    "PreviousDocument"      -> Json.arr(),
+                    "SupportingDocument"    -> Json.arr(),
+                    "AdditionalReference"   -> Json.arr(),
+                    "AdditionalInformation" -> Json.arr()
                   )
-              ),
-            "@PhaseID" -> "NCTS5.0"
-          )
+                )
+              )
+            )
+          ),
+          "@PhaseID" -> "NCTS5.0"
+        )
       )
   }
 
   object CC019C {
 
-    lazy val xmlValid = <ncts:CC019C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+    lazy val xmlValid =
+      <ncts:CC019C xmlns:ncts="http://ncts.dgtaxud.ec" PhaseID="NCTS5.0">
         <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
         <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
         <preparationDateAndTime>2022-01-22T07:43:36</preparationDateAndTime>
@@ -206,7 +199,7 @@ object TestObjects {
         <Guarantor>
           <identificationNumber>GdzWtySAdjL</identificationNumber>
         </Guarantor>
-    </ncts:CC019C>
+      </ncts:CC019C>
 
     lazy val invalidXml = <ncts:CC019C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
       <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
@@ -250,54 +243,58 @@ object TestObjects {
 
   object CC025C {
 
-    lazy val xmlValid = <ncts:CC025C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
-      <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
-      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
-      <preparationDateAndTime>2022-10-26T07:36:28</preparationDateAndTime>
-      <messageIdentification>6Onxa3En</messageIdentification>
-      <messageType>CC025C</messageType>
-      <correlationIdentifier>co-id-1</correlationIdentifier>
-      <TransitOperation>
-        <MRN>qvRcL</MRN>
-        <releaseDate>2022-06-09+01:00</releaseDate>
-        <releaseIndicator>1</releaseIndicator>
-      </TransitOperation>
-      <CustomsOfficeOfDestinationActual>
-        <referenceNumber>2</referenceNumber>
-      </CustomsOfficeOfDestinationActual>
-      <TraderAtDestination>
-        <identificationNumber>3</identificationNumber>
-      </TraderAtDestination>
-      <Consignment>
-        <HouseConsignment>
-          <sequenceNumber>3</sequenceNumber>
-          <releaseType>1</releaseType>
-          <ConsignmentItem>
-            <goodsItemNumber>10</goodsItemNumber>
-            <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
-            <releaseType>2</releaseType>
-            <Commodity>
-              <descriptionOfGoods>jeans</descriptionOfGoods>
-              <cusCode>5</cusCode>
-              <CommodityCode>
-                <harmonizedSystemSubHeadingCode>12</harmonizedSystemSubHeadingCode>
-                <combinedNomenclatureCode>13</combinedNomenclatureCode>
-              </CommodityCode>
-              <DangerousGoods>
+    lazy val xmlValid =
+      <ncts:CC025C xmlns:ncts="http://ncts.dgtaxud.ec" PhaseID="NCTS5.0">
+        <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
+        <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+        <preparationDateAndTime>2022-10-26T07:36:28</preparationDateAndTime>
+        <messageIdentification>6Onxa3En</messageIdentification>
+        <messageType>CC025C</messageType>
+        <correlationIdentifier>co-id-1</correlationIdentifier>
+        <TransitOperation>
+          <MRN>qvRcL</MRN>
+          <releaseDate>2022-06-09+01:00</releaseDate>
+          <releaseIndicator>1</releaseIndicator>
+        </TransitOperation>
+        <CustomsOfficeOfDestinationActual>
+          <referenceNumber>2</referenceNumber>
+        </CustomsOfficeOfDestinationActual>
+        <TraderAtDestination>
+          <identificationNumber>3</identificationNumber>
+        </TraderAtDestination>
+        <Consignment>
+          <HouseConsignment>
+            <sequenceNumber>3</sequenceNumber>
+            <releaseType>1</releaseType>
+            <ConsignmentItem>
+              <goodsItemNumber>10</goodsItemNumber>
+              <declarationGoodsItemNumber>100</declarationGoodsItemNumber>
+              <releaseType>2</releaseType>
+              <Commodity>
+                <descriptionOfGoods>jeans</descriptionOfGoods>
+                <cusCode>5</cusCode>
+                <CommodityCode>
+                  <harmonizedSystemSubHeadingCode>12</harmonizedSystemSubHeadingCode>
+                  <combinedNomenclatureCode>13</combinedNomenclatureCode>
+                </CommodityCode>
+                <DangerousGoods>
+                  <sequenceNumber>4</sequenceNumber>
+                  <UNNumber>6</UNNumber>
+                </DangerousGoods>
+                <GoodsMeasure>
+                  <grossMass>10</grossMass>
+                </GoodsMeasure>
+              </Commodity>
+              <Packaging>
                 <sequenceNumber>4</sequenceNumber>
-                <UNNumber>6</UNNumber>
-              </DangerousGoods>
-            </Commodity>
-            <Packaging>
-              <sequenceNumber>4</sequenceNumber>
-              <typeOfPackages>2</typeOfPackages>
-              <numberOfPackages>100</numberOfPackages>
-              <shippingMarks>blue</shippingMarks>
-            </Packaging>
-          </ConsignmentItem>
-        </HouseConsignment>
-      </Consignment>
-    </ncts:CC025C>
+                <typeOfPackages>2</typeOfPackages>
+                <numberOfPackages>100</numberOfPackages>
+                <shippingMarks>blue</shippingMarks>
+              </Packaging>
+            </ConsignmentItem>
+          </HouseConsignment>
+        </Consignment>
+      </ncts:CC025C>
 
     lazy val xmlInvalid = <ncts:CC025C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
       <messageSender>GdOcminxBxSLGm1rRUn0q96S2</messageSender>
@@ -305,74 +302,66 @@ object TestObjects {
 
     lazy val jsonValid =
       Json.obj(
-        "n1:CC025C" ->
-          Json.obj(
-            "messageSender"          -> "GdOcminxBxSLGm1rRUn0q96S2",
-            "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
-            "preparationDateAndTime" -> "2022-10-26T07:36:28",
-            "messageIdentification"  -> "6Onxa3En",
-            "messageType"            -> "CC025C",
-            "correlationIdentifier"  -> "co-id-1",
-            "TransitOperation"       ->
+        "n1:CC025C" -> Json.obj(
+          "messageSender"          -> "GdOcminxBxSLGm1rRUn0q96S2",
+          "messageRecipient"       -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "preparationDateAndTime" -> "2022-10-26T07:36:28",
+          "messageIdentification"  -> "6Onxa3En",
+          "messageType"            -> "CC025C",
+          "correlationIdentifier"  -> "co-id-1",
+          "TransitOperation"       -> Json.obj(
+            "MRN"              -> "qvRcL",
+            "releaseDate"      -> "2022-06-09+01:00",
+            "releaseIndicator" -> "1"
+          ),
+          "CustomsOfficeOfDestinationActual" -> Json.obj(
+            "referenceNumber" -> "2"
+          ),
+          "TraderAtDestination" -> Json.obj(
+            "identificationNumber" -> "3"
+          ),
+          "Consignment" -> Json.obj(
+            "HouseConsignment" -> Json.arr(
               Json.obj(
-                "MRN"              -> "qvRcL",
-                "releaseDate"      -> "2022-06-09+01:00",
-                "releaseIndicator" -> "1"
-              ),
-            "CustomsOfficeOfDestinationActual" ->
-              Json.obj(
-                "referenceNumber" -> "2"
-              ),
-            "TraderAtDestination" ->
-              Json.obj(
-                "identificationNumber" -> "3"
-              ),
-            "Consignment" ->
-              Json.obj(
-                "HouseConsignment" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber"  -> 3,
-                      "releaseType"     -> "1",
-                      "ConsignmentItem" ->
-                        Json.arr(
-                          Json.obj(
-                            "declarationGoodsItemNumber" -> 100,
-                            "Packaging"                  ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"   -> 4,
-                                  "typeOfPackages"   -> "2",
-                                  "numberOfPackages" -> 100,
-                                  "shippingMarks"    -> "blue"
-                                )
-                              ),
-                            "Commodity" ->
-                              Json.obj(
-                                "descriptionOfGoods" -> "jeans",
-                                "DangerousGoods"     ->
-                                  Json.arr(
-                                    Json.obj(
-                                      "sequenceNumber" -> 4,
-                                      "UNNumber"       -> "6"
-                                    )
-                                  ),
-                                "cusCode"       -> "5",
-                                "CommodityCode" ->
-                                  Json.obj(
-                                    "harmonizedSystemSubHeadingCode" -> "12",
-                                    "combinedNomenclatureCode"       -> "13"
-                                  )
-                              ),
-                            "releaseType"     -> "2",
-                            "goodsItemNumber" -> 10
-                          )
+                "sequenceNumber"  -> 3,
+                "releaseType"     -> "1",
+                "ConsignmentItem" -> Json.arr(
+                  Json.obj(
+                    "goodsItemNumber"            -> 10,
+                    "declarationGoodsItemNumber" -> 100,
+                    "releaseType"                -> "2",
+                    "Commodity"                  -> Json.obj(
+                      "descriptionOfGoods" -> "jeans",
+                      "cusCode"            -> "5",
+                      "CommodityCode"      -> Json.obj(
+                        "harmonizedSystemSubHeadingCode" -> "12",
+                        "combinedNomenclatureCode"       -> "13"
+                      ),
+                      "DangerousGoods" -> Json.arr(
+                        Json.obj(
+                          "sequenceNumber" -> 4,
+                          "UNNumber"       -> "6"
                         )
+                      ),
+                      "GoodsMeasure" -> Json.obj(
+                        "grossMass" -> 10
+                      )
+                    ),
+                    "Packaging" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"   -> 4,
+                        "typeOfPackages"   -> "2",
+                        "numberOfPackages" -> 100,
+                        "shippingMarks"    -> "blue"
+                      )
                     )
                   )
-              ),
-            "@PhaseID" -> "NCTS5.0"
-          )
+                )
+              )
+            )
+          ),
+          "@PhaseID" -> "NCTS5.0"
+        )
       )
 
     lazy val jsonInvalid =
@@ -496,7 +485,7 @@ object TestObjects {
   }
 
   object CC043C {
-    lazy val xmlValid = <ncts:CC043C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+    lazy val xmlValid = <ncts:CC043C xmlns:ncts="http://ncts.dgtaxud.ec" PhaseID="NCTS5.0">
       <messageSender>41SFANJ3qS79HFh5LYfs3TF2LDilwYVYqqN</messageSender>
       <messageRecipient>PdVWmZvOTZz6mahN-0000000000000000</messageRecipient>
       <preparationDateAndTime>2025-03-31T12:58:25</preparationDateAndTime>
@@ -731,6 +720,9 @@ object TestObjects {
                 <sequenceNumber>29421</sequenceNumber>
                 <UNNumber>3643</UNNumber>
               </DangerousGoods>
+              <GoodsMeasure>
+                <grossMass>10</grossMass>
+              </GoodsMeasure>
             </Commodity>
             <Packaging>
               <sequenceNumber>24315</sequenceNumber>
@@ -777,391 +769,341 @@ object TestObjects {
 
     lazy val jsonValid =
       Json.obj(
-        "n1:CC043C" ->
-          Json.obj(
-            "messageSender"          -> "41SFANJ3qS79HFh5LYfs3TF2LDilwYVYqqN",
-            "messageRecipient"       -> "PdVWmZvOTZz6mahN-0000000000000000",
-            "preparationDateAndTime" -> "2025-03-31T12:58:25",
-            "messageIdentification"  -> "ZBWwOTeoCqYMaAeAY8Y31eUfLaOK8erhR",
-            "messageType"            -> "CC043C",
-            "correlationIdentifier"  -> "8AxBt4L3rnp",
-            "TransitOperation"       ->
+        "n1:CC043C" -> Json.obj(
+          "messageSender"          -> "41SFANJ3qS79HFh5LYfs3TF2LDilwYVYqqN",
+          "messageRecipient"       -> "PdVWmZvOTZz6mahN-0000000000000000",
+          "preparationDateAndTime" -> "2025-03-31T12:58:25",
+          "messageIdentification"  -> "ZBWwOTeoCqYMaAeAY8Y31eUfLaOK8erhR",
+          "messageType"            -> "CC043C",
+          "correlationIdentifier"  -> "8AxBt4L3rnp",
+          "TransitOperation"       -> Json.obj(
+            "MRN"                       -> "26WBSP5YO22NFZBDK1",
+            "declarationType"           -> "jWRVr",
+            "declarationAcceptanceDate" -> "2025-03-31",
+            "security"                  -> "6",
+            "reducedDatasetIndicator"   -> "0"
+          ),
+          "CustomsOfficeOfDestinationActual" -> Json.obj(
+            "referenceNumber" -> "UZXOOMXT"
+          ),
+          "HolderOfTheTransitProcedure" -> Json.obj(
+            "identificationNumber"          -> "3rGXFbPxH9mbK",
+            "TIRHolderIdentificationNumber" -> "RvYVetCTsKj",
+            "name"                          -> "Ye3p5Ts8Mvu9fse44bB6RjAmbtrlbpyaUm0Pqx4OTPA0uQCCnlTQU1",
+            "Address"                       -> Json.obj(
+              "streetAndNumber" -> "YGgcPH6gtajCp8hP2zGbedRLSIdx40MXJb",
+              "postcode"        -> "myxILuGb",
+              "city"            -> "0xbfZn58cLcypafN8nfzobtfsmva",
+              "country"         -> "GS"
+            )
+          ),
+          "TraderAtDestination" -> Json.obj(
+            "identificationNumber" -> "i"
+          ),
+          "CTLControl" -> Json.obj(
+            "continueUnloading" -> 9
+          ),
+          "Consignment" -> Json.obj(
+            "countryOfDestination"  -> "CH",
+            "containerIndicator"    -> "0",
+            "inlandModeOfTransport" -> "1",
+            "grossMass"             -> JsNumber(BigDecimal("12345.6789")),
+            "Consignor"             -> Json.obj(
+              "identificationNumber" -> "FrEQFlb5GseYtOG",
+              "name"                 -> "jdk5SptgzVd5Ukjs9OkYfyGXC8SO2CW7ZS2OBj7",
+              "Address"              -> Json.obj(
+                "streetAndNumber" -> "sXHdiozRcU5qNbEe3N0YgAKEAH0eSq27PfbaKnLO1kzl0y7PG",
+                "postcode"        -> "sau0OjFjDp6Zi3VC",
+                "city"            -> "uk3Hrbe",
+                "country"         -> "TB"
+              )
+            ),
+            "Consignee" -> Json.obj(
+              "identificationNumber" -> "va4Ymtc0JctX11",
+              "name"                 -> "L3NvJ4LiJ1JI9KilKtt1YbsbfS9CNLFKlfjSBPtDE8rb0iw1AOPbkoQIyivK",
+              "Address"              -> Json.obj(
+                "streetAndNumber" -> "s51SBbgjWJQGiTKcsBg4Dq",
+                "postcode"        -> "wu0pKlhLNMYsgMYJ",
+                "city"            -> "vb7Kt5oUf1zoVyev0q",
+                "country"         -> "XJ"
+              )
+            ),
+            "TransportEquipment" -> Json.arr(
               Json.obj(
-                "reducedDatasetIndicator"   -> "0",
-                "declarationAcceptanceDate" -> "2025-03-31",
-                "MRN"                       -> "26WBSP5YO22NFZBDK1",
-                "declarationType"           -> "jWRVr",
-                "security"                  -> "6"
-              ),
-            "CustomsOfficeOfDestinationActual" ->
-              Json.obj(
-                "referenceNumber" -> "UZXOOMXT"
-              ),
-            "HolderOfTheTransitProcedure" ->
-              Json.obj(
-                "name"    -> "Ye3p5Ts8Mvu9fse44bB6RjAmbtrlbpyaUm0Pqx4OTPA0uQCCnlTQU1",
-                "Address" ->
+                "sequenceNumber"                -> 14848,
+                "containerIdentificationNumber" -> "XRFDbfYon0",
+                "numberOfSeals"                 -> 97,
+                "Seal"                          -> Json.arr(
                   Json.obj(
-                    "streetAndNumber" -> "YGgcPH6gtajCp8hP2zGbedRLSIdx40MXJb",
-                    "city"            -> "0xbfZn58cLcypafN8nfzobtfsmva",
-                    "country"         -> "GS",
-                    "postcode"        -> "myxILuGb"
-                  ),
-                "identificationNumber"          -> "3rGXFbPxH9mbK",
-                "TIRHolderIdentificationNumber" -> "RvYVetCTsKj"
-              ),
-            "TraderAtDestination" ->
-              Json.obj(
-                "identificationNumber" -> "i"
-              ),
-            "CTLControl" ->
-              Json.obj(
-                "continueUnloading" -> 9
-              ),
-            "Consignment" ->
-              Json.obj(
-                "Incident" ->
-                  Json.arr(
-                    Json.obj(
-                      "Endorsement" ->
-                        Json.obj(
-                          "date"      -> "2025-03-31",
-                          "authority" -> "NjKuLDHq2kGg1TKcg5BG6ocHDR",
-                          "place"     -> "UHHrSTsfMZSIz445kDF3YrWCEZWPZ",
-                          "country"   -> "DB"
-                        ),
-                      "Location" ->
-                        Json.obj(
-                          "Address" ->
-                            Json.obj(
-                              "streetAndNumber" -> "xUVdmeE19Am",
-                              "city"            -> "PaWRWjvEVkOt4GwOzJw1NF82HWAC",
-                              "postcode"        -> "Qwdp3VofGaFdI6P"
-                            ),
-                          "country"                   -> "WC",
-                          "UNLocode"                  -> "RHjdkq4Y",
-                          "qualifierOfIdentification" -> "J",
-                          "GNSS"                      ->
-                            Json.obj(
-                              "latitude"  -> "90.000000",
-                              "longitude" -> "180.000000"
-                            )
-                        ),
-                      "Transhipment" ->
-                        Json.obj(
-                          "containerIndicator" -> "1",
-                          "TransportMeans"     ->
-                            Json.obj(
-                              "typeOfIdentification" -> "74",
-                              "identificationNumber" -> "gg6KV7cORk0JJond7WWQ8U6M0",
-                              "nationality"          -> "OB"
-                            )
-                        ),
-                      "text" -> "UjJOJSeukFAnPWHtNd3CChMdVWm6Tb6F8ePfsoOVi85hQoPJDbpDhZuSizGPrWR6IOWWGiQV3csftGYIXXtLW8WBvgo9L3LWrJNdUPr9NkovULEKTL5PZj6x4s03an71bXOJLGyZiaQm9tylXRm4rJH8uDJx97ygc4KU3hsvTQSD396MB5Awri7onR8i5SeRFgd41BqJCccJ7uZFBsiisV31",
-                      "TransportEquipment" ->
-                        Json.arr(
-                          Json.obj(
-                            "GoodsReference" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"             -> 73377,
-                                  "declarationGoodsItemNumber" -> 622
-                                )
-                              ),
-                            "containerIdentificationNumber" -> "VuiK6U0s",
-                            "numberOfSeals"                 -> 802,
-                            "sequenceNumber"                -> 62677,
-                            "Seal"                          ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber" -> 71715,
-                                  "identifier"     -> "awHHiNhL9o1G5"
-                                )
-                              )
-                          )
-                        ),
-                      "code"           -> "7",
-                      "sequenceNumber" -> 23448
-                    )
-                  ),
-                "TransportDocument" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber"  -> 43686,
-                      "referenceNumber" -> "2bFu9hRWNlMPxYQlr1OLxwVH7AJD0igvvraOW6ZbwdsEWavIZfNlyHuvr6KplUUB",
-                      "type"            -> "NGMP"
-                    )
-                  ),
-                "Consignee" ->
+                    "sequenceNumber" -> 10869,
+                    "identifier"     -> "FoUbPaFDwTLgc1WpPJv"
+                  )
+                ),
+                "GoodsReference" -> Json.arr(
                   Json.obj(
-                    "identificationNumber" -> "va4Ymtc0JctX11",
-                    "name"                 -> "L3NvJ4LiJ1JI9KilKtt1YbsbfS9CNLFKlfjSBPtDE8rb0iw1AOPbkoQIyivK",
-                    "Address"              ->
+                    "sequenceNumber"             -> 62475,
+                    "declarationGoodsItemNumber" -> 996
+                  )
+                )
+              )
+            ),
+            "DepartureTransportMeans" -> Json.arr(
+              Json.obj(
+                "sequenceNumber"       -> 81355,
+                "typeOfIdentification" -> "53",
+                "identificationNumber" -> "H6Q1SvmZGf",
+                "nationality"          -> "RO"
+              )
+            ),
+            "CountryOfRoutingOfConsignment" -> Json.arr(),
+            "PreviousDocument"              -> Json.arr(
+              Json.obj(
+                "sequenceNumber"          -> 76282,
+                "referenceNumber"         -> "xblR5IfoHqt6uT",
+                "complementOfInformation" -> "X0t8PC3flnwVP6CfbhKXeIp9s66Aogi",
+                "type"                    -> "VRPa"
+              )
+            ),
+            "SupportingDocument" -> Json.arr(
+              Json.obj(
+                "sequenceNumber"          -> 15518,
+                "referenceNumber"         -> "Kf2v3XqxJjnH",
+                "complementOfInformation" -> "aRQd8GtSACcR",
+                "type"                    -> "elZY"
+              )
+            ),
+            "TransportDocument" -> Json.arr(
+              Json.obj(
+                "sequenceNumber"  -> 43686,
+                "referenceNumber" -> "2bFu9hRWNlMPxYQlr1OLxwVH7AJD0igvvraOW6ZbwdsEWavIZfNlyHuvr6KplUUB",
+                "type"            -> "NGMP"
+              )
+            ),
+            "AdditionalReference" -> Json.arr(
+              Json.obj(
+                "sequenceNumber"  -> 69777,
+                "referenceNumber" -> "4uJC8P5iw2wVdHAydOWlxRAs2Ce",
+                "type"            -> "ybi8"
+              )
+            ),
+            "AdditionalInformation" -> Json.arr(
+              Json.obj(
+                "sequenceNumber" -> 38727,
+                "code"           -> "BTGGj",
+                "text" -> "hPTiuI6R1oIgfk3XfhhDIJbyztM09ubmvufufUog5c6Hj0cFOpBHZz1LHid8te43pX3Z1sfzuBgmYsKCt2uPtXVWo0xKriIiNSILgTpUJKfPG5mFX2Sda9tGZkgAoPooFxH7eMuqlx0iEREZv5LlkW49ymOTYKbkgCYktPrg9KJUsLmsc1TJrhUWSsUvN6PPKLvx6lz74bmrJM9xb6F8xNUwgEPAINQr6n16Ta1D7e0hTn4zdDTe19DCpY12o8FlJm07jUzxNWp2BlFw8UrN"
+              )
+            ),
+            "Incident" -> Json.arr(
+              Json.obj(
+                "sequenceNumber" -> 23448,
+                "code"           -> "7",
+                "text" -> "UjJOJSeukFAnPWHtNd3CChMdVWm6Tb6F8ePfsoOVi85hQoPJDbpDhZuSizGPrWR6IOWWGiQV3csftGYIXXtLW8WBvgo9L3LWrJNdUPr9NkovULEKTL5PZj6x4s03an71bXOJLGyZiaQm9tylXRm4rJH8uDJx97ygc4KU3hsvTQSD396MB5Awri7onR8i5SeRFgd41BqJCccJ7uZFBsiisV31",
+                "Endorsement" -> Json.obj(
+                  "date"      -> "2025-03-31",
+                  "authority" -> "NjKuLDHq2kGg1TKcg5BG6ocHDR",
+                  "place"     -> "UHHrSTsfMZSIz445kDF3YrWCEZWPZ",
+                  "country"   -> "DB"
+                ),
+                "Location" -> Json.obj(
+                  "qualifierOfIdentification" -> "J",
+                  "UNLocode"                  -> "RHjdkq4Y",
+                  "country"                   -> "WC",
+                  "GNSS"                      -> Json.obj(
+                    "latitude"  -> "90.000000",
+                    "longitude" -> "180.000000"
+                  ),
+                  "Address" -> Json.obj(
+                    "streetAndNumber" -> "xUVdmeE19Am",
+                    "postcode"        -> "Qwdp3VofGaFdI6P",
+                    "city"            -> "PaWRWjvEVkOt4GwOzJw1NF82HWAC"
+                  )
+                ),
+                "TransportEquipment" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"                -> 62677,
+                    "containerIdentificationNumber" -> "VuiK6U0s",
+                    "numberOfSeals"                 -> 802,
+                    "Seal"                          -> Json.arr(
                       Json.obj(
-                        "streetAndNumber" -> "s51SBbgjWJQGiTKcsBg4Dq",
-                        "city"            -> "vb7Kt5oUf1zoVyev0q",
-                        "country"         -> "XJ",
-                        "postcode"        -> "wu0pKlhLNMYsgMYJ"
+                        "sequenceNumber" -> 71715,
+                        "identifier"     -> "awHHiNhL9o1G5"
                       )
-                  ),
-                "AdditionalInformation" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber" -> 38727,
-                      "code"           -> "BTGGj",
-                      "text" -> "hPTiuI6R1oIgfk3XfhhDIJbyztM09ubmvufufUog5c6Hj0cFOpBHZz1LHid8te43pX3Z1sfzuBgmYsKCt2uPtXVWo0xKriIiNSILgTpUJKfPG5mFX2Sda9tGZkgAoPooFxH7eMuqlx0iEREZv5LlkW49ymOTYKbkgCYktPrg9KJUsLmsc1TJrhUWSsUvN6PPKLvx6lz74bmrJM9xb6F8xNUwgEPAINQr6n16Ta1D7e0hTn4zdDTe19DCpY12o8FlJm07jUzxNWp2BlFw8UrN"
-                    )
-                  ),
-                "grossMass"        -> 12345.6789,
-                "PreviousDocument" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber"          -> 76282,
-                      "referenceNumber"         -> "xblR5IfoHqt6uT",
-                      "complementOfInformation" -> "X0t8PC3flnwVP6CfbhKXeIp9s66Aogi",
-                      "type"                    -> "VRPa"
-                    )
-                  ),
-                "HouseConsignment" ->
-                  Json.arr(
-                    Json.obj(
-                      "Consignor" ->
-                        Json.obj(
-                          "identificationNumber" -> "BQ1HdiNjr3VeK0I",
-                          "name"                 -> "vdxSm0mBVXiLxzfUK7JRzMv",
-                          "Address"              ->
-                            Json.obj(
-                              "streetAndNumber" -> "C0q19QeqQIM9oyGUdBjfwbZ38u4HM",
-                              "city"            -> "DlroLDbDQ",
-                              "country"         -> "TU",
-                              "postcode"        -> "TD5UIGQdfW5g"
-                            )
-                        ),
-                      "TransportDocument" ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber"  -> 46315,
-                            "referenceNumber" -> "tH3DcnUokCCbkXFhjhEciWrK40TfFOcxmZmoCKP1rScTzpW8x2n4xET4uJxBftxZJdGtxs",
-                            "type"            -> "tUEs"
-                          )
-                        ),
-                      "Consignee" ->
-                        Json.obj(
-                          "identificationNumber" -> "eeIiS1OPSTY",
-                          "name"                 -> "0Bx1td",
-                          "Address"              ->
-                            Json.obj(
-                              "streetAndNumber" -> "0rqqSPEgPnNjmM0GPEfAeOGbcBB4ar",
-                              "city"            -> "EbiykdllnfVPt8KAxTWsarjZ65rB8xsR1",
-                              "country"         -> "XH",
-                              "postcode"        -> "RAx"
-                            )
-                        ),
-                      "ConsignmentItem" ->
-                        Json.arr(
-                          Json.obj(
-                            "goodsItemNumber" -> 51439,
-                            "Consignee"       ->
-                              Json.obj(
-                                "identificationNumber" -> "2tUaCMtLIBw",
-                                "name"                 -> "5D24gcuPHu0yx56hyj0nJGiZKmWb3XWu",
-                                "Address"              ->
-                                  Json.obj(
-                                    "streetAndNumber" -> "csxYjvlUuojccc3",
-                                    "city"            -> "YcPkeYMCeP4VRBiz",
-                                    "country"         -> "EI",
-                                    "postcode"        -> "656NMGoiJRgYfo"
-                                  )
-                              ),
-                            "AdditionalInformation" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber" -> 61599,
-                                  "code"           -> "3OGR7",
-                                  "text"           -> "DsreFzZhfPHxwK2hxbwo9qrAMy0NFqMplf32OxxAGLmF0wlvkrc"
-                                )
-                              ),
-                            "Commodity" ->
-                              Json.obj(
-                                "descriptionOfGoods" -> "3vikv8d9BvFgGeRyxeNFnrVjaazwIcC4CL9n3Peo2HPHKdjoFsbXVT3ml0lwBjYNzjmmNJDBpbVGFZDK2F00",
-                                "DangerousGoods"     ->
-                                  Json.arr(
-                                    Json.obj(
-                                      "sequenceNumber" -> 29421,
-                                      "UNNumber"       -> "3643"
-                                    )
-                                  ),
-                                "cusCode"       -> "DytxgskCm",
-                                "CommodityCode" ->
-                                  Json.obj(
-                                    "harmonizedSystemSubHeadingCode" -> "A3UCz1",
-                                    "combinedNomenclatureCode"       -> "So"
-                                  )
-                              ),
-                            "TransportDocument" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"  -> 63956,
-                                  "referenceNumber" -> "i4KNl4Q3UKa43SjihEbHDVmIOTVnlKZ8GW9SECQRASLL0K02sCluABiU",
-                                  "type"            -> "Wu72"
-                                )
-                              ),
-                            "declarationType"            -> "9W",
-                            "declarationGoodsItemNumber" -> 882,
-                            "SupportingDocument"         ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"          -> 38936,
-                                  "referenceNumber"         -> "MTBfBBpWSGWsKegEDBGCNZEqMe",
-                                  "complementOfInformation" -> "DMyrz9E0WPPVTbZoBG",
-                                  "type"                    -> "nMai"
-                                )
-                              ),
-                            "Packaging" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"   -> 24315,
-                                  "typeOfPackages"   -> "EZ",
-                                  "numberOfPackages" -> 2261115,
-                                  "shippingMarks"    -> "00252979421587833898928020"
-                                )
-                              ),
-                            "PreviousDocument" ->
-                              Json.arr(
-                                Json.obj(
-                                  "goodsItemNumber"         -> 87713,
-                                  "type"                    -> "pRAG",
-                                  "sequenceNumber"          -> 90825,
-                                  "complementOfInformation" -> "9KbnIgdxojRtKHdSrCJkf8mqq26UKLV",
-                                  "referenceNumber"         -> "7LKDeT1Uh02RSwcdNzxLoZJlMh7lPknONqWscStDn8I"
-                                )
-                              ),
-                            "countryOfDestination" -> "AF",
-                            "AdditionalReference"  ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"  -> 46776,
-                                  "referenceNumber" -> "F3rluFp8VbTz7OBMXJ5U1",
-                                  "type"            -> "qmNV"
-                                )
-                              )
-                          )
-                        ),
-                      "AdditionalInformation" ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber" -> 59865,
-                            "code"           -> "QdGfl",
-                            "text"           -> "feMHmi"
-                          )
-                        ),
-                      "securityIndicatorFromExportDeclaration" -> "3",
-                      "grossMass"                              -> 9876.54321,
-                      "PreviousDocument"                       ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber"          -> 95738,
-                            "referenceNumber"         -> "ZqgFpWpraJuG5RZS0eTYjBFzY7aoMJKEiU3kPFi5kkH8Dy6i9QcGnC0FZfpA2Cs",
-                            "complementOfInformation" -> "LmzTb7e7ZLvT4E",
-                            "type"                    -> "ae07"
-                          )
-                        ),
-                      "sequenceNumber"          -> 70825,
-                      "DepartureTransportMeans" ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber"       -> 92653,
-                            "typeOfIdentification" -> "47",
-                            "identificationNumber" -> "wJ",
-                            "nationality"          -> "SV"
-                          )
-                        ),
-                      "SupportingDocument" ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber"          -> 54357,
-                            "referenceNumber"         -> "Qyk6Zetg3U5eNF12mYCNLfPJQHd276iH",
-                            "complementOfInformation" -> "mCAv6Unq",
-                            "type"                    -> "bpHP"
-                          )
-                        ),
-                      "countryOfDestination" -> "TR",
-                      "AdditionalReference"  ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber"  -> 9317,
-                            "referenceNumber" -> "4CQ9zcSER4cjI8DmuMw3ZDboZe0",
-                            "type"            -> "qLM6"
-                          )
-                        )
-                    )
-                  ),
-                "Consignor" ->
-                  Json.obj(
-                    "identificationNumber" -> "FrEQFlb5GseYtOG",
-                    "name"                 -> "jdk5SptgzVd5Ukjs9OkYfyGXC8SO2CW7ZS2OBj7",
-                    "Address"              ->
+                    ),
+                    "GoodsReference" -> Json.arr(
                       Json.obj(
-                        "streetAndNumber" -> "sXHdiozRcU5qNbEe3N0YgAKEAH0eSq27PfbaKnLO1kzl0y7PG",
-                        "city"            -> "uk3Hrbe",
-                        "country"         -> "TB",
-                        "postcode"        -> "sau0OjFjDp6Zi3VC"
+                        "sequenceNumber"             -> 73377,
+                        "declarationGoodsItemNumber" -> 622
                       )
-                  ),
-                "inlandModeOfTransport" -> "1",
-                "TransportEquipment"    ->
-                  Json.arr(
-                    Json.obj(
-                      "GoodsReference" ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber"             -> 62475,
-                            "declarationGoodsItemNumber" -> 996
-                          )
-                        ),
-                      "containerIdentificationNumber" -> "XRFDbfYon0",
-                      "numberOfSeals"                 -> 97,
-                      "sequenceNumber"                -> 14848,
-                      "Seal"                          ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber" -> 10869,
-                            "identifier"     -> "FoUbPaFDwTLgc1WpPJv"
-                          )
-                        )
-                    )
-                  ),
-                "containerIndicator"      -> "0",
-                "DepartureTransportMeans" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber"       -> 81355,
-                      "typeOfIdentification" -> "53",
-                      "identificationNumber" -> "H6Q1SvmZGf",
-                      "nationality"          -> "RO"
-                    )
-                  ),
-                "SupportingDocument" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber"          -> 15518,
-                      "referenceNumber"         -> "Kf2v3XqxJjnH",
-                      "complementOfInformation" -> "aRQd8GtSACcR",
-                      "type"                    -> "elZY"
-                    )
-                  ),
-                "countryOfDestination" -> "CH",
-                "AdditionalReference"  ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber"  -> 69777,
-                      "referenceNumber" -> "4uJC8P5iw2wVdHAydOWlxRAs2Ce",
-                      "type"            -> "ybi8"
                     )
                   )
-              ),
-            "@PhaseID" -> "NCTS5.0"
-          )
+                ),
+                "Transhipment" -> Json.obj(
+                  "containerIndicator" -> "1",
+                  "TransportMeans"     -> Json.obj(
+                    "typeOfIdentification" -> "74",
+                    "identificationNumber" -> "gg6KV7cORk0JJond7WWQ8U6M0",
+                    "nationality"          -> "OB"
+                  )
+                )
+              )
+            ),
+            "HouseConsignment" -> Json.arr(
+              Json.obj(
+                "sequenceNumber"                         -> 70825,
+                "countryOfDestination"                   -> "TR",
+                "grossMass"                              -> JsNumber(BigDecimal("9876.54321")),
+                "securityIndicatorFromExportDeclaration" -> "3",
+                "Consignor"                              -> Json.obj(
+                  "identificationNumber" -> "BQ1HdiNjr3VeK0I",
+                  "name"                 -> "vdxSm0mBVXiLxzfUK7JRzMv",
+                  "Address"              -> Json.obj(
+                    "streetAndNumber" -> "C0q19QeqQIM9oyGUdBjfwbZ38u4HM",
+                    "postcode"        -> "TD5UIGQdfW5g",
+                    "city"            -> "DlroLDbDQ",
+                    "country"         -> "TU"
+                  )
+                ),
+                "Consignee" -> Json.obj(
+                  "identificationNumber" -> "eeIiS1OPSTY",
+                  "name"                 -> "0Bx1td",
+                  "Address"              -> Json.obj(
+                    "streetAndNumber" -> "0rqqSPEgPnNjmM0GPEfAeOGbcBB4ar",
+                    "postcode"        -> "RAx",
+                    "city"            -> "EbiykdllnfVPt8KAxTWsarjZ65rB8xsR1",
+                    "country"         -> "XH"
+                  )
+                ),
+                "DepartureTransportMeans" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"       -> 92653,
+                    "typeOfIdentification" -> "47",
+                    "identificationNumber" -> "wJ",
+                    "nationality"          -> "SV"
+                  )
+                ),
+                "PreviousDocument" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"          -> 95738,
+                    "referenceNumber"         -> "ZqgFpWpraJuG5RZS0eTYjBFzY7aoMJKEiU3kPFi5kkH8Dy6i9QcGnC0FZfpA2Cs",
+                    "complementOfInformation" -> "LmzTb7e7ZLvT4E",
+                    "type"                    -> "ae07"
+                  )
+                ),
+                "SupportingDocument" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"          -> 54357,
+                    "referenceNumber"         -> "Qyk6Zetg3U5eNF12mYCNLfPJQHd276iH",
+                    "complementOfInformation" -> "mCAv6Unq",
+                    "type"                    -> "bpHP"
+                  )
+                ),
+                "TransportDocument" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"  -> 46315,
+                    "referenceNumber" -> "tH3DcnUokCCbkXFhjhEciWrK40TfFOcxmZmoCKP1rScTzpW8x2n4xET4uJxBftxZJdGtxs",
+                    "type"            -> "tUEs"
+                  )
+                ),
+                "AdditionalReference" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber"  -> 9317,
+                    "referenceNumber" -> "4CQ9zcSER4cjI8DmuMw3ZDboZe0",
+                    "type"            -> "qLM6"
+                  )
+                ),
+                "AdditionalInformation" -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber" -> 59865,
+                    "code"           -> "QdGfl",
+                    "text"           -> "feMHmi"
+                  )
+                ),
+                "ConsignmentItem" -> Json.arr(
+                  Json.obj(
+                    "goodsItemNumber"            -> 51439,
+                    "declarationGoodsItemNumber" -> 882,
+                    "declarationType"            -> "9W",
+                    "countryOfDestination"       -> "AF",
+                    "Consignee"                  -> Json.obj(
+                      "identificationNumber" -> "2tUaCMtLIBw",
+                      "name"                 -> "5D24gcuPHu0yx56hyj0nJGiZKmWb3XWu",
+                      "Address"              -> Json.obj(
+                        "streetAndNumber" -> "csxYjvlUuojccc3",
+                        "postcode"        -> "656NMGoiJRgYfo",
+                        "city"            -> "YcPkeYMCeP4VRBiz",
+                        "country"         -> "EI"
+                      )
+                    ),
+                    "Commodity" -> Json.obj(
+                      "descriptionOfGoods" -> "3vikv8d9BvFgGeRyxeNFnrVjaazwIcC4CL9n3Peo2HPHKdjoFsbXVT3ml0lwBjYNzjmmNJDBpbVGFZDK2F00",
+                      "cusCode"            -> "DytxgskCm",
+                      "CommodityCode"      -> Json.obj(
+                        "harmonizedSystemSubHeadingCode" -> "A3UCz1",
+                        "combinedNomenclatureCode"       -> "So"
+                      ),
+                      "DangerousGoods" -> Json.arr(
+                        Json.obj(
+                          "sequenceNumber" -> 29421,
+                          "UNNumber"       -> "3643"
+                        )
+                      ),
+                      "GoodsMeasure" -> Json.obj(
+                        "grossMass" -> 10
+                      )
+                    ),
+                    "Packaging" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"   -> 24315,
+                        "typeOfPackages"   -> "EZ",
+                        "numberOfPackages" -> 2261115,
+                        "shippingMarks"    -> "00252979421587833898928020"
+                      )
+                    ),
+                    "PreviousDocument" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"          -> 90825,
+                        "referenceNumber"         -> "7LKDeT1Uh02RSwcdNzxLoZJlMh7lPknONqWscStDn8I",
+                        "goodsItemNumber"         -> 87713,
+                        "complementOfInformation" -> "9KbnIgdxojRtKHdSrCJkf8mqq26UKLV",
+                        "type"                    -> "pRAG"
+                      )
+                    ),
+                    "SupportingDocument" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"          -> 38936,
+                        "referenceNumber"         -> "MTBfBBpWSGWsKegEDBGCNZEqMe",
+                        "complementOfInformation" -> "DMyrz9E0WPPVTbZoBG",
+                        "type"                    -> "nMai"
+                      )
+                    ),
+                    "TransportDocument" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"  -> 63956,
+                        "referenceNumber" -> "i4KNl4Q3UKa43SjihEbHDVmIOTVnlKZ8GW9SECQRASLL0K02sCluABiU",
+                        "type"            -> "Wu72"
+                      )
+                    ),
+                    "AdditionalReference" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"  -> 46776,
+                        "referenceNumber" -> "F3rluFp8VbTz7OBMXJ5U1",
+                        "type"            -> "qmNV"
+                      )
+                    ),
+                    "AdditionalInformation" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber" -> 61599,
+                        "code"           -> "3OGR7",
+                        "text"           -> "DsreFzZhfPHxwK2hxbwo9qrAMy0NFqMplf32OxxAGLmF0wlvkrc"
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          ),
+          "@PhaseID" -> "NCTS5.0"
+        )
       )
 
     lazy val jsonInvalid =
@@ -1285,211 +1227,158 @@ object TestObjects {
       <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
     </ncts:CC044C>
 
-    lazy val jsonValid =
+    lazy val jsonValid: JsObject =
       Json.obj(
-        "n1:CC044C" ->
-          Json.obj(
-            "messageSender"          -> "9999912345",
-            "messageRecipient"       -> "NTA.GB",
-            "preparationDateAndTime" -> "2007-10-26T07:36:28",
-            "messageIdentification"  -> "1",
-            "messageType"            -> "CC044C",
-            "TransitOperation"       ->
+        "n1:CC044C" -> Json.obj(
+          "messageSender"          -> "9999912345",
+          "messageRecipient"       -> "NTA.GB",
+          "preparationDateAndTime" -> "2007-10-26T07:36:28",
+          "messageIdentification"  -> "1",
+          "messageType"            -> "CC044C",
+          "TransitOperation"       -> Json.obj(
+            "MRN" -> "24XI000081LAQJBTJ2"
+          ),
+          "CustomsOfficeOfDestinationActual" -> Json.obj(
+            "referenceNumber" -> "GB000246"
+          ),
+          "TraderAtDestination" -> Json.obj(
+            "identificationNumber" -> "GB953574106000"
+          ),
+          "UnloadingRemark" -> Json.obj(
+            "conform"             -> "0",
+            "unloadingCompletion" -> "1",
+            "unloadingDate"       -> "2018-11-01",
+            "stateOfSeals"        -> "0"
+          ),
+          "Consignment" -> Json.obj(
+            "grossMass"          -> 3000,
+            "TransportEquipment" -> Json.arr(
               Json.obj(
-                "MRN" -> "24XI000081LAQJBTJ2"
-              ),
-            "CustomsOfficeOfDestinationActual" ->
+                "sequenceNumber" -> 1,
+                "Seal"           -> Json.arr(
+                  Json.obj(
+                    "sequenceNumber" -> 2,
+                    "identifier"     -> "5678"
+                  )
+                ),
+                "GoodsReference" -> Json.arr()
+              )
+            ),
+            "DepartureTransportMeans"       -> Json.arr(),
+            "CountryOfRoutingOfConsignment" -> Json.arr(),
+            "SupportingDocument"            -> Json.arr(),
+            "TransportDocument"             -> Json.arr(),
+            "AdditionalReference"           -> Json.arr(),
+            "HouseConsignment"              -> Json.arr(
               Json.obj(
-                "referenceNumber" -> "GB000246"
-              ),
-            "TraderAtDestination" ->
-              Json.obj(
-                "identificationNumber" -> "GB953574106000"
-              ),
-            "UnloadingRemark" ->
-              Json.obj(
-                "conform"             -> "0",
-                "unloadingCompletion" -> "1",
-                "unloadingDate"       -> "2018-11-01",
-                "stateOfSeals"        -> "0"
-              ),
-            "Consignment" ->
-              Json.obj(
-                "TransportDocument" ->
-                  Json.arr(),
-                "TransportEquipment" ->
-                  Json.arr(
-                    Json.obj(
-                      "sequenceNumber" -> 1,
-                      "Seal"           ->
-                        Json.arr(
-                          Json.obj(
-                            "sequenceNumber" -> 2,
-                            "identifier"     -> "5678"
-                          )
-                        ),
-                      "GoodsReference" ->
-                        Json.arr()
-                    )
+                "sequenceNumber"          -> 1,
+                "grossMass"               -> 500,
+                "DepartureTransportMeans" -> Json.arr(),
+                "SupportingDocument"      -> Json.arr(),
+                "TransportDocument"       -> Json.arr(),
+                "AdditionalReference"     -> Json.arr(),
+                "ConsignmentItem"         -> Json.arr(
+                  Json.obj(
+                    "goodsItemNumber"            -> 1,
+                    "declarationGoodsItemNumber" -> 1,
+                    "Packaging"                  -> Json.arr(),
+                    "SupportingDocument"         -> Json.arr(),
+                    "TransportDocument"          -> Json.arr(),
+                    "AdditionalReference"        -> Json.arr()
                   ),
-                "grossMass"        -> 3000,
-                "HouseConsignment" ->
-                  Json.arr(
-                    Json.obj(
-                      "TransportDocument" ->
-                        Json.arr(),
-                      "ConsignmentItem" ->
-                        Json.arr(
-                          Json.obj(
-                            "goodsItemNumber"   -> 1,
-                            "TransportDocument" ->
-                              Json.arr(),
-                            "Packaging" ->
-                              Json.arr(),
-                            "AdditionalReference" ->
-                              Json.arr(),
-                            "declarationGoodsItemNumber" -> 1,
-                            "SupportingDocument"         ->
-                              Json.arr()
-                          ),
-                          Json.obj(
-                            "goodsItemNumber"   -> 2,
-                            "TransportDocument" ->
-                              Json.arr(),
-                            "Packaging" ->
-                              Json.arr(),
-                            "Commodity" ->
-                              Json.obj(
-                                "GoodsMeasure" ->
-                                  Json.obj(
-                                    "grossMass" -> 500,
-                                    "netMass"   -> 300
-                                  )
-                              ),
-                            "AdditionalReference" ->
-                              Json.arr(),
-                            "declarationGoodsItemNumber" -> 2,
-                            "SupportingDocument"         ->
-                              Json.arr()
-                          )
-                        ),
-                      "grossMass"           -> 500,
-                      "sequenceNumber"      -> 1,
-                      "AdditionalReference" ->
-                        Json.arr(),
-                      "DepartureTransportMeans" ->
-                        Json.arr(),
-                      "SupportingDocument" ->
-                        Json.arr()
+                  Json.obj(
+                    "goodsItemNumber"            -> 2,
+                    "declarationGoodsItemNumber" -> 2,
+                    "Commodity"                  -> Json.obj(
+                      "GoodsMeasure" -> Json.obj(
+                        "grossMass" -> 500,
+                        "netMass"   -> 300
+                      )
                     ),
-                    Json.obj(
-                      "TransportDocument" ->
-                        Json.arr(),
-                      "ConsignmentItem" ->
-                        Json.arr(
-                          Json.obj(
-                            "goodsItemNumber"   -> 1,
-                            "TransportDocument" ->
-                              Json.arr(),
-                            "Packaging" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"   -> 1,
-                                  "typeOfPackages"   -> "NE",
-                                  "numberOfPackages" -> 6
-                                )
-                              ),
-                            "Commodity" ->
-                              Json.obj(
-                                "descriptionOfGoods" -> "Steel sheets",
-                                "CommodityCode"      ->
-                                  Json.obj(
-                                    "harmonizedSystemSubHeadingCode" -> "730110"
-                                  ),
-                                "GoodsMeasure" ->
-                                  Json.obj(
-                                    "grossMass" -> 800,
-                                    "netMass"   -> 750
-                                  )
-                              ),
-                            "AdditionalReference" ->
-                              Json.arr(),
-                            "declarationGoodsItemNumber" -> 3,
-                            "SupportingDocument"         ->
-                              Json.arr()
-                          ),
-                          Json.obj(
-                            "goodsItemNumber"   -> 2,
-                            "TransportDocument" ->
-                              Json.arr(),
-                            "Packaging" ->
-                              Json.arr(),
-                            "Commodity" ->
-                              Json.obj(
-                                "GoodsMeasure" ->
-                                  Json.obj(
-                                    "grossMass" -> 1200,
-                                    "netMass"   -> 1000
-                                  )
-                              ),
-                            "AdditionalReference" ->
-                              Json.arr(),
-                            "declarationGoodsItemNumber" -> 4,
-                            "SupportingDocument"         ->
-                              Json.arr()
-                          ),
-                          Json.obj(
-                            "goodsItemNumber"   -> 3,
-                            "TransportDocument" ->
-                              Json.arr(),
-                            "Packaging" ->
-                              Json.arr(
-                                Json.obj(
-                                  "sequenceNumber"   -> 1,
-                                  "typeOfPackages"   -> "BX",
-                                  "numberOfPackages" -> 10,
-                                  "shippingMarks"    -> "Shipping marks or references"
-                                )
-                              ),
-                            "Commodity" ->
-                              Json.obj(
-                                "descriptionOfGoods" -> "Cardboard Sheets",
-                                "CommodityCode"      ->
-                                  Json.obj(
-                                    "harmonizedSystemSubHeadingCode" -> "480700"
-                                  ),
-                                "GoodsMeasure" ->
-                                  Json.obj(
-                                    "grossMass" -> 500,
-                                    "netMass"   -> 300
-                                  )
-                              ),
-                            "AdditionalReference" ->
-                              Json.arr(),
-                            "declarationGoodsItemNumber" -> 5,
-                            "SupportingDocument"         ->
-                              Json.arr()
-                          )
-                        ),
-                      "grossMass"           -> 2500,
-                      "sequenceNumber"      -> 2,
-                      "AdditionalReference" ->
-                        Json.arr(),
-                      "DepartureTransportMeans" ->
-                        Json.arr(),
-                      "SupportingDocument" ->
-                        Json.arr()
-                    )
-                  ),
-                "AdditionalReference" ->
-                  Json.arr(),
-                "DepartureTransportMeans" ->
-                  Json.arr(),
-                "SupportingDocument" ->
-                  Json.arr()
+                    "Packaging"           -> Json.arr(),
+                    "SupportingDocument"  -> Json.arr(),
+                    "TransportDocument"   -> Json.arr(),
+                    "AdditionalReference" -> Json.arr()
+                  )
+                )
               ),
-            "@PhaseID" -> "NCTS5.1"
-          )
+              Json.obj(
+                "sequenceNumber"          -> 2,
+                "grossMass"               -> 2500,
+                "DepartureTransportMeans" -> Json.arr(),
+                "SupportingDocument"      -> Json.arr(),
+                "TransportDocument"       -> Json.arr(),
+                "AdditionalReference"     -> Json.arr(),
+                "ConsignmentItem"         -> Json.arr(
+                  Json.obj(
+                    "goodsItemNumber"            -> 1,
+                    "declarationGoodsItemNumber" -> 3,
+                    "Commodity"                  -> Json.obj(
+                      "descriptionOfGoods" -> "Steel sheets",
+                      "CommodityCode"      -> Json.obj(
+                        "harmonizedSystemSubHeadingCode" -> "730110"
+                      ),
+                      "GoodsMeasure" -> Json.obj(
+                        "grossMass" -> 800,
+                        "netMass"   -> 750
+                      )
+                    ),
+                    "Packaging" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"   -> 1,
+                        "typeOfPackages"   -> "NE",
+                        "numberOfPackages" -> 6
+                      )
+                    ),
+                    "SupportingDocument"  -> Json.arr(),
+                    "TransportDocument"   -> Json.arr(),
+                    "AdditionalReference" -> Json.arr()
+                  ),
+                  Json.obj(
+                    "goodsItemNumber"            -> 2,
+                    "declarationGoodsItemNumber" -> 4,
+                    "Commodity"                  -> Json.obj(
+                      "GoodsMeasure" -> Json.obj(
+                        "grossMass" -> 1200,
+                        "netMass"   -> 1000
+                      )
+                    ),
+                    "Packaging"           -> Json.arr(),
+                    "SupportingDocument"  -> Json.arr(),
+                    "TransportDocument"   -> Json.arr(),
+                    "AdditionalReference" -> Json.arr()
+                  ),
+                  Json.obj(
+                    "goodsItemNumber"            -> 3,
+                    "declarationGoodsItemNumber" -> 5,
+                    "Commodity"                  -> Json.obj(
+                      "descriptionOfGoods" -> "Cardboard Sheets",
+                      "CommodityCode"      -> Json.obj(
+                        "harmonizedSystemSubHeadingCode" -> "480700"
+                      ),
+                      "GoodsMeasure" -> Json.obj(
+                        "grossMass" -> 500,
+                        "netMass"   -> 300
+                      )
+                    ),
+                    "Packaging" -> Json.arr(
+                      Json.obj(
+                        "sequenceNumber"   -> 1,
+                        "typeOfPackages"   -> "BX",
+                        "numberOfPackages" -> 10,
+                        "shippingMarks"    -> "Shipping marks or references"
+                      )
+                    ),
+                    "SupportingDocument"  -> Json.arr(),
+                    "TransportDocument"   -> Json.arr(),
+                    "AdditionalReference" -> Json.arr()
+                  )
+                )
+              )
+            )
+          ),
+          "@PhaseID" -> "NCTS5.1"
+        )
       )
 
     lazy val jsonInvalid =
