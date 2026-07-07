@@ -65,6 +65,16 @@ class V3ConverterServiceIntegrationSpec
         _.left.value mustBe a[ConversionError.XMLParsingError]
       }
 
+    "converting CC022C XML to Json is as expected" in
+      whenReady(service.xmlToJson(MessageType.IE022, createStream(TestObjects.CC022C.xmlValid)).value) {
+        _ mustBe TestObjects.CC022C.jsonValid.asRight
+      }
+
+    "converting invalid CC022C XML to Json returns an error" in
+      whenReady(service.xmlToJson(MessageType.IE022, createStream(TestObjects.CC022C.xmlInvalid)).value) {
+        _.left.value mustBe a[ConversionError.XMLParsingError]
+      }
+
     "converting CC025C XML to Json is as expected" in
       whenReady(service.xmlToJson(MessageType.IE025, createStream(TestObjects.CC025C.xmlValid)).value) {
         _ mustBe TestObjects.CC025C.jsonValid.asRight
@@ -177,6 +187,17 @@ class V3ConverterServiceIntegrationSpec
 
     "converting invalid CC019C Json to XML returns an error" in
       whenReady(service.jsonToXml(MessageType.IE019, createStream(TestObjects.CC019C.invalidJson)).value) {
+        _.left.value mustBe a[ConversionError.JsonParsingError]
+      }
+
+    "converting CC022C Json to XML is as expected" in
+      whenReady(service.jsonToXml(MessageType.IE022, createStream(TestObjects.CC022C.jsonValid)).value) {
+        case Right(x: Elem) => trim(x) mustEqual trim(TestObjects.CC022C.xmlValid)
+        case x              => fail(s"$x is not what was expected")
+      }
+
+    "converting invalid CC022C Json to XML returns an error" in
+      whenReady(service.jsonToXml(MessageType.IE022, createStream(TestObjects.CC022C.jsonInvalid)).value) {
         _.left.value mustBe a[ConversionError.JsonParsingError]
       }
 

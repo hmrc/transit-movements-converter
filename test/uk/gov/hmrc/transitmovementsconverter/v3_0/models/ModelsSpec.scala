@@ -31,6 +31,7 @@ import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC013CTestM
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC014CTestMessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC015CTestMessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC019CTestMessageType
+import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC022CTestMessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC025CTestMessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC028CTestMessageType
 import uk.gov.hmrc.transitmovementsconverter.v3_0.models.testobjects.CC029CTestMessageType
@@ -60,6 +61,7 @@ class ModelsSpec extends AnyFreeSpec with ScalaFutures with Matchers with TestAc
   "cc014cFormats" - new TestType[CC014CType](CC014CTestMessageType, Models.cc014cFormats)
   "cc015cFormats" - new TestType[CC015CType](CC015CTestMessageType, Models.cc015cFormats)
   "cc019cFormats" - new TestType[CC019CType](CC019CTestMessageType, Models.cc019cFormats)
+  "cc022cFormats" - new TestType[CC022CType](CC022CTestMessageType, Models.cc022cFormats)
   "cc025cFormats" - new TestType[CC025CType](CC025CTestMessageType, Models.cc025cFormats)
   "cc028cFormats" - new TestType[CC028CType](CC028CTestMessageType, Models.cc028cFormats)
   "cc029cFormats" - new TestType[CC029CType](CC029CTestMessageType, Models.cc029cFormats)
