@@ -224,6 +224,96 @@ object TestObjects {
       )
   }
 
+  object CC022C {
+
+    lazy val xmlValid = <ncts:CC022C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageSender>token</messageSender>
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+      <preparationDateAndTime>2022-12-25T07:36:28</preparationDateAndTime>
+      <messageIdentification>6Onxa3En</messageIdentification>
+      <messageType>CC022C</messageType>
+      <correlationIdentifier>co-id-1</correlationIdentifier>
+      <TransitOperation>
+        <MRN>qvRc</MRN>
+        <amendmentNotificationDateAndTime>2014-12-25T16:15:04+01:00</amendmentNotificationDateAndTime>
+      </TransitOperation>
+      <CustomsOfficeOfDeparture>
+        <referenceNumber>2</referenceNumber>
+      </CustomsOfficeOfDeparture>
+      <HolderOfTheTransitProcedure>
+        <identificationNumber>string</identificationNumber>
+        <TIRHolderIdentificationNumber>string</TIRHolderIdentificationNumber>
+        <name>string</name>
+        <Address>
+          <streetAndNumber>string</streetAndNumber>
+          <postcode>string</postcode>
+          <city>string</city>
+          <country>st</country>
+        </Address>
+      </HolderOfTheTransitProcedure>
+      <FunctionalError>
+        <sequenceNumber>100</sequenceNumber>
+        <errorPointer>2</errorPointer>
+        <errorCode>13</errorCode>
+        <errorReason>waf 12</errorReason>
+        <originalAttributeValue>2</originalAttributeValue>
+      </FunctionalError>
+    </ncts:CC022C>
+
+    lazy val xmlInvalid = <ncts:CC057C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
+      <messageRecipient>FdOcminxBxSLGm1rRUn0q96S1</messageRecipient>
+    </ncts:CC057C>
+
+    lazy val jsonValid = Json.obj(
+      "n1:CC022C" ->
+        Json.obj(
+          "preparationDateAndTime" -> "2022-12-25T07:36:28",
+          "TransitOperation"       -> Json.obj(
+            "MRN"                              -> "qvRc",
+            "amendmentNotificationDateAndTime" -> "2014-12-25T16:15:04+01:00"
+          ),
+          "CustomsOfficeOfDeparture" -> Json.obj(
+            "referenceNumber" -> "2"
+          ),
+          "messageType"           -> "CC022C",
+          "@PhaseID"              -> "NCTS5.0",
+          "correlationIdentifier" -> "co-id-1",
+          "FunctionalError"       -> Json.arr(
+            Json.obj(
+              "sequenceNumber"         -> 100,
+              "errorPointer"           -> "2",
+              "errorCode"              -> "13",
+              "errorReason"            -> "waf 12",
+              "originalAttributeValue" -> "2"
+            )
+          ),
+          "HolderOfTheTransitProcedure" -> Json.obj(
+            "identificationNumber"          -> "string",
+            "TIRHolderIdentificationNumber" -> "string",
+            "name"                          -> "string",
+            "Address"                       -> Json.obj(
+              "streetAndNumber" -> "string",
+              "postcode"        -> "string",
+              "city"            -> "string",
+              "country"         -> "st"
+            )
+          ),
+          "messageSender"         -> "token",
+          "messageRecipient"      -> "FdOcminxBxSLGm1rRUn0q96S1",
+          "messageIdentification" -> "6Onxa3En"
+        )
+    )
+
+    lazy val jsonInvalid =
+      Json.obj(
+        "n1:CC022C" ->
+          Json.obj(
+            "@PhaseID"      -> "NCTS5.0",
+            "messageSender" -> "FdOcminxBxSLGm1rRUn0q96S1"
+          )
+      )
+  }
+
   object CC025C {
 
     lazy val xmlValid = <ncts:CC025C PhaseID="NCTS5.0" xmlns:ncts="http://ncts.dgtaxud.ec">
