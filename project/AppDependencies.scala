@@ -4,8 +4,8 @@ import sbt.*
 object AppDependencies {
 
   val catsVersion      = "2.13.0"
-  val bootstrapVersion = "10.7.0"
-  val pekkoVersion = "1.5.0"
+  val bootstrapVersion = "10.9.0"
+  val pekkoVersion = "2.0.0"
 
   val compile = Seq(
     "uk.gov.hmrc"      %% "bootstrap-backend-play-30" % bootstrapVersion,
@@ -13,7 +13,7 @@ object AppDependencies {
     "org.apache.pekko" %% "pekko-stream"              % pekkoVersion,
     "org.typelevel"    %% "cats-core"                 % catsVersion,
     // required for scalaxb
-    "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0",
+    "org.scala-lang.modules" %% "scala-parser-combinators" % "2.5.0",
     "javax.xml.bind"          % "jaxb-api"                 % "2.3.1",
     "org.apache.pekko" %% "pekko-protobuf-v3" % pekkoVersion,
     "org.apache.pekko" %% "pekko-serialization-jackson" % pekkoVersion,
